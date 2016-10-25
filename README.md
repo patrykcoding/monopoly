@@ -6,5 +6,5 @@ project that has a explicit focus on code refactoring with details outlined in
 the [SPEC](docs/SPEC.md).
 
 #### Development Team
-Cody Moorhouse
-Patryk Kaczmarkiewicz
+* Cody Moorhouse
+* Patryk Kaczmarkiewicz
