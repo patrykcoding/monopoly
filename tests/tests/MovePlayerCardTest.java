@@ -1,6 +1,12 @@
-package monopoly;
+package tests;
 
 import junit.framework.TestCase;
+import monopoly.Card;
+import monopoly.Cell;
+import monopoly.GameBoardCCMovePlayer;
+import monopoly.GameMaster;
+import monopoly.MockGUI;
+import monopoly.MovePlayerCard;
 
 public class MovePlayerCardTest extends TestCase {
     GameMaster gameMaster;
