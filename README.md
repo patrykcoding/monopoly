@@ -7,3 +7,4 @@ the [SPEC](docs/SPEC.md).
 
 #### Development Team
 Cody Moorhouse
+Patryk Kaczmarkiewicz
