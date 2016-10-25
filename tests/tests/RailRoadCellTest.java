@@ -1,6 +1,10 @@
-package monopoly;
+package tests;
 
 import junit.framework.TestCase;
+import monopoly.GameBoardRailRoad;
+import monopoly.GameMaster;
+import monopoly.MockGUI;
+import monopoly.RailRoadCell;
 
 public class RailRoadCellTest extends TestCase {
 	GameMaster gameMaster;

@@ -1,9 +1,12 @@
-package monopoly;
+package tests;
 
 import java.awt.Dimension;
 import java.util.List;
 
 import junit.framework.TestCase;
+import monopoly.GameBoard;
+import monopoly.GameBoard14;
+import monopoly.SimpleGameBoard;
 
 import monopoly.gui.GameBoardUtil;
 

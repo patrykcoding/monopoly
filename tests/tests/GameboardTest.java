@@ -1,6 +1,10 @@
-package monopoly;
+package tests;
 
 import junit.framework.TestCase;
+import monopoly.Cell;
+import monopoly.GameBoard;
+import monopoly.PropertyCell;
+import monopoly.SimpleGameBoard;
 
 
 public class GameboardTest extends TestCase {

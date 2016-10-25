@@ -1,6 +1,9 @@
-package monopoly;
+package tests;
 
 import junit.framework.TestCase;
+import monopoly.GameMaster;
+import monopoly.Player;
+import monopoly.TradeDeal;
 
 public class TradeDealTest extends TestCase {
     

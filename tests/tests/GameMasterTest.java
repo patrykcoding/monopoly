@@ -1,8 +1,11 @@
-package monopoly;
+package tests;
 
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
+import monopoly.GameBoardFull;
+import monopoly.GameMaster;
+import monopoly.MockGUI;
 
 public class GameMasterTest extends TestCase {
 
