@@ -12,6 +12,7 @@ public class CardsTest extends TestCase {
     
     GameMaster gameMaster;
 
+    @Override
     protected void setUp() {
         gameMaster = GameMaster.instance();
         gameMaster.setGameBoard(new GameBoardCCGainMoney());
