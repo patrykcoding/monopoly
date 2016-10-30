@@ -7,10 +7,8 @@ public class GoCell extends Cell {
 	}
 
         @Override
-	public void playAction() {
-	}
+	public void playAction() {}
 	
         @Override
-	public void setName(String name) {
-	}
+	public void setName(String name) {}
 }

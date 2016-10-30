@@ -2,11 +2,10 @@ package monopoly;
 
 public class FreeParkingCell extends Cell {
 
-	public FreeParkingCell() {
-		setName("Free Parking");
-	}
+    public FreeParkingCell() {
+        setName("Free Parking");
+    }
 
-	public void playAction() {
-		return;
-	}
+    @Override
+    public void playAction() {}
 }

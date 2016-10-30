@@ -2,6 +2,7 @@ package monopoly;
 
 public class MockTradeDialog implements TradeDialog {
 
+    @Override
     public TradeDeal getTradeDeal() {
         TradeDeal deal = new TradeDeal();
         deal.setAmount(200);
