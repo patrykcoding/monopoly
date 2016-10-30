@@ -5,12 +5,13 @@ import monopoly.Player;
 import monopoly.PropertyCell;
 
 public class PropertyCellInfoFormatter implements CellInfoFormatter {
+    @Override
     public String format(Cell cell) {
         PropertyCell c = (PropertyCell)cell;
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         Player owner = cell.getPlayer();
         String ownerName = "";
-        if(owner != null) {
+        if (owner != null) {
         	ownerName = owner.getName();
         }
         buf.append("<html><b><font color='")
@@ -18,9 +19,12 @@ public class PropertyCellInfoFormatter implements CellInfoFormatter {
                 .append("'>")
                 .append(cell.getName())
                 .append("</font></b><br>")
-                .append("$").append(c.getPrice())
-				.append("<br>Owner: ").append(ownerName)
-				.append("<br>* ").append(c.getNumHouses())
+                .append("$")
+                .append(c.getPrice())
+                .append("<br>Owner: ")
+                .append(ownerName)
+                .append("<br>* ")
+                .append(c.getNumHouses())
                 .append("</html>");
         return buf.toString();
     }
