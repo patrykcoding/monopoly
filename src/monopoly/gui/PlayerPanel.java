@@ -3,7 +3,6 @@ package monopoly.gui;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,20 +19,20 @@ import monopoly.Player;
 
 public class PlayerPanel extends JPanel {
 
-    private JButton btnBuyHouse;
-    private JButton btnDrawCard;
-    private JButton btnEndTurn;
-    private JButton btnGetOutOfJail;
-    private JButton btnPurchaseProperty;
-    private JButton btnRollDice;
-    private JButton btnTrade;
+    private final JButton btnBuyHouse;
+    private final JButton btnDrawCard;
+    private final JButton btnEndTurn;
+    private final JButton btnGetOutOfJail;
+    private final JButton btnPurchaseProperty;
+    private final JButton btnRollDice;
+    private final JButton btnTrade;
     
-    private JLabel lblMoney;
-    private JLabel lblName;
+    private final JLabel lblMoney;
+    private final JLabel lblName;
     
-    private Player player;
+    private final Player player;
     
-    private JTextArea txtProperty;
+    private final JTextArea txtProperty;
 
     public PlayerPanel(Player player) {
         JPanel pnlAction = new JPanel();
@@ -94,59 +93,44 @@ public class PlayerPanel extends JPanel {
 
         setBorder(new BevelBorder(BevelBorder.RAISED));
 
-        btnRollDice.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnRollDiceClicked();
-            }
+        btnRollDice.addActionListener((ActionEvent e) -> {
+            GameMaster.instance().btnRollDiceClicked();
         });
 
-        btnEndTurn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnEndTurnClicked();
-            }
+        btnEndTurn.addActionListener((ActionEvent e) -> {
+            GameMaster.instance().btnEndTurnClicked();
         });
 
-        btnPurchaseProperty.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnPurchasePropertyClicked();
-            }
+        btnPurchaseProperty.addActionListener((ActionEvent e) -> {
+            GameMaster.instance().btnPurchasePropertyClicked();
         });
 
-        btnBuyHouse.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnBuyHouseClicked();
-            }
+        btnBuyHouse.addActionListener((ActionEvent e) -> {
+            GameMaster.instance().btnBuyHouseClicked();
         });
 
-        btnGetOutOfJail.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnGetOutOfJailClicked();
-            }
+        btnGetOutOfJail.addActionListener((ActionEvent e) -> {
+            GameMaster.instance().btnGetOutOfJailClicked();
         });
 
-        btnDrawCard.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Card card = GameMaster.instance().btnDrawCardClicked();
-                JOptionPane
-                        .showMessageDialog(PlayerPanel.this, card.getLabel());
-                displayInfo();
-            }
+        btnDrawCard.addActionListener((ActionEvent e) -> {
+            Card card = GameMaster.instance().btnDrawCardClicked();
+            JOptionPane.showMessageDialog(PlayerPanel.this, card.getLabel());
+            displayInfo();
         });
 
-        btnTrade.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnTradeClicked();
-            }
+        btnTrade.addActionListener((ActionEvent e) -> {
+            GameMaster.instance().btnTradeClicked();
         });
     }
 
-    public void displayInfo() {
+    public final void displayInfo() {
         lblName.setText(player.getName());
         lblMoney.setText("$ " + player.getMoney());
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         Cell[] cells = player.getAllProperties();
-        for (int i = 0; i < cells.length; i++) {
-            buf.append(cells[i] + "\n");
+        for (Cell cell : cells) {
+            buf.append(cell).append("\n");
         }
         txtProperty.setText(buf.toString());
     }

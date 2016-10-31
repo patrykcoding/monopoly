@@ -1,7 +1,7 @@
 package monopoly;
 
 public class Die {
-	public int getRoll() {
-		return (int)(Math.random() * 6) + 1;
-	}
+    public int getRoll() {
+        return (int)(Math.random() * 6) + 1;
+    }
 }

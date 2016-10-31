@@ -5,7 +5,6 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.List;
 
@@ -50,41 +49,35 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         contentPane.add(btnOK);
         contentPane.add(btnCancel);
         
-        btnCancel.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                GUITradeDialog.this.hide();
-            }
+        btnCancel.addActionListener((ActionEvent e) -> {
+            GUITradeDialog.this.hide();
         });
         
-        cboSellers.addItemListener(new ItemListener(){
-            public void itemStateChanged(ItemEvent e) {
-                Player player = (Player)e.getItem();
-                updatePropertiesCombo(player);
-            }
+        cboSellers.addItemListener((ItemEvent e) -> {
+            Player player = (Player)e.getItem();
+            updatePropertiesCombo(player);
         });
         
-        btnOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int amount = 0;
-                try{
-                    amount = Integer.parseInt(txtAmount.getText());
-                } catch(NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(GUITradeDialog.this,
-                            "Amount should be an integer", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                Cell cell = (Cell)cboProperties.getSelectedItem();
-                if(cell == null) return;
-                Player player = (Player)cboSellers.getSelectedItem();
-                Player currentPlayer = GameMaster.instance().getCurrentPlayer();
-                if(currentPlayer.getMoney() > amount) { 
-	                deal = new TradeDeal();
-	                deal.setAmount(amount);
-	                deal.setPropertyName(cell.getName());
-	                deal.setSellerIndex(GameMaster.instance().getPlayerIndex(player));
-                }
-                hide();
+        btnOK.addActionListener((ActionEvent e) -> {
+            int amount = 0;
+            try {
+                amount = Integer.parseInt(txtAmount.getText());
+            } catch(NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(GUITradeDialog.this,
+                        "Amount should be an integer", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
+            Cell cell = (Cell)cboProperties.getSelectedItem();
+            if(cell == null) return;
+            Player player = (Player)cboSellers.getSelectedItem();
+            Player currentPlayer = GameMaster.instance().getCurrentPlayer();
+            if(currentPlayer.getMoney() > amount) {
+                deal = new TradeDeal();
+                deal.setAmount(amount);
+                deal.setPropertyName(cell.getName());
+                deal.setSellerIndex(GameMaster.instance().getPlayerIndex(player));
+            }
+            hide();
         });
         
         this.pack();
@@ -101,6 +94,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         }
     }
 
+    @Override
     public TradeDeal getTradeDeal() {
         return deal;
     }
@@ -109,8 +103,8 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         cboProperties.removeAllItems();
         Cell[] cells = player.getAllProperties();
         btnOK.setEnabled(cells.length > 0);
-        for (int i = 0; i < cells.length; i++) {
-            cboProperties.addItem(cells[i]);
+        for (Cell cell : cells) {
+            cboProperties.addItem(cell);
         }
     }
 

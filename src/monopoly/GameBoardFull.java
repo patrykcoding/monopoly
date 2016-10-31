@@ -3,6 +3,7 @@ package monopoly;
 public class GameBoardFull extends GameBoard {
     public GameBoardFull() {
         super();
+        
         PropertyCell dp1 = new PropertyCell();
         CardCell cc1 = new CardCell(Card.TYPE_CC, "Community Chest 1");
         PropertyCell dp2 = new PropertyCell();
@@ -43,7 +44,6 @@ public class GameBoardFull extends GameBoard {
         PropertyCell db2 = new PropertyCell();
         PropertyCell db3 = new PropertyCell();
         
-
         dp1.setPrice(60);
         dp1.setColorGroup("purple");
         dp1.setHousePrice(50);

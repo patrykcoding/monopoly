@@ -7,6 +7,7 @@ import monopoly.TradeDeal;
 
 public class TradeDealTest extends TestCase {
     
+    @Override
     public void setUp() {
         GameMaster gameMaster = GameMaster.instance();
         gameMaster.reset();
@@ -22,7 +23,7 @@ public class TradeDealTest extends TestCase {
         deal.setSellerIndex(1);
         Player buyer = GameMaster.instance().getPlayer(0);
         String message = "Buyer wishes to purchase Blue 1 from Seller" +
-        		" for 200.  Seller, do you wish to trade your property?";
+                " for 200.  Seller, do you wish to trade your property?";
         assertEquals(message, deal.makeMessage());
     }
 

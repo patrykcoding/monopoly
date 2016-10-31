@@ -2,13 +2,13 @@ package monopoly;
 
 public class GoCell extends Cell {
 	public GoCell() {
-		super.setName("Go");
-		setAvailable(false);
+            super.setName("Go");
+            setAvailable(false);
 	}
 
-	public void playAction() {
-	}
+        @Override
+	public void playAction() {}
 	
-	void setName(String name) {
-	}
+        @Override
+	public void setName(String name) {}
 }

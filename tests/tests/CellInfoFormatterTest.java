@@ -22,7 +22,8 @@ public class CellInfoFormatterTest extends TestCase {
         int numHouses = 2;
         int propertyValue = 120;
         String propertyLabel = "<html><b><font color='" +
-				propertyColor +"'>" + propertyName + "</font></b><br>" +
+                                propertyColor +"'>" + 
+                                propertyName + "</font></b><br>" +
 				"$" + propertyValue +
 				"<br>Owner: " + ownerName +
 				"<br>* " + numHouses +

@@ -2,92 +2,103 @@ package monopoly;
 
 public class MockGUI implements MonopolyGUI {
     private boolean btnDrawCardState, btnEndTurnState, btnGetOutOfJailState;
-    private boolean[] btnTradeState = new boolean[2];
+    private final boolean[] btnTradeState = new boolean[2];
 
-    public void enableEndTurnBtn(int playerIndex) {
+    @Override
+    public void enableEndTurnBtn(int playerIndex) {}
+
+    @Override
+    public void enablePlayerTurn(int playerIndex) {}
+
+    @Override
+    public void enablePurchaseBtn(int playerIndex) {}
+	
+    @Override
+    public int[] getDiceRoll() {
+        int roll[] = new int[2];
+        roll[0] = 2;
+        roll[1] = 3;
+        return roll;
     }
 
-    public void enablePlayerTurn(int playerIndex) {
-    }
-
-    public void enablePurchaseBtn(int playerIndex) {
-    }
-	public int[] getDiceRoll() {
-		int roll[] = new int[2];
-		roll[0] = 2;
-		roll[1] = 3;
-		return roll;
-	}
-
+    @Override
     public boolean isDrawCardButtonEnabled() {
         return btnDrawCardState;
     }
 
+    @Override
     public boolean isEndTurnButtonEnabled() {
         return btnEndTurnState;
     }
 	
-	public boolean isGetOutOfJailButtonEnabled() {
-		return btnGetOutOfJailState;
-	}
+    @Override
+    public boolean isGetOutOfJailButtonEnabled() {
+        return btnGetOutOfJailState;
+    }
 
+    @Override
     public boolean isTradeButtonEnabled(int i) {
         return btnTradeState[i];
     }
 
-    public void movePlayer(int index, int from, int to) {
-    }
+    @Override
+    public void movePlayer(int index, int from, int to) {}
 
+    @Override
     public RespondDialog openRespondDialog(TradeDeal deal) {
-        RespondDialog dialog = new MockRespondDialog(deal);
-        return dialog;
+        return new MockRespondDialog(deal);
     }
 
+    @Override
     public TradeDialog openTradeDialog() {
-        TradeDialog dialog = new MockTradeDialog();
-        return dialog;
+        return new MockTradeDialog();
     }
 
-    public void setBuyHouseEnabled(boolean b) {
-    }
+    @Override
+    public void setBuyHouseEnabled(boolean b) {}
 
+    @Override
     public void setDrawCardEnabled(boolean b) {
         btnDrawCardState = b;
     }
 
+    @Override
     public void setEndTurnEnabled(boolean enabled) {
         btnEndTurnState = enabled;
     }
 
+    @Override
     public void setGetOutOfJailEnabled(boolean b) {
     	this.btnGetOutOfJailState = b;
     }
 
-    public void setPurchasePropertyEnabled(boolean enabled) {
-    }
+    @Override
+    public void setPurchasePropertyEnabled(boolean enabled) {}
 
-    public void setRollDiceEnabled(boolean b) {
-    }
+    @Override
+    public void setRollDiceEnabled(boolean b) {}
 
+    @Override
     public void setTradeEnabled(int index, boolean b) {
         this.btnTradeState[index] = b;
     }
 
-    public void showBuyHouseDialog(Player currentPlayer) {
+    @Override
+    public void showBuyHouseDialog(Player currentPlayer) {}
+
+    @Override
+    public void showMessage(String string) {}
+
+    @Override
+    public int showUtilDiceRoll() {
+        // int[] diceValues = GameMaster.instance().rollDice();
+        //return diceValues[0] + diceValues[1];
+        return 10;
     }
 
-    public void showMessage(String string) {
-    }
+    @Override
+    public void startGame() {}
 
-	public int showUtilDiceRoll() {
-//		int[] diceValues = GameMaster.instance().rollDice();
-//		return diceValues[0] + diceValues[1];
-		return 10;
-	}
-
-    public void startGame() {
-    }
-
-	public void update() {
-	}
+    @Override
+    public void update() {}
 }

@@ -29,24 +29,21 @@ public class GUIRespondDialog extends JDialog implements RespondDialog {
         pnlButtons.add(btnNo);
         contentPane.add(pnlButtons, BorderLayout.SOUTH);
         
-        btnYes.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                response = true;
-                hide();
-            }
+        btnYes.addActionListener((ActionEvent e) -> {
+            response = true;
+            hide();
         });
 
-        btnNo.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                response = false;
-                hide();
-            }
+        btnNo.addActionListener((ActionEvent e) -> {
+            response = false;
+            hide();
         });
     
         setModal(true);
         pack();
     }
 
+    @Override
     public boolean getResponse() {
         return response;
     }
@@ -54,5 +51,4 @@ public class GUIRespondDialog extends JDialog implements RespondDialog {
     public void setDeal(TradeDeal deal) {
         txtMessage.setText(deal.makeMessage());
     }
-
 }
