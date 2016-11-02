@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class GameBoard {
 
-    private final static ArrayList<Cell> cells = new ArrayList<>();
+    private final ArrayList<Cell> cells = new ArrayList<>();
     private final ArrayList<Card> chanceCards = new ArrayList<>();
     //the key of colorGroups is the name of the color group.
     private final Map<String, Integer> colorGroups = new HashMap<>();
@@ -25,7 +25,7 @@ public class GameBoard {
         }
     }
 	
-    public static void addCell(Cell cell) {
+    public final void addCell(Cell cell) {
         cells.add(cell);
     }
 	
@@ -94,7 +94,7 @@ public class GameBoard {
 	
     public int queryCellIndex(String string){
         for (int i = 0; i < cells.size(); i++) {
-            Cell temp = cells.get(i); 
+            Cell temp = (Cell) cells.get(i); 
             if (temp.getName().equals(string)) {
                 return i;
             }
