@@ -24,7 +24,7 @@ public class MovePlayerCardTest extends TestCase {
     }
     
     public void testJailCardLabel() {
-        assertEquals("Go to Blue 1", movePlayerCard.getLabel());
+        assertEquals("Go to Blue 1", movePlayerCard.toString());
     }
     
     public void testMovePlayerCardAction() {

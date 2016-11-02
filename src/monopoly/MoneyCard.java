@@ -24,7 +24,7 @@ public class MoneyCard extends Card {
     }
 
     @Override
-    public String getLabel() {
+    public String toString() {
         return label;
     }
 }

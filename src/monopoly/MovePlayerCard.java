@@ -34,7 +34,7 @@ public class MovePlayerCard extends Card {
     }
 
     @Override
-    public String getLabel() {
+    public String toString() {
         return "Go to " + destination;
     }
 }

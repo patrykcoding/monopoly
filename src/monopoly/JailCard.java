@@ -21,7 +21,7 @@ public class JailCard extends Card {
     }
 
     @Override
-    public String getLabel() {
+    public String toString() {
         return "Go directly to Jail without collecting $200 when passing GO";
     }
 }
