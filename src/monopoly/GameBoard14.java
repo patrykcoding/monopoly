@@ -88,18 +88,18 @@ public class GameBoard14 extends GameBoard {
         yellow1.setHousePrice(70);
         yellow2.setHousePrice(70);
 
-        addCell(blue1);
-        addCell(blue2);
-        addCell(blue3);
-        addCell(green1);
-        addCell(green2);
-        addCell(green3);
-        addCell(red1);
-        addCell(red2);
-        addCell(red3);
-        addCell(purple1);
-        addCell(purple2);
-        addCell(yellow1);
-        addCell(yellow2);
+        super.addCell(blue1);
+        super.addCell(blue2);
+        super.addCell(blue3);
+        super.addCell(green1);
+        super.addCell(green2);
+        super.addCell(green3);
+        super.addCell(red1);
+        super.addCell(red2);
+        super.addCell(red3);
+        super.addCell(purple1);
+        super.addCell(purple2);
+        super.addCell(yellow1);
+        super.addCell(yellow2);
     }
 }

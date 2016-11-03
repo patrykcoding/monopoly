@@ -3,7 +3,7 @@ package monopoly;
 public class GoCell extends Cell {
 	public GoCell() {
             super.setName("Go");
-            setAvailable(false);
+            super.setAvailable(false);
 	}
 
         @Override

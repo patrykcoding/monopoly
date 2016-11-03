@@ -1,11 +1,15 @@
 package monopoly.gui;
 
-import java.awt.*;
-
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.OverlayLayout;
 import javax.swing.border.BevelBorder;
-
-import monopoly.*;
+import monopoly.Cell;
+import monopoly.GameMaster;
+import monopoly.Player;
 
 public class GUICell extends JPanel {
 
@@ -15,16 +19,16 @@ public class GUICell extends JPanel {
 	
     public GUICell(Cell cell) {
         this.cell = cell;
-        setLayout(new OverlayLayout(this));
-        setBorder(new BevelBorder(BevelBorder.LOWERED));
+        super.setLayout(new OverlayLayout(this));
+        super.setBorder(new BevelBorder(BevelBorder.LOWERED));
         JPanel pnlPlayer = new JPanel();
         pnlPlayer.setLayout(new GridLayout(2, 4));
         pnlPlayer.setOpaque(false);
         createPlayerLabels(pnlPlayer);
-        add(pnlPlayer);
-        setPreferredSize(new Dimension(100,100));
+        super.add(pnlPlayer);
+        super.setPreferredSize(new Dimension(100,100));
         addCellInfo();
-        this.doLayout();
+        super.doLayout();
     }
 	
     private void addCellInfo() {

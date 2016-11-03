@@ -20,7 +20,7 @@ public class BuyHouseDialog extends JDialog {
 
     public BuyHouseDialog(Player player) {
         this.player = player;
-        Container c = this.getContentPane();
+        Container c = super.getContentPane();
         c.setLayout(new GridLayout(3, 2));
         c.add(new JLabel("Select monopoly"));
         c.add(buildMonopolyComboBox());
@@ -29,7 +29,7 @@ public class BuyHouseDialog extends JDialog {
         c.add(buildOKButton());
         c.add(buildCancelButton());
         c.doLayout();
-        this.pack();
+        super.pack();
     }
 
     private JButton buildCancelButton() {

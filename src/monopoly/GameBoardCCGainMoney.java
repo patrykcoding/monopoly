@@ -28,13 +28,13 @@ public class GameBoardCCGainMoney extends GameBoard {
         blue1.setHousePrice(50);
         blue2.setHousePrice(50);
 
-        addCard(ccCard1);
-        addCard(chanceCard1);
+        super.addCard(ccCard1);
+        super.addCard(chanceCard1);
 		
         addCell(cc1);
-        addCell(blue1);
+        super.addCell(blue1);
         addCell(jail);
-        addCell(blue2);
+        super.addCell(blue2);
         addCell(chance1);	
     }
 }

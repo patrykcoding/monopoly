@@ -38,17 +38,17 @@ public class MainWindow extends JFrame implements MonopolyGUI{
         westPanel.setBorder(new LineBorder(Color.BLACK));
         eastPanel.setBorder(new LineBorder(Color.BLACK));
 
-        Container c = getContentPane();
+        Container c = super.getContentPane();
         //setSize(800, 600);
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
-        setSize(d);
+        super.setSize(d);
         c.add(northPanel, BorderLayout.NORTH);
         c.add(southPanel, BorderLayout.SOUTH);
         c.add(eastPanel, BorderLayout.EAST);
         c.add(westPanel, BorderLayout.WEST);
 
-        this.addWindowListener(new WindowAdapter(){
+        super.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent e) {
                     System.exit(0);
