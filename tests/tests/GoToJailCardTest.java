@@ -33,7 +33,7 @@ public class GoToJailCardTest extends TestCase {
     public void testJailCardLabel() {
         assertEquals(
             "Go directly to Jail without collecting $200 when passing GO", 
-            jailCard.getLabel()
+            jailCard.toString()
         );
     }
     

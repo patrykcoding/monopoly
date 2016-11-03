@@ -115,7 +115,7 @@ public class PlayerPanel extends JPanel {
 
         btnDrawCard.addActionListener((ActionEvent e) -> {
             Card card = GameMaster.instance().btnDrawCardClicked();
-            JOptionPane.showMessageDialog(PlayerPanel.this, card.getLabel());
+            JOptionPane.showMessageDialog(PlayerPanel.this, card);
             displayInfo();
         });
 
