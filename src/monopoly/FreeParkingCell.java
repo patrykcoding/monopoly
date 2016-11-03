@@ -3,7 +3,7 @@ package monopoly;
 public class FreeParkingCell extends Cell {
 
     public FreeParkingCell() {
-        setName("Free Parking");
+        super.setName("Free Parking");
     }
 
     @Override

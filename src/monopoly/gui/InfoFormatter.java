@@ -2,8 +2,15 @@ package monopoly.gui;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import monopoly.*;
+import monopoly.CardCell;
+import monopoly.Cell;
+import monopoly.FreeParkingCell;
+import monopoly.GoCell;
+import monopoly.GoToJailCell;
+import monopoly.JailCell;
+import monopoly.PropertyCell;
+import monopoly.RailRoadCell;
+import monopoly.UtilityCell;
 
 public class InfoFormatter {
     static Map<Object, CellInfoFormatter> cellInfoFormatters;

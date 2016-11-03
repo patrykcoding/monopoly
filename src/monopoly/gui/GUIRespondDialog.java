@@ -1,11 +1,13 @@
 package monopoly.gui;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.*;
-
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import monopoly.RespondDialog;
 import monopoly.TradeDeal;
 
@@ -21,7 +23,7 @@ public class GUIRespondDialog extends JDialog implements RespondDialog {
         txtMessage.setEditable(false);
         txtMessage.setLineWrap(true);
         
-        Container contentPane = getContentPane();
+        Container contentPane = super.getContentPane();
         contentPane.setLayout(new BorderLayout());
         contentPane.add(txtMessage, BorderLayout.CENTER);
         JPanel pnlButtons = new JPanel();
@@ -39,8 +41,8 @@ public class GUIRespondDialog extends JDialog implements RespondDialog {
             hide();
         });
     
-        setModal(true);
-        pack();
+        super.setModal(true);
+        super.pack();
     }
 
     @Override

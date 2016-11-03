@@ -42,12 +42,12 @@ public class GameBoardJail extends GameBoard {
         green1.setHousePrice(70);
         green2.setHousePrice(70);
 
-        addCell(blue1);
+        super.addCell(blue1);
         addCell(jail);
-        addCell(blue2);
-        addCell(blue3);
-        addCell(green1);
+        super.addCell(blue2);
+        super.addCell(blue3);
+        super.addCell(green1);
         addCell(goToJail);
-        addCell(green2);
+        super.addCell(green2);
     }
 }

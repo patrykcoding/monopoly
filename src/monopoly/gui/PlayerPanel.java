@@ -12,8 +12,8 @@ import javax.swing.JTextArea;
 import javax.swing.OverlayLayout;
 import javax.swing.border.BevelBorder;
 
-import monopoly.*;
 import monopoly.Card;
+import monopoly.Cell;
 import monopoly.GameMaster;
 import monopoly.Player;
 
@@ -77,11 +77,11 @@ public class PlayerPanel extends JPanel {
         pnlInfo.doLayout();
         pnlName.doLayout();
         pnlProperties.doLayout();
-        this.doLayout();
+        super.doLayout();
 
-        setLayout(new BorderLayout());
-        add(pnlInfo, BorderLayout.CENTER);
-        add(pnlAction, BorderLayout.SOUTH);
+        super.setLayout(new BorderLayout());
+        super.add(pnlInfo, BorderLayout.CENTER);
+        super.add(pnlAction, BorderLayout.SOUTH);
 
         btnRollDice.setEnabled(false);
         btnPurchaseProperty.setEnabled(false);
@@ -91,7 +91,7 @@ public class PlayerPanel extends JPanel {
         btnDrawCard.setEnabled(false);
         btnTrade.setEnabled(false);
 
-        setBorder(new BevelBorder(BevelBorder.RAISED));
+        super.setBorder(new BevelBorder(BevelBorder.RAISED));
 
         btnRollDice.addActionListener((ActionEvent e) -> {
             GameMaster.instance().btnRollDiceClicked();

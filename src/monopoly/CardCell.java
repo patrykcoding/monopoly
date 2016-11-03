@@ -4,7 +4,7 @@ public class CardCell extends Cell {
     private final int type;
     
     public CardCell(int type, String name) {
-        setName(name);
+        super.setName(name);
         this.type = type;
     }
     

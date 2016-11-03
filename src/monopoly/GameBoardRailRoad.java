@@ -49,15 +49,15 @@ public class GameBoardRailRoad extends GameBoard {
         green2.setHousePrice(70);
 
         addCell(rr1);
-        addCell(blue1);
+        super.addCell(blue1);
         addCell(jail);
         addCell(rr2);
-        addCell(blue2);
+        super.addCell(blue2);
         addCell(freeParking);
-        addCell(green1);
+        super.addCell(green1);
         addCell(rr3);
         addCell(goToJail);
-        addCell(green2);
+        super.addCell(green2);
         addCell(rr4);
     }
 }

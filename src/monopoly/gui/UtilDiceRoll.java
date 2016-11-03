@@ -24,10 +24,10 @@ public class UtilDiceRoll extends JDialog {
     private final JLabel lblPrompt = new JLabel();
 
     public UtilDiceRoll() {
-        setModal(true);
+        super.setModal(true);
         btnOK.setEnabled(false);
         lblPrompt.setText("Please roll the dice to determine your utility bill.");
-        Container contentPane = getContentPane();
+        Container contentPane = super.getContentPane();
         JPanel pnlButtons = new JPanel();
         pnlButtons.add(btnDice);
         pnlButtons.add(btnOK);

@@ -1,18 +1,21 @@
 package monopoly.gui;
 
-import java.awt.*;
 import java.awt.Container;
+import java.awt.Frame;
 import java.awt.GridLayout;
-import java.awt.event.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import java.util.Iterator;
 import java.util.List;
-
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-
-import monopoly.*;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import monopoly.Cell;
+import monopoly.GameMaster;
+import monopoly.Player;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
 
@@ -26,7 +29,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     public GUITradeDialog(Frame parent) {
         super(parent);
         
-        setTitle("Trade Property");
+        super.setTitle("Trade Property");
         cboSellers = new JComboBox();
         cboProperties = new JComboBox();
         txtAmount = new JTextField();
@@ -36,9 +39,9 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         btnOK.setEnabled(false);
         
         buildSellersCombo();
-        setModal(true);
+        super.setModal(true);
              
-        Container contentPane = getContentPane();
+        Container contentPane = super.getContentPane();
         contentPane.setLayout(new GridLayout(4, 2));
         contentPane.add(new JLabel("Sellers"));
         contentPane.add(cboSellers);
@@ -59,7 +62,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         });
         
         btnOK.addActionListener((ActionEvent e) -> {
-            int amount = 0;
+            int amount;
             try {
                 amount = Integer.parseInt(txtAmount.getText());
             } catch(NumberFormatException nfe) {
@@ -80,7 +83,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             hide();
         });
         
-        this.pack();
+        super.pack();
     }
 
     private void buildSellersCombo() {

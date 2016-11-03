@@ -20,14 +20,14 @@ public class TestDiceRollDialog extends JDialog {
     public TestDiceRollDialog(Frame parent) {
         super(parent);
         
-        setTitle("Dice Roll Dialog");
+        super.setTitle("Dice Roll Dialog");
         txtDiceRoll = new JTextField(2);
         btnOK = new JButton("OK");
         btnCancel = new JButton("Cancel");
         
-        setModal(true);
+        super.setModal(true);
              
-        Container contentPane = getContentPane();
+        Container contentPane = super.getContentPane();
         contentPane.setLayout(new GridLayout(2, 2));
         contentPane.add(new JLabel("Amount"));
         contentPane.add(txtDiceRoll);
@@ -63,7 +63,7 @@ public class TestDiceRollDialog extends JDialog {
             hide();
         });
         
-        this.pack();
+        super.pack();
     }
 
     public int[] getDiceRoll() {

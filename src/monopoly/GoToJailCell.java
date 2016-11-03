@@ -3,7 +3,7 @@ package monopoly;
 public class GoToJailCell extends Cell {
 	
     public GoToJailCell() {
-        setName("Go to Jail");
+        super.setName("Go to Jail");
     }
 
     @Override
