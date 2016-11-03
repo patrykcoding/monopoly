@@ -1,4 +1,4 @@
 **/.DS_STORE
 **/build/*
 /build/
-/nbproject/private/
+/nbproject/private/*
