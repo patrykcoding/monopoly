@@ -1,4 +1,8 @@
-package monopoly;
+package mocks;
+
+import monopoly.GameMaster;
+import monopoly.TradeDeal;
+import monopoly.TradeDialog;
 
 public class MockTradeDialog implements TradeDialog {
 

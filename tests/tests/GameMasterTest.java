@@ -1,11 +1,11 @@
 package tests;
 
+import mocks.MockGUI;
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
 import monopoly.GameBoardFull;
 import monopoly.GameMaster;
-import monopoly.MockGUI;
 import monopoly.MonopolyGUI;
 import monopoly.Player;
 import monopoly.RespondDialog;
