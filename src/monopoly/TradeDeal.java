@@ -2,15 +2,12 @@ package monopoly;
 
 public class TradeDeal {
     private int amount;
-    private int playerIndex;
+    private Player seller;
+    private Player buyer;
     private String propertyName;
-
+    
     public int getAmount() {
         return amount;
-    }
-    
-    public int getPlayerIndex() {
-        return playerIndex;
     }
     
     public String getPropertyName() {
@@ -18,13 +15,11 @@ public class TradeDeal {
     }
     
     public String makeMessage() {
-        String message = GameMaster.instance().getCurrentPlayer() + 
-        	" wishes to purchase " +
-        	propertyName + " from " + 
-        	GameMaster.instance().getPlayer(playerIndex) +
-        	" for " + amount + ".  " + 
-        	GameMaster.instance().getPlayer(playerIndex) +
-        	", do you wish to trade your property?";
+        String message = 
+                "ATTENTION: " + this.seller + "\n" +
+                this.buyer + " wishes to purchase " + propertyName + 
+                " from you for $" + this.amount + 
+                ". Do you wish to trade your property?";
         return message;
     }
     
@@ -36,7 +31,19 @@ public class TradeDeal {
         this.propertyName = propertyName;
     }
     
-    public void setSellerIndex(int playerIndex) {
-        this.playerIndex = playerIndex;
+    public void setBuyer(Player buyer) {
+        this.buyer = buyer;
+    }
+    
+    public void setSeller(Player seller) {
+        this.seller = seller;
+    }
+    
+    public Player getSeller() {
+        return this.seller;
+    }
+
+    public Player getBuyer() {
+        return this.buyer;
     }
 }
