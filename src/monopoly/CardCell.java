@@ -8,9 +8,6 @@ public class CardCell extends Cell {
         this.type = type;
     }
     
-    @Override
-    public void playAction() {}
-    
     public int getType() {
         return type;
     }

@@ -6,7 +6,4 @@ public class JailCell extends Cell {
     public JailCell() {
         super.setName("Jail");
     }
-
-    @Override
-    public void playAction() {}
 }
