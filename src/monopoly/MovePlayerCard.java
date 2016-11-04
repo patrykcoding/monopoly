@@ -24,7 +24,6 @@ public class MovePlayerCard extends Card {
         } else if (currentCell <= newCell) {
             diceValue = newCell - currentCell;
         }
-        System.out.println(diceValue);
         GameMaster.instance().movePlayer(currentPlayer, diceValue);
     }
 
