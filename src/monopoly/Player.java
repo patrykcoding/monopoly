@@ -31,22 +31,22 @@ public class Player {
             PropertyCell cell = (PropertyCell)property;
             properties.add(cell);
             colorGroups.put(
-                    cell.getColorGroup(),
-                    getPropertyNumberForColor(cell.getColorGroup()) + 1
+                cell.getColorGroup(),
+                getPropertyNumberForColor(cell.getColorGroup()) + 1
             );
         }
         if (property instanceof RailRoadCell) {
             railroads.add((RailRoadCell) property);
             colorGroups.put(
-                    RailRoadCell.COLOR_GROUP, 
-                    getPropertyNumberForColor(RailRoadCell.COLOR_GROUP) + 1
+                RailRoadCell.COLOR_GROUP, 
+                getPropertyNumberForColor(RailRoadCell.COLOR_GROUP) + 1
             );
         }
         if (property instanceof UtilityCell) {
             utilities.add((UtilityCell) property);
             colorGroups.put(
-                    UtilityCell.COLOR_GROUP, 
-                    getPropertyNumberForColor(UtilityCell.COLOR_GROUP) + 1
+                UtilityCell.COLOR_GROUP, 
+                getPropertyNumberForColor(UtilityCell.COLOR_GROUP) + 1
             );
         }
         setMoney(getMoney() - amount);
@@ -59,7 +59,7 @@ public class Player {
     public boolean checkProperty(String property) {
         return properties.stream().map((propertie) -> 
                 (Cell) propertie).anyMatch((cell) -> 
-                        (cell.getName().equals(property)));
+                (cell.getName().equals(property)));
     }
 	
     public void exchangeProperty(Player player) {
@@ -72,8 +72,8 @@ public class Player {
             } else {
                 player.properties.add(cell);
                 colorGroups.put(
-                        cell.getColorGroup(), 
-                        getPropertyNumberForColor(cell.getColorGroup()) + 1
+                    cell.getColorGroup(), 
+                    getPropertyNumberForColor(cell.getColorGroup()) + 1
                 );
             }
         }

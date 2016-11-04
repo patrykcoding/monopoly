@@ -1,6 +1,7 @@
 package monopoly;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +26,10 @@ public class GameBoard {
         }
     }
 	
+    public final void shuffleCards() {
+        Collections.shuffle(communityChestCards);
+        Collections.shuffle(chanceCards);
+    }
     public final void addCell(Cell cell) {
         cells.add(cell);
     }
