@@ -53,7 +53,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         contentPane.add(btnCancel);
         
         btnCancel.addActionListener((ActionEvent e) -> {
-            GUITradeDialog.this.hide();
+            GUITradeDialog.this.setVisible(false);
         });
         
         cboSellers.addItemListener((ItemEvent e) -> {
@@ -78,9 +78,10 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
                 deal = new TradeDeal();
                 deal.setAmount(amount);
                 deal.setPropertyName(cell.getName());
-                deal.setSellerIndex(GameMaster.instance().getPlayerIndex(player));
+                deal.setBuyer(currentPlayer);
+                deal.setSeller(player);
             }
-            hide();
+            this.setVisible(false);
         });
         
         super.pack();

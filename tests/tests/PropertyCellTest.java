@@ -1,9 +1,9 @@
 
 package tests;
 
+import mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.GameMaster;
-import monopoly.MockGUI;
 import monopoly.PropertyCell;
 import monopoly.SimpleGameBoard;
 

@@ -5,10 +5,4 @@ public class GoCell extends Cell {
             super.setName("Go");
             super.setAvailable(false);
 	}
-
-        @Override
-	public void playAction() {}
-	
-        @Override
-	public void setName(String name) {}
 }

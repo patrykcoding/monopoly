@@ -18,12 +18,17 @@ public class TradeDealTest extends TestCase {
 
     public void testMakeMessage() {
         TradeDeal deal = new TradeDeal();
+        Player buyer = GameMaster.instance().getPlayer(0);
+        Player seller = GameMaster.instance().getPlayer(1);
+        
+        deal.setBuyer(buyer);
+        deal.setSeller(seller);
         deal.setAmount(200);
         deal.setPropertyName("Blue 1");
-        deal.setSellerIndex(1);
-        Player buyer = GameMaster.instance().getPlayer(0);
-        String message = "Buyer wishes to purchase Blue 1 from Seller" +
-                " for 200.  Seller, do you wish to trade your property?";
+
+        String message = "ATTENTION: Seller\n" + 
+                "Buyer wishes to purchase Blue 1 from you for $200. " +
+                "Do you wish to trade your property?";
         assertEquals(message, deal.makeMessage());
     }
 

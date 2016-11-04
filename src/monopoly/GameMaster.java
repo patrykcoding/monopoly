@@ -120,7 +120,7 @@ public class GameMaster {
     }
 
     public void completeTrade(TradeDeal deal) {
-        Player seller = getPlayer(deal.getPlayerIndex());
+        Player seller = deal.getSeller();
         Cell property = gameBoard.queryCell(deal.getPropertyName());
         seller.sellProperty(property, deal.getAmount());
         getCurrentPlayer().buyProperty(property, deal.getAmount());
