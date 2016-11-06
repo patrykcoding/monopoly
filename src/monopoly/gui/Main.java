@@ -10,10 +10,10 @@ public class Main {
     
     private static int inputNumberOfPlayers(MainWindow window) {
         int numPlayers = 0;
-        while(numPlayers <= 0 || numPlayers > GameMaster.MAX_PLAYER) {
+        while(numPlayers < 2 || numPlayers > GameMaster.MAX_PLAYER) {
             String numberOfPlayers = JOptionPane.showInputDialog(
-                    window, 
-                    "How many players"
+                window, 
+                "How many players"
             );
             if (numberOfPlayers == null) {
                 System.exit(0);
@@ -22,14 +22,14 @@ public class Main {
                 numPlayers = Integer.parseInt(numberOfPlayers);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(
-                        window, 
-                        "Please input a number"
+                    window, 
+                    "Please input a number"
                 );
             }
-            if (numPlayers <= 0 || numPlayers > GameMaster.MAX_PLAYER) {
+            if (numPlayers < 2 || numPlayers > GameMaster.MAX_PLAYER) {
                 JOptionPane.showMessageDialog(
-                        window, 
-                        "Please input a number between one and eight"
+                    window, 
+                    "Please input a number between two and eight"
                 );
             } else {
                 master.setNumberOfPlayers(numPlayers);
@@ -49,20 +49,20 @@ public class Main {
                 master.setGameBoard((GameBoard)c.newInstance());
             } catch (ClassNotFoundException e) {
                 JOptionPane.showMessageDialog(
-                        window, 
-                        "Class Not Found.  Program will exit"
+                    window, 
+                    "Class Not Found.  Program will exit"
                 );
                 System.exit(0);
             } catch (IllegalAccessException e ) {
                 JOptionPane.showMessageDialog(
-                        window, 
-                        "Illegal Access of Class.  Program will exit"
+                    window, 
+                    "Illegal Access of Class.  Program will exit"
                 );
                 System.exit(0);
             } catch (InstantiationException e) {
                 JOptionPane.showMessageDialog(
-                        window, 
-                        "Class Cannot be Instantiated.  Program will exit"
+                    window, 
+                    "Class Cannot be Instantiated.  Program will exit"
                 );
                 System.exit(0);
             }
@@ -71,8 +71,8 @@ public class Main {
         int numPlayers = inputNumberOfPlayers(window);
         for (int i = 0; i < numPlayers; i++) {
             String name = JOptionPane.showInputDialog(
-                    window, 
-                    "Please input name for Player " + (i + 1)
+                window, 
+                "Please input name for Player " + (i + 1)
             );
             master.getPlayer(i).setName(name);
         }
