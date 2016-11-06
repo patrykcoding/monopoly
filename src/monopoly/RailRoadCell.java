@@ -23,10 +23,10 @@ public class RailRoadCell extends Cell {
     }
 
     @Override
-    public void playAction() {
+    public void playAction(GameMaster master) {
         Player currentPlayer;
         if (!isAvailable()) {
-            currentPlayer = GameMaster.instance().getCurrentPlayer();
+            currentPlayer = master.getCurrentPlayer();
             if (player != currentPlayer) {
                 currentPlayer.payRentTo(player, getRent());
             }

@@ -13,7 +13,7 @@ public class GainMoneyCardTest extends TestCase {
 
     @Override
     protected void setUp() {
-        gameMaster = GameMaster.instance();
+        gameMaster = new GameMaster();
         gameMaster.setGameBoard(new GameBoardCCGainMoney());
         gameMaster.setNumberOfPlayers(1);
 	gameMaster.reset();
@@ -26,7 +26,7 @@ public class GainMoneyCardTest extends TestCase {
         int origMoney = gameMaster.getCurrentPlayer().getMoney();
 	Card card = gameMaster.drawCCCard();
 	assertEquals(gainMoneyCard, card);
-	card.applyAction();
+	card.applyAction(gameMaster);
 	assertEquals(origMoney + 50, gameMaster.getCurrentPlayer().getMoney());
     }
     

@@ -7,11 +7,11 @@ import monopoly.TradeDialog;
 public class MockTradeDialog implements TradeDialog {
 
     @Override
-    public TradeDeal getTradeDeal() {
+    public TradeDeal getTradeDeal(GameMaster master) {
         TradeDeal deal = new TradeDeal();
         deal.setAmount(200);
-        deal.setSeller(GameMaster.instance().getPlayer(0));
-        deal.setPropertyName(GameMaster.instance().getGameBoard().getCell(1).toString());
+        deal.setSeller(master.getPlayer(0));
+        deal.setPropertyName(master.getGameBoard().getCell(1).toString());
         return deal;
     }
 }

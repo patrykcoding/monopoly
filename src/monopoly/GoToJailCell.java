@@ -7,8 +7,8 @@ public class GoToJailCell extends Cell {
     }
 
     @Override
-    public void playAction() {
-        Player currentPlayer = GameMaster.instance().getCurrentPlayer();
-        GameMaster.instance().sendToJail(currentPlayer);
+    public void playAction(GameMaster master) {
+        Player currentPlayer = master.getCurrentPlayer();
+        master.sendToJail(currentPlayer);
     }
 }

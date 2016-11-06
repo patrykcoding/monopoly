@@ -14,7 +14,7 @@ public class GoToJailCardTest extends TestCase {
     
     @Override
     protected void setUp() {
-        gameMaster = GameMaster.instance();
+        gameMaster = new GameMaster();
         gameMaster.setGameBoard(new GameBoardCCJail());
         gameMaster.setNumberOfPlayers(1);
         gameMaster.reset();
@@ -25,7 +25,7 @@ public class GoToJailCardTest extends TestCase {
     public void testJailCardAction() {
         Card card = gameMaster.drawCCCard();
         assertEquals(jailCard, card);
-        card.applyAction();
+        card.applyAction(gameMaster);
         Cell cell = gameMaster.getCurrentPlayer().getPosition();
         assertEquals(gameMaster.getGameBoard().queryCell("Jail"), cell);
     }

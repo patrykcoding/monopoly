@@ -14,7 +14,7 @@ public class MovePlayerCardTest extends TestCase {
     
     @Override
     protected void setUp() {
-        gameMaster = GameMaster.instance();
+        gameMaster = new GameMaster();
         gameMaster.setGameBoard(new GameBoardCCMovePlayer());
         gameMaster.setNumberOfPlayers(1);
         gameMaster.reset();
@@ -30,7 +30,7 @@ public class MovePlayerCardTest extends TestCase {
     public void testMovePlayerCardAction() {
         Card card = gameMaster.drawCCCard();
         assertEquals(movePlayerCard, card);
-        card.applyAction();
+        card.applyAction(gameMaster);
         Cell cell = gameMaster.getCurrentPlayer().getPosition();
         assertEquals(gameMaster.getGameBoard().queryCell("Blue 1"), cell);
     }

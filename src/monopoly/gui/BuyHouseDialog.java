@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import monopoly.GameMaster;
 
 import monopoly.Player;
 
@@ -17,8 +18,9 @@ public class BuyHouseDialog extends JDialog {
     private JComboBox cboNumber;
 
     private final Player player;
-
-    public BuyHouseDialog(Player player) {
+    private final GameMaster master;
+    public BuyHouseDialog(GameMaster master, Player player) {
+        this.master = master;
         this.player = player;
         Container c = super.getContentPane();
         c.setLayout(new GridLayout(3, 2));
@@ -41,7 +43,7 @@ public class BuyHouseDialog extends JDialog {
     }
 
     private JComboBox buildMonopolyComboBox() {
-        cboMonopoly = new JComboBox(player.getMonopolies());
+        cboMonopoly = new JComboBox(player.getMonopolies(master));
         return cboMonopoly;
     }
 
@@ -65,7 +67,7 @@ public class BuyHouseDialog extends JDialog {
     private void okClicked() {
         String monopoly = (String)cboMonopoly.getSelectedItem();
         int number = cboNumber.getSelectedIndex() + 1;
-        player.purchaseHouse(monopoly, number);
+        player.purchaseHouse(master, monopoly, number);
         this.dispose();
     }
 }

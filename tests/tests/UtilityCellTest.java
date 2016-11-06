@@ -11,7 +11,7 @@ public class UtilityCellTest extends TestCase {
 
     @Override
     protected void setUp() {
-        gameMaster = GameMaster.instance();
+        gameMaster = new GameMaster();
         gameMaster.setGameBoard(new GameBoardUtility());
         gameMaster.setNumberOfPlayers(2);
         gameMaster.reset();
@@ -25,7 +25,7 @@ public class UtilityCellTest extends TestCase {
         int u2CellIndex = gameMaster.getGameBoard().queryCellIndex("Utility 2");
         gameMaster.movePlayer(0, u2CellIndex - u1CellIndex);
         gameMaster.getPlayer(0).purchase();
-        assertFalse(gameMaster.getPlayer(0).canBuyHouse());
+        assertFalse(gameMaster.getPlayer(0).canBuyHouse(gameMaster));
     }
 	
     public void testPlayerAction() {
@@ -36,7 +36,7 @@ public class UtilityCellTest extends TestCase {
             gameMaster.getPlayer(0).purchase();
             gameMaster.switchTurn();
             gameMaster.movePlayer(1, cellIndex);
-            cell.playAction();
+            cell.playAction(gameMaster);
             int diceRoll = gameMaster.getUtilDiceRoll();
             assertEquals(
                     1500 - cell.getRent(diceRoll), 

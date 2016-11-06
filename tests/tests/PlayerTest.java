@@ -15,7 +15,7 @@ public class PlayerTest extends TestCase {
 	
     @Override
     protected void setUp() throws Exception {
-        gameMaster = GameMaster.instance();
+        gameMaster = new GameMaster();
         gameMaster.setGameBoard(new SimpleGameBoard());
         gameMaster.setGUI(new MockGUI());
         gameMaster.setTestMode(true);
@@ -36,11 +36,11 @@ public class PlayerTest extends TestCase {
 
     public void testSameGoCell() {
         GameBoard gameboard = gameMaster.getGameBoard();
-        Player player1 = new Player();
-        Player player2 = new Player();
+        gameMaster.setNumberOfPlayers(2);
+        
         Cell go = gameboard.queryCell("Go");
-        assertSame(go, player1.getPosition());
-        assertSame(go, player2.getPosition());
+        assertSame(go, gameMaster.getPlayer(0).getPosition());
+        assertSame(go, gameMaster.getPlayer(1).getPosition());
     }
 	
     public void testPayRentTo() {
@@ -75,8 +75,8 @@ public class PlayerTest extends TestCase {
         gameMaster.movePlayer(0,1);
         gameMaster.getCurrentPlayer().purchase();
         gameMaster.btnEndTurnClicked();
-        gameMaster.getCurrentPlayer().purchaseHouse("blue",2);
-        assertEquals("blue", gameMaster.getCurrentPlayer().getMonopolies()[0]);
+        gameMaster.getCurrentPlayer().purchaseHouse(gameMaster, "blue",2);
+        assertEquals("blue", gameMaster.getCurrentPlayer().getMonopolies(gameMaster)[0]);
         assertEquals(880, gameMaster.getCurrentPlayer().getMoney());
     }
 
@@ -85,8 +85,8 @@ public class PlayerTest extends TestCase {
         gameMaster.movePlayer(0,1);
         gameMaster.getCurrentPlayer().purchase();
         assertEquals(
-                gameMaster.getGameBoard().getCell(1), 
-                gameMaster.getCurrentPlayer().getAllProperties()[0]
+            gameMaster.getGameBoard().getCell(1), 
+            gameMaster.getCurrentPlayer().getAllProperties()[0]
         );
         gameMaster.getCurrentPlayer().resetProperty();
         assertEquals(0,gameMaster.getCurrentPlayer().getAllProperties().length);

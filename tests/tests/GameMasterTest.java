@@ -18,7 +18,7 @@ public class GameMasterTest extends TestCase {
     
     @Override
     protected void setUp() throws Exception {
-        gameMaster = GameMaster.instance();
+        gameMaster = new GameMaster();
         gameMaster.setGameBoard(new GameBoardFull());
         gameMaster.setNumberOfPlayers(2);
         gameMaster.getPlayer(0).setName("Player 1");
@@ -61,7 +61,7 @@ public class GameMasterTest extends TestCase {
         assertEquals(1, gameMaster.getNumberOfSellers());
         ArrayList sellerList = gameMaster.getSellerList();
         assertEquals(gameMaster.getPlayer(0), sellerList.get(0));
-        TradeDeal deal = dialog.getTradeDeal();
+        TradeDeal deal = dialog.getTradeDeal(gameMaster);
         RespondDialog respond = gui.openRespondDialog(deal);
         Player player1 = gameMaster.getPlayer(0);
         Player player2 = gameMaster.getPlayer(1);

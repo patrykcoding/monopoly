@@ -24,13 +24,13 @@ public class UtilityCell extends Cell {
     }
 
     @Override
-    public void playAction() {
+    public void playAction(GameMaster master) {
         Player currentPlayer;
         if (!isAvailable()) {
-            currentPlayer = GameMaster.instance().getCurrentPlayer();
+            currentPlayer = master.getCurrentPlayer();
             if (player != currentPlayer) {
-                GameMaster.instance().utilRollDice();
-                int diceRoll = GameMaster.instance().getUtilDiceRoll();
+                master.utilRollDice();
+                int diceRoll = master.getUtilDiceRoll();
                 currentPlayer.payRentTo(player, getRent(diceRoll));
             }
         }

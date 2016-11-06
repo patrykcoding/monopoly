@@ -8,9 +8,9 @@ public class JailCard extends Card {
     }
 
     @Override
-    public void applyAction() {
-        Player currentPlayer = GameMaster.instance().getCurrentPlayer();
-        GameMaster.instance().sendToJail(currentPlayer);
+    public void applyAction(GameMaster master) {
+        Player currentPlayer = master.getCurrentPlayer();
+        master.sendToJail(currentPlayer);
     }
 
     @Override
