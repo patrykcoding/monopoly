@@ -62,23 +62,6 @@ public class PlayerTest extends TestCase {
         gameMaster.getPlayer(0).exchangeProperty(gameMaster.getPlayer(1));
         assertEquals(1,gameMaster.getCurrentPlayer().getPropertyNumber());
     }
-	
-    public void testPurchaseHouse() {
-        gameMaster.setNumberOfPlayers(1);
-        gameMaster.startGame();
-        gameMaster.movePlayer(gameMaster.getCurrentPlayerIndex(),1);
-        gameMaster.getCurrentPlayer().purchase();
-        gameMaster.btnEndTurnClicked();
-        gameMaster.movePlayer(0,1);
-        gameMaster.getCurrentPlayer().purchase();
-        gameMaster.btnEndTurnClicked();
-        gameMaster.movePlayer(0,1);
-        gameMaster.getCurrentPlayer().purchase();
-        gameMaster.btnEndTurnClicked();
-        gameMaster.getCurrentPlayer().purchaseHouse(gameMaster, "blue",2);
-        assertEquals("blue", gameMaster.getCurrentPlayer().getMonopolies(gameMaster)[0]);
-        assertEquals(880, gameMaster.getCurrentPlayer().getMoney());
-    }
 
     public void testResetProperty() {
         gameMaster.setNumberOfPlayers(1);
@@ -88,7 +71,7 @@ public class PlayerTest extends TestCase {
             gameMaster.getGameBoard().getCell(1), 
             gameMaster.getCurrentPlayer().getAllProperties()[0]
         );
-        gameMaster.getCurrentPlayer().resetProperty();
+        gameMaster.getCurrentPlayer().resetProperties();
         assertEquals(0,gameMaster.getCurrentPlayer().getAllProperties().length);
     }
 }

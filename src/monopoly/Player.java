@@ -1,10 +1,8 @@
 package monopoly;
 
-import monopoly.gui.MonopolyGUI;
 import monopoly.cells.PropertyCell;
 import monopoly.cells.RailRoadCell;
 import monopoly.cells.UtilityCell;
-import monopoly.cells.JailCell;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -113,17 +111,15 @@ public class Player {
     public String getName() {
         return name;
     }
-
-    public void getOutOfJail(MonopolyGUI gui, GameMaster master) {
-        money -= JailCell.BAIL;
-        if (isBankrupt()) {
-            money = 0;
-            exchangeProperty(null);
-        }
-        inJail = false;
-        gui.update();
+    
+    public void subtractMoney(int money) {
+        this.money -= money;
     }
 
+    public void addMoney(int money) {
+        this.money += money;
+    }
+    
     public Cell getPosition() {
         return this.position;
     }
@@ -194,21 +190,6 @@ public class Player {
         }
     }
 	
-    public void purchaseHouse(GameMaster master, String selectedMonopoly, int houses) {
-        GameBoard gb = master.getGameBoard();
-        PropertyCell[] cells = gb.getPropertiesInMonopoly(selectedMonopoly);
-        if ((money >= (cells.length * (cells[0].getHousePrice() * houses)))) {
-            for (PropertyCell cell : cells) {
-                int newNumber = cell.getNumHouses() + houses;
-                if (newNumber <= 5) {
-                    cell.setNumHouses(newNumber);
-                    this.setMoney(money - (cell.getHousePrice() * houses));
-                    master.getGUI().update();
-                }
-            }
-        }
-    }
-	
     private void purchaseProperty(PropertyCell cell) {
         buyProperty(cell, cell.getPrice());
     }
@@ -250,15 +231,15 @@ public class Player {
     public void setPosition(Cell newPosition) {
         this.position = newPosition;
     }
-
-    @Override
-    public String toString() {
-        return name;
-    }
     
-    public void resetProperty() {
+    public void resetProperties() {
     	properties = new ArrayList<>();
     	railroads = new ArrayList<>();
     	utilities = new ArrayList<>();
+    }
+    
+    @Override
+    public String toString() {
+        return name;
     }
 }

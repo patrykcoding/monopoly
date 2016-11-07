@@ -4,6 +4,8 @@ import monopoly.gui.MonopolyGUI;
 import monopoly.gameboards.GameBoardDefault;
 import monopoly.cells.CardCell;
 import java.util.ArrayList;
+import monopoly.cells.JailCell;
+import monopoly.cells.PropertyCell;
 
 public class GameMaster {
 
@@ -59,7 +61,7 @@ public class GameMaster {
     }
 
     public void btnGetOutOfJailClicked() {
-        getCurrentPlayer().getOutOfJail(gui, this);
+        getOutOfJail();
         if (getCurrentPlayer().isBankrupt()) {
             gui.setBuyHouseEnabled(false);
             gui.setDrawCardEnabled(false);
@@ -262,5 +264,32 @@ public class GameMaster {
     
     public int getTurn() {
         return playerController.getTurn();
+    }
+    
+    public void getOutOfJail() {
+        Player currentPlayer = playerController.getCurrentPlayer();
+        currentPlayer.subtractMoney(JailCell.BAIL);
+        if (currentPlayer.isBankrupt()) {
+            currentPlayer.setMoney(0);
+            currentPlayer.exchangeProperty(null);
+        }
+        currentPlayer.setInJail(false);
+        gui.update();
+    }
+    
+    public void purchaseHouse(String selectedMonopoly, int houses) {
+        Player currentPlayer = playerController.getCurrentPlayer();
+        int money = currentPlayer.getMoney();
+        PropertyCell[] cells = gameBoard.getPropertiesInMonopoly(selectedMonopoly);
+        if ((money >= (cells.length * (cells[0].getHousePrice() * houses)))) {
+            for (PropertyCell cell : cells) {
+                int newNumber = cell.getNumHouses() + houses;
+                if (newNumber <= 5) {
+                    cell.setNumHouses(newNumber);
+                    currentPlayer.subtractMoney(cell.getHousePrice() * houses);
+                    gui.update();
+                }
+            }
+        }
     }
 }

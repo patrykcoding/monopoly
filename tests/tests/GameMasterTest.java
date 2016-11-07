@@ -11,6 +11,7 @@ import monopoly.Player;
 import monopoly.RespondDialog;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
+import tests.gameboards.SimpleGameBoard;
 
 public class GameMasterTest extends TestCase {
 
@@ -118,4 +119,24 @@ public class GameMasterTest extends TestCase {
         assertEquals(1640,gameMaster.getPlayer(0).getMoney());
         assertEquals(1300,gameMaster.getPlayer(1).getMoney());
     }
+    
+    public void testPurchaseHouse() {
+        gameMaster.setGameBoard(new SimpleGameBoard());
+        gameMaster.reset();
+        gameMaster.setNumberOfPlayers(1);
+        gameMaster.startGame();
+        gameMaster.movePlayer(gameMaster.getCurrentPlayerIndex(), 1);
+        gameMaster.getCurrentPlayer().purchase();
+        gameMaster.btnEndTurnClicked();
+        gameMaster.movePlayer(0,1);
+        gameMaster.getCurrentPlayer().purchase();
+        gameMaster.btnEndTurnClicked();
+        gameMaster.movePlayer(0,1);
+        gameMaster.getCurrentPlayer().purchase();
+        gameMaster.btnEndTurnClicked();
+        gameMaster.purchaseHouse("blue", 2);
+        assertEquals("blue", gameMaster.getCurrentPlayer().getMonopolies(gameMaster)[0]);
+        assertEquals(880, gameMaster.getCurrentPlayer().getMoney());
+    }
+    
 }
