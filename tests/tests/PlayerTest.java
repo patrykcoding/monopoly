@@ -11,7 +11,7 @@ import monopoly.SimpleGameBoard;
 
 public class PlayerTest extends TestCase {
 
-    GameMaster gameMaster;
+    private GameMaster gameMaster;
 	
     @Override
     protected void setUp() throws Exception {

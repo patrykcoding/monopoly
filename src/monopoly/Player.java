@@ -109,14 +109,14 @@ public class Player {
         return name;
     }
 
-    public void getOutOfJail(GameMaster master) {
+    public void getOutOfJail(MonopolyGUI gui, GameMaster master) {
         money -= JailCell.BAIL;
         if (isBankrupt()) {
             money = 0;
             exchangeProperty(null);
         }
         inJail = false;
-        master.updateGUI();
+        gui.update();
     }
 
     public Cell getPosition() {
@@ -198,7 +198,7 @@ public class Player {
                 if (newNumber <= 5) {
                     cell.setNumHouses(newNumber);
                     this.setMoney(money - (cell.getHousePrice() * houses));
-                    master.updateGUI();
+                    master.getGUI().update();
                 }
             }
         }

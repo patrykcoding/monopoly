@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import monopoly.GameMaster;
+import monopoly.MonopolyGUI;
 
 import monopoly.Player;
 
