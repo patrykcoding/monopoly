@@ -1,5 +1,8 @@
 package monopoly;
 
+import monopoly.GameMaster;
+import monopoly.Player;
+
 public abstract class Cell {
     private boolean available = true;
     private String name;

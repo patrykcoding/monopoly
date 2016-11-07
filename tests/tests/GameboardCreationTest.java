@@ -5,8 +5,8 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import monopoly.GameBoard;
-import monopoly.GameBoard14;
-import monopoly.SimpleGameBoard;
+import tests.gameboards.GameBoard14;
+import tests.gameboards.SimpleGameBoard;
 
 import monopoly.gui.GameBoardUtil;
 

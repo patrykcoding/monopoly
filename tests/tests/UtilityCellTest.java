@@ -1,10 +1,10 @@
 package tests;
 
-import mocks.MockGUI;
+import tests.mocks.MockGUI;
 import junit.framework.TestCase;
-import monopoly.GameBoardUtility;
+import tests.gameboards.GameBoardUtility;
 import monopoly.GameMaster;
-import monopoly.UtilityCell;
+import monopoly.cells.UtilityCell;
 
 public class UtilityCellTest extends TestCase {
     GameMaster gameMaster;

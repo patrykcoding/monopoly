@@ -1,12 +1,12 @@
 package tests;
 
-import mocks.MockGUI;
+import tests.mocks.MockGUI;
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
-import monopoly.GameBoardFull;
+import monopoly.gameboards.GameBoardDefault;
 import monopoly.GameMaster;
-import monopoly.MonopolyGUI;
+import monopoly.gui.MonopolyGUI;
 import monopoly.Player;
 import monopoly.RespondDialog;
 import monopoly.TradeDeal;
@@ -19,7 +19,7 @@ public class GameMasterTest extends TestCase {
     @Override
     protected void setUp() throws Exception {
         gameMaster = new GameMaster();
-        gameMaster.setGameBoard(new GameBoardFull());
+        gameMaster.setGameBoard(new GameBoardDefault());
         gameMaster.setNumberOfPlayers(2);
         gameMaster.getPlayer(0).setName("Player 1");
         gameMaster.getPlayer(1).setName("Player 2");

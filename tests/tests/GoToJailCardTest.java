@@ -1,12 +1,12 @@
 package tests;
 
-import mocks.MockGUI;
+import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
 import monopoly.Cell;
-import monopoly.GameBoardCCJail;
+import tests.gameboards.GameBoardCCJail;
 import monopoly.GameMaster;
-import monopoly.JailCard;
+import monopoly.cards.JailCard;
 
 public class GoToJailCardTest extends TestCase {
     GameMaster gameMaster;

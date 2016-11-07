@@ -1,5 +1,8 @@
 package monopoly;
 
+import monopoly.gui.MonopolyGUI;
+import monopoly.gameboards.GameBoardDefault;
+import monopoly.cells.CardCell;
 import java.util.ArrayList;
 
 public class GameMaster {
@@ -12,7 +15,7 @@ public class GameMaster {
     private final PlayerController playerController;
 
     public GameMaster() {
-        gameBoard = new GameBoardFull();
+        gameBoard = new GameBoardDefault();
         this.playerController = new PlayerController(gameBoard);
         dice = new Die[]{new Die(), new Die()};
     }

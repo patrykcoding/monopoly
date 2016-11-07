@@ -20,7 +20,6 @@ import monopoly.*;
 import monopoly.Cell;
 import monopoly.GameBoard;
 import monopoly.GameMaster;
-import monopoly.MonopolyGUI;
 import monopoly.Player;
 
 public class MainWindow extends JFrame implements MonopolyGUI {

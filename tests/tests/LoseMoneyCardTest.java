@@ -1,11 +1,11 @@
 package tests;
 
-import mocks.MockGUI;
+import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
-import monopoly.GameBoardCCLoseMoney;
+import tests.gameboards.GameBoardCCLoseMoney;
 import monopoly.GameMaster;
-import monopoly.MoneyCard;
+import monopoly.cards.MoneyCard;
 
 public class LoseMoneyCardTest extends TestCase {
     GameMaster gameMaster;

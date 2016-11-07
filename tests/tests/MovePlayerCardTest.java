@@ -1,12 +1,12 @@
 package tests;
 
-import mocks.MockGUI;
+import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
 import monopoly.Cell;
-import monopoly.GameBoardCCMovePlayer;
+import tests.gameboards.GameBoardCCMovePlayer;
 import monopoly.GameMaster;
-import monopoly.MovePlayerCard;
+import monopoly.cards.MovePlayerCard;
 
 public class MovePlayerCardTest extends TestCase {
     GameMaster gameMaster;

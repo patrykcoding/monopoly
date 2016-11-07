@@ -1,5 +1,7 @@
 package monopoly;
 
+import monopoly.gui.MonopolyGUI;
+import monopoly.cells.CardCell;
 import java.util.ArrayList;
 
 public class PlayerController {

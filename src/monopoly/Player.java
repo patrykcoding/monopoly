@@ -1,5 +1,10 @@
 package monopoly;
 
+import monopoly.gui.MonopolyGUI;
+import monopoly.cells.PropertyCell;
+import monopoly.cells.RailRoadCell;
+import monopoly.cells.UtilityCell;
+import monopoly.cells.JailCell;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
