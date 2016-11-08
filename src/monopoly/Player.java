@@ -1,5 +1,8 @@
 package monopoly;
 
+import monopoly.cells.PropertyCell;
+import monopoly.cells.RailRoadCell;
+import monopoly.cells.UtilityCell;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,13 +19,9 @@ public class Player {
     private ArrayList<PropertyCell> properties = new ArrayList<>();
     private ArrayList<RailRoadCell> railroads = new ArrayList<>();
     private ArrayList<UtilityCell> utilities = new ArrayList<>();
-
+    
     public Player() {
-        GameBoard gb = GameMaster.instance().getGameBoard();
         inJail = false;
-        if (gb != null) {
-            position = gb.queryCell("Go");
-        }
     }
 
     public void buyProperty(Cell property, int amount) {
@@ -52,8 +51,8 @@ public class Player {
         setMoney(getMoney() - amount);
     }
 	
-    public boolean canBuyHouse() {
-        return (getMonopolies().length != 0);
+    public boolean canBuyHouse(GameMaster master) {
+        return (getMonopolies(master).length != 0);
     }
 
     public boolean checkProperty(String property) {
@@ -92,7 +91,7 @@ public class Player {
             return this.money;
     }
 
-    public String[] getMonopolies() {
+    public String[] getMonopolies(GameMaster master) {
         ArrayList monopolies = new ArrayList();
         Set colors = colorGroups.keySet();
         
@@ -100,7 +99,7 @@ public class Player {
             String color = (String) colors.toArray()[i];
             if (!color.equals(RailRoadCell.COLOR_GROUP) && !color.equals(UtilityCell.COLOR_GROUP)) {
                 Integer num = colorGroups.get(color);
-                GameBoard gameBoard = GameMaster.instance().getGameBoard();
+                GameBoard gameBoard = master.getGameBoard();
                 if (num == gameBoard.getPropertyNumberForColor(color)) {
                     monopolies.add(color);
                 }
@@ -112,17 +111,15 @@ public class Player {
     public String getName() {
         return name;
     }
-
-    public void getOutOfJail() {
-        money -= JailCell.BAIL;
-        if (isBankrupt()) {
-            money = 0;
-            exchangeProperty(null);
-        }
-        inJail = false;
-        GameMaster.instance().updateGUI();
+    
+    public void subtractMoney(int money) {
+        this.money -= money;
     }
 
+    public void addMoney(int money) {
+        this.money += money;
+    }
+    
     public Cell getPosition() {
         return this.position;
     }
@@ -193,21 +190,6 @@ public class Player {
         }
     }
 	
-    public void purchaseHouse(String selectedMonopoly, int houses) {
-        GameBoard gb = GameMaster.instance().getGameBoard();
-        PropertyCell[] cells = gb.getPropertiesInMonopoly(selectedMonopoly);
-        if ((money >= (cells.length * (cells[0].getHousePrice() * houses)))) {
-            for (PropertyCell cell : cells) {
-                int newNumber = cell.getNumHouses() + houses;
-                if (newNumber <= 5) {
-                    cell.setNumHouses(newNumber);
-                    this.setMoney(money - (cell.getHousePrice() * houses));
-                    GameMaster.instance().updateGUI();
-                }
-            }
-        }
-    }
-	
     private void purchaseProperty(PropertyCell cell) {
         buyProperty(cell, cell.getPrice());
     }
@@ -249,15 +231,15 @@ public class Player {
     public void setPosition(Cell newPosition) {
         this.position = newPosition;
     }
-
-    @Override
-    public String toString() {
-        return name;
-    }
     
-    public void resetProperty() {
+    public void resetProperties() {
     	properties = new ArrayList<>();
     	railroads = new ArrayList<>();
     	utilities = new ArrayList<>();
+    }
+    
+    @Override
+    public String toString() {
+        return name;
     }
 }

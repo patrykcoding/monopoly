@@ -1,11 +1,11 @@
 
 package tests;
 
-import mocks.MockGUI;
+import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.GameMaster;
-import monopoly.PropertyCell;
-import monopoly.SimpleGameBoard;
+import monopoly.cells.PropertyCell;
+import tests.gameboards.SimpleGameBoard;
 
 public class PropertyCellTest extends TestCase {
 
@@ -13,7 +13,7 @@ public class PropertyCellTest extends TestCase {
 	
     @Override
     protected void setUp() {
-        gameMaster = GameMaster.instance();
+        gameMaster = new GameMaster();
         gameMaster.setGameBoard(new SimpleGameBoard());
         gameMaster.setNumberOfPlayers(2);
         gameMaster.reset();
@@ -27,8 +27,8 @@ public class PropertyCellTest extends TestCase {
         gameMaster.getPlayer(0).purchase();
         gameMaster.switchTurn();
         gameMaster.movePlayer(1, cellIndex);
-        cell.playAction();
-        assertEquals(1500 - cell.getRent(), gameMaster.getPlayer(1).getMoney());
-        assertEquals(1380 + cell.getRent(), gameMaster.getPlayer(0).getMoney());
+        cell.playAction(gameMaster);
+        assertEquals(1500 - cell.getRent(gameMaster), gameMaster.getPlayer(1).getMoney());
+        assertEquals(1380 + cell.getRent(gameMaster), gameMaster.getPlayer(0).getMoney());
     }
 }

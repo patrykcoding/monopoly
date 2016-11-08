@@ -3,8 +3,8 @@ package tests;
 import junit.framework.TestCase;
 import monopoly.Cell;
 import monopoly.GameBoard;
-import monopoly.PropertyCell;
-import monopoly.SimpleGameBoard;
+import monopoly.cells.PropertyCell;
+import tests.gameboards.SimpleGameBoard;
 
 public class GameboardTest extends TestCase {
 

@@ -26,7 +26,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     private TradeDeal deal;
     private JTextField txtAmount;
     
-    public GUITradeDialog(Frame parent) {
+    public GUITradeDialog(GameMaster master, Frame parent) {
         super(parent);
         
         super.setTitle("Trade Property");
@@ -38,7 +38,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         
         btnOK.setEnabled(false);
         
-        buildSellersCombo();
+        buildSellersCombo(master);
         super.setModal(true);
              
         Container contentPane = super.getContentPane();
@@ -73,7 +73,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             Cell cell = (Cell)cboProperties.getSelectedItem();
             if(cell == null) return;
             Player player = (Player)cboSellers.getSelectedItem();
-            Player currentPlayer = GameMaster.instance().getCurrentPlayer();
+            Player currentPlayer = master.getCurrentPlayer();
             if(currentPlayer.getMoney() > amount) {
                 deal = new TradeDeal();
                 deal.setAmount(amount);
@@ -87,8 +87,8 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         super.pack();
     }
 
-    private void buildSellersCombo() {
-        List sellers = GameMaster.instance().getSellerList();
+    private void buildSellersCombo(GameMaster master) {
+        List sellers = master.getSellerList();
         for (Iterator iter = sellers.iterator(); iter.hasNext();) {
             Player player = (Player) iter.next();
             cboSellers.addItem(player);
@@ -99,7 +99,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     }
 
     @Override
-    public TradeDeal getTradeDeal() {
+    public TradeDeal getTradeDeal(GameMaster master) {
         return deal;
     }
 

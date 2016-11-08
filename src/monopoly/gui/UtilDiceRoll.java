@@ -13,17 +13,19 @@ import monopoly.GameMaster;
 
 public class UtilDiceRoll extends JDialog {
 	
-    public static int showDialog() {
-        UtilDiceRoll dialog = new UtilDiceRoll();
-        dialog.show();
+    public static int showDialog(GameMaster master) {
+        UtilDiceRoll dialog = new UtilDiceRoll(master);
+        dialog.setVisible(true);
         return dialog.diceValue;
     }
     JButton btnDice = new JButton("Roll the Dice!");
     private final JButton btnOK = new JButton("OK");
     private int diceValue;
     private final JLabel lblPrompt = new JLabel();
-
-    public UtilDiceRoll() {
+    private final GameMaster master;
+    
+    public UtilDiceRoll(GameMaster master) {
+        this.master = master;
         super.setModal(true);
         btnOK.setEnabled(false);
         lblPrompt.setText("Please roll the dice to determine your utility bill.");
@@ -48,7 +50,7 @@ public class UtilDiceRoll extends JDialog {
     }
 
     public final void rollDice() {
-        int[] diceRoll = GameMaster.instance().rollDice();
+        int[] diceRoll = master.rollDice();
         this.diceValue = diceRoll[0] + diceRoll[1];
         lblPrompt.setText("You rolled " + diceValue);
         btnDice.setEnabled(false);

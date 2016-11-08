@@ -1,17 +1,17 @@
 package tests;
 
-import mocks.MockGUI;
+import tests.mocks.MockGUI;
 import junit.framework.TestCase;
-import monopoly.GameBoardRailRoad;
+import tests.gameboards.GameBoardRailRoad;
 import monopoly.GameMaster;
-import monopoly.RailRoadCell;
+import monopoly.cells.RailRoadCell;
 
 public class RailRoadCellTest extends TestCase {
     GameMaster gameMaster;
 
     @Override
     protected void setUp() {
-        gameMaster = GameMaster.instance();
+        gameMaster = new GameMaster();
         gameMaster.setGameBoard(new GameBoardRailRoad());
         gameMaster.setNumberOfPlayers(2);
         gameMaster.reset();
@@ -26,7 +26,7 @@ public class RailRoadCellTest extends TestCase {
         gameMaster.getPlayer(0).purchase();
         gameMaster.switchTurn();
         gameMaster.movePlayer(1, cellIndex);
-        cell.playAction();
+        cell.playAction(gameMaster);
         assertEquals(1500 - cell.getRent(), gameMaster.getPlayer(1).getMoney());
         assertEquals(1300 + cell.getRent(), gameMaster.getPlayer(0).getMoney());
     }

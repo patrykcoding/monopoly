@@ -1,16 +1,17 @@
 package tests;
 
-import mocks.MockGUI;
+import tests.mocks.MockGUI;
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
-import monopoly.GameBoardFull;
+import monopoly.gameboards.GameBoardDefault;
 import monopoly.GameMaster;
-import monopoly.MonopolyGUI;
+import monopoly.gui.MonopolyGUI;
 import monopoly.Player;
 import monopoly.RespondDialog;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
+import tests.gameboards.SimpleGameBoard;
 
 public class GameMasterTest extends TestCase {
 
@@ -18,8 +19,8 @@ public class GameMasterTest extends TestCase {
     
     @Override
     protected void setUp() throws Exception {
-        gameMaster = GameMaster.instance();
-        gameMaster.setGameBoard(new GameBoardFull());
+        gameMaster = new GameMaster();
+        gameMaster.setGameBoard(new GameBoardDefault());
         gameMaster.setNumberOfPlayers(2);
         gameMaster.getPlayer(0).setName("Player 1");
         gameMaster.getPlayer(1).setName("Player 2");
@@ -61,7 +62,7 @@ public class GameMasterTest extends TestCase {
         assertEquals(1, gameMaster.getNumberOfSellers());
         ArrayList sellerList = gameMaster.getSellerList();
         assertEquals(gameMaster.getPlayer(0), sellerList.get(0));
-        TradeDeal deal = dialog.getTradeDeal();
+        TradeDeal deal = dialog.getTradeDeal(gameMaster);
         RespondDialog respond = gui.openRespondDialog(deal);
         Player player1 = gameMaster.getPlayer(0);
         Player player2 = gameMaster.getPlayer(1);
@@ -96,7 +97,6 @@ public class GameMasterTest extends TestCase {
     }
 
     public void testButtonPurchasePropertyClicked() {
-        MonopolyGUI gui = gameMaster.getGUI();
         gameMaster.movePlayer(0,1);
         gameMaster.btnPurchasePropertyClicked();
         assertEquals(gameMaster.getGameBoard().getCell(1), gameMaster.getCurrentPlayer().getAllProperties()[0]);
@@ -105,20 +105,38 @@ public class GameMasterTest extends TestCase {
 
     public void testButtonRollDiceClicked() {
         gameMaster.reset();
-        MonopolyGUI gui = gameMaster.getGUI();
         gameMaster.btnRollDiceClicked();
-        assertEquals(0,gameMaster.getCurrentPlayerIndex());
+        assertEquals(0, gameMaster.getCurrentPlayerIndex());
         assertEquals(gameMaster.getGameBoard().getCell(5), gameMaster.getPlayer(0).getPosition());
     }
 
     public void testButtonTradeClicked() {
-        MonopolyGUI gui = gameMaster.getGUI();
         gameMaster.movePlayer(0,1);
         gameMaster.getCurrentPlayer().purchase();
         gameMaster.btnEndTurnClicked();
         gameMaster.btnTradeClicked();
-        assertEquals(gameMaster.getGameBoard().getCell(1),gameMaster.getCurrentPlayer().getAllProperties()[0]);
+        assertEquals(gameMaster.getGameBoard().getCell(1), gameMaster.getCurrentPlayer().getAllProperties()[0]);
         assertEquals(1640,gameMaster.getPlayer(0).getMoney());
         assertEquals(1300,gameMaster.getPlayer(1).getMoney());
     }
+    
+    public void testPurchaseHouse() {
+        gameMaster.setGameBoard(new SimpleGameBoard());
+        gameMaster.reset();
+        gameMaster.setNumberOfPlayers(1);
+        gameMaster.startGame();
+        gameMaster.movePlayer(gameMaster.getCurrentPlayerIndex(), 1);
+        gameMaster.getCurrentPlayer().purchase();
+        gameMaster.btnEndTurnClicked();
+        gameMaster.movePlayer(0,1);
+        gameMaster.getCurrentPlayer().purchase();
+        gameMaster.btnEndTurnClicked();
+        gameMaster.movePlayer(0,1);
+        gameMaster.getCurrentPlayer().purchase();
+        gameMaster.btnEndTurnClicked();
+        gameMaster.purchaseHouse("blue", 2);
+        assertEquals("blue", gameMaster.getCurrentPlayer().getMonopolies(gameMaster)[0]);
+        assertEquals(880, gameMaster.getCurrentPlayer().getMoney());
+    }
+    
 }

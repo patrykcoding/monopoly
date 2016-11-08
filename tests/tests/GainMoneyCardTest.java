@@ -1,11 +1,11 @@
 package tests;
 
-import mocks.MockGUI;
+import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
-import monopoly.GameBoardCCGainMoney;
+import tests.gameboards.GameBoardCCGainMoney;
 import monopoly.GameMaster;
-import monopoly.MoneyCard;
+import monopoly.cards.MoneyCard;
 
 public class GainMoneyCardTest extends TestCase {
     Card gainMoneyCard;
@@ -13,7 +13,7 @@ public class GainMoneyCardTest extends TestCase {
 
     @Override
     protected void setUp() {
-        gameMaster = GameMaster.instance();
+        gameMaster = new GameMaster();
         gameMaster.setGameBoard(new GameBoardCCGainMoney());
         gameMaster.setNumberOfPlayers(1);
 	gameMaster.reset();
@@ -26,7 +26,7 @@ public class GainMoneyCardTest extends TestCase {
         int origMoney = gameMaster.getCurrentPlayer().getMoney();
 	Card card = gameMaster.drawCCCard();
 	assertEquals(gainMoneyCard, card);
-	card.applyAction();
+	card.applyAction(gameMaster);
 	assertEquals(origMoney + 50, gameMaster.getCurrentPlayer().getMoney());
     }
     

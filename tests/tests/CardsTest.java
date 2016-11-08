@@ -1,11 +1,11 @@
 package tests;
 
-import mocks.MockGUI;
+import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
-import monopoly.GameBoardCCGainMoney;
+import tests.gameboards.GameBoardCCGainMoney;
 import monopoly.GameMaster;
-import monopoly.MoneyCard;
+import monopoly.cards.MoneyCard;
 
 public class CardsTest extends TestCase {
     Card ccCard, chanceCard;
@@ -14,7 +14,7 @@ public class CardsTest extends TestCase {
 
     @Override
     protected void setUp() {
-        gameMaster = GameMaster.instance();
+        gameMaster = new GameMaster();
         gameMaster.setGameBoard(new GameBoardCCGainMoney());
         gameMaster.setNumberOfPlayers(1);
         gameMaster.reset();

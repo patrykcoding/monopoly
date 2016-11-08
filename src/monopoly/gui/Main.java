@@ -6,12 +6,14 @@ import monopoly.*;
 
 public class Main {
 
+    private static final GameMaster master = new GameMaster();
+    
     private static int inputNumberOfPlayers(MainWindow window) {
         int numPlayers = 0;
-        while(numPlayers <= 0 || numPlayers > GameMaster.MAX_PLAYER) {
+        while(numPlayers < 2 || numPlayers > PlayerController.MAX_PLAYER) {
             String numberOfPlayers = JOptionPane.showInputDialog(
-                    window, 
-                    "How many players"
+                window, 
+                "How many players"
             );
             if (numberOfPlayers == null) {
                 System.exit(0);
@@ -20,67 +22,62 @@ public class Main {
                 numPlayers = Integer.parseInt(numberOfPlayers);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(
-                        window, 
-                        "Please input a number"
+                    window, 
+                    "Please input a number"
                 );
             }
-            if (numPlayers <= 0 || numPlayers > GameMaster.MAX_PLAYER) {
+            if (numPlayers < 2 || numPlayers > PlayerController.MAX_PLAYER) {
                 JOptionPane.showMessageDialog(
-                        window, 
-                        "Please input a number between one and eight"
+                    window, 
+                    "Please input a number between 2 and 8"
                 );
             } else {
-                GameMaster.instance().setNumberOfPlayers(numPlayers);
+                master.setNumberOfPlayers(numPlayers);
             }
         }
         return numPlayers;
     }
 
     public static void main(String[] args) {
-        GameMaster master = GameMaster.instance();
-        MainWindow window = new MainWindow();
-        GameBoard gameBoard = null;
+        MainWindow window = new MainWindow(master);
         if (args.length > 0) {
             if (args[0].equals("test")) {
                 master.setTestMode(true);
             }
             try {
                 Class c = Class.forName(args[1]);
-                gameBoard = (GameBoard)c.newInstance();
+                master.setGameBoard((GameBoard)c.newInstance());
             } catch (ClassNotFoundException e) {
                 JOptionPane.showMessageDialog(
-                        window, 
-                        "Class Not Found.  Program will exit"
+                    window, 
+                    "Class Not Found.  Program will exit"
                 );
                 System.exit(0);
             } catch (IllegalAccessException e ) {
                 JOptionPane.showMessageDialog(
-                        window, 
-                        "Illegal Access of Class.  Program will exit"
+                    window, 
+                    "Illegal Access of Class.  Program will exit"
                 );
                 System.exit(0);
             } catch (InstantiationException e) {
                 JOptionPane.showMessageDialog(
-                        window, 
-                        "Class Cannot be Instantiated.  Program will exit"
+                    window, 
+                    "Class Cannot be Instantiated.  Program will exit"
                 );
                 System.exit(0);
             }
-        } else {
-            gameBoard = new GameBoardFull();
         }
-
-        master.setGameBoard(gameBoard);
+        
         int numPlayers = inputNumberOfPlayers(window);
         for (int i = 0; i < numPlayers; i++) {
             String name = JOptionPane.showInputDialog(
-                    window, 
-                    "Please input name for Player " + (i + 1)
+                window, 
+                "Please input name for Player " + (i + 1)
             );
-            GameMaster.instance().getPlayer(i).setName(name);
+            master.getPlayer(i).setName(name);
         }
-        window.setupGameBoard(gameBoard);
-        window.show();
+        window.setupGameBoard(master.getGameBoard());
+        window.setVisible(true);
         master.setGUI(window);
         master.startGame();
     }

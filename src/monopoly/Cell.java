@@ -1,5 +1,8 @@
 package monopoly;
 
+import monopoly.GameMaster;
+import monopoly.Player;
+
 public abstract class Cell {
     private boolean available = true;
     private String name;
@@ -21,7 +24,7 @@ public abstract class Cell {
         return available;
     }
 	
-    public void playAction() {};
+    public void playAction(GameMaster master) {};
 
     public void setAvailable(boolean available) {
         this.available = available;

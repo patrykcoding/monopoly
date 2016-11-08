@@ -1,5 +1,7 @@
 package monopoly;
 
+import monopoly.cells.PropertyCell;
+import monopoly.cells.GoCell;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

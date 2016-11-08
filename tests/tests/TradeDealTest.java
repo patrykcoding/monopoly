@@ -6,10 +6,11 @@ import monopoly.Player;
 import monopoly.TradeDeal;
 
 public class TradeDealTest extends TestCase {
+    private GameMaster gameMaster;
     
     @Override
     public void setUp() {
-        GameMaster gameMaster = GameMaster.instance();
+        gameMaster = new GameMaster();
         gameMaster.reset();
         gameMaster.setNumberOfPlayers(2);
         gameMaster.getPlayer(0).setName("Buyer");
@@ -18,8 +19,8 @@ public class TradeDealTest extends TestCase {
 
     public void testMakeMessage() {
         TradeDeal deal = new TradeDeal();
-        Player buyer = GameMaster.instance().getPlayer(0);
-        Player seller = GameMaster.instance().getPlayer(1);
+        Player buyer = gameMaster.getPlayer(0);
+        Player seller = gameMaster.getPlayer(1);
         
         deal.setBuyer(buyer);
         deal.setSeller(seller);
