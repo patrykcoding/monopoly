@@ -1,5 +1,6 @@
 package monopoly;
 
+import java.awt.Color;
 import monopoly.gui.MonopolyGUI;
 import monopoly.cells.CardCell;
 import java.util.ArrayList;
@@ -11,6 +12,17 @@ public class PlayerController {
     private GameBoard gameBoard;
     private int turn = 0;
     private MonopolyGUI gui;
+    
+    private final Color[] playerColors = {
+                                    new Color(255, 249, 102),
+                                    new Color(66, 134, 244),
+                                    new Color(143, 99, 158),
+                                    new Color(209, 155, 20),
+                                    new Color(209, 96, 20),
+                                    new Color(120, 230, 30),
+                                    new Color(206, 57, 72),
+                                    new Color(72, 196, 188)
+                                   };
 
     public PlayerController(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
@@ -22,6 +34,7 @@ public class PlayerController {
             Player player = new Player();
             player.setMoney(initAmountOfMoney);
             player.setPosition(gameBoard.getCell(0));
+            player.setColor(playerColors[i]);
             players.add(player);
         }
     }

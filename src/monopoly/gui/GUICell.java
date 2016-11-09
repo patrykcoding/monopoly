@@ -45,12 +45,12 @@ public class GUICell extends JPanel {
         Player player = master.getPlayer(index);
         lblPlayers[index].setText(player.getName().substring(0, 1));
         lblPlayers[index].setOpaque(true);
+        lblPlayers[index].setBackground(player.getColor());
     }
 
     private void createPlayerLabels(JPanel pnlPlayer) {
         for (int i = 0; i < PlayerController.MAX_PLAYER; i++) {
             lblPlayers[i] = new JLabel();
-            lblPlayers[i].setBackground(Color.GREEN);
             pnlPlayer.add(lblPlayers[i]);
             
         }
