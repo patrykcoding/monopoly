@@ -1,6 +1,8 @@
 package monopoly.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
@@ -134,6 +136,8 @@ public class PlayerPanel extends JPanel {
             buf.append(cell).append("\n");
         }
         txtProperty.setText(buf.toString());
+        txtProperty.setForeground(Color.red);
+        txtProperty.setFont(new Font("default", Font.BOLD, 12));
     }
     
     public boolean isBuyHouseButtonEnabled() {
