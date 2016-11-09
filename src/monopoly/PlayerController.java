@@ -42,8 +42,8 @@ public class PlayerController {
     public void movePlayer(Player player, int diceValue) {
         Cell currentPosition = player.getPosition();
         int positionIndex = gameBoard.queryCellIndex(currentPosition.getName());
-        int newIndex = (positionIndex + diceValue) % gameBoard.getCellNumber();
-        if (newIndex <= positionIndex || diceValue > gameBoard.getCellNumber()) {
+        int newIndex = (positionIndex + diceValue) % gameBoard.getCellSize();
+        if (newIndex <= positionIndex || diceValue > gameBoard.getCellSize()) {
             player.setMoney(player.getMoney() + 200);
         }
         player.setPosition(gameBoard.getCell(newIndex));

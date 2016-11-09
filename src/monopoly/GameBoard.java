@@ -50,8 +50,7 @@ public class GameBoard {
     }
 
     public Card drawChanceCard() {
-        Card card = chanceCards.get(0);
-        chanceCards.remove(0);
+        Card card = chanceCards.remove(0);
         addCard(card);
         return card;
     }
@@ -60,7 +59,7 @@ public class GameBoard {
         return (Cell)cells.get(newIndex);
     }
 	
-    public int getCellNumber() {
+    public int getCellSize() {
         return cells.size();
     }
 	
@@ -68,14 +67,11 @@ public class GameBoard {
         PropertyCell[] monopolyCells = 
         new PropertyCell[getPropertyNumberForColor(color)];
         int counter = 0;
-        for (int i = 0; i < getCellNumber(); i++) {
-            Cell c = getCell(i);
-            if (c instanceof PropertyCell) {
-                PropertyCell pc = (PropertyCell)c;
-                if (pc.getColorGroup().equals(color)) {
-                    monopolyCells[counter] = pc;
-                    counter++;
-                }
+        for (Object cell : cells) {
+            if (cell instanceof PropertyCell) {
+                PropertyCell pc = (PropertyCell)cell;
+                if (pc.getColorGroup().equals(color))
+                    monopolyCells[counter++] = pc;
             }
         }
         return monopolyCells;
@@ -90,10 +86,9 @@ public class GameBoard {
     }
 
     public Cell queryCell(String string) {
-        for (Object cell : cells) {
-            Cell temp = (Cell) cell;
-            if (temp.getName().equals(string)) {
-                return temp;
+        for (Cell cell : cells) {
+            if (cell.getName().equals(string)) {
+                return cell;
             }
         }
         return null;

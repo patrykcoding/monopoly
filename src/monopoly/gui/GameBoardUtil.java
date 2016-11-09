@@ -16,17 +16,17 @@ public class GameBoardUtil {
     }
 	
     public static List getEastCells(GameBoard board) {
-        Dimension d = calculateDimension(board.getCellNumber());
+        Dimension d = calculateDimension(board.getCellSize());
         int shortSide = d.height;
         List cells = new ArrayList();
-        for (int i = board.getCellNumber() - shortSide; i <= board.getCellNumber() - 1; i++) {
+        for (int i = board.getCellSize() - shortSide; i <= board.getCellSize() - 1; i++) {
                 cells.add(board.getCell(i));
         }
         return cells;
     }
 	
     public static List getNorthCells(GameBoard board) {
-        Dimension d = calculateDimension(board.getCellNumber());
+        Dimension d = calculateDimension(board.getCellSize());
         int longSide = d.width;
         int shortSide = d.height;
         List cells = new ArrayList();
@@ -37,7 +37,7 @@ public class GameBoardUtil {
     }
 	
     public static List getSouthCells(GameBoard board) {
-        Dimension d = calculateDimension(board.getCellNumber());
+        Dimension d = calculateDimension(board.getCellSize());
         int longSide = d.width;
         List cells = new ArrayList();
         for (int i = longSide + 1; i >= 0; i--) {
@@ -47,7 +47,7 @@ public class GameBoardUtil {
     }
 
     public static List getWestCells(GameBoard board) {
-        Dimension d = calculateDimension(board.getCellNumber());
+        Dimension d = calculateDimension(board.getCellSize());
         int longSide = d.width;
         int shortSide = d.height;
         List cells = new ArrayList();

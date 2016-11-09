@@ -24,7 +24,7 @@ public class MovePlayerCard extends Card {
         int currentCell = master.getGameBoard().queryCellIndex(currentPosition.getName());
         int diceValue = 0;
         if (currentCell > newCell) {
-            diceValue = (master.getGameBoard().getCellNumber() + 
+            diceValue = (master.getGameBoard().getCellSize() + 
                          (newCell - currentCell));
         } else if (currentCell <= newCell) {
             diceValue = newCell - currentCell;

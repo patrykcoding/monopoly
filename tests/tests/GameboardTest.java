@@ -19,9 +19,9 @@ public class GameboardTest extends TestCase {
     }
 
     public void testAddCell() {
-        assertEquals(1, gameBoard.getCellNumber());
+        assertEquals(1, gameBoard.getCellSize());
         gameBoard.addCell(cell);
-        assertEquals(2, gameBoard.getCellNumber());
+        assertEquals(2, gameBoard.getCellSize());
     }
 
     public void testCellsForMonopoly() {

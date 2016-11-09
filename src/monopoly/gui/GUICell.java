@@ -52,6 +52,7 @@ public class GUICell extends JPanel {
             lblPlayers[i] = new JLabel();
             lblPlayers[i].setBackground(Color.GREEN);
             pnlPlayer.add(lblPlayers[i]);
+            
         }
     }
 
