@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -60,7 +61,8 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     }
 
     private void addCells(JPanel panel, List cells) {
-        for (Object cell1 : cells) {
+        for (Iterator iter = cells.iterator(); iter.hasNext();) {
+            Object cell1 = iter.next();
             GUICell cell = new GUICell((Cell) cell1);
             panel.add(cell);
             guiCells.add(cell);
@@ -201,7 +203,7 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     }
 	
     public void setupGameBoard(GameBoard board) {
-        Dimension dimension = GameBoardUtil.calculateDimension(board.getCellNumber());
+        Dimension dimension = GameBoardUtil.calculateDimension(board.getCellSize());
         northPanel.setLayout(new GridLayout(1, dimension.width + 2));
         southPanel.setLayout(new GridLayout(1, dimension.width + 2));
         westPanel.setLayout(new GridLayout(dimension.height, 1));
@@ -237,12 +239,13 @@ public class MainWindow extends JFrame implements MonopolyGUI {
         }
     }
 
-        @Override
+    @Override
     public void update() {
         for (PlayerPanel playerPanel : playerPanels) {
             playerPanel.displayInfo();
         }
-        for (Object guiCell : guiCells) {
+        for (Iterator iter = guiCells.iterator(); iter.hasNext();) {
+            Object guiCell = iter.next();
             GUICell cell = (GUICell) guiCell;
             cell.displayInfo();
         }
