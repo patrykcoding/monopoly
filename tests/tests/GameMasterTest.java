@@ -122,13 +122,12 @@ public class GameMasterTest extends TestCase {
     public void testPurchaseHouse() {
         gameMaster.movePlayer(gameMaster.getCurrentPlayerIndex(), 1);
         gameMaster.getCurrentPlayer().purchase();
-        gameMaster.movePlayer(gameMaster.getCurrentPlayerIndex(), 3);
+        gameMaster.movePlayer(gameMaster.getCurrentPlayerIndex(), 2);
         gameMaster.getCurrentPlayer().purchase();
-        gameMaster.movePlayer(gameMaster.getCurrentPlayerIndex(), 4);
+        gameMaster.movePlayer(gameMaster.getCurrentPlayerIndex(), 1);
         gameMaster.getCurrentPlayer().purchase();
         gameMaster.purchaseHouse("purple", 2);
         assertEquals("purple", gameMaster.getCurrentPlayer().getMonopolies(gameMaster)[0]);
-        assertEquals(880, gameMaster.getCurrentPlayer().getMoney());
+        assertEquals(1020, gameMaster.getCurrentPlayer().getMoney());
     }
-    
 }
