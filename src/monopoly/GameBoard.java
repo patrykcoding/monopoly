@@ -27,11 +27,7 @@ public class GameBoard {
             chanceCards.add(card);
         }
     }
-	
-    public final void shuffleCards() {
-        Collections.shuffle(communityChestCards);
-        Collections.shuffle(chanceCards);
-    }
+
     public final void addCell(Cell cell) {
         cells.add(cell);
     }
@@ -106,5 +102,10 @@ public class GameBoard {
 
     public void removeCards() {
         communityChestCards.clear();
+    }
+    
+    public final void shuffleCards() {
+        Collections.shuffle(communityChestCards);
+        Collections.shuffle(chanceCards);
     }
 }
