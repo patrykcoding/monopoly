@@ -1,5 +1,6 @@
 package monopoly;
 
+import java.awt.Color;
 import monopoly.cells.PropertyCell;
 import monopoly.cells.RailRoadCell;
 import monopoly.cells.UtilityCell;
@@ -14,7 +15,8 @@ public class Player {
     private boolean inJail;
     private int money;
     private String name;
-
+    private Color color;
+    
     private Cell position;
     private ArrayList<PropertyCell> properties = new ArrayList<>();
     private ArrayList<RailRoadCell> railroads = new ArrayList<>();
@@ -51,6 +53,17 @@ public class Player {
         setMoney(getMoney() - amount);
     }
 	
+    public void setColor(Color color) {
+        this.color = color;
+    }
+    
+    public Color getColor() {
+        if (color == null) {
+            return Color.GREEN;
+        }
+        return color;
+    }
+    
     public boolean canBuyHouse(GameMaster master) {
         return (getMonopolies(master).length != 0);
     }

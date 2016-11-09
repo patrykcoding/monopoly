@@ -53,6 +53,7 @@ public class GameBoardDefault extends GameBoard {
         PropertyCell g3 = new PropertyCell();
         RailRoadCell rr4 = new RailRoadCell();
         CardCell c3 = new CardCell(Card.TYPE_CHANCE, "Chance 3");
+        
         PropertyCell db1 = new PropertyCell();
         PropertyCell db2 = new PropertyCell();
         PropertyCell db3 = new PropertyCell();
