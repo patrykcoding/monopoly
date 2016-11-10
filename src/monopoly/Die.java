@@ -6,4 +6,8 @@ public class Die {
     public int getRoll() {
         return (int)(Math.random() * DICE_SIDES) + 1;
     }
+    
+    public int[] getDoubleRoll() {
+        return new int[] { this.getRoll(), this.getRoll() };
+    }
 }

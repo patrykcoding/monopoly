@@ -9,7 +9,7 @@ import monopoly.cells.PropertyCell;
 
 public class GameMaster {
 
-    private final Die[] dice;
+    private final Die dice;
     private GameBoard gameBoard;
     private MonopolyGUI gui;
     private int utilDiceRoll;
@@ -19,7 +19,7 @@ public class GameMaster {
     public GameMaster() {
         gameBoard = new GameBoardDefault();
         this.playerController = new PlayerController(gameBoard);
-        dice = new Die[]{new Die(), new Die()};
+        dice = new Die();
     }
 
     public void btnBuyHouseClicked() {
@@ -196,7 +196,7 @@ public class GameMaster {
         if (testMode) {
             return gui.getDiceRoll();
         } else {
-            return new int[]{ dice[0].getRoll(),  dice[1].getRoll() };
+            return dice.getDoubleRoll();
         }
     }
 	
