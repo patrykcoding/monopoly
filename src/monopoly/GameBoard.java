@@ -39,8 +39,7 @@ public class GameBoard {
     }
 
     public Card drawCCCard() {
-        Card card = communityChestCards.get(0);
-        communityChestCards.remove(0);
+        Card card = communityChestCards.remove(0);
         addCard(card);
         return card;
     }
@@ -92,10 +91,8 @@ public class GameBoard {
 	
     public int queryCellIndex(String string){
         for (int i = 0; i < cells.size(); i++) {
-            Cell temp = (Cell) cells.get(i); 
-            if (temp.getName().equals(string)) {
+            if (cells.get(i).getName().equals(string))
                 return i;
-            }
         }
         return -1;
     }
