@@ -9,6 +9,16 @@ public class UtilCellInfoFormatter implements CellInfoFormatter {
 
     @Override
     public String format(Cell cell) {
+        StringBuilder buf = new StringBuilder();
+        buf.append("<html><b><font color='olive'>")
+                .append(cell.getName())
+                .append("</font>")
+                .append("</html>");
+        return buf.toString();
+    }
+    
+    @Override
+    public String formatToolTip(Cell cell) {
         UtilityCell c = (UtilityCell)cell;
         StringBuilder buf = new StringBuilder();
         Player owner = cell.getPlayer();
@@ -24,6 +34,6 @@ public class UtilCellInfoFormatter implements CellInfoFormatter {
                 .append("<br>Owner: ")
                 .append(ownerName)
                 .append("</html>");
-        return buf.toString();
+        return buf.toString();        
     }
 }

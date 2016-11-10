@@ -11,4 +11,9 @@ public class FreeParkingCellInfoFormatter implements CellInfoFormatter {
     public String format(Cell cell) {
         return FP_CELL_LABEL;
     }
+    
+    @Override
+    public String formatToolTip(Cell cell) {
+        return FP_CELL_LABEL;
+    }
 }

@@ -38,11 +38,17 @@ public class InfoFormatter {
         cellInfoFormatters.put(UtilityCell.class, new UtilCellInfoFormatter());
         cellInfoFormatters.put(CardCell.class, new CCCellInfoFormatter());
     }
-
+    
     public static String cellInfo(Cell cell) {
         CellInfoFormatter formatter =
                 (CellInfoFormatter) cellInfoFormatters.get(cell.getClass());
         return formatter.format(cell);
+    }
+    
+    public static String cellToolTip(Cell cell) {
+        CellInfoFormatter formatter =
+                (CellInfoFormatter) cellInfoFormatters.get(cell.getClass());
+        return formatter.formatToolTip(cell);
     }
 
 }
