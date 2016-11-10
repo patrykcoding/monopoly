@@ -60,7 +60,7 @@ public class PlayerTest extends TestCase {
         gameMaster.getCurrentPlayer().purchase();
         gameMaster.btnEndTurnClicked();
         gameMaster.getPlayer(0).exchangeProperty(gameMaster.getPlayer(1));
-        assertEquals(1,gameMaster.getCurrentPlayer().getPropertyNumber());
+        assertEquals(1,gameMaster.getCurrentPlayer().getPropertyCount());
     }
 
     public void testResetProperty() {

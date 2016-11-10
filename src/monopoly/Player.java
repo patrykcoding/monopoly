@@ -75,8 +75,7 @@ public class Player {
     }
 	
     public void exchangeProperty(Player player) {
-        for (int i = 0; i < getPropertyNumber(); i++ ) {
-            PropertyCell cell = getProperty(i);
+        for (PropertyCell cell : properties) {
             cell.setPlayer(player);
             if (player == null) {
                 cell.setAvailable(true);
@@ -141,7 +140,7 @@ public class Player {
         return (PropertyCell)properties.get(index);
     }
 	
-    public int getPropertyNumber() {
+    public int getPropertyCount() {
         return properties.size();
     }
 
