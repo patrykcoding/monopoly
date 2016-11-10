@@ -4,16 +4,16 @@ import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
 import tests.gameboards.GameBoardCCLoseMoney;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.cards.MoneyCard;
 
 public class LoseMoneyCardTest extends TestCase {
-    GameMaster gameMaster;
+    MainController gameMaster;
     Card loseMoneyCard;
 
     @Override
     protected void setUp() {
-        gameMaster = new GameMaster();
+        gameMaster = new MainController();
         gameMaster.setGameBoard(new GameBoardCCLoseMoney());
         gameMaster.setNumberOfPlayers(1);
         gameMaster.reset();

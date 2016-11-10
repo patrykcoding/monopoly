@@ -1,7 +1,7 @@
 package monopoly.cards;
 
 import monopoly.Card;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.Player;
 
 public class JailCard extends Card {
@@ -12,9 +12,9 @@ public class JailCard extends Card {
     }
 
     @Override
-    public void applyAction(GameMaster master) {
-        Player currentPlayer = master.getCurrentPlayer();
-        master.sendToJail(currentPlayer);
+    public void applyAction(MainController mainCtl) {
+        Player currentPlayer = mainCtl.getCurrentPlayer();
+        mainCtl.sendToJail(currentPlayer);
     }
 
     @Override

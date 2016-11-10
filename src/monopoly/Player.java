@@ -64,8 +64,8 @@ public class Player {
         return color;
     }
     
-    public boolean canBuyHouse(GameMaster master) {
-        return (getMonopolies(master).length != 0);
+    public boolean canBuyHouse(MainController mainCtl) {
+        return (getMonopolies(mainCtl).length != 0);
     }
 
     public boolean checkProperty(String property) {
@@ -103,7 +103,7 @@ public class Player {
             return this.money;
     }
 
-    public String[] getMonopolies(GameMaster master) {
+    public String[] getMonopolies(MainController mainCtl) {
         ArrayList monopolies = new ArrayList();
         Set colors = colorGroups.keySet();
         
@@ -111,7 +111,7 @@ public class Player {
             String color = (String) colors.toArray()[i];
             if (!color.equals(RailRoadCell.COLOR_GROUP) && !color.equals(UtilityCell.COLOR_GROUP)) {
                 Integer num = colorGroups.get(color);
-                GameBoard gameBoard = master.getGameBoard();
+                GameBoard gameBoard = mainCtl.getGameBoard();
                 if (num == gameBoard.getPropertyNumberForColor(color)) {
                     monopolies.add(color);
                 }

@@ -16,7 +16,7 @@ import javax.swing.border.BevelBorder;
 
 import monopoly.Card;
 import monopoly.Cell;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.Player;
 
 public class PlayerPanel extends JPanel {
@@ -37,7 +37,7 @@ public class PlayerPanel extends JPanel {
     private final JTextArea txtProperty;
 
     
-    public PlayerPanel(GameMaster master, Player player) {
+    public PlayerPanel(MainController mainCtl, Player player) {
         JPanel pnlAction = new JPanel();
         JPanel pnlInfo = new JPanel();
         btnRollDice = new JButton("Roll Dice");
@@ -97,33 +97,33 @@ public class PlayerPanel extends JPanel {
         super.setBorder(new BevelBorder(BevelBorder.RAISED));
 
         btnRollDice.addActionListener((ActionEvent e) -> {
-            master.btnRollDiceClicked();
+            mainCtl.btnRollDiceClicked();
         });
 
         btnEndTurn.addActionListener((ActionEvent e) -> {
-            master.btnEndTurnClicked();
+            mainCtl.btnEndTurnClicked();
         });
 
         btnPurchaseProperty.addActionListener((ActionEvent e) -> {
-            master.btnPurchasePropertyClicked();
+            mainCtl.btnPurchasePropertyClicked();
         });
 
         btnBuyHouse.addActionListener((ActionEvent e) -> {
-            master.btnBuyHouseClicked();
+            mainCtl.btnBuyHouseClicked();
         });
 
         btnGetOutOfJail.addActionListener((ActionEvent e) -> {
-            master.btnGetOutOfJailClicked();
+            mainCtl.btnGetOutOfJailClicked();
         });
 
         btnDrawCard.addActionListener((ActionEvent e) -> {
-            Card card = master.btnDrawCardClicked();
+            Card card = mainCtl.btnDrawCardClicked();
             JOptionPane.showMessageDialog(PlayerPanel.this, card);
             displayInfo();
         });
 
         btnTrade.addActionListener((ActionEvent e) -> {
-            master.btnTradeClicked();
+            mainCtl.btnTradeClicked();
         });
     }
 

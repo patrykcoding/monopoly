@@ -1,7 +1,7 @@
 package monopoly.cells;
 
 import monopoly.Cell;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.Player;
 
 public class GoToJailCell extends Cell {
@@ -11,8 +11,8 @@ public class GoToJailCell extends Cell {
     }
 
     @Override
-    public void playAction(GameMaster master) {
-        Player currentPlayer = master.getCurrentPlayer();
-        master.sendToJail(currentPlayer);
+    public void playAction(MainController mainCtl) {
+        Player currentPlayer = mainCtl.getCurrentPlayer();
+        mainCtl.sendToJail(currentPlayer);
     }
 }

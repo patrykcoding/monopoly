@@ -1,7 +1,7 @@
 package monopoly.cells;
 
 import monopoly.Cell;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.Player;
 
 public class UtilityCell extends Cell {
@@ -28,13 +28,13 @@ public class UtilityCell extends Cell {
     }
 
     @Override
-    public void playAction(GameMaster master) {
+    public void playAction(MainController mainCtl) {
         Player currentPlayer;
         if (!isAvailable()) {
-            currentPlayer = master.getCurrentPlayer();
+            currentPlayer = mainCtl.getCurrentPlayer();
             if (player != currentPlayer) {
-                master.utilRollDice();
-                int diceRoll = master.getUtilDiceRoll();
+                mainCtl.utilRollDice();
+                int diceRoll = mainCtl.getUtilDiceRoll();
                 currentPlayer.payRentTo(player, getRent(diceRoll));
             }
         }

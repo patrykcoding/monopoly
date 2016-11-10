@@ -1,7 +1,7 @@
 package monopoly.cards;
 
 import monopoly.Card;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.Player;
 
 public class MoneyCard extends Card {
@@ -17,8 +17,8 @@ public class MoneyCard extends Card {
     }
 
     @Override
-    public void applyAction(GameMaster master) {
-        Player currentPlayer = master.getCurrentPlayer();
+    public void applyAction(MainController mainCtl) {
+        Player currentPlayer = mainCtl.getCurrentPlayer();
         currentPlayer.setMoney(currentPlayer.getMoney() + amount);
     }
 

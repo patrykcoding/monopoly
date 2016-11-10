@@ -6,7 +6,7 @@ import monopoly.*;
 
 public class Main {
 
-    private static final GameMaster master = new GameMaster();
+    private static final MainController mainCtl = new MainController();
     
     private static int inputNumberOfPlayers(MainWindow window) {
         int numPlayers = 0;
@@ -32,21 +32,21 @@ public class Main {
                     "Please input a number between 2 and 8"
                 );
             } else {
-                master.setNumberOfPlayers(numPlayers);
+                mainCtl.setNumberOfPlayers(numPlayers);
             }
         }
         return numPlayers;
     }
 
     public static void main(String[] args) {
-        MainWindow window = new MainWindow(master);
+        MainWindow window = new MainWindow(mainCtl);
         if (args.length > 0) {
             if (args[0].equals("test")) {
-                master.setTestMode(true);
+                mainCtl.setTestMode(true);
             }
             try {
                 Class c = Class.forName(args[1]);
-                master.setGameBoard((GameBoard)c.newInstance());
+                mainCtl.setGameBoard((GameBoard)c.newInstance());
             } catch (ClassNotFoundException e) {
                 JOptionPane.showMessageDialog(
                     window, 
@@ -74,11 +74,11 @@ public class Main {
                 window, 
                 "Please input name for Player " + (i + 1)
             );
-            master.getPlayer(i).setName(name);
+            mainCtl.getPlayer(i).setName(name);
         }
-        window.setupGameBoard(master.getGameBoard());
+        window.setupGameBoard(mainCtl.getGameBoard());
         window.setVisible(true);
-        master.setGUI(window);
-        master.startGame();
+        mainCtl.setGUI(window);
+        mainCtl.startGame();
     }
 }

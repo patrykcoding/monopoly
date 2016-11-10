@@ -108,11 +108,11 @@ public class PlayerController {
         return sellers;
     }
     
-    public void switchTurn(GameMaster master) {
+    public void switchTurn(MainController mainCtl) {
         turn = (turn + 1) % getNumberOfPlayers();
         if (!getCurrentPlayer().isInJail()) {
             gui.enablePlayerTurn(turn);
-            gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse(master));
+            gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse(mainCtl));
             gui.setTradeEnabled(turn, true);
         } else {
             gui.setGetOutOfJailEnabled(true);
