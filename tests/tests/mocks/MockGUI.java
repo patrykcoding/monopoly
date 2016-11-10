@@ -97,8 +97,6 @@ public class MockGUI implements MonopolyGUI {
 
     @Override
     public int showUtilDiceRoll() {
-        // int[] diceValues = GameMaster.instance().rollDice();
-        //return diceValues[0] + diceValues[1];
         return 10;
     }
 

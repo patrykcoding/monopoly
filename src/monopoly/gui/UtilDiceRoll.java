@@ -9,12 +9,12 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import monopoly.GameMaster;
+import monopoly.MainController;
 
 public class UtilDiceRoll extends JDialog {
 	
-    public static int showDialog(GameMaster master) {
-        UtilDiceRoll dialog = new UtilDiceRoll(master);
+    public static int showDialog(MainController mainCtl) {
+        UtilDiceRoll dialog = new UtilDiceRoll(mainCtl);
         dialog.setVisible(true);
         return dialog.diceValue;
     }
@@ -22,10 +22,10 @@ public class UtilDiceRoll extends JDialog {
     private final JButton btnOK = new JButton("OK");
     private int diceValue;
     private final JLabel lblPrompt = new JLabel();
-    private final GameMaster master;
+    private final MainController mainCtl;
     
-    public UtilDiceRoll(GameMaster master) {
-        this.master = master;
+    public UtilDiceRoll(MainController mainCtl) {
+        this.mainCtl = mainCtl;
         super.setModal(true);
         btnOK.setEnabled(false);
         lblPrompt.setText("Please roll the dice to determine your utility bill.");
@@ -50,7 +50,7 @@ public class UtilDiceRoll extends JDialog {
     }
 
     public final void rollDice() {
-        int[] diceRoll = master.rollDice();
+        int[] diceRoll = mainCtl.rollDice();
         this.diceValue = diceRoll[0] + diceRoll[1];
         lblPrompt.setText("You rolled " + diceValue);
         btnDice.setEnabled(false);

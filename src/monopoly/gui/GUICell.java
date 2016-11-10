@@ -1,6 +1,5 @@
 package monopoly.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -8,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
 import javax.swing.border.BevelBorder;
 import monopoly.Cell;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.Player;
 import monopoly.PlayerController;
 
@@ -42,8 +41,8 @@ public class GUICell extends JPanel {
         add(pnlInfo);
     }
 	
-    public void addPlayer(GameMaster master, int index) {
-        Player player = master.getPlayer(index);
+    public void addPlayer(MainController mainCtl, int index) {
+        Player player = mainCtl.getPlayer(index);
         lblPlayers[index].setText(player.getName().substring(0, 1));
         lblPlayers[index].setOpaque(true);
         lblPlayers[index].setBackground(player.getColor());

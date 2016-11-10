@@ -5,16 +5,16 @@ import junit.framework.TestCase;
 import monopoly.Card;
 import monopoly.Cell;
 import tests.gameboards.GameBoardCCJail;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.cards.JailCard;
 
 public class GoToJailCardTest extends TestCase {
-    GameMaster gameMaster;
+    MainController gameMaster;
     Card jailCard = new JailCard(Card.TYPE_CC);
     
     @Override
     protected void setUp() {
-        gameMaster = new GameMaster();
+        gameMaster = new MainController();
         gameMaster.setGameBoard(new GameBoardCCJail());
         gameMaster.setNumberOfPlayers(1);
         gameMaster.reset();

@@ -1,7 +1,7 @@
 package monopoly.cells;
 
 import monopoly.Cell;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.Player;
 
 public class RailRoadCell extends Cell {
@@ -27,10 +27,10 @@ public class RailRoadCell extends Cell {
     }
 
     @Override
-    public void playAction(GameMaster master) {
+    public void playAction(MainController mainCtl) {
         Player currentPlayer;
         if (!isAvailable()) {
-            currentPlayer = master.getCurrentPlayer();
+            currentPlayer = mainCtl.getCurrentPlayer();
             if (player != currentPlayer) {
                 currentPlayer.payRentTo(player, getRent());
             }

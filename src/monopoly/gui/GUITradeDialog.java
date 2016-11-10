@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import monopoly.Cell;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.Player;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
@@ -26,7 +26,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     private TradeDeal deal;
     private JTextField txtAmount;
     
-    public GUITradeDialog(GameMaster master, Frame parent) {
+    public GUITradeDialog(MainController mainCtl, Frame parent) {
         super(parent);
         
         super.setTitle("Trade Property");
@@ -38,7 +38,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         
         btnOK.setEnabled(false);
         
-        buildSellersCombo(master);
+        buildSellersCombo(mainCtl);
         super.setModal(true);
              
         Container contentPane = super.getContentPane();
@@ -73,7 +73,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             Cell cell = (Cell)cboProperties.getSelectedItem();
             if(cell == null) return;
             Player player = (Player)cboSellers.getSelectedItem();
-            Player currentPlayer = master.getCurrentPlayer();
+            Player currentPlayer = mainCtl.getCurrentPlayer();
             if(currentPlayer.getMoney() > amount) {
                 deal = new TradeDeal();
                 deal.setAmount(amount);
@@ -87,8 +87,8 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         super.pack();
     }
 
-    private void buildSellersCombo(GameMaster master) {
-        List sellers = master.getSellerList();
+    private void buildSellersCombo(MainController mainCtl) {
+        List sellers = mainCtl.getSellerList();
         for (Iterator iter = sellers.iterator(); iter.hasNext();) {
             Player player = (Player) iter.next();
             cboSellers.addItem(player);
@@ -99,7 +99,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     }
 
     @Override
-    public TradeDeal getTradeDeal(GameMaster master) {
+    public TradeDeal getTradeDeal(MainController mainCtl) {
         return deal;
     }
 

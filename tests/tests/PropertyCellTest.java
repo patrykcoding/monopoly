@@ -3,32 +3,32 @@ package tests;
 
 import tests.mocks.MockGUI;
 import junit.framework.TestCase;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.cells.PropertyCell;
 import tests.gameboards.SimpleGameBoard;
 
 public class PropertyCellTest extends TestCase {
 
-    GameMaster gameMaster;
+    private MainController mainCtl;
 	
     @Override
     protected void setUp() {
-        gameMaster = new GameMaster();
-        gameMaster.setGameBoard(new SimpleGameBoard());
-        gameMaster.setNumberOfPlayers(2);
-        gameMaster.reset();
-        gameMaster.setGUI(new MockGUI());
+        mainCtl = new MainController();
+        mainCtl.setGameBoard(new SimpleGameBoard());
+        mainCtl.setNumberOfPlayers(2);
+        mainCtl.reset();
+        mainCtl.setGUI(new MockGUI());
     }
 
     public void testPlayerAction() {
-        PropertyCell cell = (PropertyCell) gameMaster.getGameBoard().queryCell("Blue 3");
-        int cellIndex = gameMaster.getGameBoard().queryCellIndex("Blue 3");
-        gameMaster.movePlayer(0, cellIndex);
-        gameMaster.getPlayer(0).purchase();
-        gameMaster.switchTurn();
-        gameMaster.movePlayer(1, cellIndex);
-        cell.playAction(gameMaster);
-        assertEquals(1500 - cell.getRent(gameMaster), gameMaster.getPlayer(1).getMoney());
-        assertEquals(1380 + cell.getRent(gameMaster), gameMaster.getPlayer(0).getMoney());
+        PropertyCell cell = (PropertyCell) mainCtl.getGameBoard().queryCell("Blue 3");
+        int cellIndex = mainCtl.getGameBoard().queryCellIndex("Blue 3");
+        mainCtl.movePlayer(0, cellIndex);
+        mainCtl.getPlayer(0).purchase();
+        mainCtl.switchTurn();
+        mainCtl.movePlayer(1, cellIndex);
+        cell.playAction(mainCtl);
+        assertEquals(1500 - cell.getRent(mainCtl), mainCtl.getPlayer(1).getMoney());
+        assertEquals(1380 + cell.getRent(mainCtl), mainCtl.getPlayer(0).getMoney());
     }
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import monopoly.cells.JailCell;
 import monopoly.cells.PropertyCell;
 
-public class GameMaster {
+public class MainController {
 
     private final Die dice;
     private GameBoard gameBoard;
@@ -16,7 +16,7 @@ public class GameMaster {
     private boolean testMode;
     private final PlayerController playerController;
 
-    public GameMaster() {
+    public MainController() {
         gameBoard = new GameBoardDefault();
         this.playerController = new PlayerController(gameBoard);
         dice = new Die();

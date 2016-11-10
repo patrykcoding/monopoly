@@ -20,12 +20,12 @@ import javax.swing.border.LineBorder;
 import monopoly.*;
 import monopoly.Cell;
 import monopoly.GameBoard;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.Player;
 
 public class MainWindow extends JFrame implements MonopolyGUI {
     
-    private final GameMaster master;
+    private final MainController mainCtl;
     JPanel eastPanel = new JPanel();
     ArrayList guiCells = new ArrayList();
 
@@ -34,8 +34,8 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     JPanel southPanel = new JPanel();
     JPanel westPanel = new JPanel();
 
-    public MainWindow(GameMaster master) {
-        this.master = master;
+    public MainWindow(MainController mainCtl) {
+        this.mainCtl = mainCtl;
         
         northPanel.setBorder(new LineBorder(Color.BLACK));
         southPanel.setBorder(new LineBorder(Color.BLACK));
@@ -71,12 +71,12 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     private void buildPlayerPanels() {
         JPanel infoPanel = new JPanel();
-        int players = master.getNumberOfPlayers();
+        int players = mainCtl.getNumberOfPlayers();
         infoPanel.setLayout(new GridLayout(2, (players+1)/2));
         getContentPane().add(infoPanel, BorderLayout.CENTER);
-        playerPanels = new PlayerPanel[master.getNumberOfPlayers()];
-        for (int i = 0; i < master.getNumberOfPlayers(); i++){
-            playerPanels[i] = new PlayerPanel(master, master.getPlayer(i));
+        playerPanels = new PlayerPanel[mainCtl.getNumberOfPlayers()];
+        for (int i = 0; i < mainCtl.getNumberOfPlayers(); i++){
+            playerPanels[i] = new PlayerPanel(mainCtl, mainCtl.getPlayer(i));
             infoPanel.add(playerPanels[i]);
             playerPanels[i].displayInfo();
         }
@@ -106,19 +106,19 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     @Override
     public boolean isDrawCardButtonEnabled() {
-        int currentPlayerIndex = master.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
         return playerPanels[currentPlayerIndex].isDrawCardButtonEnabled();
     }
 
     @Override
     public boolean isEndTurnButtonEnabled() {
-        int currentPlayerIndex = master.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
         return playerPanels[currentPlayerIndex].isEndTurnButtonEnabled();
     }
 
     @Override
     public boolean isGetOutOfJailButtonEnabled() {
-        int currentPlayerIndex = master.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
         return playerPanels[currentPlayerIndex].isGetOutOfJailButtonEnabled();
     }
 
@@ -132,7 +132,7 @@ public class MainWindow extends JFrame implements MonopolyGUI {
         GUICell fromCell = queryCell(from);
         GUICell toCell = queryCell(to);
         fromCell.removePlayer(index);
-        toCell.addPlayer(master, index);
+        toCell.addPlayer(mainCtl, index);
     }
 
     @Override
@@ -145,13 +145,13 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     @Override
     public TradeDialog openTradeDialog() {
-        GUITradeDialog dialog = new GUITradeDialog(master, this);
+        GUITradeDialog dialog = new GUITradeDialog(mainCtl, this);
         dialog.setVisible(true);
         return dialog;
     }
 	
     private GUICell queryCell(int index) {
-        Cell cell = master.getGameBoard().getCell(index);
+        Cell cell = mainCtl.getGameBoard().getCell(index);
             for (Object guiCell1 : guiCells) {
                 GUICell guiCell = (GUICell) guiCell1;
                 if (guiCell.getCell() == cell) {
@@ -163,37 +163,37 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     @Override
     public void setBuyHouseEnabled(boolean b) {
-        int currentPlayerIndex = master.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
         playerPanels[currentPlayerIndex].setBuyHouseEnabled(b);
     }
 
     @Override
     public void setDrawCardEnabled(boolean b) {
-        int currentPlayerIndex = master.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
         playerPanels[currentPlayerIndex].setDrawCardEnabled(b);
     }
 
     @Override
     public void setEndTurnEnabled(boolean enabled) {
-        int currentPlayerIndex = master.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
         playerPanels[currentPlayerIndex].setEndTurnEnabled(enabled);
     }
 
     @Override
     public void setGetOutOfJailEnabled(boolean b) {
-        int currentPlayerIndex = master.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
         playerPanels[currentPlayerIndex].setGetOutOfJailEnabled(b);
     }
 
     @Override
     public void setPurchasePropertyEnabled(boolean enabled) {
-        int currentPlayerIndex = master.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
         playerPanels[currentPlayerIndex].setPurchasePropertyEnabled(enabled);
     }
 
     @Override
     public void setRollDiceEnabled(boolean b) {
-        int currentPlayerIndex = master.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
         playerPanels[currentPlayerIndex].setRollDiceEnabled(b);
     }
 
@@ -217,7 +217,7 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     @Override
     public void showBuyHouseDialog(Player currentPlayer) {
-        BuyHouseDialog dialog = new BuyHouseDialog(master, currentPlayer);
+        BuyHouseDialog dialog = new BuyHouseDialog(mainCtl, currentPlayer);
         dialog.setVisible(true);
     }
 
@@ -228,12 +228,12 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
         @Override
     public int showUtilDiceRoll() {
-        return UtilDiceRoll.showDialog(master);
+        return UtilDiceRoll.showDialog(mainCtl);
     }
 
         @Override
     public void startGame() {
-        int numberOfPlayers = master.getNumberOfPlayers();
+        int numberOfPlayers = mainCtl.getNumberOfPlayers();
         for (int i = 0; i < numberOfPlayers; i++) {
                 movePlayer(i, 0, 0);
         }

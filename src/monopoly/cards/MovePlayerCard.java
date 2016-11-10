@@ -2,7 +2,7 @@ package monopoly.cards;
 
 import monopoly.Card;
 import monopoly.Cell;
-import monopoly.GameMaster;
+import monopoly.MainController;
 import monopoly.Player;
 
 
@@ -17,19 +17,19 @@ public class MovePlayerCard extends Card {
     }
 
     @Override
-    public void applyAction(GameMaster master) {
-        Player currentPlayer = master.getCurrentPlayer();
+    public void applyAction(MainController mainCtl) {
+        Player currentPlayer = mainCtl.getCurrentPlayer();
         Cell currentPosition = currentPlayer.getPosition();
-        int newCell = master.getGameBoard().queryCellIndex(destination);
-        int currentCell = master.getGameBoard().queryCellIndex(currentPosition.getName());
+        int newCell = mainCtl.getGameBoard().queryCellIndex(destination);
+        int currentCell = mainCtl.getGameBoard().queryCellIndex(currentPosition.getName());
         int diceValue = 0;
         if (currentCell > newCell) {
-            diceValue = (master.getGameBoard().getCellSize() + 
+            diceValue = (mainCtl.getGameBoard().getCellSize() + 
                          (newCell - currentCell));
         } else if (currentCell <= newCell) {
             diceValue = newCell - currentCell;
         }
-        master.movePlayer(currentPlayer, diceValue);
+        mainCtl.movePlayer(currentPlayer, diceValue);
     }
 
     @Override
