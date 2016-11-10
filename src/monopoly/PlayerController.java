@@ -57,6 +57,7 @@ public class PlayerController {
         int positionIndex = gameBoard.queryCellIndex(currentPosition.getName());
         int newIndex = (positionIndex + diceValue) % gameBoard.getCellSize();
         if (newIndex <= positionIndex || diceValue > gameBoard.getCellSize()) {
+            gui.showMessage("You receive $200");
             player.setMoney(player.getMoney() + 200);
         }
         player.setPosition(gameBoard.getCell(newIndex));
