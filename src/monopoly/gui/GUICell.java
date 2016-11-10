@@ -20,7 +20,6 @@ public class GUICell extends JPanel {
 	
     public GUICell(Cell cell) {
         this.cell = cell;
-        this.setToolTipText("<html style='background-color:blue'>TOOLTIP<br>Cool stuff<br>Bro</html>");
         super.setLayout(new OverlayLayout(this));
         super.setBorder(new BevelBorder(BevelBorder.LOWERED));
         JPanel pnlPlayer = new JPanel();
@@ -30,6 +29,7 @@ public class GUICell extends JPanel {
         super.add(pnlPlayer);
         super.setPreferredSize(new Dimension(100,100));
         addCellInfo();
+        this.setToolTipText("<html>" + InfoFormatter.cellInfo(cell) + "</html>");
         super.doLayout();
     }
 	
