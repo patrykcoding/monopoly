@@ -33,6 +33,6 @@ public class RRCellInfoFormatter implements CellInfoFormatter {
                 .append("<br>Owner: ")
                 .append(ownerName)
                 .append("</html>");
-        return buf.toString();    
+        return buf.toString();
     }
 }

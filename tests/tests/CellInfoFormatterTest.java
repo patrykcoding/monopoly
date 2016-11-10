@@ -30,7 +30,7 @@ public class CellInfoFormatterTest extends TestCase {
 				"$" + propertyValue +
 				"<br>Owner: " + ownerName +
 				"<br>* " + numHouses +
-				"</html>";        
+				"</html>";
         PropertyCell cell = new PropertyCell();
         cell.setName(propertyName);
         cell.setPrice(propertyValue);
