@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.OverlayLayout;
 import javax.swing.border.BevelBorder;
@@ -50,8 +51,10 @@ public class PlayerPanel extends JPanel {
         this.player = player;
         lblName = new JLabel();
         lblMoney = new JLabel();
-        txtProperty = new JTextArea(30, 70);
-
+        txtProperty = new JTextArea();
+        JScrollPane scroll = new JScrollPane(txtProperty, 
+        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        
         txtProperty.setEnabled(false);
 
         JPanel pnlName = new JPanel();
@@ -65,7 +68,7 @@ public class PlayerPanel extends JPanel {
 
         pnlName.add(lblName);
         pnlName.add(lblMoney);
-        pnlProperties.add(txtProperty);
+        pnlProperties.add(scroll);
 
         pnlAction.setLayout(new GridLayout(3, 3));
         pnlAction.add(btnBuyHouse);
@@ -136,8 +139,8 @@ public class PlayerPanel extends JPanel {
             buf.append(cell).append("\n");
         }
         txtProperty.setText(buf.toString());
-        txtProperty.setForeground(Color.red);
         txtProperty.setFont(new Font("default", Font.BOLD, 12));
+        txtProperty.setForeground(Color.red);
     }
     
     public boolean isBuyHouseButtonEnabled() {
