@@ -2,7 +2,6 @@ package monopoly.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
@@ -66,6 +65,7 @@ public class PlayerPanel extends JPanel {
         pnlInfo.add(pnlProperties, BorderLayout.CENTER);
 
         pnlProperties.setLayout(new OverlayLayout(pnlProperties));
+        pnlName.setBackground(player.getColor());        
 
         pnlName.add(lblName);
         pnlName.add(lblMoney);
