@@ -40,7 +40,6 @@ public class CellInfoFormatterTest extends TestCase {
         cell.setPlayer(p);
         cell.setNumHouses(numHouses);
         assertEquals(propertyLabel, InfoFormatter.cellInfo(cell));
-        // TODO test value of propertyToolTip once it's fully functional
-        //assertEquals(propertyToolTip, InfoFormatter.cellInfo(cell));
+        assertEquals(propertyToolTip, InfoFormatter.cellToolTip(cell));
     }
 }
