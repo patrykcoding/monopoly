@@ -23,6 +23,9 @@ public class CellInfoFormatterTest extends TestCase {
         int propertyValue = 120;
         String propertyLabel = "<html><b><font color='" +
                                 propertyColor +"'>" + 
+                                propertyName + "</font></html>";
+        String propertyToolTip = "<html><b><font color='" +
+                                propertyColor +"'>" + 
                                 propertyName + "</font></b><br>" +
 				"$" + propertyValue +
 				"<br>Owner: " + ownerName +
@@ -37,5 +40,6 @@ public class CellInfoFormatterTest extends TestCase {
         cell.setPlayer(p);
         cell.setNumHouses(numHouses);
         assertEquals(propertyLabel, InfoFormatter.cellInfo(cell));
+        assertEquals(propertyToolTip, InfoFormatter.cellToolTip(cell));
     }
 }

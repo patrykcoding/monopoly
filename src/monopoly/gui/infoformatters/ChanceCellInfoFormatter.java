@@ -11,4 +11,9 @@ public class ChanceCellInfoFormatter implements CellInfoFormatter {
     public String format(Cell cell) {
         return CHANCE_CELL_LABEL;
     }
+    
+    @Override
+    public String formatToolTip(Cell cell) {
+        return CHANCE_CELL_LABEL;
+    }
 }

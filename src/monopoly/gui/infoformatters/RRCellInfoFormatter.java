@@ -8,6 +8,16 @@ import monopoly.gui.CellInfoFormatter;
 public class RRCellInfoFormatter implements CellInfoFormatter {
     @Override
     public String format(Cell cell) {
+        StringBuilder buf = new StringBuilder();
+        buf.append("<html><b><font color='lime'>")
+                .append(cell.getName())
+                .append("</font>")
+                .append("</html>");
+        return buf.toString();
+    }
+    
+    @Override
+    public String formatToolTip(Cell cell) {
         RailRoadCell c = (RailRoadCell)cell;
         StringBuilder buf = new StringBuilder();
         Player owner = cell.getPlayer();

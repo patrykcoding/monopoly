@@ -11,5 +11,10 @@ public class JailCellInfoFormatter implements CellInfoFormatter {
     public String format(Cell cell) {
         return JAIL_CELL_LABEL;
     }
+    
+    @Override
+    public String formatToolTip(Cell cell) {
+        return JAIL_CELL_LABEL;
+    }
 
 }

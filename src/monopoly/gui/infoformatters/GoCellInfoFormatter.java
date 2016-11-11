@@ -11,4 +11,9 @@ public class GoCellInfoFormatter implements CellInfoFormatter {
     public String format(Cell cell) {
         return GO_CELL_LABEL;
     }
+    
+    @Override
+    public String formatToolTip(Cell cell) {
+        return GO_CELL_LABEL;
+    }
 }

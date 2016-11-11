@@ -28,7 +28,7 @@ public class GUICell extends JPanel {
         super.add(pnlPlayer);
         super.setPreferredSize(new Dimension(100,100));
         addCellInfo();
-        this.setToolTipText("<html>" + InfoFormatter.cellInfo(cell) + "</html>");
+        super.setToolTipText(InfoFormatter.cellToolTip(cell));
         super.doLayout();
     }
 	

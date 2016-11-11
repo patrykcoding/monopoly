@@ -27,7 +27,7 @@ public class InfoFormatter {
         cellInfoFormatters = new HashMap<>();
         addFormatters();
     }
-    
+
     private static void addFormatters() {
         cellInfoFormatters.put(PropertyCell.class, new PropertyCellInfoFormatter());
         cellInfoFormatters.put(GoCell.class, new GoCellInfoFormatter());
@@ -43,6 +43,12 @@ public class InfoFormatter {
         CellInfoFormatter formatter =
                 (CellInfoFormatter) cellInfoFormatters.get(cell.getClass());
         return formatter.format(cell);
+    }
+
+    public static String cellToolTip(Cell cell) {
+        CellInfoFormatter formatter =
+                (CellInfoFormatter) cellInfoFormatters.get(cell.getClass());
+        return formatter.formatToolTip(cell);
     }
 
 }
