@@ -51,11 +51,12 @@ public class PlayerPanel extends JPanel {
         this.player = player;
         lblName = new JLabel();
         lblMoney = new JLabel();
-        txtProperty = new JTextArea();
+        txtProperty = new JTextArea(); 
         JScrollPane scroll = new JScrollPane(txtProperty, 
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
         txtProperty.setEnabled(false);
+        txtProperty.setDisabledTextColor(Color.black);
 
         JPanel pnlName = new JPanel();
         JPanel pnlProperties = new JPanel();
@@ -139,8 +140,6 @@ public class PlayerPanel extends JPanel {
             buf.append(cell).append("\n");
         }
         txtProperty.setText(buf.toString());
-        txtProperty.setFont(new Font("default", Font.BOLD, 12));
-        txtProperty.setForeground(Color.red);
     }
     
     public boolean isBuyHouseButtonEnabled() {
