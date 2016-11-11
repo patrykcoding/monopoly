@@ -5,7 +5,7 @@ import monopoly.gui.MonopolyGUI;
 import monopoly.cells.CardCell;
 import java.util.ArrayList;
 
-public class PlayerController {
+public class BoardController {
     public static final int MAX_PLAYER = 8;
     private final ArrayList<Player> players = new ArrayList();
     private int initAmountOfMoney = 1500;
@@ -24,7 +24,7 @@ public class PlayerController {
                                     new Color(72, 196, 188)
                                    };
 
-    public PlayerController(GameBoard gameBoard) {
+    public BoardController(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
     }
     
@@ -43,7 +43,7 @@ public class PlayerController {
         return initAmountOfMoney;
     }
 
-    void setInitAmountOfMoney(int money) {
+    public void setInitAmountOfMoney(int money) {
         this.initAmountOfMoney = money;
     }
  
@@ -98,21 +98,11 @@ public class PlayerController {
         return players.size() - 1;
     }
     
-    public ArrayList<Player> getSellerList() {
-        ArrayList sellers = new ArrayList();
-        for (Player player : players) {
-            if (player != getCurrentPlayer()) { 
-                sellers.add(player);
-            }
-        }
-        return sellers;
-    }
-    
-    public void switchTurn(MainController mainCtl) {
+    public void switchTurn() {
         turn = (turn + 1) % getNumberOfPlayers();
         if (!getCurrentPlayer().isInJail()) {
             gui.enablePlayerTurn(turn);
-            gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse(mainCtl));
+            gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse(gameBoard));
             gui.setTradeEnabled(turn, true);
         } else {
             gui.setGetOutOfJailEnabled(true);
@@ -127,7 +117,7 @@ public class PlayerController {
         return turn;
     }
 
-    void reset() {    
+    public void reset() {    
         for (int i = 0; i < getNumberOfPlayers(); i++) {
             Player player = players.get(i);
             player.setPosition(gameBoard.getCell(0));
@@ -143,7 +133,15 @@ public class PlayerController {
         this.gui = gui;
     }
 
-    void setGameBoard(GameBoard board) {
+    public void setGameBoard(GameBoard board) {
         this.gameBoard = board;
+    }
+    
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public GameBoard getGameBoard() {
+        return gameBoard;
     }
 }

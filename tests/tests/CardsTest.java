@@ -8,7 +8,7 @@ import monopoly.MainController;
 import monopoly.cards.MoneyCard;
 
 public class CardsTest extends TestCase {
-    Card ccCard, chanceCard;
+    private Card ccCard, chanceCard;
     
     private MainController mainCtrl;
 

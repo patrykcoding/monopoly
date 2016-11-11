@@ -25,7 +25,7 @@ public class UtilityCellTest extends TestCase {
         int u2CellIndex = mainCtl.getGameBoard().queryCellIndex("Utility 2");
         mainCtl.movePlayer(0, u2CellIndex - u1CellIndex);
         mainCtl.getPlayer(0).purchase();
-        assertFalse(mainCtl.getPlayer(0).canBuyHouse(mainCtl));
+        assertFalse(mainCtl.getPlayer(0).canBuyHouse(mainCtl.getGameBoard()));
     }
 	
     public void testPlayerAction() {

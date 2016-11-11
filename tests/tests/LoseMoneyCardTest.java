@@ -8,8 +8,8 @@ import monopoly.MainController;
 import monopoly.cards.MoneyCard;
 
 public class LoseMoneyCardTest extends TestCase {
-    MainController gameMaster;
-    Card loseMoneyCard;
+    private MainController gameMaster;
+    private Card loseMoneyCard;
 
     @Override
     protected void setUp() {

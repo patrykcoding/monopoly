@@ -9,8 +9,8 @@ import monopoly.MainController;
 import monopoly.cards.JailCard;
 
 public class GoToJailCardTest extends TestCase {
-    MainController gameMaster;
-    Card jailCard = new JailCard(Card.TYPE_CC);
+    private MainController gameMaster;
+    private Card jailCard = new JailCard(Card.TYPE_CC);
     
     @Override
     protected void setUp() {

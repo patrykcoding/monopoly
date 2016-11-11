@@ -8,8 +8,8 @@ import tests.gameboards.SimpleGameBoard;
 
 public class GameboardTest extends TestCase {
 
-    Cell cell;
-    GameBoard gameBoard;
+    private Cell cell;
+    private GameBoard gameBoard;
 
     @Override
     protected void setUp() throws Exception {
