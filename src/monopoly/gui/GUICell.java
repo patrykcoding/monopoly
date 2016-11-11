@@ -22,7 +22,7 @@ public class GUICell extends JPanel {
         super.setLayout(new OverlayLayout(this));
         super.setBorder(new BevelBorder(BevelBorder.LOWERED));
         JPanel pnlPlayer = new JPanel();
-        pnlPlayer.setLayout(new GridLayout(2, 4));
+        pnlPlayer.setLayout(new GridLayout(2, 4, 0, 25));
         pnlPlayer.setOpaque(false);
         createPlayerLabels(pnlPlayer);
         super.add(pnlPlayer);
@@ -43,7 +43,6 @@ public class GUICell extends JPanel {
 	
     public void addPlayer(MainController mainCtl, int index) {
         Player player = mainCtl.getPlayer(index);
-        lblPlayers[index].setText(player.getName().substring(0, 1));
         lblPlayers[index].setOpaque(true);
         lblPlayers[index].setBackground(player.getColor());
     }
