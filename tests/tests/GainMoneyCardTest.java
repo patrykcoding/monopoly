@@ -23,15 +23,15 @@ public class GainMoneyCardTest extends TestCase {
     }
     
     public void testGainMoneyCardAction() {
-        int origMoney = mainCtl.getCurrentPlayer().getMoney();
+        int origMoney = mainCtl.getPlayer(0).getMoney();
 	Card card = mainCtl.drawCCCard();
 	assertEquals(gainMoneyCard, card);
 	card.applyAction(mainCtl);
-	assertEquals(origMoney + 50, mainCtl.getCurrentPlayer().getMoney());
+	assertEquals(origMoney + 50, mainCtl.getPlayer(0).getMoney());
     }
     
     public void testGainMoneyCardUI() {
-        mainCtl.movePlayer(0, 1);
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
         assertTrue(mainCtl.getGUI().isDrawCardButtonEnabled());
         assertFalse(mainCtl.getGUI().isEndTurnButtonEnabled());
         mainCtl.btnDrawCardClicked();

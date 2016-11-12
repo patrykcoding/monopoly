@@ -173,17 +173,32 @@ public class MainController {
         return this.utilDiceRoll;
     }
 
-    public void movePlayer(int playerIndex, int diceValue) {
-        boardCtl.movePlayer(playerIndex, diceValue);
-    }
-	
     public void movePlayer(Player player, int diceValue) {
+        int positionIndex = boardCtl.getCurrentPositionIndex(player);
+        int newIndex = boardCtl.getNewPositionIndex(positionIndex, diceValue);
+        
         boardCtl.movePlayer(player, diceValue);
+        gui.movePlayer(getPlayerIndex(player), positionIndex, newIndex);
+        finishPlayerMove(player);
+
         gui.update();
     }
 
-    public void playerMoved(Player player) {
-        boardCtl.playerMoved(player);
+    public void finishPlayerMove(Player player) {        
+        Cell cell = player.getPosition();
+        int playerIndex = getPlayerIndex(player);
+        if (cell instanceof CardCell) {
+            gui.setDrawCardEnabled(true);
+        } else {
+            if (cell.isAvailable()) {
+                int price = cell.getPrice();
+                if (price <= player.getMoney() && price > 0) {
+                    gui.enablePurchaseBtn(playerIndex);
+                }
+            }	
+            gui.enableEndTurnBtn(playerIndex);
+        }
+        gui.setTradeEnabled(boardCtl.getTurn(), false);
     }
 
     public void reset() {
@@ -230,7 +245,6 @@ public class MainController {
 
     public void setGUI(MonopolyGUI gui) {
         this.gui = gui;
-        boardCtl.setGUI(gui);
     }
 
     public void setInitAmountOfMoney(int money) {
@@ -253,6 +267,14 @@ public class MainController {
 
     public void switchTurn() {
         boardCtl.switchTurn();
+        
+        if (!getCurrentPlayer().isInJail()) {
+            gui.enablePlayerTurn(boardCtl.getTurn());
+            gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse(gameBoard));
+            gui.setTradeEnabled(boardCtl.getTurn(), true);
+        } else {
+            gui.setGetOutOfJailEnabled(true);
+        }
     }
 
     public void utilRollDice() {

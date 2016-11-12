@@ -9,25 +9,25 @@ import monopoly.MainController;
 import monopoly.cards.JailCard;
 
 public class GoToJailCardTest extends TestCase {
-    private MainController gameMaster;
-    private Card jailCard = new JailCard(Card.TYPE_CC);
+    private MainController mainCtl;
+    private final Card jailCard = new JailCard(Card.TYPE_CC);
     
     @Override
     protected void setUp() {
-        gameMaster = new MainController();
-        gameMaster.setGameBoard(new GameBoardCCJail());
-        gameMaster.setNumberOfPlayers(1);
-        gameMaster.reset();
-        gameMaster.setGUI(new MockGUI());
-        gameMaster.getGameBoard().addCard(jailCard);
+        mainCtl = new MainController();
+        mainCtl.setGameBoard(new GameBoardCCJail());
+        mainCtl.setNumberOfPlayers(1);
+        mainCtl.reset();
+        mainCtl.setGUI(new MockGUI());
+        mainCtl.getGameBoard().addCard(jailCard);
     }
     
     public void testJailCardAction() {
-        Card card = gameMaster.drawCCCard();
+        Card card = mainCtl.drawCCCard();
         assertEquals(jailCard, card);
-        card.applyAction(gameMaster);
-        Cell cell = gameMaster.getCurrentPlayer().getPosition();
-        assertEquals(gameMaster.getGameBoard().queryCell("Jail"), cell);
+        card.applyAction(mainCtl);
+        Cell cell = mainCtl.getPlayer(0).getPosition();
+        assertEquals(mainCtl.getGameBoard().queryCell("Jail"), cell);
     }
     
     public void testJailCardLabel() {
@@ -38,13 +38,13 @@ public class GoToJailCardTest extends TestCase {
     }
     
     public void testJailCardUI() {
-        gameMaster.movePlayer(0, 1);
-        assertTrue(gameMaster.getGUI().isDrawCardButtonEnabled());
-        assertFalse(gameMaster.getGUI().isEndTurnButtonEnabled());
-        gameMaster.btnDrawCardClicked();
-        assertFalse(gameMaster.getGUI().isDrawCardButtonEnabled());
-        Cell cell = gameMaster.getCurrentPlayer().getPosition();
-        assertEquals(gameMaster.getGameBoard().queryCell("Jail"), cell);
-        assertTrue(gameMaster.getGUI().isEndTurnButtonEnabled());
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
+        assertTrue(mainCtl.getGUI().isDrawCardButtonEnabled());
+        assertFalse(mainCtl.getGUI().isEndTurnButtonEnabled());
+        mainCtl.btnDrawCardClicked();
+        assertFalse(mainCtl.getGUI().isDrawCardButtonEnabled());
+        Cell cell = mainCtl.getPlayer(0).getPosition();
+        assertEquals(mainCtl.getGameBoard().queryCell("Jail"), cell);
+        assertTrue(mainCtl.getGUI().isEndTurnButtonEnabled());
     }
 }

@@ -23,10 +23,10 @@ public class PropertyCellTest extends TestCase {
     public void testPlayerAction() {
         PropertyCell cell = (PropertyCell) mainCtl.getGameBoard().queryCell("Blue 3");
         int cellIndex = mainCtl.getGameBoard().queryCellIndex("Blue 3");
-        mainCtl.movePlayer(0, cellIndex);
+        mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex);
         mainCtl.getPlayer(0).purchase();
         mainCtl.switchTurn();
-        mainCtl.movePlayer(1, cellIndex);
+        mainCtl.movePlayer(mainCtl.getPlayer(1), cellIndex);
         cell.playAction(mainCtl);
         assertEquals(1500 - cell.getRent(mainCtl.getGameBoard()), mainCtl.getPlayer(1).getMoney());
         assertEquals(1380 + cell.getRent(mainCtl.getGameBoard()), mainCtl.getPlayer(0).getMoney());

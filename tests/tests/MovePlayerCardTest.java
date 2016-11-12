@@ -36,7 +36,7 @@ public class MovePlayerCardTest extends TestCase {
     }
     
     public void testMovePlayerCardUI() {
-        mainCtl.movePlayer(0, 2);
+        mainCtl.movePlayer(mainCtl.getCurrentPlayer(), 2);
         assertTrue(mainCtl.getGUI().isDrawCardButtonEnabled());
         assertFalse(mainCtl.getGUI().isEndTurnButtonEnabled());
         mainCtl.btnDrawCardClicked();

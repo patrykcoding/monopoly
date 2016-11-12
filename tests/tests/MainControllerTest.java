@@ -35,8 +35,8 @@ public class MainControllerTest extends TestCase {
     }
 
     public void testReset() {
-        mainCtl.movePlayer(0, 3);
-        mainCtl.movePlayer(1, 4);
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
+        mainCtl.movePlayer(mainCtl.getPlayer(1), 4);
         mainCtl.reset();
 
         for(int i = 0; i < mainCtl.getNumberOfPlayers(); i++) {
@@ -50,12 +50,12 @@ public class MainControllerTest extends TestCase {
         MonopolyGUI gui = mainCtl.getGUI();
         assertTrue(gui.isTradeButtonEnabled(0));
         assertFalse(gui.isTradeButtonEnabled(1));
-        mainCtl.movePlayer(0, 1);
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
         assertFalse(gui.isTradeButtonEnabled(0));
         assertFalse(gui.isTradeButtonEnabled(1));
-        mainCtl.getCurrentPlayer().purchase();
+        mainCtl.getPlayer(0).purchase();
         assertEquals(mainCtl.getGameBoard().getCell(1),
-                     mainCtl.getCurrentPlayer().getAllProperties()[0]);
+                     mainCtl.getPlayer(0).getAllProperties()[0]);
         mainCtl.btnEndTurnClicked();
         TradeDialog dialog = gui.openTradeDialog();
         assertEquals(1, mainCtl.getNumberOfSellers());
@@ -83,10 +83,10 @@ public class MainControllerTest extends TestCase {
 
     public void testButtonGetOutOfJailClicked() {
         MonopolyGUI gui = mainCtl.getGUI();
-        mainCtl.movePlayer(0,30);
+        mainCtl.movePlayer(mainCtl.getPlayer(0),30);
         mainCtl.btnEndTurnClicked();
         assertEquals("Jail", mainCtl.getPlayer(0).getPosition().getName());
-        mainCtl.movePlayer(1,2);
+        mainCtl.movePlayer(mainCtl.getPlayer(1), 2);
         mainCtl.btnEndTurnClicked();
         assertTrue(gui.isGetOutOfJailButtonEnabled());
         assertTrue(mainCtl.getPlayer(0).isInJail());
@@ -96,10 +96,10 @@ public class MainControllerTest extends TestCase {
     }
 
     public void testButtonPurchasePropertyClicked() {
-        mainCtl.movePlayer(0,1);
+        mainCtl.movePlayer(mainCtl.getPlayer(0),1);
         mainCtl.btnPurchasePropertyClicked();
-        assertEquals(mainCtl.getGameBoard().getCell(1), mainCtl.getCurrentPlayer().getAllProperties()[0]);
-        assertEquals(1440,mainCtl.getCurrentPlayer().getMoney());
+        assertEquals(mainCtl.getGameBoard().getCell(1), mainCtl.getPlayer(0).getAllProperties()[0]);
+        assertEquals(1440, mainCtl.getPlayer(0).getMoney());
     }
 
     public void testButtonRollDiceClicked() {
@@ -110,24 +110,24 @@ public class MainControllerTest extends TestCase {
     }
 
     public void testButtonTradeClicked() {
-        mainCtl.movePlayer(0, 1);
-        mainCtl.getCurrentPlayer().purchase();
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
+        mainCtl.getPlayer(0).purchase();
         mainCtl.btnEndTurnClicked();
         mainCtl.btnTradeClicked();
-        assertEquals(mainCtl.getGameBoard().getCell(1), mainCtl.getCurrentPlayer().getAllProperties()[0]);
+        assertEquals(mainCtl.getGameBoard().getCell(1), mainCtl.getPlayer(1).getAllProperties()[0]);
         assertEquals(1640,mainCtl.getPlayer(0).getMoney());
         assertEquals(1300,mainCtl.getPlayer(1).getMoney());
     }
     
     public void testPurchaseHouse() {
-        mainCtl.movePlayer(mainCtl.getCurrentPlayerIndex(), 1);
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
         mainCtl.getCurrentPlayer().purchase();
-        mainCtl.movePlayer(mainCtl.getCurrentPlayerIndex(), 2);
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 2);
         mainCtl.getCurrentPlayer().purchase();
-        mainCtl.movePlayer(mainCtl.getCurrentPlayerIndex(), 1);
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
         mainCtl.getCurrentPlayer().purchase();
         mainCtl.purchaseHouse("purple", 2);
-        assertEquals("purple", mainCtl.getCurrentPlayer().getMonopolies(mainCtl.getGameBoard())[0]);
-        assertEquals(1020, mainCtl.getCurrentPlayer().getMoney());
+        assertEquals("purple", mainCtl.getPlayer(0).getMonopolies(mainCtl.getGameBoard())[0]);
+        assertEquals(1020, mainCtl.getPlayer(0).getMoney());
     }
 }
