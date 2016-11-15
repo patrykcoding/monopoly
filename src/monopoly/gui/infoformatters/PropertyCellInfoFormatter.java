@@ -33,11 +33,11 @@ public class PropertyCellInfoFormatter implements CellInfoFormatter {
                 .append("'>")
                 .append(cell.getName())
                 .append("</font></b><br>")
-                .append("$")
+                .append("Price: $")
                 .append(c.getPrice())
-                .append("<br>Owner: ")
+                .append("<br><br>Owner: ")
                 .append(ownerName)
-                .append("<br>* ")
+                .append("<br><br>Houses ⌂: ")
                 .append(c.getNumHouses())
                 .append("</html>");
         return buf.toString();
