@@ -7,7 +7,6 @@ import monopoly.cells.UtilityCell;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class Player {
     //the key of colorGroups is the name of the color group.
@@ -58,10 +57,6 @@ public class Player {
         }
         return color;
     }
-    
-    public boolean canBuyHouse(GameBoard gameBoard) {
-        return (getMonopolies(gameBoard).size() != 0);
-    }
 
     public boolean checkProperty(String property) {
         return properties.stream().map((propertie) -> 
@@ -96,22 +91,6 @@ public class Player {
             return this.money;
     }
 
-    public ArrayList<String> getMonopolies(GameBoard gameBoard) {
-        ArrayList<String> monopolies = new ArrayList<>();
-        Set colors = colorGroups.keySet();
-        
-        for (int i = 0; i < colors.size(); i++) {
-            String colorGroup = colors.toArray()[i].toString();
-            if (!colorGroup.equals(RailRoadCell.COLOR_GROUP) && !colorGroup.equals(UtilityCell.COLOR_GROUP)) {
-                Integer num = colorGroups.get(colorGroup);
-                if (num == gameBoard.getPropertyNumberForColor(colorGroup)) {
-                    monopolies.add(colorGroup);
-                }
-            }
-        }
-        return monopolies;
-    }
-
     public String getName() {
         return name;
     }
@@ -122,6 +101,10 @@ public class Player {
 
     public void addMoney(int money) {
         this.money += money;
+    }
+    
+    public Map<String, Integer> getColorGroups() {
+        return colorGroups;
     }
     
     public Cell getPosition() {

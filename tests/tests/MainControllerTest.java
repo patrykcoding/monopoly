@@ -130,7 +130,7 @@ public class MainControllerTest extends TestCase {
         mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
         mainCtl.purchase();
         mainCtl.purchaseHouse("purple", 2);
-        assertEquals("purple", mainCtl.getPlayer(0).getMonopolies(mainCtl.getGameBoard()).get(0));
+        assertEquals("purple", mainCtl.getMonopolies(mainCtl.getPlayer(0)).get(0));
         assertEquals(1020, mainCtl.getPlayer(0).getMoney());
     }
     

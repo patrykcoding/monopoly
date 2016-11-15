@@ -2,6 +2,8 @@
 package monopoly;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 import monopoly.cells.PropertyCell;
 import monopoly.cells.RailRoadCell;
 import monopoly.cells.UtilityCell;
@@ -65,4 +67,27 @@ public class PropertyController {
             cell.setAvailable(false);
         }
     }
+    
+    public ArrayList<String> getMonopolies(Player player) {
+        Map<String, Integer> colorGroups = player.getColorGroups();
+        GameBoard gameBoard = boardCtl.getGameBoard();
+        ArrayList<String> monopolies = new ArrayList<>();
+        Set colors = colorGroups.keySet();
+        
+        for (int i = 0; i < colors.size(); i++) {
+            String colorGroup = colors.toArray()[i].toString();
+            if (!colorGroup.equals(RailRoadCell.COLOR_GROUP) && !colorGroup.equals(UtilityCell.COLOR_GROUP)) {
+                Integer num = colorGroups.get(colorGroup);
+                if (num == gameBoard.getPropertyNumberForColor(colorGroup)) {
+                    monopolies.add(colorGroup);
+                }
+            }
+        }
+        return monopolies;
+    }
+    
+    public boolean canBuyHouse() {
+        return (!getMonopolies(boardCtl.getCurrentPlayer()).isEmpty());
+    }
+
 }

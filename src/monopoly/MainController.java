@@ -73,7 +73,7 @@ public class MainController {
             gui.setTradeEnabled(getCurrentPlayerIndex(),false);
         } else {
             gui.setRollDiceEnabled(true);
-            gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse(gameBoard));
+            gui.setBuyHouseEnabled(propertyCtl.canBuyHouse());
             gui.setGetOutOfJailEnabled(getCurrentPlayer().isInJail());
         }
     }
@@ -273,7 +273,7 @@ public class MainController {
         
         if (!getCurrentPlayer().isInJail()) {
             gui.enablePlayerTurn(boardCtl.getTurn());
-            gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse(gameBoard));
+            gui.setBuyHouseEnabled(propertyCtl.canBuyHouse());
             gui.setTradeEnabled(boardCtl.getTurn(), true);
         } else {
             gui.setGetOutOfJailEnabled(true);
@@ -307,5 +307,13 @@ public class MainController {
         if (propertyCtl.purchaseHouse(selectedMonopoly, houses) <= 5) {
             gui.update();
         }
+    }
+
+    public ArrayList<String> getMonopolies(Player player) {
+        return propertyCtl.getMonopolies(player);
+    }
+
+    public boolean canBuyHouse() {
+        return propertyCtl.canBuyHouse();
     }
 }
