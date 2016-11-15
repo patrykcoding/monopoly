@@ -1,17 +1,14 @@
 package monopoly;
 
 import java.awt.Color;
-import monopoly.gui.MonopolyGUI;
-import monopoly.cells.CardCell;
 import java.util.ArrayList;
 
-public class PlayerController {
+public class BoardController {
     public static final int MAX_PLAYER = 8;
     private final ArrayList<Player> players = new ArrayList();
     private int initAmountOfMoney = 1500;
     private GameBoard gameBoard;
     private int turn = 0;
-    private MonopolyGUI gui;
     
     private final Color[] playerColors = {
                                     new Color(255, 249, 102),
@@ -24,7 +21,7 @@ public class PlayerController {
                                     new Color(72, 196, 188)
                                    };
 
-    public PlayerController(GameBoard gameBoard) {
+    public BoardController(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
     }
     
@@ -43,43 +40,17 @@ public class PlayerController {
         return initAmountOfMoney;
     }
 
-    void setInitAmountOfMoney(int money) {
+    public void setInitAmountOfMoney(int money) {
         this.initAmountOfMoney = money;
-    }
- 
-    public void movePlayer(int playerIndex, int diceValue) {
-        Player player = (Player)players.get(playerIndex);
-        movePlayer(player, diceValue);
     }
 	
     public void movePlayer(Player player, int diceValue) {
-        Cell currentPosition = player.getPosition();
-        int positionIndex = gameBoard.queryCellIndex(currentPosition.getName());
-        int newIndex = (positionIndex + diceValue) % gameBoard.getCellSize();
+        int positionIndex = getCurrentPositionIndex(player);
+        int newIndex = getNewPositionIndex(positionIndex, diceValue);
         if (newIndex <= positionIndex || diceValue > gameBoard.getCellSize()) {
-            gui.showMessage("You receive $200");
             player.setMoney(player.getMoney() + 200);
         }
         player.setPosition(gameBoard.getCell(newIndex));
-        gui.movePlayer(getPlayerIndex(player), positionIndex, newIndex);
-        playerMoved(player);
-    }
-
-    public void playerMoved(Player player) {
-        Cell cell = player.getPosition();
-        int playerIndex = getPlayerIndex(player);
-        if (cell instanceof CardCell) {
-            gui.setDrawCardEnabled(true);
-        } else {
-            if (cell.isAvailable()) {
-                int price = cell.getPrice();
-                if (price <= player.getMoney() && price > 0) {
-                    gui.enablePurchaseBtn(playerIndex);
-                }
-            }	
-            gui.enableEndTurnBtn(playerIndex);
-        }
-        gui.setTradeEnabled(turn, false);
     }
     
     public Player getPlayer(int index) {
@@ -98,25 +69,8 @@ public class PlayerController {
         return players.size() - 1;
     }
     
-    public ArrayList<Player> getSellerList() {
-        ArrayList sellers = new ArrayList();
-        for (Player player : players) {
-            if (player != getCurrentPlayer()) { 
-                sellers.add(player);
-            }
-        }
-        return sellers;
-    }
-    
-    public void switchTurn(MainController mainCtl) {
+    public void switchTurn() {
         turn = (turn + 1) % getNumberOfPlayers();
-        if (!getCurrentPlayer().isInJail()) {
-            gui.enablePlayerTurn(turn);
-            gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse(mainCtl));
-            gui.setTradeEnabled(turn, true);
-        } else {
-            gui.setGetOutOfJailEnabled(true);
-        }
     }
     
     public Player getCurrentPlayer() {
@@ -127,7 +81,12 @@ public class PlayerController {
         return turn;
     }
 
-    void reset() {    
+    public int getCurrentPositionIndex(Player player) {
+        Cell currentPosition = player.getPosition();
+        return gameBoard.queryCellIndex(currentPosition.getName());
+    }
+    
+    public void reset() {    
         for (int i = 0; i < getNumberOfPlayers(); i++) {
             Player player = players.get(i);
             player.setPosition(gameBoard.getCell(0));
@@ -138,12 +97,20 @@ public class PlayerController {
     public int getTurn() {
         return turn;
     }
+
+    public void setGameBoard(GameBoard board) {
+        this.gameBoard = board;
+    }
     
-    public void setGUI(MonopolyGUI gui) {
-        this.gui = gui;
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 
-    void setGameBoard(GameBoard board) {
-        this.gameBoard = board;
+    public GameBoard getGameBoard() {
+        return gameBoard;
+    }
+
+    public int getNewPositionIndex(int positionIndex, int diceValue) {
+        return (positionIndex + diceValue) % gameBoard.getCellSize();    
     }
 }

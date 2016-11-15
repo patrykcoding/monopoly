@@ -8,34 +8,34 @@ import monopoly.MainController;
 import monopoly.cards.MoneyCard;
 
 public class LoseMoneyCardTest extends TestCase {
-    MainController gameMaster;
-    Card loseMoneyCard;
+    private MainController mainCtl;
+    private Card loseMoneyCard;
 
     @Override
     protected void setUp() {
-        gameMaster = new MainController();
-        gameMaster.setGameBoard(new GameBoardCCLoseMoney());
-        gameMaster.setNumberOfPlayers(1);
-        gameMaster.reset();
-        gameMaster.setGUI(new MockGUI());
+        mainCtl = new MainController();
+        mainCtl.setGameBoard(new GameBoardCCLoseMoney());
+        mainCtl.setNumberOfPlayers(1);
+        mainCtl.reset();
+        mainCtl.setGUI(new MockGUI());
         loseMoneyCard = new MoneyCard("Pay 20 dollars", -20, Card.TYPE_CC);
-        gameMaster.getGameBoard().addCard(loseMoneyCard);
+        mainCtl.getGameBoard().addCard(loseMoneyCard);
     }
     
     public void testLoseMoneyCardAction() {
-        int origMoney = gameMaster.getCurrentPlayer().getMoney();
-        Card card = gameMaster.drawCCCard();
+        int origMoney = mainCtl.getPlayer(0).getMoney();
+        Card card = mainCtl.drawCCCard();
         assertEquals(loseMoneyCard, card);
-        card.applyAction(gameMaster);
-        assertEquals(origMoney - 20, gameMaster.getCurrentPlayer().getMoney());
+        card.applyAction(mainCtl);
+        assertEquals(origMoney - 20, mainCtl.getPlayer(0).getMoney());
     }
     
     public void testLoseMoneyCardUI() {
-        gameMaster.movePlayer(0, 1);
-        assertTrue(gameMaster.getGUI().isDrawCardButtonEnabled());
-        assertFalse(gameMaster.getGUI().isEndTurnButtonEnabled());
-        gameMaster.btnDrawCardClicked();
-        assertFalse(gameMaster.getGUI().isDrawCardButtonEnabled());
-        assertTrue(gameMaster.getGUI().isEndTurnButtonEnabled());
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
+        assertTrue(mainCtl.getGUI().isDrawCardButtonEnabled());
+        assertFalse(mainCtl.getGUI().isEndTurnButtonEnabled());
+        mainCtl.btnDrawCardClicked();
+        assertFalse(mainCtl.getGUI().isDrawCardButtonEnabled());
+        assertTrue(mainCtl.getGUI().isEndTurnButtonEnabled());
     }
 }

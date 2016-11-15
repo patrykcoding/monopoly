@@ -24,7 +24,7 @@ public class PlayerTest extends TestCase {
     
     public void testPurchaseProperty() {
         mainCtl.setNumberOfPlayers(1);
-        mainCtl.movePlayer(0, 3);
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
         Player player = mainCtl.getPlayer(0);
         player.purchase();
         assertEquals(1380, player.getMoney());
@@ -45,10 +45,10 @@ public class PlayerTest extends TestCase {
 	
     public void testPayRentTo() {
         mainCtl.setNumberOfPlayers(2);
-        mainCtl.movePlayer(0,4);
-        mainCtl.getCurrentPlayer().purchase();
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 4);
+        mainCtl.getPlayer(0).purchase();
         mainCtl.btnEndTurnClicked();
-        mainCtl.movePlayer(1,4);
+        mainCtl.movePlayer(mainCtl.getPlayer(1), 4);
         mainCtl.btnEndTurnClicked();
         assertTrue(mainCtl.getPlayer(1).isBankrupt());
         assertEquals(2800, mainCtl.getPlayer(0).getMoney());
@@ -56,22 +56,22 @@ public class PlayerTest extends TestCase {
 	
     public void testExchangeProperty() {
         mainCtl.setNumberOfPlayers(2);
-        mainCtl.movePlayer(0,3);
-        mainCtl.getCurrentPlayer().purchase();
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
+        mainCtl.getPlayer(0).purchase();
         mainCtl.btnEndTurnClicked();
         mainCtl.getPlayer(0).exchangeProperty(mainCtl.getPlayer(1));
-        assertEquals(1,mainCtl.getCurrentPlayer().getPropertyCount());
+        assertEquals(1, mainCtl.getPlayer(1).getPropertyCount());
     }
 
     public void testResetProperty() {
         mainCtl.setNumberOfPlayers(1);
-        mainCtl.movePlayer(0,1);
-        mainCtl.getCurrentPlayer().purchase();
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
+        mainCtl.getPlayer(0).purchase();
         assertEquals(
             mainCtl.getGameBoard().getCell(1), 
-            mainCtl.getCurrentPlayer().getAllProperties()[0]
+            mainCtl.getPlayer(0).getAllProperties()[0]
         );
-        mainCtl.getCurrentPlayer().resetProperties();
-        assertEquals(0,mainCtl.getCurrentPlayer().getAllProperties().length);
+        mainCtl.getPlayer(0).resetProperties();
+        assertEquals(0, mainCtl.getPlayer(0).getAllProperties().length);
     }
 }
