@@ -84,12 +84,12 @@ public class Player {
         properties.clear();
     }
     
-    public Cell[] getAllProperties() {
-        ArrayList list = new ArrayList();
+    public ArrayList<Cell> getAllProperties() {
+        ArrayList<Cell> list = new ArrayList();
         list.addAll(properties);
         list.addAll(utilities);
         list.addAll(railroads);
-        return (Cell[])list.toArray(new Cell[list.size()]);
+        return list;
     }
 
     public int getMoney() {

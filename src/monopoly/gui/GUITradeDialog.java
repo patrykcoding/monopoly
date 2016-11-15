@@ -5,6 +5,7 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JButton;
@@ -105,11 +106,11 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
 
     private void updatePropertiesCombo(Player player) {
         cboProperties.removeAllItems();
-        Cell[] cells = player.getAllProperties();
-        btnOK.setEnabled(cells.length > 0);
-        for (Cell cell : cells) {
+        ArrayList<Cell> cells = player.getAllProperties();
+        btnOK.setEnabled(cells.size() > 0);
+        cells.stream().forEach((cell) -> {
             cboProperties.addItem(cell);
-        }
+        });
     }
 
 }

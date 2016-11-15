@@ -57,9 +57,9 @@ public class PlayerTest extends TestCase {
         mainCtl.purchase();
         assertEquals(
             mainCtl.getGameBoard().getCell(1), 
-            mainCtl.getPlayer(0).getAllProperties()[0]
+            mainCtl.getPlayer(0).getAllProperties().get(0)
         );
         mainCtl.getPlayer(0).resetProperties();
-        assertEquals(0, mainCtl.getPlayer(0).getAllProperties().length);
+        assertEquals(0, mainCtl.getPlayer(0).getAllProperties().size());
     }
 }
