@@ -69,17 +69,17 @@ public class PropertyController {
     }
     
     public ArrayList<String> getMonopolies(Player player) {
-        Map<String, Integer> colorGroups = player.getColorGroups();
+        Map<String, Integer> propertyColors = player.getPropertyColors();
         GameBoard gameBoard = boardCtl.getGameBoard();
         ArrayList<String> monopolies = new ArrayList<>();
-        Set colors = colorGroups.keySet();
+        Set colors = propertyColors.keySet();
         
         for (int i = 0; i < colors.size(); i++) {
-            String colorGroup = colors.toArray()[i].toString();
-            if (!colorGroup.equals(RailRoadCell.COLOR_GROUP) && !colorGroup.equals(UtilityCell.COLOR_GROUP)) {
-                Integer num = colorGroups.get(colorGroup);
-                if (num == gameBoard.getPropertyNumberForColor(colorGroup)) {
-                    monopolies.add(colorGroup);
+            String propertyColor = colors.toArray()[i].toString();
+            if (!propertyColor.equals(RailRoadCell.COLOR_GROUP) && !propertyColor.equals(UtilityCell.COLOR_GROUP)) {
+                Integer num = propertyColors.get(propertyColor);
+                if (num == gameBoard.getPropertyNumberForColor(propertyColor)) {
+                    monopolies.add(propertyColor);
                 }
             }
         }
@@ -88,6 +88,40 @@ public class PropertyController {
     
     public boolean canBuyHouse() {
         return (!getMonopolies(boardCtl.getCurrentPlayer()).isEmpty());
+    }
+    
+    public void giveAllProperties(Player fromPlayer, Player toPlayer) {
+        ArrayList<PropertyCell> properties = fromPlayer.getPropertyCells();
+        properties.stream().map((property) -> {
+            property.setPlayer(toPlayer);
+            return property;
+        }).forEach((property) -> {
+            if (toPlayer == null) {
+                property.setAvailable(true);
+                property.setNumHouses(0);
+            } else {
+                toPlayer.addProperty(property);
+            }
+        });
+        properties.clear();
+    }
+	
+    public void payRentTo(Player owner, int rentValue) {
+        Player currentPlayer = boardCtl.getCurrentPlayer();
+        int playerMoney = currentPlayer.getMoney();
+        
+        if (playerMoney < rentValue) {
+            owner.addMoney(playerMoney);
+            currentPlayer.subtractMoney(rentValue);
+        } else {
+            currentPlayer.subtractMoney(rentValue);
+            owner.addMoney(rentValue);
+        }
+        
+        if (currentPlayer.isBankrupt()) {
+            currentPlayer.setMoney(0);
+            giveAllProperties(currentPlayer, owner);
+        }
     }
 
 }

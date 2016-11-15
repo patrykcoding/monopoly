@@ -35,7 +35,7 @@ public class UtilityCell extends Cell {
             if (player != currentPlayer) {
                 mainCtl.utilRollDice();
                 int diceRoll = mainCtl.getUtilDiceRoll();
-                currentPlayer.payRentTo(player, getRent(diceRoll));
+                mainCtl.payRentTo(player, getRent(diceRoll));
             }
         }
     }

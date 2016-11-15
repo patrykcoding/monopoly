@@ -49,7 +49,7 @@ public class PropertyCell extends Cell {
         if (!isAvailable()) {
             currentPlayer = mainCtl.getCurrentPlayer();
             if (player != currentPlayer) {
-                currentPlayer.payRentTo(player, getRent(mainCtl));
+                mainCtl.payRentTo(player, getRent(mainCtl));
             }
         }
     }

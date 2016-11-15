@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Player {
-    //the key of colorGroups is the name of the color group.
-    private final Map<String, Integer> colorGroups = new HashMap<>();
+    //the key of propertyColors is the name of the color group.
+    private final Map<String, Integer> propertyColors = new HashMap<>();
     private boolean inJail;
     private int money;
     private String name;
@@ -28,23 +28,23 @@ public class Player {
     public void addUtility (UtilityCell utility) {
         utilities.add(utility);
         String colorGroup = UtilityCell.COLOR_GROUP;
-        addColorGroup(colorGroup);
+        addPropertyColor(colorGroup);
     }
     
     public void addRailRoad(RailRoadCell railroad) {
         railroads.add(railroad);
         String colorGroup = RailRoadCell.COLOR_GROUP;
-        addColorGroup(colorGroup);
+        addPropertyColor(colorGroup);
     }
     
     public void addProperty(PropertyCell property) {
         properties.add(property);
         String colorGroup = property.getColorGroup();
-        addColorGroup(colorGroup);
+        addPropertyColor(colorGroup);
     }
     
-    public void addColorGroup(String colorGroup) {
-        colorGroups.put(colorGroup, getPropertyNumberForColor(colorGroup) + 1);
+    public void addPropertyColor(String colorGroup) {
+        propertyColors.put(colorGroup, getPropertyNumberForColor(colorGroup) + 1);
     }
 	
     public void setColor(Color color) {
@@ -64,19 +64,8 @@ public class Player {
                 (cell.getName().equals(property)));
     }
 	
-    public void exchangeProperty(Player player) {
-        properties.stream().map((property) -> {
-            property.setPlayer(player);
-            return property;
-        }).forEach((property) -> {
-            if (player == null) {
-                property.setAvailable(true);
-                property.setNumHouses(0);
-            } else {
-                player.addProperty(property);
-            }
-        });
-        properties.clear();
+    public ArrayList<PropertyCell> getPropertyCells() {
+        return properties;
     }
     
     public ArrayList<Cell> getAllProperties() {
@@ -103,8 +92,8 @@ public class Player {
         this.money += money;
     }
     
-    public Map<String, Integer> getColorGroups() {
-        return colorGroups;
+    public Map<String, Integer> getPropertyColors() {
+        return propertyColors;
     }
     
     public Cell getPosition() {
@@ -120,7 +109,7 @@ public class Player {
     }
 
     private int getPropertyNumberForColor(String name) {
-        Integer number = colorGroups.get(name);
+        Integer number = propertyColors.get(name);
         if (number != null) {
             return number;
         }
@@ -141,21 +130,6 @@ public class Player {
 
     public int numberOfUtil() {
         return getPropertyNumberForColor(UtilityCell.COLOR_GROUP);
-    }
-	
-    public void payRentTo(Player owner, int rentValue) {
-        if (money < rentValue) {
-            owner.money += money;
-            money -= rentValue;
-        } else {
-            money -= rentValue;
-            owner.money +=rentValue;
-        }
-        
-        if (isBankrupt()) {
-            money = 0;
-            exchangeProperty(owner);
-        }
     }
 
     public void sellProperty(Cell property, int amount) {

@@ -297,7 +297,7 @@ public class MainController {
         currentPlayer.subtractMoney(JailCell.BAIL);
         if (currentPlayer.isBankrupt()) {
             currentPlayer.setMoney(0);
-            currentPlayer.exchangeProperty(null);
+            giveAllProperties(currentPlayer, null);
         }
         currentPlayer.setInJail(false);
         gui.update();
@@ -315,5 +315,13 @@ public class MainController {
 
     public boolean canBuyHouse() {
         return propertyCtl.canBuyHouse();
+    }
+
+    public void giveAllProperties(Player fromPlayer, Player toPlayer) {
+        propertyCtl.giveAllProperties(fromPlayer, toPlayer);
+    }
+
+    public void payRentTo(Player owner, int rent) {
+        propertyCtl.payRentTo(owner, rent);
     }
 }

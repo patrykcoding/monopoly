@@ -11,8 +11,8 @@ public class GameBoard {
 
     private final ArrayList<Cell> cells = new ArrayList<>();
     private final ArrayList<Card> chanceCards = new ArrayList<>();
-    //the key of colorGroups is the name of the color group.
-    private final Map<String, Integer> colorGroups = new HashMap<>();
+    //the key of propertyColors is the name of the color group.
+    private final Map<String, Integer> propertyColors = new HashMap<>();
     private final ArrayList<Card> communityChestCards = new ArrayList<>();
 
     public GameBoard() {
@@ -34,7 +34,7 @@ public class GameBoard {
 	
     public void addCell(PropertyCell cell) {
         int propertyNumber = getPropertyNumberForColor(cell.getColorGroup());
-        colorGroups.put(cell.getColorGroup(), propertyNumber + 1);
+        propertyColors.put(cell.getColorGroup(), propertyNumber + 1);
         cells.add(cell);
     }
 
@@ -73,7 +73,7 @@ public class GameBoard {
     }
 	
     public int getPropertyNumberForColor(String name) {
-        Integer number = colorGroups.get(name);
+        Integer number = propertyColors.get(name);
         if (number != null) {
             return number;
         }

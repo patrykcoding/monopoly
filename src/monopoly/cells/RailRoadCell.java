@@ -32,7 +32,7 @@ public class RailRoadCell extends Cell {
         if (!isAvailable()) {
             currentPlayer = mainCtl.getCurrentPlayer();
             if (player != currentPlayer) {
-                currentPlayer.payRentTo(player, getRent());
+                mainCtl.payRentTo(player, getRent());
             }
         }
     }

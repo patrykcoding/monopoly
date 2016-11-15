@@ -40,12 +40,12 @@ public class PlayerTest extends TestCase {
         assertEquals(2800, mainCtl.getPlayer(0).getMoney());
     }
 	
-    public void testExchangeProperty() {
+    public void testGiveAllProperties() {
         mainCtl.setNumberOfPlayers(2);
         mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
         mainCtl.purchase();
         mainCtl.btnEndTurnClicked();
-        mainCtl.getPlayer(0).exchangeProperty(mainCtl.getPlayer(1));
+        mainCtl.giveAllProperties(mainCtl.getPlayer(0), mainCtl.getPlayer(1));
         assertEquals(1, mainCtl.getPlayer(1).getPropertyCount());
     }
 
