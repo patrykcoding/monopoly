@@ -44,7 +44,7 @@ public class GUICell extends JPanel {
     public void addPlayer(MainController mainCtl, int index) {
         Player player = mainCtl.getPlayer(index);
         lblPlayers[index].setOpaque(true);
-        lblPlayers[index].setBackground(player.getColor());
+        lblPlayers[index].setBackground(player.getPlayerColor());
     }
 
     private void createPlayerLabels(JPanel pnlPlayer) {

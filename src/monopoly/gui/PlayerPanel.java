@@ -66,7 +66,7 @@ public class PlayerPanel extends JPanel {
         pnlInfo.add(pnlProperties, BorderLayout.CENTER);
 
         pnlProperties.setLayout(new OverlayLayout(pnlProperties));
-        pnlName.setBackground(player.getColor());        
+        pnlName.setBackground(player.getPlayerColor());        
 
         pnlName.add(lblName);
         pnlName.add(lblMoney);

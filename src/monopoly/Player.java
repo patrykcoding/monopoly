@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Player {
-    //the key of propertyColors is the name of the color group.
+    //the key of propertyColors is the name of the playerColor group.
     private final Map<String, Integer> propertyColors = new HashMap<>();
     private boolean inJail;
     private int money;
     private String name;
-    private Color color;
+    private Color playerColor;
     
     private Cell position;
     private ArrayList<PropertyCell> properties = new ArrayList<>();
@@ -47,15 +47,15 @@ public class Player {
         propertyColors.put(colorGroup, getPropertyNumberForColor(colorGroup) + 1);
     }
 	
-    public void setColor(Color color) {
-        this.color = color;
+    public void setPlayerColor(Color color) {
+        this.playerColor = color;
     }
     
-    public Color getColor() {
-        if (color == null) {
+    public Color getPlayerColor() {
+        if (playerColor == null) {
             return Color.GREEN;
         }
-        return color;
+        return playerColor;
     }
 
     public boolean checkProperty(String property) {

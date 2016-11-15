@@ -32,7 +32,7 @@ public class BoardController {
             Player player = new Player();
             player.setMoney(initAmountOfMoney);
             player.setPosition(gameBoard.getCell(0));
-            player.setColor(playerColors.get(i));
+            player.setPlayerColor(playerColors.get(i));
             players.add(player);
         }
     }
