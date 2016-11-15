@@ -60,7 +60,7 @@ public class Player {
     }
     
     public boolean canBuyHouse(GameBoard gameBoard) {
-        return (getMonopolies(gameBoard).length != 0);
+        return (getMonopolies(gameBoard).size() != 0);
     }
 
     public boolean checkProperty(String property) {
@@ -96,7 +96,7 @@ public class Player {
             return this.money;
     }
 
-    public String[] getMonopolies(GameBoard gameBoard) {
+    public ArrayList<String> getMonopolies(GameBoard gameBoard) {
         ArrayList<String> monopolies = new ArrayList<>();
         Set colors = colorGroups.keySet();
         
@@ -109,7 +109,7 @@ public class Player {
                 }
             }
         }
-        return monopolies.toArray(new String[monopolies.size()]);
+        return monopolies;
     }
 
     public String getName() {

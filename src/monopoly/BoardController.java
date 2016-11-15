@@ -2,6 +2,7 @@ package monopoly;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BoardController {
     public static final int MAX_PLAYER = 8;
@@ -10,7 +11,7 @@ public class BoardController {
     private GameBoard gameBoard;
     private int turn = 0;
     
-    private final Color[] playerColors = {
+    private final ArrayList<Color> playerColors = new ArrayList<>(Arrays.asList(
                                     new Color(255, 249, 102),
                                     new Color(66, 134, 244),
                                     new Color(143, 99, 158),
@@ -19,7 +20,7 @@ public class BoardController {
                                     new Color(120, 230, 30),
                                     new Color(206, 57, 72),
                                     new Color(72, 196, 188)
-                                   };
+                                    ));
 
     public BoardController(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
@@ -31,7 +32,7 @@ public class BoardController {
             Player player = new Player();
             player.setMoney(initAmountOfMoney);
             player.setPosition(gameBoard.getCell(0));
-            player.setColor(playerColors[i]);
+            player.setColor(playerColors.get(i));
             players.add(player);
         }
     }

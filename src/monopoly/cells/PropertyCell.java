@@ -1,5 +1,6 @@
 package monopoly.cells;
 
+import java.util.ArrayList;
 import monopoly.Cell;
 import monopoly.GameBoard;
 import monopoly.MainController;
@@ -31,7 +32,7 @@ public class PropertyCell extends Cell {
 
     public int getRent(GameBoard gameBoard) {
         int rentToCharge = rent;
-        String [] monopolies = player.getMonopolies(gameBoard);
+        ArrayList<String> monopolies = player.getMonopolies(gameBoard);
         for (String monopolie : monopolies) {
             if (monopolie.equals(colorGroup)) {
                 rentToCharge = rent * 2;
