@@ -21,18 +21,6 @@ public class PlayerTest extends TestCase {
         mainCtl.setTestMode(true);
         mainCtl.reset();
     }
-    
-    public void testPurchaseProperty() {
-        mainCtl.setNumberOfPlayers(1);
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
-        Player player = mainCtl.getPlayer(0);
-        player.purchase();
-        assertEquals(1380, player.getMoney());
-        assertEquals("Blue 3", player.getProperty(0).getName());
-        PropertyCell cell =
-        (PropertyCell) mainCtl.getGameBoard().queryCell("Blue 3");
-        assertSame(player, cell.getPlayer());
-    }
 
     public void testSameGoCell() {
         GameBoard gameboard = mainCtl.getGameBoard();
@@ -46,7 +34,7 @@ public class PlayerTest extends TestCase {
     public void testPayRentTo() {
         mainCtl.setNumberOfPlayers(2);
         mainCtl.movePlayer(mainCtl.getPlayer(0), 4);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         mainCtl.btnEndTurnClicked();
         mainCtl.movePlayer(mainCtl.getPlayer(1), 4);
         mainCtl.btnEndTurnClicked();
@@ -57,7 +45,7 @@ public class PlayerTest extends TestCase {
     public void testExchangeProperty() {
         mainCtl.setNumberOfPlayers(2);
         mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         mainCtl.btnEndTurnClicked();
         mainCtl.getPlayer(0).exchangeProperty(mainCtl.getPlayer(1));
         assertEquals(1, mainCtl.getPlayer(1).getPropertyCount());
@@ -66,7 +54,7 @@ public class PlayerTest extends TestCase {
     public void testResetProperty() {
         mainCtl.setNumberOfPlayers(1);
         mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         assertEquals(
             mainCtl.getGameBoard().getCell(1), 
             mainCtl.getPlayer(0).getAllProperties()[0]

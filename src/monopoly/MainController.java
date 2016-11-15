@@ -79,8 +79,7 @@ public class MainController {
     }
 
     public void btnPurchasePropertyClicked() {
-        Player player = getCurrentPlayer();
-        player.purchase();
+        purchase();
         gui.setPurchasePropertyEnabled(false);
         gui.update();
     }
@@ -118,7 +117,7 @@ public class MainController {
         Player seller = deal.getSeller();
         Cell property = gameBoard.queryCell(deal.getPropertyName());
         seller.sellProperty(property, deal.getAmount());
-        getCurrentPlayer().buyProperty(property, deal.getAmount());
+        propertyCtl.buyProperty(property, deal.getAmount());
     }
 
     public Card drawCCCard() {
@@ -199,6 +198,10 @@ public class MainController {
             gui.enableEndTurnBtn(playerIndex);
         }
         gui.setTradeEnabled(boardCtl.getTurn(), false);
+    }
+    
+    public void purchase() {
+        propertyCtl.purchase();
     }
 
     public void reset() {

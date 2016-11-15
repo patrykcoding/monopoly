@@ -47,20 +47,6 @@ public class Player {
     public void addColorGroup(String colorGroup) {
         colorGroups.put(colorGroup, getPropertyNumberForColor(colorGroup) + 1);
     }
-
-    public void buyProperty(Cell property, int amount) {
-        property.setPlayer(this);
-        if (property instanceof PropertyCell) {
-            addProperty((PropertyCell) property);
-        }
-        if (property instanceof RailRoadCell) {
-            addRailRoad((RailRoadCell) property);
-        }
-        if (property instanceof UtilityCell) {
-            addUtility((UtilityCell) property);
-        }
-        setMoney(getMoney() - amount);
-    }
 	
     public void setColor(Color color) {
         this.color = color;
@@ -186,14 +172,6 @@ public class Player {
         if (isBankrupt()) {
             money = 0;
             exchangeProperty(owner);
-        }
-    }
-	
-    public void purchase() {
-        if (getPosition().isAvailable()) {
-            Cell cell = getPosition();
-            buyProperty(cell, cell.getPrice());
-            cell.setAvailable(false);
         }
     }
 

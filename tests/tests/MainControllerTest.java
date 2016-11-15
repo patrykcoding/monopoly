@@ -2,6 +2,8 @@ package tests;
 
 import tests.mocks.MockGUI;
 import java.util.ArrayList;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertSame;
 
 import junit.framework.TestCase;
 import monopoly.gameboards.GameBoardDefault;
@@ -11,6 +13,7 @@ import monopoly.Player;
 import monopoly.RespondDialog;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
+import monopoly.cells.PropertyCell;
 
 public class MainControllerTest extends TestCase {
 
@@ -53,7 +56,7 @@ public class MainControllerTest extends TestCase {
         mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
         assertFalse(gui.isTradeButtonEnabled(0));
         assertFalse(gui.isTradeButtonEnabled(1));
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         assertEquals(mainCtl.getGameBoard().getCell(1),
                      mainCtl.getPlayer(0).getAllProperties()[0]);
         mainCtl.btnEndTurnClicked();
@@ -111,23 +114,35 @@ public class MainControllerTest extends TestCase {
 
     public void testButtonTradeClicked() {
         mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         mainCtl.btnEndTurnClicked();
         mainCtl.btnTradeClicked();
         assertEquals(mainCtl.getGameBoard().getCell(1), mainCtl.getPlayer(1).getAllProperties()[0]);
-        assertEquals(1640,mainCtl.getPlayer(0).getMoney());
-        assertEquals(1300,mainCtl.getPlayer(1).getMoney());
+        assertEquals(1640, mainCtl.getPlayer(0).getMoney());
+        assertEquals(1300, mainCtl.getPlayer(1).getMoney());
     }
     
     public void testPurchaseHouse() {
         mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
-        mainCtl.getCurrentPlayer().purchase();
+        mainCtl.purchase();
         mainCtl.movePlayer(mainCtl.getPlayer(0), 2);
-        mainCtl.getCurrentPlayer().purchase();
+        mainCtl.purchase();
         mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
-        mainCtl.getCurrentPlayer().purchase();
+        mainCtl.purchase();
         mainCtl.purchaseHouse("purple", 2);
         assertEquals("purple", mainCtl.getPlayer(0).getMonopolies(mainCtl.getGameBoard())[0]);
         assertEquals(1020, mainCtl.getPlayer(0).getMoney());
+    }
+    
+    public void testPurchaseProperty() {
+        mainCtl.setNumberOfPlayers(1);
+        mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
+        Player player = mainCtl.getPlayer(0);
+        mainCtl.purchase();
+        assertEquals(1440, player.getMoney());
+        assertEquals("Baltic Avenue", player.getProperty(0).getName());
+        PropertyCell cell =
+        (PropertyCell) mainCtl.getGameBoard().queryCell("Baltic Avenue");
+        assertSame(player, cell.getPlayer());
     }
 }

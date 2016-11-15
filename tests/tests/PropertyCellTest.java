@@ -24,7 +24,7 @@ public class PropertyCellTest extends TestCase {
         PropertyCell cell = (PropertyCell) mainCtl.getGameBoard().queryCell("Blue 3");
         int cellIndex = mainCtl.getGameBoard().queryCellIndex("Blue 3");
         mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         mainCtl.switchTurn();
         mainCtl.movePlayer(mainCtl.getPlayer(1), cellIndex);
         cell.playAction(mainCtl);
