@@ -27,9 +27,9 @@ public class CellInfoFormatterTest extends TestCase {
         String propertyToolTip = "<html><b><font color='" +
                                 propertyColor +"'>" + 
                                 propertyName + "</font></b><br>" +
-				"$" + propertyValue +
-				"<br>Owner: " + ownerName +
-				"<br>* " + numHouses +
+				"Price: $" + propertyValue +
+				"<br><br>Owner: " + ownerName +
+				"<br><br>Houses ⌂: " + numHouses +
 				"</html>";
         PropertyCell cell = new PropertyCell();
         cell.setName(propertyName);
