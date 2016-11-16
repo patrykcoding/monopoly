@@ -16,7 +16,8 @@ public class GUICell extends JPanel {
     private final Cell cell;
     private JLabel lblInfo;
     private final JLabel[] lblPlayers = new JLabel[BoardController.MAX_PLAYER];
-	
+    private static final long serialVersionUID = 2752137388247147409L;
+    
     public GUICell(Cell cell) {
         this.cell = cell;
         super.setLayout(new OverlayLayout(this));

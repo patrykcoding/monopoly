@@ -21,6 +21,7 @@ import monopoly.MainController;
 import monopoly.Player;
 
 public class PlayerPanel extends JPanel {
+    private static final long serialVersionUID = -86435279085524828L;
 
     private final JButton btnBuyHouse;
     private final JButton btnDrawCard;

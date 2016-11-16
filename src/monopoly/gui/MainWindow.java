@@ -17,22 +17,24 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-import monopoly.*;
 import monopoly.Cell;
 import monopoly.GameBoard;
 import monopoly.MainController;
 import monopoly.Player;
+import monopoly.RespondDialog;
+import monopoly.TradeDeal;
+import monopoly.TradeDialog;
 
 public class MainWindow extends JFrame implements MonopolyGUI {
-    
+    private static final long serialVersionUID = 3146365872410925008L;
     private final MainController mainCtl;
-    JPanel eastPanel = new JPanel();
-    ArrayList<GUICell> guiCells = new ArrayList<>();
+    private final JPanel eastPanel = new JPanel();
+    private final ArrayList<GUICell> guiCells = new ArrayList<>();
 
-    JPanel northPanel = new JPanel();
-    PlayerPanel[] playerPanels;
-    JPanel southPanel = new JPanel();
-    JPanel westPanel = new JPanel();
+    private final JPanel northPanel = new JPanel();
+    private PlayerPanel[] playerPanels;
+    private final JPanel southPanel = new JPanel();
+    private final JPanel westPanel = new JPanel();
 
     public MainWindow(MainController mainCtl) {
         this.mainCtl = mainCtl;
@@ -61,12 +63,12 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     }
 
     private void addCells(JPanel panel, List<Cell> cells) {
-        for (Iterator iter = cells.iterator(); iter.hasNext();) {
-            Object cell1 = iter.next();
-            GUICell cell = new GUICell((Cell) cell1);
-            panel.add(cell);
-            guiCells.add(cell);
-        }
+        cells.stream().map((cell) -> new GUICell(cell)).map((guiCell) -> {
+            panel.add(guiCell);
+            return guiCell;
+        }).forEach((guiCell) -> {
+            guiCells.add(guiCell);
+        });
     }
 
     private void buildPlayerPanels() {
@@ -244,10 +246,9 @@ public class MainWindow extends JFrame implements MonopolyGUI {
         for (PlayerPanel playerPanel : playerPanels) {
             playerPanel.displayInfo();
         }
-        for (Iterator iter = guiCells.iterator(); iter.hasNext();) {
-            Object guiCell = iter.next();
-            GUICell cell = (GUICell) guiCell;
+        
+        guiCells.stream().map((guiCell) -> guiCell).forEach((cell) -> {
             cell.displayInfo();
-        }
+        });
     }
 }
