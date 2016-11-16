@@ -44,11 +44,11 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
              
         Container contentPane = super.getContentPane();
         contentPane.setLayout(new GridLayout(4, 2));
-        contentPane.add(new JLabel("Sellers"));
+        contentPane.add(new JLabel("Property owner"));
         contentPane.add(cboSellers);
-        contentPane.add(new JLabel("Properties"));
+        contentPane.add(new JLabel("Property"));
         contentPane.add(cboProperties);
-        contentPane.add(new JLabel("Amount"));
+        contentPane.add(new JLabel("Offer price"));
         contentPane.add(txtAmount);
         contentPane.add(btnOK);
         contentPane.add(btnCancel);
