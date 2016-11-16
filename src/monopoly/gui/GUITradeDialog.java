@@ -23,7 +23,8 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     private static final long serialVersionUID = -7231996263338389498L;
     
     private JButton btnOK, btnCancel;
-    private JComboBox<String> cboSellers, cboProperties;
+    private JComboBox<String> cboSellers;
+    private JComboBox<Cell> cboProperties;
 
     private TradeDeal deal;
     private JTextField txtAmount;
@@ -77,7 +78,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
                         "Amount should not be negative", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Cell cell = (Cell)cboProperties.getSelectedItem();
+            Cell cell = (Cell) cboProperties.getSelectedItem();
             if(cell == null) return;
             Player currentPlayer = mainCtl.getCurrentPlayer();
             if(currentPlayer.getMoney() > amount) {
@@ -109,7 +110,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         ArrayList<Cell> cells = player.getAllProperties();
         btnOK.setEnabled(cells.size() > 0);
         cells.stream().forEach((cell) -> {
-            cboProperties.addItem(cell.toString());
+            cboProperties.addItem(cell);
         });
     }
 
