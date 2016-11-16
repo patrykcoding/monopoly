@@ -74,7 +74,11 @@ public class Main {
                 window, 
                 "Please input name for Player " + (i + 1)
             );
-            mainCtl.getPlayer(i).setName(name);
+            if (name.equals("") || name.trim().isEmpty()) {
+                mainCtl.getPlayer(i).setName("Player " + (i + 1));
+            } else {
+                mainCtl.getPlayer(i).setName(name);
+            }
         }
         window.setupGameBoard(mainCtl.getGameBoard());
         window.setVisible(true);
