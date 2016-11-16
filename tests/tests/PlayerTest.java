@@ -20,6 +20,11 @@ public class PlayerTest extends TestCase {
         mainCtl.reset();
     }
 
+    public void testInit() {
+        mainCtl.setNumberOfPlayers(1);
+        assertEquals(1500, mainCtl.getPlayer(0).getMoney());
+    }
+    
     public void testSameGoCell() {
         GameBoard gameboard = mainCtl.getGameBoard();
         mainCtl.setNumberOfPlayers(2);

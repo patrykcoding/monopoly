@@ -142,10 +142,6 @@ public class MainController {
         return gui;
     }
 
-    public int getInitAmountOfMoney() {
-        return boardCtl.getInitAmountOfMoney();
-    }
-
     public int getNumberOfPlayers() {
         return boardCtl.getNumberOfPlayers();
     }
@@ -246,10 +242,6 @@ public class MainController {
 
     public void setGUI(MonopolyGUI gui) {
         this.gui = gui;
-    }
-
-    public void setInitAmountOfMoney(int money) {
-        boardCtl.setInitAmountOfMoney(money);
     }
 
     public void setNumberOfPlayers(int number) {

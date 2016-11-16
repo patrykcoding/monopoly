@@ -35,7 +35,7 @@ public class CellInfoFormatterTest extends TestCase {
         cell.setName(propertyName);
         cell.setPrice(propertyValue);
         cell.setColorGroup(propertyColor);
-        Player p = new Player();
+        Player p = new Player(cell);
         p.setName(ownerName);
         cell.setPlayer(p);
         cell.setNumHouses(numHouses);

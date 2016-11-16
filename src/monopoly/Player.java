@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Player {
+    private final int INITIAL_MONEY = 1500;
     //the key of propertyColors is the name of the playerColor group.
     private final Map<String, Integer> propertyColors = new HashMap<>();
     private boolean inJail;
@@ -21,8 +22,11 @@ public class Player {
     private ArrayList<RailRoadCell> railroads = new ArrayList<>();
     private ArrayList<UtilityCell> utilities = new ArrayList<>();
     
-    public Player() {
+    public Player(Cell position) {
+        this.position = position;
         inJail = false;
+        playerColor = Color.GREEN;
+        money = INITIAL_MONEY;
     }
     
     public void addUtility (UtilityCell utility) {
@@ -52,9 +56,6 @@ public class Player {
     }
     
     public Color getPlayerColor() {
-        if (playerColor == null) {
-            return Color.GREEN;
-        }
         return playerColor;
     }
 

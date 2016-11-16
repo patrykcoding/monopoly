@@ -2,8 +2,6 @@ package tests;
 
 import tests.mocks.MockGUI;
 import java.util.ArrayList;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertSame;
 
 import junit.framework.TestCase;
 import monopoly.gameboards.GameBoardDefault;
@@ -30,11 +28,6 @@ public class MainControllerTest extends TestCase {
         mainCtl.setTestMode(true);
         mainCtl.setGUI(new MockGUI());
         mainCtl.startGame();
-    }
-
-    public void testInit() {
-        assertEquals(mainCtl.getInitAmountOfMoney(),
-                     mainCtl.getPlayer(0).getMoney());
     }
 
     public void testReset() {
