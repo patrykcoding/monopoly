@@ -3,7 +3,7 @@ package tests;
 import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
-import tests.gameboards.GameBoardCCLoseMoney;
+import tests.gameboardsTests.GameBoardCCLoseMoney;
 import monopoly.MainController;
 import monopoly.cards.MoneyCard;
 
