@@ -1,6 +1,5 @@
 package monopoly.gui;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Frame;
 import java.awt.GridLayout;
@@ -24,7 +23,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     private static final long serialVersionUID = -7231996263338389498L;
     
     private JButton btnOK, btnCancel;
-    private JComboBox<String> cboSellers;
+    private JComboBox<Player> cboSellers;
     private JComboBox<Cell> cboProperties;
 
     private TradeDeal deal;
@@ -70,14 +69,16 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             int amount;
             try {
                 amount = Integer.parseInt(txtAmount.getText());
-            } catch(NumberFormatException nfe) {
-                JOptionPane.showMessageDialog(this,
-                        "Amount should be an integer", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(GUITradeDialog.this,
+                        "Amount should be an integer", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (amount < 0) {
-                JOptionPane.showMessageDialog(this,
-                        "Amount should not be negative", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(GUITradeDialog.this,
+                        "Amount should not be negative", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
             Cell cell = (Cell) cboProperties.getSelectedItem();
@@ -85,8 +86,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             Player currentPlayer = mainCtl.getCurrentPlayer();
             if(currentPlayer.getMoney() > amount) {
                 deal = new TradeDeal(cell, currentPlayer, amount);
-            }
-            this.setVisible(false);
+            }   GUITradeDialog.this.setVisible(false);
         });
         
         super.pack();
@@ -95,7 +95,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     private void buildSellersCombo(MainController mainCtl) {
         List<Player> sellers = mainCtl.getSellerList();
         sellers.stream().forEach((player) -> {
-            cboSellers.addItem(player.toString());
+            cboSellers.addItem(player);
         });
         if(sellers.size() > 0) {
             updatePropertiesCombo(sellers.get(0));
