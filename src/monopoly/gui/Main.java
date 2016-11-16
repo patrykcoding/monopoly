@@ -25,6 +25,7 @@ public class Main {
                     window, 
                     "Please input a number"
                 );
+                continue;
             }
             if (numPlayers < 2 || numPlayers > BoardController.MAX_PLAYER) {
                 JOptionPane.showMessageDialog(
