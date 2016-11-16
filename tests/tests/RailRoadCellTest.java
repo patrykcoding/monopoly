@@ -23,7 +23,7 @@ public class RailRoadCellTest extends TestCase {
                 (RailRoadCell) mainCtl.getGameBoard().queryCell("Railroad A");
         int cellIndex = mainCtl.getGameBoard().queryCellIndex("Railroad A");
         mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         mainCtl.switchTurn();
         mainCtl.movePlayer(mainCtl.getPlayer(1), cellIndex);
         cell.playAction(mainCtl);
@@ -35,7 +35,7 @@ public class RailRoadCellTest extends TestCase {
         assertEquals(0, mainCtl.getPlayer(0).numberOfRR());
         int cellIndex = mainCtl.getGameBoard().queryCellIndex("Railroad A");
         mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         assertEquals(1300, mainCtl.getPlayer(0).getMoney());
         assertEquals(1, mainCtl.getPlayer(0).numberOfRR());
     }
@@ -45,14 +45,14 @@ public class RailRoadCellTest extends TestCase {
                 (RailRoadCell) mainCtl.getGameBoard().queryCell("Railroad A");
         int cellIndex1 = mainCtl.getGameBoard().queryCellIndex("Railroad A");
         mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex1);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         assertEquals(25, rr1.getRent());
 
         RailRoadCell rr2 =
                 (RailRoadCell) mainCtl.getGameBoard().queryCell("Railroad B");
         int cellIndex2 = mainCtl.getGameBoard().queryCellIndex("Railroad B");
         mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex2 - cellIndex1);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         assertEquals(50, rr1.getRent());
         assertEquals(50, rr2.getRent());
     }

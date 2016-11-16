@@ -5,9 +5,22 @@ public class TradeDeal {
     private Player seller;
     private Player buyer;
     private String propertyName;
+    private final Cell property;
+    
+    public TradeDeal(Cell property, Player buyer, int amount) {
+        this.propertyName = property.getName();
+        this.seller = property.getPlayer();
+        this.buyer = buyer;
+        this.amount = amount;
+        this.property = property;
+    }
     
     public int getAmount() {
         return amount;
+    }
+    
+    public Cell getProperty() {
+        return property;
     }
     
     public String getPropertyName() {

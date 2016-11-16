@@ -1,7 +1,7 @@
 package monopoly.cells;
 
+import java.util.ArrayList;
 import monopoly.Cell;
-import monopoly.GameBoard;
 import monopoly.MainController;
 import monopoly.Player;
 
@@ -29,9 +29,9 @@ public class PropertyCell extends Cell {
         return sellPrice;
     }
 
-    public int getRent(GameBoard gameBoard) {
+    public int getRent(MainController mainCtl) {
         int rentToCharge = rent;
-        String [] monopolies = player.getMonopolies(gameBoard);
+        ArrayList<String> monopolies = mainCtl.getMonopolies(player);
         for (String monopolie : monopolies) {
             if (monopolie.equals(colorGroup)) {
                 rentToCharge = rent * 2;
@@ -49,7 +49,7 @@ public class PropertyCell extends Cell {
         if (!isAvailable()) {
             currentPlayer = mainCtl.getCurrentPlayer();
             if (player != currentPlayer) {
-                currentPlayer.payRentTo(player, getRent(mainCtl.getGameBoard()));
+                mainCtl.payRentTo(player, getRent(mainCtl));
             }
         }
     }

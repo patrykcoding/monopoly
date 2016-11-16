@@ -45,8 +45,8 @@ public class Main {
                 mainCtl.setTestMode(true);
             }
             try {
-                Class c = Class.forName(args[1]);
-                mainCtl.setGameBoard((GameBoard)c.newInstance());
+                GameBoard board = (GameBoard) Class.forName(args[1]).newInstance();
+                mainCtl.setGameBoard(board);
             } catch (ClassNotFoundException e) {
                 JOptionPane.showMessageDialog(
                     window, 

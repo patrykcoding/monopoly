@@ -3,6 +3,7 @@ package monopoly.gui;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
+import monopoly.Cell;
 
 import monopoly.GameBoard;
 
@@ -15,42 +16,42 @@ public class GameBoardUtil {
         return new Dimension(longSide, shortSide);
     }
 	
-    public static List getEastCells(GameBoard board) {
+    public static List<Cell> getEastCells(GameBoard board) {
         Dimension d = calculateDimension(board.getCellSize());
         int shortSide = d.height;
-        List cells = new ArrayList();
+        List<Cell> cells = new ArrayList<>();
         for (int i = board.getCellSize() - shortSide; i <= board.getCellSize() - 1; i++) {
                 cells.add(board.getCell(i));
         }
         return cells;
     }
 	
-    public static List getNorthCells(GameBoard board) {
+    public static List<Cell> getNorthCells(GameBoard board) {
         Dimension d = calculateDimension(board.getCellSize());
         int longSide = d.width;
         int shortSide = d.height;
-        List cells = new ArrayList();
+        List<Cell> cells = new ArrayList<>();
         for (int i = longSide + 2 + shortSide; i <= longSide + 2 + shortSide + longSide + 1; i++) {
                 cells.add(board.getCell(i));
         }
         return cells;
     }
 	
-    public static List getSouthCells(GameBoard board) {
+    public static List<Cell> getSouthCells(GameBoard board) {
         Dimension d = calculateDimension(board.getCellSize());
         int longSide = d.width;
-        List cells = new ArrayList();
+        List<Cell> cells = new ArrayList<>();
         for (int i = longSide + 1; i >= 0; i--) {
                 cells.add(board.getCell(i));
         }
         return cells;
     }
 
-    public static List getWestCells(GameBoard board) {
+    public static List<Cell> getWestCells(GameBoard board) {
         Dimension d = calculateDimension(board.getCellSize());
         int longSide = d.width;
         int shortSide = d.height;
-        List cells = new ArrayList();
+        List<Cell> cells = new ArrayList<>();
         for (int i = longSide + 1 + shortSide; i > longSide + 1; i--) {
                 cells.add(board.getCell(i));
         }

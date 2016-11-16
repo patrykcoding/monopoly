@@ -1,6 +1,8 @@
 package tests.mocks;
 
+import monopoly.Cell;
 import monopoly.MainController;
+import monopoly.Player;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
 
@@ -8,10 +10,11 @@ public class MockTradeDialog implements TradeDialog {
 
     @Override
     public TradeDeal getTradeDeal(MainController mainCtl) {
-        TradeDeal deal = new TradeDeal();
-        deal.setAmount(200);
-        deal.setSeller(mainCtl.getPlayer(0));
-        deal.setPropertyName(mainCtl.getGameBoard().getCell(1).toString());
+        Cell property = mainCtl.getGameBoard().getCell(1);
+        Player buyer = mainCtl.getPlayer(1);
+        int dealAmount = 200;
+        
+        TradeDeal deal = new TradeDeal(property, buyer, dealAmount);
         return deal;
     }
 }

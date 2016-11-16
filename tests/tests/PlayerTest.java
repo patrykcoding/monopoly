@@ -5,8 +5,6 @@ import junit.framework.TestCase;
 import monopoly.Cell;
 import monopoly.GameBoard;
 import monopoly.MainController;
-import monopoly.Player;
-import monopoly.cells.PropertyCell;
 import tests.gameboards.SimpleGameBoard;
 
 public class PlayerTest extends TestCase {
@@ -21,18 +19,6 @@ public class PlayerTest extends TestCase {
         mainCtl.setTestMode(true);
         mainCtl.reset();
     }
-    
-    public void testPurchaseProperty() {
-        mainCtl.setNumberOfPlayers(1);
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
-        Player player = mainCtl.getPlayer(0);
-        player.purchase();
-        assertEquals(1380, player.getMoney());
-        assertEquals("Blue 3", player.getProperty(0).getName());
-        PropertyCell cell =
-        (PropertyCell) mainCtl.getGameBoard().queryCell("Blue 3");
-        assertSame(player, cell.getPlayer());
-    }
 
     public void testSameGoCell() {
         GameBoard gameboard = mainCtl.getGameBoard();
@@ -46,7 +32,7 @@ public class PlayerTest extends TestCase {
     public void testPayRentTo() {
         mainCtl.setNumberOfPlayers(2);
         mainCtl.movePlayer(mainCtl.getPlayer(0), 4);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         mainCtl.btnEndTurnClicked();
         mainCtl.movePlayer(mainCtl.getPlayer(1), 4);
         mainCtl.btnEndTurnClicked();
@@ -54,24 +40,24 @@ public class PlayerTest extends TestCase {
         assertEquals(2800, mainCtl.getPlayer(0).getMoney());
     }
 	
-    public void testExchangeProperty() {
+    public void testGiveAllProperties() {
         mainCtl.setNumberOfPlayers(2);
         mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         mainCtl.btnEndTurnClicked();
-        mainCtl.getPlayer(0).exchangeProperty(mainCtl.getPlayer(1));
+        mainCtl.giveAllProperties(mainCtl.getPlayer(0), mainCtl.getPlayer(1));
         assertEquals(1, mainCtl.getPlayer(1).getPropertyCount());
     }
 
     public void testResetProperty() {
         mainCtl.setNumberOfPlayers(1);
         mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
-        mainCtl.getPlayer(0).purchase();
+        mainCtl.purchase();
         assertEquals(
             mainCtl.getGameBoard().getCell(1), 
-            mainCtl.getPlayer(0).getAllProperties()[0]
+            mainCtl.getPlayer(0).getAllProperties().get(0)
         );
         mainCtl.getPlayer(0).resetProperties();
-        assertEquals(0, mainCtl.getPlayer(0).getAllProperties().length);
+        assertEquals(0, mainCtl.getPlayer(0).getAllProperties().size());
     }
 }

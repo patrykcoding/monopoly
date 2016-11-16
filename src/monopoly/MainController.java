@@ -73,14 +73,13 @@ public class MainController {
             gui.setTradeEnabled(getCurrentPlayerIndex(),false);
         } else {
             gui.setRollDiceEnabled(true);
-            gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse(gameBoard));
+            gui.setBuyHouseEnabled(propertyCtl.canBuyHouse());
             gui.setGetOutOfJailEnabled(getCurrentPlayer().isInJail());
         }
     }
 
     public void btnPurchasePropertyClicked() {
-        Player player = getCurrentPlayer();
-        player.purchase();
+        purchase();
         gui.setPurchasePropertyEnabled(false);
         gui.update();
     }
@@ -115,10 +114,8 @@ public class MainController {
     }
 
     public void completeTrade(TradeDeal deal) {
-        Player seller = deal.getSeller();
-        Cell property = gameBoard.queryCell(deal.getPropertyName());
-        seller.sellProperty(property, deal.getAmount());
-        getCurrentPlayer().buyProperty(property, deal.getAmount());
+        propertyCtl.sellProperty(deal);
+        propertyCtl.buyProperty(deal);
     }
 
     public Card drawCCCard() {
@@ -200,6 +197,10 @@ public class MainController {
         }
         gui.setTradeEnabled(boardCtl.getTurn(), false);
     }
+    
+    public void purchase() {
+        propertyCtl.purchase();
+    }
 
     public void reset() {
         boardCtl.reset();
@@ -270,7 +271,7 @@ public class MainController {
         
         if (!getCurrentPlayer().isInJail()) {
             gui.enablePlayerTurn(boardCtl.getTurn());
-            gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse(gameBoard));
+            gui.setBuyHouseEnabled(propertyCtl.canBuyHouse());
             gui.setTradeEnabled(boardCtl.getTurn(), true);
         } else {
             gui.setGetOutOfJailEnabled(true);
@@ -294,7 +295,7 @@ public class MainController {
         currentPlayer.subtractMoney(JailCell.BAIL);
         if (currentPlayer.isBankrupt()) {
             currentPlayer.setMoney(0);
-            currentPlayer.exchangeProperty(null);
+            giveAllProperties(currentPlayer, null);
         }
         currentPlayer.setInJail(false);
         gui.update();
@@ -304,5 +305,21 @@ public class MainController {
         if (propertyCtl.purchaseHouse(selectedMonopoly, houses) <= 5) {
             gui.update();
         }
+    }
+
+    public ArrayList<String> getMonopolies(Player player) {
+        return propertyCtl.getMonopolies(player);
+    }
+
+    public boolean canBuyHouse() {
+        return propertyCtl.canBuyHouse();
+    }
+
+    public void giveAllProperties(Player fromPlayer, Player toPlayer) {
+        propertyCtl.giveAllProperties(fromPlayer, toPlayer);
+    }
+
+    public void payRentTo(Player owner, int rent) {
+        propertyCtl.payRentTo(owner, rent);
     }
 }

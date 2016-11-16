@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import monopoly.MainController;
 import monopoly.Player;
 import monopoly.TradeDeal;
+import monopoly.cells.PropertyCell;
 
 public class TradeDealTest extends TestCase {
     private MainController mainCtl;
@@ -18,15 +19,17 @@ public class TradeDealTest extends TestCase {
     }
 
     public void testMakeMessage() {
-        TradeDeal deal = new TradeDeal();
         Player buyer = mainCtl.getPlayer(0);
         Player seller = mainCtl.getPlayer(1);
+        int propertyPrice = 200;
         
-        deal.setBuyer(buyer);
-        deal.setSeller(seller);
-        deal.setAmount(200);
-        deal.setPropertyName("Blue 1");
-
+        PropertyCell property = new PropertyCell();
+        property.setName("Blue 1");
+        property.setPrice(propertyPrice);
+        property.setPlayer(seller);
+        
+        TradeDeal deal = new TradeDeal(property, buyer, propertyPrice);
+        
         String message = "ATTENTION: Seller\n" + 
                 "Buyer wishes to purchase Blue 1 from you for $200. " +
                 "Do you wish to trade your property?";

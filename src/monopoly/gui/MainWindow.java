@@ -27,7 +27,7 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     
     private final MainController mainCtl;
     JPanel eastPanel = new JPanel();
-    ArrayList guiCells = new ArrayList();
+    ArrayList<GUICell> guiCells = new ArrayList<>();
 
     JPanel northPanel = new JPanel();
     PlayerPanel[] playerPanels;
@@ -60,7 +60,7 @@ public class MainWindow extends JFrame implements MonopolyGUI {
         });
     }
 
-    private void addCells(JPanel panel, List cells) {
+    private void addCells(JPanel panel, List<Cell> cells) {
         for (Iterator iter = cells.iterator(); iter.hasNext();) {
             Object cell1 = iter.next();
             GUICell cell = new GUICell((Cell) cell1);
