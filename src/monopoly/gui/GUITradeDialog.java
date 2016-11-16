@@ -6,7 +6,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,8 +20,10 @@ import monopoly.TradeDeal;
 import monopoly.TradeDialog;
 
 public class GUITradeDialog extends JDialog implements TradeDialog {
+    private static final long serialVersionUID = -7231996263338389498L;
+    
     private JButton btnOK, btnCancel;
-    private JComboBox cboSellers, cboProperties;
+    private JComboBox<String> cboSellers, cboProperties;
 
     private TradeDeal deal;
     private JTextField txtAmount;
@@ -31,8 +32,8 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         super(parent);
         
         super.setTitle("Trade Property");
-        cboSellers = new JComboBox();
-        cboProperties = new JComboBox();
+        cboSellers = new JComboBox<>();
+        cboProperties = new JComboBox<>();
         txtAmount = new JTextField();
         btnOK = new JButton("OK");
         btnCancel = new JButton("Cancel");
@@ -86,10 +87,10 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     private void buildSellersCombo(MainController mainCtl) {
         List<Player> sellers = mainCtl.getSellerList();
         sellers.stream().forEach((player) -> {
-            cboSellers.addItem(player);
+            cboSellers.addItem(player.toString());
         });
         if(sellers.size() > 0) {
-            updatePropertiesCombo((Player)sellers.get(0));
+            updatePropertiesCombo(sellers.get(0));
         }
     }
 
@@ -103,7 +104,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         ArrayList<Cell> cells = player.getAllProperties();
         btnOK.setEnabled(cells.size() > 0);
         cells.stream().forEach((cell) -> {
-            cboProperties.addItem(cell);
+            cboProperties.addItem(cell.toString());
         });
     }
 

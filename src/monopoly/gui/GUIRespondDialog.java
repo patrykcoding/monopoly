@@ -13,8 +13,10 @@ import monopoly.TradeDeal;
 
 
 public class GUIRespondDialog extends JDialog implements RespondDialog {
+    private static final long serialVersionUID = -992184678913164041L;
+    
     private boolean response;
-    JTextArea txtMessage = new JTextArea();
+    private JTextArea txtMessage = new JTextArea();
     
     public GUIRespondDialog() {
         JButton btnYes = new JButton("Yes");
@@ -33,12 +35,12 @@ public class GUIRespondDialog extends JDialog implements RespondDialog {
         
         btnYes.addActionListener((ActionEvent e) -> {
             response = true;
-            hide();
+            setVisible(false);
         });
 
         btnNo.addActionListener((ActionEvent e) -> {
             response = false;
-            hide();
+            setVisible(false);
         });
     
         super.setModal(true);

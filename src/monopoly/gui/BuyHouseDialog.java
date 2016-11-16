@@ -4,6 +4,7 @@ package monopoly.gui;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,8 +15,10 @@ import monopoly.MainController;
 import monopoly.Player;
 
 public class BuyHouseDialog extends JDialog {
-    private JComboBox cboMonopoly;
-    private JComboBox cboNumber;
+    private static final long serialVersionUID = -8707274599957567230L;
+    
+    private JComboBox<String> cboMonopoly;
+    private JComboBox<Integer> cboNumber;
 
     private final Player player;
     private final MainController mainCtl;
@@ -43,13 +46,20 @@ public class BuyHouseDialog extends JDialog {
         return btn;
     }
 
-    private JComboBox buildMonopolyComboBox() {
-        cboMonopoly = new JComboBox(mainCtl.getMonopolies(player).toArray());
+    private JComboBox<String> buildMonopolyComboBox() {
+        cboMonopoly = new JComboBox<>();
+        ArrayList<String> monopolies = mainCtl.getMonopolies(player);
+        monopolies.stream().forEach((monopoly) -> {
+            cboMonopoly.addItem(monopoly);
+        });
         return cboMonopoly;
     }
 
-    private JComboBox buildNumberComboBox() {
-        cboNumber = new JComboBox(new Integer[]{1, 2, 3, 4, 5});
+    private JComboBox<Integer> buildNumberComboBox() {
+        cboNumber = new JComboBox<>();
+        for (int i = 1; i <= 6; i++) {
+            cboNumber.addItem(i);
+        }
         return cboNumber;
     }
 
