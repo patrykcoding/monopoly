@@ -1,5 +1,5 @@
 
-package tests.gameboards;
+package tests.gameboardsTests;
 
 import monopoly.cells.FreeParkingCell;
 import monopoly.GameBoard;

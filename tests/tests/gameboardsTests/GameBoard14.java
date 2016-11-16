@@ -1,4 +1,4 @@
-package tests.gameboards;
+package tests.gameboardsTests;
 
 import monopoly.GameBoard;
 import monopoly.cells.PropertyCell;

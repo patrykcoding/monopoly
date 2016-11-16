@@ -2,7 +2,7 @@ package tests;
 
 import tests.mocks.MockGUI;
 import junit.framework.TestCase;
-import tests.gameboards.GameBoardUtility;
+import tests.gameboardsTests.GameBoardUtility;
 import monopoly.MainController;
 import monopoly.cells.UtilityCell;
 

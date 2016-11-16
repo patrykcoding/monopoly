@@ -4,7 +4,7 @@ import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
 import monopoly.Cell;
-import tests.gameboards.GameBoardCCMovePlayer;
+import tests.gameboardsTests.GameBoardCCMovePlayer;
 import monopoly.MainController;
 import monopoly.cards.MovePlayerCard;
 

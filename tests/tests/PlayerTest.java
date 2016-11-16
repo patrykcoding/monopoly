@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 import monopoly.Cell;
 import monopoly.GameBoard;
 import monopoly.MainController;
-import tests.gameboards.SimpleGameBoard;
+import tests.gameboardsTests.SimpleGameBoard;
 
 public class PlayerTest extends TestCase {
 
