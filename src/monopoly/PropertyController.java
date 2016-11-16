@@ -16,7 +16,7 @@ public class PropertyController {
     }
 
     public ArrayList<Player> getSellerList() {
-        ArrayList sellers = new ArrayList();
+        ArrayList<Player> sellers = new ArrayList<>();
         boardCtl.getPlayers().stream().filter((player) -> 
                 (player != boardCtl.getCurrentPlayer())).forEach((player) -> {
             sellers.add(player);
@@ -43,19 +43,21 @@ public class PropertyController {
         return newNumber;
     }
     
-    public void buyProperty(Cell property, int amount) {
-        Player currentPlayer = boardCtl.getCurrentPlayer();
-        property.setPlayer(currentPlayer);
+    public void buyProperty(TradeDeal deal) {
+        Cell property = deal.getProperty();
+        Player buyer = deal.getBuyer();
+        property.setPlayer(buyer);
+        
         if (property instanceof PropertyCell) {
-            currentPlayer.addProperty((PropertyCell) property);
+            buyer.addProperty((PropertyCell) property);
         }
         if (property instanceof RailRoadCell) {
-            currentPlayer.addRailRoad((RailRoadCell) property);
+            buyer.addRailRoad((RailRoadCell) property);
         }
         if (property instanceof UtilityCell) {
-            currentPlayer.addUtility((UtilityCell) property);
+            buyer.addUtility((UtilityCell) property);
         }
-        currentPlayer.setMoney(currentPlayer.getMoney() - amount);
+        buyer.subtractMoney(deal.getAmount());
     }
     
     public void purchase() {
@@ -63,7 +65,8 @@ public class PropertyController {
 
         if (currentPlayer.getPosition().isAvailable()) {
             Cell cell = currentPlayer.getPosition();
-            buyProperty(cell, cell.getPrice());
+            TradeDeal deal = new TradeDeal(cell, currentPlayer, cell.getPrice());
+            buyProperty(deal);
             cell.setAvailable(false);
         }
     }
@@ -72,7 +75,7 @@ public class PropertyController {
         Map<String, Integer> propertyColors = player.getPropertyColors();
         GameBoard gameBoard = boardCtl.getGameBoard();
         ArrayList<String> monopolies = new ArrayList<>();
-        Set colors = propertyColors.keySet();
+        Set<String> colors = propertyColors.keySet();
         
         for (int i = 0; i < colors.size(); i++) {
             String propertyColor = colors.toArray()[i].toString();
@@ -122,6 +125,23 @@ public class PropertyController {
             currentPlayer.setMoney(0);
             giveAllProperties(currentPlayer, owner);
         }
+    }
+    
+    public void sellProperty(TradeDeal deal) {
+        Player seller = deal.getSeller();
+        Cell property = boardCtl.getGameBoard().queryCell(deal.getPropertyName());
+        
+        property.setPlayer(null);
+        if (property instanceof PropertyCell) {
+            seller.removePropertyCell((PropertyCell)property);
+        }
+        if (property instanceof RailRoadCell) {
+            seller.removeRailroadCell((RailRoadCell)property);
+        }
+        if (property instanceof UtilityCell) {
+            seller.removeUtilityCell((UtilityCell)property);
+        }
+        seller.addMoney(deal.getAmount());
     }
 
 }

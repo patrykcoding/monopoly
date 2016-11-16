@@ -114,10 +114,8 @@ public class MainController {
     }
 
     public void completeTrade(TradeDeal deal) {
-        Player seller = deal.getSeller();
-        Cell property = gameBoard.queryCell(deal.getPropertyName());
-        seller.sellProperty(property, deal.getAmount());
-        propertyCtl.buyProperty(property, deal.getAmount());
+        propertyCtl.sellProperty(deal);
+        propertyCtl.buyProperty(deal);
     }
 
     public Card drawCCCard() {

@@ -69,7 +69,7 @@ public class Player {
     }
     
     public ArrayList<Cell> getAllProperties() {
-        ArrayList<Cell> list = new ArrayList();
+        ArrayList<Cell> list = new ArrayList<>();
         list.addAll(properties);
         list.addAll(utilities);
         list.addAll(railroads);
@@ -131,19 +131,17 @@ public class Player {
     public int numberOfUtil() {
         return getPropertyNumberForColor(UtilityCell.COLOR_GROUP);
     }
-
-    public void sellProperty(Cell property, int amount) {
-        property.setPlayer(null);
-        if (property instanceof PropertyCell) {
-            properties.remove((PropertyCell)property);
-        }
-        if (property instanceof RailRoadCell) {
-            railroads.remove((RailRoadCell)property);
-        }
-        if (property instanceof UtilityCell) {
-            utilities.remove((UtilityCell)property);
-        }
-        setMoney(getMoney() + amount);
+    
+    public void removePropertyCell(PropertyCell property) {
+        properties.remove(property);
+    }
+    
+    public void removeRailroadCell(RailRoadCell railroad) {
+        railroads.remove(railroad);
+    }
+    
+    public void removeUtilityCell(UtilityCell utility) {
+        utilities.remove(utility);
     }
 
     public void setInJail(boolean inJail) {

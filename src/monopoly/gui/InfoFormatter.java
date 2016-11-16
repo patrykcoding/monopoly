@@ -40,14 +40,12 @@ public class InfoFormatter {
     }
 
     public static String cellInfo(Cell cell) {
-        CellInfoFormatter formatter =
-                (CellInfoFormatter) cellInfoFormatters.get(cell.getClass());
+        CellInfoFormatter formatter = cellInfoFormatters.get(cell.getClass());
         return formatter.format(cell);
     }
 
     public static String cellToolTip(Cell cell) {
-        CellInfoFormatter formatter =
-                (CellInfoFormatter) cellInfoFormatters.get(cell.getClass());
+        CellInfoFormatter formatter = cellInfoFormatters.get(cell.getClass());
         return formatter.formatToolTip(cell);
     }
 

@@ -35,7 +35,7 @@ public class TestDiceRollDialog extends JDialog {
         contentPane.add(btnCancel);
         
         btnCancel.addActionListener((ActionEvent e) -> {
-            TestDiceRollDialog.this.hide();
+            TestDiceRollDialog.this.setVisible(false);
             diceRoll = new int[2];
             diceRoll[0] = 0;
             diceRoll[1] = 0;
@@ -60,7 +60,7 @@ public class TestDiceRollDialog extends JDialog {
                     diceRoll[1] = (amount / 2) + 1;
                 }
             }
-            hide();
+            this.setVisible(false);
         });
         
         super.pack();

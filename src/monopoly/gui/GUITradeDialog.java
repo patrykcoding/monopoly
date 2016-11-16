@@ -73,14 +73,9 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             }
             Cell cell = (Cell)cboProperties.getSelectedItem();
             if(cell == null) return;
-            Player player = (Player)cboSellers.getSelectedItem();
             Player currentPlayer = mainCtl.getCurrentPlayer();
             if(currentPlayer.getMoney() > amount) {
-                deal = new TradeDeal();
-                deal.setAmount(amount);
-                deal.setPropertyName(cell.getName());
-                deal.setBuyer(currentPlayer);
-                deal.setSeller(player);
+                deal = new TradeDeal(cell, currentPlayer, amount);
             }
             this.setVisible(false);
         });
@@ -89,11 +84,10 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     }
 
     private void buildSellersCombo(MainController mainCtl) {
-        List sellers = mainCtl.getSellerList();
-        for (Iterator iter = sellers.iterator(); iter.hasNext();) {
-            Player player = (Player) iter.next();
+        List<Player> sellers = mainCtl.getSellerList();
+        sellers.stream().forEach((player) -> {
             cboSellers.addItem(player);
-        }
+        });
         if(sellers.size() > 0) {
             updatePropertiesCombo((Player)sellers.get(0));
         }

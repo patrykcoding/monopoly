@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class BoardController {
     public static final int MAX_PLAYER = 8;
-    private final ArrayList<Player> players = new ArrayList();
+    private final ArrayList<Player> players = new ArrayList<>();
     private int initAmountOfMoney = 1500;
     private GameBoard gameBoard;
     private int turn = 0;
