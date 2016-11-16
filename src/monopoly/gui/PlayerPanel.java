@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -124,7 +125,7 @@ public class PlayerPanel extends JPanel {
 
         btnDrawCard.addActionListener((ActionEvent e) -> {
             Card card = mainCtl.btnDrawCardClicked();
-            JOptionPane.showMessageDialog(this, card);
+            JOptionPane.showMessageDialog(PlayerPanel.this, card);
             displayInfo();
         });
 
