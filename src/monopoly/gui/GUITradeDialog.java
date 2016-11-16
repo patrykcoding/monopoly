@@ -42,7 +42,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         btnOK.setEnabled(false);
         
         buildSellersCombo(mainCtl);
-        super.setModalityType(super.DEFAULT_MODALITY_TYPE);
+        super.setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
              
         Container contentPane = super.getContentPane();
         contentPane.setLayout(new GridLayout(4, 2));
