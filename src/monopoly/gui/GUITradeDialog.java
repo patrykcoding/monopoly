@@ -72,6 +72,11 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
                         "Amount should be an integer", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            if (amount < 0) {
+                JOptionPane.showMessageDialog(GUITradeDialog.this,
+                        "Amount should not be negative", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             Cell cell = (Cell)cboProperties.getSelectedItem();
             if(cell == null) return;
             Player currentPlayer = mainCtl.getCurrentPlayer();
