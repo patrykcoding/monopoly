@@ -33,6 +33,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     public GUITradeDialog(MainController mainCtl, Frame parent) {
         super(parent);
         super.setLocationRelativeTo(parent.getFocusOwner().getParent().getParent());
+        super.setLocation(super.getX() - 125, super.getY() - 100);
         super.setTitle("Trade Property");
         cboSellers = new JComboBox<>();
         cboProperties = new JComboBox<>();
