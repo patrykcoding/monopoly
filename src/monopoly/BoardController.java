@@ -7,7 +7,6 @@ import java.util.Arrays;
 public class BoardController {
     public static final int MAX_PLAYER = 8;
     private final ArrayList<Player> players = new ArrayList<>();
-    private int initAmountOfMoney = 1500;
     private GameBoard gameBoard;
     private int turn = 0;
     
@@ -29,20 +28,10 @@ public class BoardController {
     public void setNumberOfPlayers(int number) {
         players.clear();
         for (int i = 0; i < number; i++) {
-            Player player = new Player();
-            player.setMoney(initAmountOfMoney);
-            player.setPosition(gameBoard.getCell(0));
+            Player player = new Player(gameBoard.getCell(0));
             player.setPlayerColor(playerColors.get(i));
             players.add(player);
         }
-    }
-    
-    public int getInitAmountOfMoney() {
-        return initAmountOfMoney;
-    }
-
-    public void setInitAmountOfMoney(int money) {
-        this.initAmountOfMoney = money;
     }
 	
     public void movePlayer(Player player, int diceValue) {

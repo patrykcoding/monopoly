@@ -69,12 +69,12 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             try {
                 amount = Integer.parseInt(txtAmount.getText());
             } catch(NumberFormatException nfe) {
-                JOptionPane.showMessageDialog(GUITradeDialog.this,
+                JOptionPane.showMessageDialog(this,
                         "Amount should be an integer", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (amount < 0) {
-                JOptionPane.showMessageDialog(GUITradeDialog.this,
+                JOptionPane.showMessageDialog(this,
                         "Amount should not be negative", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
