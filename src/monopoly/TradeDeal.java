@@ -29,7 +29,6 @@ public class TradeDeal {
     
     public String makeMessage() {
         String message = 
-                "ATTENTION: " + this.seller + "\n" +
                 this.buyer + " wishes to purchase " + propertyName + 
                 " from you for $" + this.amount + 
                 ". Do you wish to trade your property?";

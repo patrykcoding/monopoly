@@ -30,7 +30,7 @@ public class TradeDealTest extends TestCase {
         
         TradeDeal deal = new TradeDeal(property, buyer, propertyPrice);
         
-        String message = "ATTENTION: Seller\n" + 
+        String message =
                 "Buyer wishes to purchase Blue 1 from you for $200. " +
                 "Do you wish to trade your property?";
         assertEquals(message, deal.makeMessage());

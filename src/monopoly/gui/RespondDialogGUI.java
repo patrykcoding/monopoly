@@ -18,7 +18,7 @@ public class RespondDialogGUI extends JDialog implements RespondDialog {
     private static final long serialVersionUID = -992184678913164041L;
     
     private boolean response;
-    private JTextArea txtMessage = new JTextArea();
+    private final JTextArea txtMessage = new JTextArea();
     
     public RespondDialogGUI(PlayerPanel playerPanel) {
         JButton btnYes = new JButton("Yes");
