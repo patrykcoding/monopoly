@@ -14,8 +14,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+import javax.swing.plaf.basic.BasicComboPopup;
 import monopoly.Cell;
 import monopoly.MainController;
 import monopoly.Player;
@@ -67,19 +71,29 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         
         cboSellers.addItemListener((ItemEvent e) -> {
             Player player = (Player)e.getItem();
+                Object child = cboSellers.getAccessibleContext().getAccessibleChild(0);
+                BasicComboPopup popup = (BasicComboPopup)child;
+                JList list = popup.getList();
+                list.setSelectionBackground(player.getPlayerColor());
             updatePropertiesCombo(player);
         });
-
-        cboSellers.setRenderer(new DefaultListCellRenderer() {
+        
+        PopupMenuListener listener = new PopupMenuListener() {
             @Override
-            public void paint(Graphics g) {
-                Player player = (Player)cboSellers.getSelectedItem();
-                setBackground(player.getPlayerColor());
-                setForeground(Color.black);
-                super.paint(g);
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                Object child = cboSellers.getAccessibleContext().getAccessibleChild(0);
+                BasicComboPopup popup = (BasicComboPopup)child;
+                JList list = popup.getList();
+                list.setSelectionBackground(Color.gray);
             }
-        });
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {}
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {}
+        };
 
+        cboSellers.addPopupMenuListener(listener);
+        
         btnOK.addActionListener((ActionEvent e) -> {
             int amount;
             try {
