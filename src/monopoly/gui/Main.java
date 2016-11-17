@@ -42,9 +42,6 @@ public class Main {
     public static void main(String[] args) {
         MainWindow window = new MainWindow(mainCtl);
         if (args.length > 0) {
-            if (args[0].equals("test")) {
-                mainCtl.setTestMode(true);
-            }
             try {
                 GameBoard board = (GameBoard) Class.forName(args[1]).newInstance();
                 mainCtl.setGameBoard(board);

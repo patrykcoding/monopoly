@@ -16,7 +16,6 @@ public class PlayerTest extends TestCase {
         mainCtl = new MainController();
         mainCtl.setGameBoard(new SimpleGameBoard());
         mainCtl.setGUI(new MockGUI());
-        mainCtl.setTestMode(true);
         mainCtl.reset();
     }
 
