@@ -28,7 +28,7 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     private static final long serialVersionUID = 3146365872410925008L;
     private final MainController mainCtl;
     private final JPanel eastPanel = new JPanel();
-    private final ArrayList<GUICell> guiCells = new ArrayList<>();
+    private final ArrayList<CellGUI> guiCells = new ArrayList<>();
 
     private final JPanel northPanel = new JPanel();
     private PlayerPanel[] playerPanels;
@@ -62,7 +62,7 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     }
 
     private void addCells(JPanel panel, List<Cell> cells) {
-        cells.stream().map((cell) -> new GUICell(cell)).map((guiCell) -> {
+        cells.stream().map((cell) -> new CellGUI(cell)).map((guiCell) -> {
             panel.add(guiCell);
             return guiCell;
         }).forEach((guiCell) -> {
@@ -130,15 +130,15 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 	
     @Override
     public void movePlayer(int index, int from, int to) {
-        GUICell fromCell = queryCell(from);
-        GUICell toCell = queryCell(to);
+        CellGUI fromCell = queryCell(from);
+        CellGUI toCell = queryCell(to);
         fromCell.removePlayer(index);
         toCell.addPlayer(mainCtl, index);
     }
 
     @Override
     public RespondDialog openRespondDialog(TradeDeal deal) {
-        GUIRespondDialog dialog = new GUIRespondDialog();
+        RespondDialogGUI dialog = new RespondDialogGUI();
         dialog.setDeal(deal);
         dialog.setVisible(true);
         return dialog;
@@ -146,15 +146,15 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     @Override
     public TradeDialog openTradeDialog() {
-        GUITradeDialog dialog = new GUITradeDialog(mainCtl, this);
+        TradeDialogGUI dialog = new TradeDialogGUI(mainCtl, this);
         dialog.setVisible(true);
         return dialog;
     }
 	
-    private GUICell queryCell(int index) {
+    private CellGUI queryCell(int index) {
         Cell cell = mainCtl.getGameBoard().getCell(index);
             for (Object guiCell1 : guiCells) {
-                GUICell guiCell = (GUICell) guiCell1;
+                CellGUI guiCell = (CellGUI) guiCell1;
                 if (guiCell.getCell() == cell) {
                     return guiCell;
                 }

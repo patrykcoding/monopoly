@@ -12,13 +12,13 @@ import monopoly.RespondDialog;
 import monopoly.TradeDeal;
 
 
-public class GUIRespondDialog extends JDialog implements RespondDialog {
+public class RespondDialogGUI extends JDialog implements RespondDialog {
     private static final long serialVersionUID = -992184678913164041L;
     
     private boolean response;
     private JTextArea txtMessage = new JTextArea();
     
-    public GUIRespondDialog() {
+    public RespondDialogGUI() {
         JButton btnYes = new JButton("Yes");
         JButton btnNo = new JButton("No");
         txtMessage.setPreferredSize(new Dimension(300, 200));
