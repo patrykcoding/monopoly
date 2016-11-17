@@ -138,7 +138,7 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     @Override
     public RespondDialog openRespondDialog(TradeDeal deal) {
-        RespondDialogGUI dialog = new RespondDialogGUI();
+        GUIRespondDialog dialog = new GUIRespondDialog(this);
         dialog.setDeal(deal);
         dialog.setVisible(true);
         return dialog;
