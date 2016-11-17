@@ -71,10 +71,6 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         
         cboSellers.addItemListener((ItemEvent e) -> {
             Player player = (Player)e.getItem();
-                Object child = cboSellers.getAccessibleContext().getAccessibleChild(0);
-                BasicComboPopup popup = (BasicComboPopup)child;
-                JList list = popup.getList();
-                list.setSelectionBackground(player.getPlayerColor());
             updatePropertiesCombo(player);
         });
         
@@ -87,7 +83,13 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
                 list.setSelectionBackground(Color.gray);
             }
             @Override
-            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {}
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+                Player player = (Player)cboSellers.getSelectedItem();
+                Object child = cboSellers.getAccessibleContext().getAccessibleChild(0);
+                BasicComboPopup popup = (BasicComboPopup)child;
+                JList list = popup.getList();
+                list.setSelectionBackground(player.getPlayerColor());
+            }
             @Override
             public void popupMenuCanceled(PopupMenuEvent e) {}
         };
