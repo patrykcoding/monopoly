@@ -8,10 +8,10 @@ import monopoly.cells.JailCell;
 
 public class MainController {
 
-    private final Die dice;
+    private final Dice dice;
     private GameBoard gameBoard;
     private MonopolyGUI gui;
-    private int utilDiceRoll;
+    private Dice utilDice;
     private boolean testMode;
     private final BoardController boardCtl;
     private final PropertyController propertyCtl;
@@ -20,7 +20,7 @@ public class MainController {
         gameBoard = new GameBoardDefault();
         boardCtl = new BoardController(gameBoard);
         propertyCtl = new PropertyController(boardCtl);
-        dice = new Die();
+        dice = new Dice(2);
     }
 
     public void btnBuyHouseClicked() {
@@ -85,18 +85,18 @@ public class MainController {
     }
     
     public void btnRollDiceClicked() {
-        int[] rolls = rollDice();
-        if ((rolls[0]+rolls[1]) > 0) {
+        Dice currDice = getDice();
+        if ((currDice.getTotal()) > 0) {
             Player player = getCurrentPlayer();
             gui.setRollDiceEnabled(false);
             StringBuilder msg = new StringBuilder();
             msg.append(player.getName())
                     .append(", you rolled ")
-                    .append(rolls[0])
+                    .append(currDice.getSingleDice(0))
                     .append(" and ")
-                    .append(rolls[1]);
+                    .append(currDice.getSingleDice(1));
             gui.showMessage(msg.toString());
-            movePlayer(player, rolls[0] + rolls[1]);
+            movePlayer(player, currDice.getSingleDice(0) + currDice.getSingleDice(1));
             gui.setBuyHouseEnabled(false);
         }
     }
@@ -162,8 +162,8 @@ public class MainController {
         return propertyCtl.getSellerList();
     }
 
-    public int getUtilDiceRoll() {
-        return this.utilDiceRoll;
+    public Dice getUtilDice() {
+        return utilDice;
     }
 
     public void movePlayer(Player player, int diceValue) {
@@ -205,11 +205,11 @@ public class MainController {
         }
     }
 	
-    public int[] rollDice() {
+    public Dice getDice() {
         if (testMode) {
-            return gui.getDiceRoll();
+            return gui.getDice();
         } else {
-            return dice.getDoubleRoll();
+            return dice;
         }
     }
 	
@@ -248,8 +248,8 @@ public class MainController {
         boardCtl.setNumberOfPlayers(number);
     }
 
-    public void setUtilDiceRoll(int diceRoll) {
-        this.utilDiceRoll = diceRoll;
+    public void doUtilRoll() {
+        utilDice = gui.getDice();
     }
 
     public void startGame() {
@@ -268,10 +268,6 @@ public class MainController {
         } else {
             gui.setGetOutOfJailEnabled(true);
         }
-    }
-
-    public void utilRollDice() {
-        this.utilDiceRoll = gui.showUtilDiceRoll();
     }
 
     public void setTestMode(boolean b) {
@@ -314,4 +310,5 @@ public class MainController {
     public void payRentTo(Player owner, int rent) {
         propertyCtl.payRentTo(owner, rent);
     }
+    
 }

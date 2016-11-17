@@ -1,6 +1,7 @@
 package monopoly.cells;
 
 import monopoly.Cell;
+import monopoly.Dice;
 import monopoly.MainController;
 import monopoly.Player;
 
@@ -33,9 +34,9 @@ public class UtilityCell extends Cell {
         if (!isAvailable()) {
             currentPlayer = mainCtl.getCurrentPlayer();
             if (player != currentPlayer) {
-                mainCtl.utilRollDice();
-                int diceRoll = mainCtl.getUtilDiceRoll();
-                mainCtl.payRentTo(player, getRent(diceRoll));
+                mainCtl.doUtilRoll();
+                Dice dice = mainCtl.getUtilDice();
+                mainCtl.payRentTo(player, getRent(dice.getTotal()));
             }
         }
     }

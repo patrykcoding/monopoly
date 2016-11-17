@@ -1,5 +1,6 @@
 package tests.mocks;
 
+import monopoly.Dice;
 import monopoly.gui.MonopolyGUI;
 import monopoly.Player;
 import monopoly.RespondDialog;
@@ -20,11 +21,11 @@ public class MockGUI implements MonopolyGUI {
     public void enablePurchaseBtn(int playerIndex) {}
 	
     @Override
-    public int[] getDiceRoll() {
-        int roll[] = new int[2];
-        roll[0] = 2;
-        roll[1] = 3;
-        return roll;
+    public Dice getDice() {
+        Dice dice = new Dice(2);
+        dice.setDice(0, 2);
+        dice.setDice(1, 3);
+        return dice;
     }
 
     @Override
