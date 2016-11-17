@@ -1,12 +1,15 @@
 package monopoly.gui;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -66,7 +69,17 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
             Player player = (Player)e.getItem();
             updatePropertiesCombo(player);
         });
-        
+
+        cboSellers.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public void paint(Graphics g) {
+                Player player = (Player)cboSellers.getSelectedItem();
+                setBackground(player.getPlayerColor());
+                setForeground(Color.black);
+                super.paint(g);
+            }
+        });
+
         btnOK.addActionListener((ActionEvent e) -> {
             int amount;
             try {

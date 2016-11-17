@@ -36,7 +36,9 @@ public class RespondDialogGUI extends JDialog implements RespondDialog {
         contentPane.add(pnlButtons, BorderLayout.SOUTH);
         
         super.setLocationRelativeTo(playerPanel);
-        super.setLocation(super.getX() - 140, super.getY() - 130);
+        int xOffset = 140;
+        int yOffset = 130;
+        super.setLocation(super.getX() - xOffset, super.getY() - yOffset);
 
         btnYes.addActionListener((ActionEvent e) -> {
             response = true;
