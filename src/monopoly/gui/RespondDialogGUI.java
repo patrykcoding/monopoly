@@ -1,8 +1,10 @@
 package monopoly.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -18,7 +20,7 @@ public class RespondDialogGUI extends JDialog implements RespondDialog {
     private boolean response;
     private JTextArea txtMessage = new JTextArea();
     
-    public RespondDialogGUI() {
+    public RespondDialogGUI(PlayerPanel playerPanel) {
         JButton btnYes = new JButton("Yes");
         JButton btnNo = new JButton("No");
         txtMessage.setPreferredSize(new Dimension(300, 200));
@@ -33,6 +35,9 @@ public class RespondDialogGUI extends JDialog implements RespondDialog {
         pnlButtons.add(btnNo);
         contentPane.add(pnlButtons, BorderLayout.SOUTH);
         
+        super.setLocationRelativeTo(playerPanel);
+        super.setLocation(super.getX() - 140, super.getY() - 130);
+
         btnYes.addActionListener((ActionEvent e) -> {
             response = true;
             setVisible(false);
