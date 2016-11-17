@@ -34,7 +34,7 @@ public class UtilityCell extends Cell {
         if (!isAvailable()) {
             currentPlayer = mainCtl.getCurrentPlayer();
             if (player != currentPlayer) {
-                mainCtl.doUtilRoll();
+                mainCtl.setUtilDice(mainCtl.getGUI().getDice());
                 Dice dice = mainCtl.getUtilDice();
                 mainCtl.payRentTo(player, getRent(dice.getTotal()));
             }

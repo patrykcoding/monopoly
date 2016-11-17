@@ -8,11 +8,10 @@ import monopoly.cells.JailCell;
 
 public class MainController {
 
-    private final Dice dice;
+    private Dice dice;
     private GameBoard gameBoard;
     private MonopolyGUI gui;
     private Dice utilDice;
-    private boolean testMode;
     private final BoardController boardCtl;
     private final PropertyController propertyCtl;
     
@@ -85,18 +84,17 @@ public class MainController {
     }
     
     public void btnRollDiceClicked() {
-        Dice currDice = getDice();
-        if ((currDice.getTotal()) > 0) {
+        if ((dice.getTotal()) > 0) {
             Player player = getCurrentPlayer();
             gui.setRollDiceEnabled(false);
             StringBuilder msg = new StringBuilder();
             msg.append(player.getName())
                     .append(", you rolled ")
-                    .append(currDice.getSingleDice(0))
+                    .append(dice.getSingleDice(0))
                     .append(" and ")
-                    .append(currDice.getSingleDice(1));
+                    .append(dice.getSingleDice(1));
             gui.showMessage(msg.toString());
-            movePlayer(player, currDice.getSingleDice(0) + currDice.getSingleDice(1));
+            movePlayer(player, dice.getSingleDice(0) + dice.getSingleDice(1));
             gui.setBuyHouseEnabled(false);
         }
     }
@@ -205,14 +203,6 @@ public class MainController {
         }
     }
 	
-    public Dice getDice() {
-        if (testMode) {
-            return gui.getDice();
-        } else {
-            return dice;
-        }
-    }
-	
     public void sendToJail(Player player) {
         int oldPosition = gameBoard.queryCellIndex(getCurrentPlayer().getPosition().getName());
         player.setPosition(gameBoard.queryCell("Jail"));
@@ -242,14 +232,15 @@ public class MainController {
 
     public void setGUI(MonopolyGUI gui) {
         this.gui = gui;
+        this.dice = gui.getDice();
     }
 
     public void setNumberOfPlayers(int number) {
         boardCtl.setNumberOfPlayers(number);
     }
 
-    public void doUtilRoll() {
-        utilDice = gui.getDice();
+    public void setUtilDice(Dice utilDice) {
+        this.utilDice = utilDice;
     }
 
     public void startGame() {
@@ -268,10 +259,6 @@ public class MainController {
         } else {
             gui.setGetOutOfJailEnabled(true);
         }
-    }
-
-    public void setTestMode(boolean b) {
-        testMode = b;
     }
     
     public int getTurn() {
