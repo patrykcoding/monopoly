@@ -31,8 +31,10 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
     
     public TradeDialogGUI(MainController mainCtl, Frame parent) {
         super(parent);
+        int xOffset = 125;
+        int yOffset = 100;
         super.setLocationRelativeTo(parent.getFocusOwner().getParent().getParent());
-        super.setLocation(super.getX() - 125, super.getY() - 100);
+        super.setLocation(super.getX() - xOffset, super.getY() - yOffset);
         super.setTitle("Trade Property");
         cboSellers = new JComboBox<>();
         cboProperties = new JComboBox<>();
