@@ -19,7 +19,7 @@ import monopoly.Player;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
 
-public class GUITradeDialog extends JDialog implements TradeDialog {
+public class TradeDialogGUI extends JDialog implements TradeDialog {
     private static final long serialVersionUID = -7231996263338389498L;
     
     private JButton btnOK, btnCancel;
@@ -29,7 +29,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     private TradeDeal deal;
     private JTextField txtAmount;
     
-    public GUITradeDialog(MainController mainCtl, Frame parent) {
+    public TradeDialogGUI(MainController mainCtl, Frame parent) {
         super(parent);
         super.setLocationRelativeTo(parent.getFocusOwner().getParent().getParent());
         super.setLocation(super.getX() - 125, super.getY() - 100);
@@ -57,7 +57,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         contentPane.add(btnCancel);
         
         btnCancel.addActionListener((ActionEvent e) -> {
-            GUITradeDialog.this.setVisible(false);
+            TradeDialogGUI.this.setVisible(false);
         });
         
         cboSellers.addItemListener((ItemEvent e) -> {
@@ -70,13 +70,13 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             try {
                 amount = Integer.parseInt(txtAmount.getText());
             } catch (NumberFormatException nfe) {
-                JOptionPane.showMessageDialog(GUITradeDialog.this,
+                JOptionPane.showMessageDialog(TradeDialogGUI.this,
                         "Amount should be an integer", "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (amount < 0) {
-                JOptionPane.showMessageDialog(GUITradeDialog.this,
+                JOptionPane.showMessageDialog(TradeDialogGUI.this,
                         "Amount should not be negative", "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
@@ -86,7 +86,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             Player currentPlayer = mainCtl.getCurrentPlayer();
             if(currentPlayer.getMoney() > amount) {
                 deal = new TradeDeal(cell, currentPlayer, amount);
-            }   GUITradeDialog.this.setVisible(false);
+            }   TradeDialogGUI.this.setVisible(false);
         });
         
         super.pack();
