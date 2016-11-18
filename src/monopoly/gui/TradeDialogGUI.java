@@ -3,19 +3,21 @@ package monopoly.gui;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Frame;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+import javax.swing.plaf.basic.BasicComboPopup;
 import monopoly.Cell;
 import monopoly.MainController;
 import monopoly.Player;
@@ -67,19 +69,29 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         
         cboSellers.addItemListener((ItemEvent e) -> {
             Player player = (Player)e.getItem();
+            JList list = getCboSellersItems();
+            list.setSelectionBackground(player.getPlayerColor());
             updatePropertiesCombo(player);
         });
 
-        cboSellers.setRenderer(new DefaultListCellRenderer() {
+        PopupMenuListener listener = new PopupMenuListener() {
             @Override
-            public void paint(Graphics g) {
-                Player player = (Player)cboSellers.getSelectedItem();
-                setBackground(player.getPlayerColor());
-                setForeground(Color.black);
-                super.paint(g);
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                cboSellers.setBackground(new Color(238, 238, 238));
+                JList list = getCboSellersItems();
+                list.setSelectionBackground(Color.gray);
             }
-        });
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+                Player player = (Player)cboSellers.getSelectedItem();
+                cboSellers.setBackground(player.getPlayerColor());
+            }
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {}
+        };
 
+        cboSellers.addPopupMenuListener(listener);
+        
         btnOK.addActionListener((ActionEvent e) -> {
             int amount;
             try {
@@ -113,7 +125,11 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
             cboSellers.addItem(player);
         });
         if(sellers.size() > 0) {
-            updatePropertiesCombo(sellers.get(0));
+            Player topSeller = sellers.get(0);
+            updatePropertiesCombo(topSeller);
+            cboSellers.setBackground(topSeller.getPlayerColor());
+            JList list = getCboSellersItems();
+            list.setSelectionBackground(topSeller.getPlayerColor());
         }
     }
 
@@ -129,6 +145,12 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         cells.stream().forEach((cell) -> {
             cboProperties.addItem(cell);
         });
+    }
+    
+    private JList getCboSellersItems() {
+        Object child = cboSellers.getAccessibleContext().getAccessibleChild(0);
+        BasicComboPopup popup = (BasicComboPopup)child;
+        return popup.getList();
     }
 
 }
