@@ -71,6 +71,8 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         
         cboSellers.addItemListener((ItemEvent e) -> {
             Player player = (Player)e.getItem();
+            JList list = getCboSellersItems();
+            list.setSelectionBackground(player.getPlayerColor());
             updatePropertiesCombo(player);
         });
         
@@ -81,11 +83,7 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
                 list.setSelectionBackground(Color.gray);
             }
             @Override
-            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-                Player player = (Player)cboSellers.getSelectedItem();
-                JList list = getCboSellersItems();
-                list.setSelectionBackground(player.getPlayerColor());
-            }
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {}
             @Override
             public void popupMenuCanceled(PopupMenuEvent e) {}
         };
