@@ -73,7 +73,7 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
             list.setSelectionBackground(player.getPlayerColor());
             updatePropertiesCombo(player);
         });
-        
+
         PopupMenuListener listener = new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
@@ -125,11 +125,12 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
             cboSellers.addItem(player);
         });
         if(sellers.size() > 0) {
-            updatePropertiesCombo(sellers.get(0));
+            Player topSeller = sellers.get(0);
+            updatePropertiesCombo(topSeller);
+            cboSellers.setBackground(topSeller.getPlayerColor());
+            JList list = getCboSellersItems();
+            list.setSelectionBackground(topSeller.getPlayerColor());
         }
-        cboSellers.setBackground(sellers.get(0).getPlayerColor());
-        JList list = getCboSellersItems();
-        list.setSelectionBackground(sellers.get(0).getPlayerColor());
     }
 
     @Override
