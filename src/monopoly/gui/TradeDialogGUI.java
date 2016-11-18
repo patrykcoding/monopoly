@@ -62,7 +62,7 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         contentPane.add(txtAmount);
         contentPane.add(btnOK);
         contentPane.add(btnCancel);
-        
+
         btnCancel.addActionListener((ActionEvent e) -> {
             TradeDialogGUI.this.setVisible(false);
         });
@@ -85,6 +85,8 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
                 Player player = (Player)cboSellers.getSelectedItem();
+                JList list = getCboSellersItems();
+                list.setSelectionBackground(player.getPlayerColor());
                 cboSellers.setBackground(player.getPlayerColor());
             }
             @Override
