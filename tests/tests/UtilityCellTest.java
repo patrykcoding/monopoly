@@ -2,7 +2,6 @@ package tests;
 
 import tests.mocks.MockGUI;
 import junit.framework.TestCase;
-import monopoly.Dice;
 import tests.gameboardsTests.GameBoardUtility;
 import monopoly.MainController;
 import monopoly.cells.UtilityCell;
@@ -38,11 +37,11 @@ public class UtilityCellTest extends TestCase {
             mainCtl.switchTurn();
             mainCtl.movePlayer(mainCtl.getPlayer(1), cellIndex);
             cell.playAction(mainCtl);
-            Dice dice = mainCtl.getUtilDice();
-            assertEquals(1500 - cell.getRent(dice.getTotal()), 
+            int diceRoll = mainCtl.getUtilDiceRoll();
+            assertEquals(1500 - cell.getRent(diceRoll), 
                     mainCtl.getPlayer(1).getMoney()
             );
-            assertEquals(1350 + cell.getRent(dice.getTotal()), 
+            assertEquals(1350 + cell.getRent(diceRoll), 
                     mainCtl.getPlayer(0).getMoney()
             );
     }
