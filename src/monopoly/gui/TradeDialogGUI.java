@@ -77,17 +77,13 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         PopupMenuListener listener = new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                Object child = cboSellers.getAccessibleContext().getAccessibleChild(0);
-                BasicComboPopup popup = (BasicComboPopup)child;
-                JList list = popup.getList();
+                JList list = getCboSellersItems();
                 list.setSelectionBackground(Color.gray);
             }
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
                 Player player = (Player)cboSellers.getSelectedItem();
-                Object child = cboSellers.getAccessibleContext().getAccessibleChild(0);
-                BasicComboPopup popup = (BasicComboPopup)child;
-                JList list = popup.getList();
+                JList list = getCboSellersItems();
                 list.setSelectionBackground(player.getPlayerColor());
             }
             @Override
@@ -131,9 +127,7 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         if(sellers.size() > 0) {
             updatePropertiesCombo(sellers.get(0));
         }
-        Object child = cboSellers.getAccessibleContext().getAccessibleChild(0);
-        BasicComboPopup popup = (BasicComboPopup)child;
-        JList list = popup.getList();
+        JList list = getCboSellersItems();
         list.setSelectionBackground(sellers.get(0).getPlayerColor());
     }
 
@@ -149,6 +143,12 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         cells.stream().forEach((cell) -> {
             cboProperties.addItem(cell);
         });
+    }
+    
+    private JList getCboSellersItems() {
+        Object child = cboSellers.getAccessibleContext().getAccessibleChild(0);
+        BasicComboPopup popup = (BasicComboPopup)child;
+        return popup.getList();
     }
 
 }
