@@ -8,7 +8,7 @@ import monopoly.cells.JailCell;
 
 public class MainController {
 
-    private final Die dice;
+    private final Dice dice;
     private GameBoard gameBoard;
     private MonopolyGUI gui;
     private int utilDiceRoll;
@@ -20,7 +20,7 @@ public class MainController {
         gameBoard = new GameBoardDefault();
         boardCtl = new BoardController(gameBoard);
         propertyCtl = new PropertyController(boardCtl);
-        dice = new Die();
+        dice = new Dice();
     }
 
     public void btnBuyHouseClicked() {

@@ -1,6 +1,6 @@
 package monopoly;
 
-public class Die {
+public class Dice {
     public static final int DICE_SIDES = 6;
 
     public int getRoll() {
