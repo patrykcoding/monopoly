@@ -27,5 +27,13 @@ public class Dice {
         }
         return total;
     }
+
+    public void setDice(int diceNumber, int value) {
+        dice[diceNumber] = value;
+    }
+    
+    public int getSingleDice(int diceNumber) {
+        return dice[diceNumber];
+    }
     
 }

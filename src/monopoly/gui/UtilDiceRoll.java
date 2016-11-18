@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import monopoly.Dice;
 
 import monopoly.MainController;
 
@@ -52,8 +53,8 @@ public class UtilDiceRoll extends JDialog {
     }
 
     public final void rollDice() {
-        int[] diceRoll = mainCtl.rollDice();
-        this.diceValue = diceRoll[0] + diceRoll[1];
+        Dice dice = mainCtl.rollDice();
+        diceValue = dice.getTotal();
         lblPrompt.setText("You rolled " + diceValue);
         btnDice.setEnabled(false);
         btnOK.setEnabled(true);

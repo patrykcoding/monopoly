@@ -10,13 +10,13 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
+import monopoly.Dice;
 
 public class TestDiceRollDialog extends JDialog {
     private static final long serialVersionUID = 8547740090678848552L;
     private JButton btnOK, btnCancel;
     private JTextField txtDiceRoll;
-    private int[] diceRoll;
+    private Dice dice;
     
     public TestDiceRollDialog(Frame parent) {
         super(parent);
@@ -37,9 +37,9 @@ public class TestDiceRollDialog extends JDialog {
         
         btnCancel.addActionListener((ActionEvent e) -> {
             TestDiceRollDialog.this.setVisible(false);
-            diceRoll = new int[2];
-            diceRoll[0] = 0;
-            diceRoll[1] = 0;
+            dice = new Dice(2);
+            dice.setDice(0, 0);
+            dice.setDice(1, 0);
         });
         
         btnOK.addActionListener((ActionEvent e) -> {
@@ -52,13 +52,13 @@ public class TestDiceRollDialog extends JDialog {
                 return;
             }
             if (amount > 0) {
-                diceRoll = new int[2];
+                dice = new Dice(2);
                 if ((amount % 2) == 0) {
-                    diceRoll[0] = amount / 2;
-                    diceRoll[1] = amount / 2;
+                    dice.setDice(0, amount / 2);
+                    dice.setDice(1, amount / 2);
                 } else {
-                    diceRoll[0] = amount / 2;
-                    diceRoll[1] = (amount / 2) + 1;
+                    dice.setDice(0, amount / 2);
+                    dice.setDice(1, (amount / 2) + 1);
                 }
             }
             this.setVisible(false);
@@ -67,7 +67,7 @@ public class TestDiceRollDialog extends JDialog {
         super.pack();
     }
 
-    public int[] getDiceRoll() {
-        return diceRoll;
+    public Dice getDiceRoll() {
+        return dice;
     }
 }

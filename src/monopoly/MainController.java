@@ -85,18 +85,18 @@ public class MainController {
     }
     
     public void btnRollDiceClicked() {
-        int[] rolls = rollDice();
-        if ((rolls[0]+rolls[1]) > 0) {
+        Dice rolls = rollDice();
+        if ((rolls.getTotal()) > 0) {
             Player player = getCurrentPlayer();
             gui.setRollDiceEnabled(false);
             StringBuilder msg = new StringBuilder();
             msg.append(player.getName())
                     .append(", you rolled ")
-                    .append(rolls[0])
+                    .append(rolls.getSingleDice(0))
                     .append(" and ")
-                    .append(rolls[1]);
+                    .append(rolls.getSingleDice(1));
             gui.showMessage(msg.toString());
-            movePlayer(player, rolls[0] + rolls[1]);
+            movePlayer(player, dice.getTotal());
             gui.setBuyHouseEnabled(false);
         }
     }
@@ -205,11 +205,12 @@ public class MainController {
         }
     }
 	
-    public int[] rollDice() {
+    public Dice rollDice() {
         if (testMode) {
             return gui.getDiceRoll();
         } else {
-            return dice.getRoll();
+            dice.roll();
+            return dice;
         }
     }
 	
