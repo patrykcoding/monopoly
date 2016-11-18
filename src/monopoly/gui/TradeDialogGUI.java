@@ -77,7 +77,8 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         PopupMenuListener listener = new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                cboSellers.setBackground(new Color(238, 238, 238));
+                int defaultColors = 238;
+                cboSellers.setBackground(new Color(defaultColors, defaultColors, defaultColors));
                 JList list = getCboSellersItems();
                 list.setSelectionBackground(Color.gray);
             }
