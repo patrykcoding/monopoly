@@ -25,6 +25,7 @@ public class MainControllerTest extends TestCase {
         mainCtl.getPlayer(0).setName("Player 1");
         mainCtl.getPlayer(1).setName("Player 2");
         mainCtl.reset();
+        mainCtl.setTestMode(true);
         mainCtl.setGUI(new MockGUI());
         mainCtl.startGame();
     }

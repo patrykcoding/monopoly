@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import monopoly.Cell;
-import monopoly.Dice;
 import monopoly.GameBoard;
 import monopoly.MainController;
 import monopoly.Player;
@@ -100,10 +99,10 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     }
 
     @Override
-    public Dice getDice() {
+    public int[] getDiceRoll() {
         TestDiceRollDialog dialog = new TestDiceRollDialog(this);
         dialog.setVisible(true);
-        return dialog.getDice();
+        return dialog.getDiceRoll();
     }
 
     @Override
