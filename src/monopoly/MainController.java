@@ -20,7 +20,7 @@ public class MainController {
         gameBoard = new GameBoardDefault();
         boardCtl = new BoardController(gameBoard);
         propertyCtl = new PropertyController(boardCtl);
-        dice = new Dice();
+        dice = new Dice(2);
     }
 
     public void btnBuyHouseClicked() {
@@ -209,7 +209,7 @@ public class MainController {
         if (testMode) {
             return gui.getDiceRoll();
         } else {
-            return dice.getDoubleRoll();
+            return dice.getRoll();
         }
     }
 	
