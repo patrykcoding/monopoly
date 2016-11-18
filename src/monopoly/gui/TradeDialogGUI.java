@@ -131,6 +131,10 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         if(sellers.size() > 0) {
             updatePropertiesCombo(sellers.get(0));
         }
+        Object child = cboSellers.getAccessibleContext().getAccessibleChild(0);
+        BasicComboPopup popup = (BasicComboPopup)child;
+        JList list = popup.getList();
+        list.setSelectionBackground(sellers.get(0).getPlayerColor());
     }
 
     @Override
