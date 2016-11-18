@@ -229,12 +229,12 @@ public class MainWindow extends JFrame implements MonopolyGUI {
         JOptionPane.showMessageDialog(this, msg);
     }
 
-        @Override
+    @Override
     public int showUtilDiceRoll() {
         return UtilDiceRoll.showDialog(mainCtl);
     }
 
-        @Override
+    @Override
     public void startGame() {
         int numberOfPlayers = mainCtl.getNumberOfPlayers();
         for (int i = 0; i < numberOfPlayers; i++) {

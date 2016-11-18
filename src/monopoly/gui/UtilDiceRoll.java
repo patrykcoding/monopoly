@@ -55,7 +55,15 @@ public class UtilDiceRoll extends JDialog {
     public final void rollDice() {
         Dice dice = mainCtl.rollDice();
         diceValue = dice.getTotal();
-        lblPrompt.setText("You rolled " + diceValue);
+        StringBuilder text = new StringBuilder();
+        text.append("You rolled " )
+                .append(dice.getSingleDice(0))
+                .append(", ")
+                .append(dice.getSingleDice(1))
+                .append(" which totals ")
+                .append(dice.getTotal())
+                .append(".");
+        lblPrompt.setText(text.toString());
         btnDice.setEnabled(false);
         btnOK.setEnabled(true);
     }
