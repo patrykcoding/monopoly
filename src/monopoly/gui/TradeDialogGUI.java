@@ -85,6 +85,7 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
                 if (isSelected || cellHasFocus) {
                 Player p = (Player)value;
                 list.setSelectionBackground(p.getPlayerColor());
+                list.setSelectionForeground(Color.black);
                 }
                 return ret;
             }
