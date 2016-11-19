@@ -1,13 +1,17 @@
 package monopoly.gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -15,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 import javax.swing.border.LineBorder;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
@@ -74,6 +79,18 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
             JList list = getCboSellersItems();
             list.setSelectionBackground(player.getPlayerColor());
             updatePropertiesCombo(player);
+        });
+        
+        cboSellers.setRenderer(new DefaultListCellRenderer() {
+            public Component getListCellRendererComponent(JList list, Object value,
+                                                          int index, boolean isSelected,
+                                                          boolean cellHasFocus) {
+                Component ret = super.getListCellRendererComponent(list, value, index,
+                                                                   isSelected, cellHasFocus);
+                Player p = (Player)value;
+                list.setSelectionBackground(p.getPlayerColor());
+                return ret;
+            }
         });
 
         PopupMenuListener listener = new PopupMenuListener() {
