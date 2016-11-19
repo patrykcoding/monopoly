@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.basic.BasicComboPopup;
@@ -26,7 +27,8 @@ import monopoly.TradeDialog;
 
 public class TradeDialogGUI extends JDialog implements TradeDialog {
     private static final long serialVersionUID = -7231996263338389498L;
-    
+
+    private final int cboSellerBorderSize = 3;
     private JButton btnOK, btnCancel;
     private JComboBox<Player> cboSellers;
     private JComboBox<Cell> cboProperties;
@@ -77,14 +79,16 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         PopupMenuListener listener = new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                int defaultColors = 238;
-                cboSellers.setBackground(new Color(defaultColors, defaultColors, defaultColors));
+                Color defaultColor = new Color(238, 238, 238);
+                cboSellers.setBorder(new LineBorder(defaultColor, cboSellerBorderSize));
+                cboSellers.setBackground(defaultColor);
                 JList list = getCboSellersItems();
                 list.setSelectionBackground(Color.gray);
             }
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
                 Player player = (Player)cboSellers.getSelectedItem();
+                cboSellers.setBorder(new LineBorder(player.getPlayerColor(), cboSellerBorderSize));
                 JList list = getCboSellersItems();
                 list.setSelectionBackground(player.getPlayerColor());
                 cboSellers.setBackground(player.getPlayerColor());
@@ -133,6 +137,7 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
             cboSellers.setBackground(topSeller.getPlayerColor());
             JList list = getCboSellersItems();
             list.setSelectionBackground(topSeller.getPlayerColor());
+            cboSellers.setBorder(new LineBorder(topSeller.getPlayerColor(), cboSellerBorderSize));
         }
     }
 
