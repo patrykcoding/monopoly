@@ -13,6 +13,7 @@ import monopoly.RespondDialog;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
 import monopoly.cells.PropertyCell;
+import monopoly.gui.PlayerPanel;
 
 public class MainControllerTest extends TestCase {
 
@@ -100,7 +101,8 @@ public class MainControllerTest extends TestCase {
 
     public void testButtonRollDiceClicked() {
         mainCtl.reset();
-        mainCtl.btnRollDiceClicked();
+        PlayerPanel panel = new PlayerPanel(mainCtl, mainCtl.getCurrentPlayer());
+        mainCtl.btnRollDiceClicked(panel);
         Dice dice = mainCtl.getDice();
         assertEquals(0, mainCtl.getCurrentPlayerIndex());
         assertEquals(

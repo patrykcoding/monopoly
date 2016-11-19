@@ -6,6 +6,7 @@ import monopoly.Player;
 import monopoly.RespondDialog;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
+import monopoly.gui.PlayerPanel;
 
 public class MockGUI implements MonopolyGUI {
     private boolean btnDrawCardState, btnEndTurnState, btnGetOutOfJailState;
@@ -94,7 +95,7 @@ public class MockGUI implements MonopolyGUI {
     public void showBuyHouseDialog(Player currentPlayer) {}
 
     @Override
-    public void showMessage(String string) {}
+    public void showMessage(String string, PlayerPanel panel) {}
 
     @Override
     public int showUtilDiceRoll() {

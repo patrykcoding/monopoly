@@ -26,7 +26,7 @@ public interface MonopolyGUI {
     public void setRollDiceEnabled(boolean b);
     public void setTradeEnabled(int index, boolean b);
     public void showBuyHouseDialog(Player currentPlayer);
-    public void showMessage(String string);
+    public void showMessage(String string, PlayerPanel panel);
     public int showUtilDiceRoll();
     public void startGame();
     public void update();

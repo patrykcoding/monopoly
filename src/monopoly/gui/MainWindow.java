@@ -225,8 +225,8 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     }
 
     @Override
-    public void showMessage(String msg) {
-        JOptionPane.showMessageDialog(this, msg);
+    public void showMessage(String msg, PlayerPanel panel) {
+        JOptionPane.showMessageDialog(panel, msg);
     }
 
     @Override

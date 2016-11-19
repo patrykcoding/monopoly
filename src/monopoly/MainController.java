@@ -5,6 +5,7 @@ import monopoly.gameboards.GameBoardDefault;
 import monopoly.cells.CardCell;
 import java.util.ArrayList;
 import monopoly.cells.JailCell;
+import monopoly.gui.PlayerPanel;
 
 public class MainController {
 
@@ -83,7 +84,7 @@ public class MainController {
         gui.update();
     }
     
-    public void btnRollDiceClicked() {
+    public void btnRollDiceClicked(PlayerPanel panel) {
         dice.roll();
         if ((dice.getTotal()) > 0) {
             Player player = getCurrentPlayer();
@@ -94,7 +95,7 @@ public class MainController {
                     .append(dice.getSingleDice(0))
                     .append(" and ")
                     .append(dice.getSingleDice(1));
-            gui.showMessage(msg.toString());
+            gui.showMessage(msg.toString(), panel);
             movePlayer(player, dice.getTotal());
             gui.setBuyHouseEnabled(false);
         }
