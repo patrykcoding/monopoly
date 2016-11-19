@@ -1,13 +1,39 @@
 package monopoly;
 
 public class Dice {
-    public static final int DICE_SIDES = 6;
-
-    public int getRoll() {
-        return (int)(Math.random() * DICE_SIDES) + 1;
+    private static final int DICE_SIDES = 6;
+    private final int[] dice;
+    
+    public Dice(int diceAmount) {
+        dice = new int[diceAmount];
+        roll();
     }
     
-    public int[] getDoubleRoll() {
-        return new int[] { this.getRoll(), this.getRoll() };
+    public final void roll() {
+        for (int i = 0; i < dice.length; i++) {
+            dice[i] = (int)(Math.random() * DICE_SIDES) + 1;
+        }
     }
+    
+    public int[] getRoll() {
+        roll();
+        return dice;
+    }
+    
+    public int getTotal() {
+        int total = 0;
+        for (int i = 0; i < dice.length; i++) {
+            total += dice[i];
+        }
+        return total;
+    }
+
+    public void setDice(int diceNumber, int value) {
+        dice[diceNumber] = value;
+    }
+    
+    public int getSingleDice(int diceNumber) {
+        return dice[diceNumber];
+    }
+    
 }

@@ -1,5 +1,6 @@
 package monopoly.gui;
 
+import monopoly.Dice;
 import monopoly.Player;
 import monopoly.RespondDialog;
 import monopoly.TradeDeal;
@@ -9,7 +10,7 @@ public interface MonopolyGUI {
     public void enableEndTurnBtn(int playerIndex);
     public void enablePlayerTurn(int playerIndex);
     public void enablePurchaseBtn(int playerIndex);
-    public int[] getDiceRoll();
+    public Dice getDiceRoll();
     public boolean isDrawCardButtonEnabled();
     public boolean isEndTurnButtonEnabled();
     public boolean isGetOutOfJailButtonEnabled();

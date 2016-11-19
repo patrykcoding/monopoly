@@ -4,6 +4,7 @@ import tests.mocks.MockGUI;
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
+import monopoly.Dice;
 import monopoly.gameboards.GameBoardDefault;
 import monopoly.MainController;
 import monopoly.gui.MonopolyGUI;
@@ -25,7 +26,6 @@ public class MainControllerTest extends TestCase {
         mainCtl.getPlayer(0).setName("Player 1");
         mainCtl.getPlayer(1).setName("Player 2");
         mainCtl.reset();
-        mainCtl.setTestMode(true);
         mainCtl.setGUI(new MockGUI());
         mainCtl.startGame();
     }
@@ -101,8 +101,12 @@ public class MainControllerTest extends TestCase {
     public void testButtonRollDiceClicked() {
         mainCtl.reset();
         mainCtl.btnRollDiceClicked();
+        Dice dice = mainCtl.getDice();
         assertEquals(0, mainCtl.getCurrentPlayerIndex());
-        assertEquals(mainCtl.getGameBoard().getCell(5), mainCtl.getPlayer(0).getPosition());
+        assertEquals(
+                mainCtl.getGameBoard().getCell(0 + dice.getTotal()), 
+                mainCtl.getPlayer(0).getPosition()
+        );
     }
 
     public void testButtonTradeClicked() {
