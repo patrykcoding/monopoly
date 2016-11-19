@@ -82,8 +82,10 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
                                                           boolean cellHasFocus) {
                 Component ret = super.getListCellRendererComponent(list, value, index,
                                                                    isSelected, cellHasFocus);
+                if (isSelected || cellHasFocus) {
                 Player p = (Player)value;
                 list.setSelectionBackground(p.getPlayerColor());
+                }
                 return ret;
             }
         });
