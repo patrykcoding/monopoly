@@ -8,11 +8,10 @@ import monopoly.cells.JailCell;
 
 public class MainController {
 
-    private final Dice dice;
+    private Dice dice;
     private GameBoard gameBoard;
     private MonopolyGUI gui;
     private int utilDiceRoll;
-    private boolean testMode;
     private final BoardController boardCtl;
     private final PropertyController propertyCtl;
     
@@ -85,16 +84,16 @@ public class MainController {
     }
     
     public void btnRollDiceClicked() {
-        Dice rolls = rollDice();
-        if ((rolls.getTotal()) > 0) {
+        dice.roll();
+        if ((dice.getTotal()) > 0) {
             Player player = getCurrentPlayer();
             gui.setRollDiceEnabled(false);
             StringBuilder msg = new StringBuilder();
             msg.append(player.getName())
                     .append(", you rolled ")
-                    .append(rolls.getSingleDice(0))
+                    .append(dice.getSingleDice(0))
                     .append(" and ")
-                    .append(rolls.getSingleDice(1));
+                    .append(dice.getSingleDice(1));
             gui.showMessage(msg.toString());
             movePlayer(player, dice.getTotal());
             gui.setBuyHouseEnabled(false);
@@ -205,15 +204,6 @@ public class MainController {
         }
     }
 	
-    public Dice rollDice() {
-        if (testMode) {
-            return gui.getDiceRoll();
-        } else {
-            dice.roll();
-            return dice;
-        }
-    }
-	
     public void sendToJail(Player player) {
         int oldPosition = gameBoard.queryCellIndex(getCurrentPlayer().getPosition().getName());
         player.setPosition(gameBoard.queryCell("Jail"));
@@ -274,10 +264,6 @@ public class MainController {
     public void utilRollDice() {
         this.utilDiceRoll = gui.showUtilDiceRoll();
     }
-
-    public void setTestMode(boolean b) {
-        testMode = b;
-    }
     
     public int getTurn() {
         return boardCtl.getTurn();
@@ -314,5 +300,9 @@ public class MainController {
 
     public void payRentTo(Player owner, int rent) {
         propertyCtl.payRentTo(owner, rent);
+    }
+
+    public Dice getDice() {
+        return dice;
     }
 }

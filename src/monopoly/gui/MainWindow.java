@@ -238,7 +238,7 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     public void startGame() {
         int numberOfPlayers = mainCtl.getNumberOfPlayers();
         for (int i = 0; i < numberOfPlayers; i++) {
-                movePlayer(i, 0, 0);
+            movePlayer(i, 0, 0);
         }
     }
 
