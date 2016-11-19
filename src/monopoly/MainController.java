@@ -8,7 +8,7 @@ import monopoly.cells.JailCell;
 
 public class MainController {
 
-    private Dice dice;
+    private final Dice dice;
     private GameBoard gameBoard;
     private MonopolyGUI gui;
     private int utilDiceRoll;
