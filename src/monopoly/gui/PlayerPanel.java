@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -104,7 +103,7 @@ public class PlayerPanel extends JPanel {
         super.setBorder(new BevelBorder(BevelBorder.RAISED));
 
         btnRollDice.addActionListener((ActionEvent e) -> {
-            mainCtl.btnRollDiceClicked();
+            mainCtl.btnRollDiceClicked(PlayerPanel.this);
         });
 
         btnEndTurn.addActionListener((ActionEvent e) -> {

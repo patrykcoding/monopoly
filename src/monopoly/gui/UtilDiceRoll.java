@@ -25,6 +25,7 @@ public class UtilDiceRoll extends JDialog {
         this.mainCtl = mainCtl;
         super.setModal(true);
         btnOK.setEnabled(false);
+        btnOK.setVisible(false);
         lblPrompt.setText("Please roll the dice to determine your utility bill.");
         Container contentPane = super.getContentPane();
         JPanel pnlButtons = new JPanel();
@@ -35,6 +36,8 @@ public class UtilDiceRoll extends JDialog {
         contentPane.add(pnlButtons, BorderLayout.SOUTH);
         btnDice.addActionListener((ActionEvent arg0) -> {
             rollDice();
+            btnDice.setVisible(false);
+            btnOK.setVisible(true);
         });
         btnOK.addActionListener((ActionEvent arg0) -> {
             okClicked();

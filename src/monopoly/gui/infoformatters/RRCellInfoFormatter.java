@@ -28,9 +28,9 @@ public class RRCellInfoFormatter implements CellInfoFormatter {
         buf.append("<html><b><font color='lime'>")
                 .append(cell.getName())
                 .append("</font></b><br>")
-                .append("$")
+                .append("Price: $")
                 .append(c.getPrice())
-                .append("<br>Owner: ")
+                .append("<br><br>Owner: ")
                 .append(ownerName)
                 .append("</html>");
         return buf.toString();
