@@ -77,19 +77,19 @@ public class GameBoardDefault extends GameBoard {
         dp3.setRent(4);
         
         lb1.setPrice(100);
-        lb1.setColorGroup("aqua");
+        lb1.setColorGroup("teal");
         lb1.setHousePrice(50);
         lb1.setName("Oriental Avenue");
         lb1.setRent(6);
 
         lb2.setPrice(100);
-        lb2.setColorGroup("aqua");
+        lb2.setColorGroup("teal");
         lb2.setHousePrice(50);
         lb2.setName("Vermont Avenue");
         lb2.setRent(6);
 
         lb3.setPrice(120);
-        lb3.setColorGroup("aqua");
+        lb3.setColorGroup("teal");
         lb3.setHousePrice(50);
         lb3.setName("Connecticut Avenue");
         lb3.setRent(8);
@@ -149,19 +149,19 @@ public class GameBoardDefault extends GameBoard {
         r3.setRent(20);
         
         y1.setPrice(260);
-        y1.setColorGroup("yellow");
+        y1.setColorGroup("orange");
         y1.setHousePrice(150);
         y1.setName("Atlantic Avenue");
         y1.setRent(22);
         
         y2.setPrice(260);
-        y2.setColorGroup("yellow");
+        y2.setColorGroup("orange");
         y2.setHousePrice(150);
         y2.setName("Ventnor Avenue");
         y2.setRent(22);
         
         y3.setPrice(280);
-        y3.setColorGroup("yellow");
+        y3.setColorGroup("orange");
         y3.setHousePrice(150);
         y3.setName("Marvin Gardens");
         y3.setRent(24);
