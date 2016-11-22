@@ -11,6 +11,9 @@ public class GameBoardRailRoad extends GameBoard {
     public GameBoardRailRoad() {
         super();
 	
+        int rrBaseRent = 25;
+        int rrPrice = 200;
+        
         PropertyCell blue1 = new PropertyCell();
         PropertyCell blue2 = new PropertyCell();
         PropertyCell green1 = new PropertyCell();
@@ -34,11 +37,20 @@ public class GameBoardRailRoad extends GameBoard {
         green2.setColorGroup("green");
 
         rr1.setName("Railroad A");
+        rr1.setPrice(rrPrice);
+        rr1.setBaseRent(rrBaseRent);
+
         rr2.setName("Railroad B");
-        rr3.setName("Railroad C");
+        rr2.setPrice(rrPrice);
+        rr2.setBaseRent(rrBaseRent);
+
+        rr4.setName("Railroad C");
+        rr4.setPrice(rrPrice);
+        rr4.setBaseRent(rrBaseRent);
+
         rr4.setName("Railroad D");
-        RailRoadCell.setPrice(200);
-        RailRoadCell.setBaseRent(25);
+        rr4.setPrice(rrPrice);
+        rr4.setBaseRent(rrBaseRent);
 
         blue1.setPrice(100);
         blue2.setPrice(100);

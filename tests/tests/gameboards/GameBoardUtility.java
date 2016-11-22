@@ -11,6 +11,9 @@ import monopoly.cells.UtilityCell;
 public class GameBoardUtility extends GameBoard {
     public GameBoardUtility() {
         super();
+        
+        int rrBaseRent = 25;
+        int rrPrice = 200;
 	
         PropertyCell blue1 = new PropertyCell();
         PropertyCell blue2 = new PropertyCell();
@@ -35,9 +38,13 @@ public class GameBoardUtility extends GameBoard {
         green2.setColorGroup("green");
 
         rr1.setName("Railroad A");
+        rr1.setPrice(rrPrice);
+        rr1.setBaseRent(rrBaseRent);
+
         rr3.setName("Railroad C");
-        RailRoadCell.setPrice(200);
-        RailRoadCell.setBaseRent(25);
+        rr3.setPrice(rrPrice);
+        rr3.setBaseRent(rrBaseRent);
+
 
         u1.setName("Utility 1");
         u2.setName("Utility 2");

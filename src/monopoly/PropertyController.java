@@ -55,6 +55,7 @@ public class PropertyController {
         }
         if (property instanceof RailRoadCell) {
             buyer.addRailRoad((RailRoadCell) property);
+            updateRailRoadRent((RailRoadCell)property);
         }
         if (property instanceof UtilityCell) {
             buyer.addUtility((UtilityCell) property);
@@ -140,6 +141,7 @@ public class PropertyController {
         }
         if (property instanceof RailRoadCell) {
             seller.removeRailroadCell((RailRoadCell)property);
+            updateRailRoadRent((RailRoadCell)property);
         }
         if (property instanceof UtilityCell) {
             seller.removeUtilityCell((UtilityCell)property);
@@ -166,6 +168,18 @@ public class PropertyController {
                 newRent = rent * (numHouses + 1);
             }
             property.setRent(newRent);
+        }
+    }
+    
+    public void updateRailRoadRent(RailRoadCell railroad) {
+        Player owner = railroad.getOwner();
+        int basePrice = railroad.getBaseRent();
+        
+        if (owner == null) {
+            railroad.setRent(basePrice);
+        } else {
+            int newRent = basePrice * (int)Math.pow(2, owner.numberOfRR() - 1);
+            railroad.setRent(newRent);
         }
     }
 }

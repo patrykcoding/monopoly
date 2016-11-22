@@ -53,7 +53,7 @@ public class RailRoadCellTest extends TestCase {
         int cellIndex2 = mainCtl.getGameBoard().queryCellIndex("Railroad B");
         mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex2 - cellIndex1);
         mainCtl.purchase();
-        assertEquals(50, rr1.getRent());
-        assertEquals(50, rr2.getRent());
+        assertEquals(25, rr1.getRent());
+        assertEquals(25, rr2.getRent());
     }
 }

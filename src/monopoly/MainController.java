@@ -4,7 +4,6 @@ import monopoly.enums.CardType;
 import monopoly.gui.MonopolyGUI;
 import monopoly.gameboards.GameBoardDefault;
 import monopoly.cells.CardCell;
-import java.util.ArrayList;
 import java.util.List;
 import monopoly.cells.JailCell;
 import monopoly.gui.PlayerPanel;
