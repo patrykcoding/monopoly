@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import monopoly.Cell;
 import monopoly.MainController;
 
 import monopoly.Player;
@@ -58,7 +59,7 @@ public class BuyHouseDialog extends JDialog {
 
     private JComboBox<Integer> buildNumberComboBox() {
         cboNumber = new JComboBox<>();
-        for (int i = 1; i <= 6; i++) {
+        for (int i = 1; i <= 5; i++) {
             cboNumber.addItem(i);
         }
         return cboNumber;
