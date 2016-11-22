@@ -17,6 +17,9 @@ public class GameBoardDefault extends GameBoard {
     public GameBoardDefault() {
         super();
         
+        int rrBaseRent = 25;
+        int rrPrice = 200;
+        
         PropertyCell dp1 = new PropertyCell();
         CardCell cc1 = new CardCell(CardType.CC, "Community Chest 1");
         PropertyCell dp2 = new PropertyCell();
@@ -202,13 +205,21 @@ public class GameBoardDefault extends GameBoard {
         db3.setName("Boardwalk");
         db3.setRent(50);
         
-        RailRoadCell.setBaseRent(50);
-        RailRoadCell.setPrice(200);
-        
         rr1.setName("Reading Railroad");
+        rr1.setBaseRent(rrBaseRent);
+        rr1.setPrice(rrPrice);
+ 
         rr2.setName("Pennsylvania Railroad");
+        rr2.setBaseRent(rrBaseRent);
+        rr2.setPrice(rrPrice);
+        
         rr3.setName("B. & O. RailRoad");
+        rr3.setBaseRent(rrBaseRent);
+        rr3.setPrice(rrPrice);
+        
         rr4.setName("Short Line");
+        rr4.setBaseRent(rrBaseRent);
+        rr4.setPrice(rrPrice);
         
         UtilityCell.setPrice(150);
         

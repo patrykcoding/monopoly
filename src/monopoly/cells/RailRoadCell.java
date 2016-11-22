@@ -5,25 +5,38 @@ import monopoly.MainController;
 import monopoly.Player;
 
 public class RailRoadCell extends Cell {
-    static private int baseRent;
-    static public String COLOR_GROUP = "RAILROAD";
-    static private int price;
+    private int baseRent = 0;
+    private int rent;
+    public static String COLOR_GROUP = "RAILROAD";
+    private int price;
 
-    public static void setBaseRent(int baseRent) {
-        RailRoadCell.baseRent = baseRent;
+    public void setBaseRent(int baseRent) {
+        this.baseRent = baseRent;
+        this.rent = baseRent;
+    }
+    
+    public int getBaseRent() {
+        return baseRent;
     }
 
-    public static void setPrice(int price) {
-        RailRoadCell.price = price;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override
     public int getPrice() {
-        return RailRoadCell.price;
+        return price;
     }
 
+    public void setRent(int rent) {
+        if (baseRent == 0) {
+            baseRent = rent;
+        }
+        this.rent = rent;
+    }
+    
     public int getRent() {
-        return RailRoadCell.baseRent * (int)Math.pow(2, player.numberOfRR() - 1);
+        return rent;
     }
 
     @Override
