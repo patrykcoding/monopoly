@@ -1,6 +1,6 @@
 package monopoly.cells;
 
-import monopoly.CardType;
+import monopoly.enums.CardType;
 import monopoly.Cell;
 
 public class CardCell extends Cell {

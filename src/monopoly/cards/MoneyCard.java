@@ -1,7 +1,7 @@
 package monopoly.cards;
 
 import monopoly.Card;
-import monopoly.CardType;
+import monopoly.enums.CardType;
 import monopoly.MainController;
 import monopoly.Player;
 

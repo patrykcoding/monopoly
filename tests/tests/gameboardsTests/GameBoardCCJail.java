@@ -1,7 +1,7 @@
 package tests.gameboardsTests;
 
 import monopoly.Card;
-import monopoly.CardType;
+import monopoly.enums.CardType;
 import monopoly.cells.CardCell;
 import monopoly.GameBoard;
 import monopoly.cards.JailCard;

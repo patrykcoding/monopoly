@@ -1,6 +1,6 @@
 package monopoly.gameboards;
 
-import monopoly.CardType;
+import monopoly.enums.CardType;
 import monopoly.GameBoard;
 import monopoly.cards.MovePlayerCard;
 import monopoly.cards.JailCard;

@@ -1,5 +1,6 @@
 package monopoly;
 
+import monopoly.enums.CardType;
 import monopoly.gui.MonopolyGUI;
 import monopoly.gameboards.GameBoardDefault;
 import monopoly.cells.CardCell;

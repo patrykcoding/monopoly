@@ -1,5 +1,6 @@
 package monopoly;
 
+import monopoly.enums.CardType;
 import monopoly.cells.PropertyCell;
 import monopoly.cells.GoCell;
 import java.util.ArrayList;

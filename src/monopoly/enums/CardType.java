@@ -1,4 +1,4 @@
-package monopoly;
+package monopoly.enums;
 
 public enum CardType {
     CHANCE,         // Chance Card
