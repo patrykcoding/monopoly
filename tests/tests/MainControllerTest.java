@@ -55,7 +55,8 @@ public class MainControllerTest extends TestCase {
                      mainCtl.getPlayer(0).getAllProperties().get(0));
         mainCtl.btnEndTurnClicked();
         TradeDialog dialog = gui.openTradeDialog();
-        assertEquals(1, mainCtl.getNumberOfSellers());
+        int numberOfSellers =  mainCtl.getNumberOfPlayers() - 1;
+        assertEquals(1, numberOfSellers);
         ArrayList sellerList = mainCtl.getSellerList();
         assertEquals(mainCtl.getPlayer(0), sellerList.get(0));
         TradeDeal deal = dialog.getTradeDeal(mainCtl);
@@ -104,7 +105,7 @@ public class MainControllerTest extends TestCase {
         PlayerPanel panel = new PlayerPanel(mainCtl, mainCtl.getCurrentPlayer());
         mainCtl.btnRollDiceClicked(panel);
         Dice dice = mainCtl.getDice();
-        assertEquals(0, mainCtl.getCurrentPlayerIndex());
+        assertEquals(0, mainCtl.getTurn());
         assertEquals(
                 mainCtl.getGameBoard().getCell(0 + dice.getTotal()), 
                 mainCtl.getPlayer(0).getPosition()

@@ -108,19 +108,19 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     @Override
     public boolean isDrawCardButtonEnabled() {
-        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getTurn();
         return playerPanels[currentPlayerIndex].isDrawCardButtonEnabled();
     }
 
     @Override
     public boolean isEndTurnButtonEnabled() {
-        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getTurn();
         return playerPanels[currentPlayerIndex].isEndTurnButtonEnabled();
     }
 
     @Override
     public boolean isGetOutOfJailButtonEnabled() {
-        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getTurn();
         return playerPanels[currentPlayerIndex].isGetOutOfJailButtonEnabled();
     }
 
@@ -166,37 +166,37 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     @Override
     public void setBuyHouseEnabled(boolean b) {
-        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getTurn();
         playerPanels[currentPlayerIndex].setBuyHouseEnabled(b);
     }
 
     @Override
     public void setDrawCardEnabled(boolean b) {
-        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getTurn();
         playerPanels[currentPlayerIndex].setDrawCardEnabled(b);
     }
 
     @Override
     public void setEndTurnEnabled(boolean enabled) {
-        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getTurn();
         playerPanels[currentPlayerIndex].setEndTurnEnabled(enabled);
     }
 
     @Override
     public void setGetOutOfJailEnabled(boolean b) {
-        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getTurn();
         playerPanels[currentPlayerIndex].setGetOutOfJailEnabled(b);
     }
 
     @Override
     public void setPurchasePropertyEnabled(boolean enabled) {
-        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getTurn();
         playerPanels[currentPlayerIndex].setPurchasePropertyEnabled(enabled);
     }
 
     @Override
     public void setRollDiceEnabled(boolean b) {
-        int currentPlayerIndex = mainCtl.getCurrentPlayerIndex();
+        int currentPlayerIndex = mainCtl.getTurn();
         playerPanels[currentPlayerIndex].setRollDiceEnabled(b);
     }
 
