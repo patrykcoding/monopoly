@@ -9,7 +9,7 @@ public abstract class Cell {
         return name;
     }
 
-    public Player getPlayer() {
+    public Player getOwner() {
         return player;
     }
 	

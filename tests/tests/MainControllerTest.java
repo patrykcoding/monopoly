@@ -143,6 +143,6 @@ public class MainControllerTest extends TestCase {
         assertEquals("Baltic Avenue", player.getProperty(0).getName());
         PropertyCell cell =
         (PropertyCell) mainCtl.getGameBoard().queryCell("Baltic Avenue");
-        assertSame(player, cell.getPlayer());
+        assertSame(player, cell.getOwner());
     }
 }

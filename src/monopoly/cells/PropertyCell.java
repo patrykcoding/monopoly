@@ -1,6 +1,5 @@
 package monopoly.cells;
 
-import java.util.List;
 import monopoly.Cell;
 import monopoly.MainController;
 import monopoly.Player;
@@ -11,6 +10,7 @@ public class PropertyCell extends Cell {
     private int numHouses;
     private int rent;
     private int sellPrice;
+    private int originalRent = 0;
     
     public String getColorGroup() {
         return colorGroup;
@@ -29,27 +29,13 @@ public class PropertyCell extends Cell {
         return sellPrice;
     }
 
-    public int getRent(MainController mainCtl) {
-        int rentToCharge = rent;
-        List<String> monopolies = mainCtl.getMonopolies(player);
-        for (String monopolie : monopolies) {
-            if (monopolie.equals(colorGroup)) {
-                rentToCharge = rent * 2;
-            }
-        }
-        if (numHouses > 0) {
-            rentToCharge = rent * (numHouses + 1);
-        }
-        return rentToCharge;
-    }
-
     @Override
     public void playAction(MainController mainCtl) {
         Player currentPlayer;
         if (!isAvailable()) {
             currentPlayer = mainCtl.getCurrentPlayer();
             if (player != currentPlayer) {
-                mainCtl.payRentTo(player, getRent(mainCtl));
+                mainCtl.payRentTo(player, rent);
             }
         }
     }
@@ -71,6 +57,17 @@ public class PropertyCell extends Cell {
     }
 
     public void setRent(int rent) {
+        if (originalRent == 0) {
+            originalRent = rent;
+        }
         this.rent = rent;
+    }
+
+    public int getRent() {
+        return rent;
+    }
+
+    public int originalRent() {
+        return originalRent;
     }
 }

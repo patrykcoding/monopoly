@@ -20,7 +20,7 @@ public class RRCellInfoFormatter implements CellInfoFormatter {
     public String formatToolTip(Cell cell) {
         RailRoadCell c = (RailRoadCell)cell;
         StringBuilder buf = new StringBuilder();
-        Player owner = cell.getPlayer();
+        Player owner = cell.getOwner();
         String ownerName = "";
         if(owner != null) {
             ownerName = owner.getName();
