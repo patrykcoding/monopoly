@@ -39,6 +39,8 @@ public class PropertyCellInfoFormatter implements CellInfoFormatter {
                 .append(ownerName)
                 .append("<br><br>Houses ⌂: ")
                 .append(c.getNumHouses())
+                .append("<br>House price: $")
+                .append(c.getHousePrice())
                 .append("</html>");
         return buf.toString();
     }
