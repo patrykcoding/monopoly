@@ -3,6 +3,7 @@ package tests;
 import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
+import monopoly.enums.CardType;
 import monopoly.Cell;
 import tests.gameboardsTests.GameBoardCCMovePlayer;
 import monopoly.MainController;
@@ -19,7 +20,7 @@ public class MovePlayerCardTest extends TestCase {
         mainCtl.setNumberOfPlayers(1);
         mainCtl.reset();
         mainCtl.setGUI(new MockGUI());
-        movePlayerCard = new MovePlayerCard("Blue 1", Card.TYPE_CC);
+        movePlayerCard = new MovePlayerCard("Blue 1", CardType.CC);
         mainCtl.getGameBoard().addCard(movePlayerCard);
     }
     

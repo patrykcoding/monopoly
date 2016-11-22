@@ -1,5 +1,6 @@
 package monopoly;
 
+import monopoly.enums.CardType;
 import monopoly.gui.MonopolyGUI;
 import monopoly.gameboards.GameBoardDefault;
 import monopoly.cells.CardCell;
@@ -31,7 +32,7 @@ public class MainController {
         gui.setDrawCardEnabled(false);
         CardCell cell = (CardCell)getCurrentPlayer().getPosition();
         Card card;
-        if (cell.getType() == Card.TYPE_CC) {
+        if (cell.getType() == CardType.CC) {
             card = getGameBoard().drawCCCard();
             card.applyAction(this);
         } else {
@@ -53,7 +54,7 @@ public class MainController {
             gui.setGetOutOfJailEnabled(false);
             gui.setPurchasePropertyEnabled(false);
             gui.setRollDiceEnabled(false);
-            gui.setTradeEnabled(getCurrentPlayerIndex(),false);
+            gui.setTradeEnabled(getTurn(),false);
             gui.update();
         } else {
             switchTurn();
@@ -70,7 +71,7 @@ public class MainController {
             gui.setGetOutOfJailEnabled(false);
             gui.setPurchasePropertyEnabled(false);
             gui.setRollDiceEnabled(false);
-            gui.setTradeEnabled(getCurrentPlayerIndex(),false);
+            gui.setTradeEnabled(getTurn(),false);
         } else {
             gui.setRollDiceEnabled(true);
             gui.setBuyHouseEnabled(propertyCtl.canBuyHouse());
@@ -129,11 +130,7 @@ public class MainController {
     public Player getCurrentPlayer() {
         return boardCtl.getCurrentPlayer();
     }
-    
-    public int getCurrentPlayerIndex() {
-        return boardCtl.getCurrentPlayerIndex();
-    }
-
+  
     public GameBoard getGameBoard() {
         return gameBoard;
     }
@@ -144,10 +141,6 @@ public class MainController {
 
     public int getNumberOfPlayers() {
         return boardCtl.getNumberOfPlayers();
-    }
-
-    public int getNumberOfSellers() {
-        return boardCtl.getNumberOfSellers();
     }
 
     public Player getPlayer(int index) {

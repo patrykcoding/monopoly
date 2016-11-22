@@ -1,10 +1,18 @@
 package monopoly;
 
+import monopoly.enums.CardType;
+
 public abstract class Card {
 
-    public static int TYPE_CHANCE = 1;
-    public static int TYPE_CC = 2;
-
+    /**
+     * 
+     * @param mainCtl 
+     */
     public abstract void applyAction(MainController mainCtl);
-    public abstract int getCardType();
+    
+    /**
+     * 
+     * @return 
+     */
+    public abstract CardType getCardType();
 }

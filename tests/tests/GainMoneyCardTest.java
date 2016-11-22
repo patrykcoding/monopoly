@@ -3,6 +3,7 @@ package tests;
 import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
+import monopoly.enums.CardType;
 import tests.gameboardsTests.GameBoardCCGainMoney;
 import monopoly.MainController;
 import monopoly.cards.MoneyCard;
@@ -18,7 +19,7 @@ public class GainMoneyCardTest extends TestCase {
         mainCtl.setNumberOfPlayers(1);
 	mainCtl.reset();
 	mainCtl.setGUI(new MockGUI());
-	gainMoneyCard = new MoneyCard("Get 50 dollars", 50, Card.TYPE_CC);
+	gainMoneyCard = new MoneyCard("Get 50 dollars", 50, CardType.CC);
         mainCtl.getGameBoard().addCard(gainMoneyCard);
     }
     

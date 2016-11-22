@@ -1,16 +1,17 @@
 package monopoly.cards;
 
 import monopoly.Card;
+import monopoly.enums.CardType;
 import monopoly.MainController;
 import monopoly.Player;
 
 public class MoneyCard extends Card {
     private final int amount;
-    private final int cardType;
+    private final CardType cardType;
     
     private final String label;
     
-    public MoneyCard(String label, int amount, int cardType){
+    public MoneyCard(String label, int amount, CardType cardType){
         this.label = label;
         this.amount = amount;
         this.cardType = cardType;
@@ -23,7 +24,7 @@ public class MoneyCard extends Card {
     }
 
     @Override
-    public int getCardType() {
+    public CardType getCardType() {
         return cardType;
     }
 

@@ -1,13 +1,14 @@
 package monopoly.cards;
 
 import monopoly.Card;
+import monopoly.enums.CardType;
 import monopoly.MainController;
 import monopoly.Player;
 
 public class JailCard extends Card {
-    int type;
+    private final CardType type;
     
-    public JailCard(int cardType) {
+    public JailCard(CardType cardType) {
         type = cardType;
     }
 
@@ -18,7 +19,7 @@ public class JailCard extends Card {
     }
 
     @Override
-    public int getCardType() {
+    public CardType getCardType() {
         return type;
     }
 

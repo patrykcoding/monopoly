@@ -1,6 +1,7 @@
 package tests.gameboardsTests;
 
 import monopoly.Card;
+import monopoly.enums.CardType;
 import monopoly.cells.CardCell;
 import monopoly.GameBoard;
 import monopoly.cells.JailCell;
@@ -13,12 +14,12 @@ public class GameBoardCCGainMoney extends GameBoard {
         
         PropertyCell blue1 = new PropertyCell();
         PropertyCell blue2 = new PropertyCell();
-        CardCell cc1 = new CardCell(Card.TYPE_CC, "Community Chest 1");
+        CardCell cc1 = new CardCell(CardType.CC, "Community Chest 1");
         JailCell jail = new JailCell();
-        CardCell chance1 = new CardCell(Card.TYPE_CHANCE, "Chance 1");
+        CardCell chance1 = new CardCell(CardType.CHANCE, "Chance 1");
 
-        Card ccCard1 = new MoneyCard("Win $50", 50, Card.TYPE_CC);
-        Card chanceCard1 = new MoneyCard("Win $30", 30, Card.TYPE_CHANCE);
+        Card ccCard1 = new MoneyCard("Win $50", 50, CardType.CC);
+        Card chanceCard1 = new MoneyCard("Win $30", 30, CardType.CHANCE);
 		
         blue1.setName("Blue 1");
         blue2.setName("Blue 2");

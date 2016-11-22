@@ -21,6 +21,7 @@ public class CellInfoFormatterTest extends TestCase {
         String ownerName = "Owner1";
         int numHouses = 2;
         int propertyValue = 120;
+        int housePrice = 100;
         String propertyLabel = "<html><b><font color='" +
                                 propertyColor +"'>" + 
                                 propertyName + "</font></html>";
@@ -30,11 +31,13 @@ public class CellInfoFormatterTest extends TestCase {
 				"Price: $" + propertyValue +
 				"<br><br>Owner: " + ownerName +
 				"<br><br>Houses ⌂: " + numHouses +
+                                "<br>House price: $" + housePrice +
 				"</html>";
         PropertyCell cell = new PropertyCell();
         cell.setName(propertyName);
         cell.setPrice(propertyValue);
         cell.setColorGroup(propertyColor);
+        cell.setHousePrice(100);
         Player p = new Player(cell);
         p.setName(ownerName);
         cell.setPlayer(p);
