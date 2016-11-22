@@ -38,6 +38,7 @@ public class PropertyController {
                 if (newNumber <= 5) {
                     cell.setNumHouses(newNumber);
                     currentPlayer.subtractMoney(cell.getHousePrice() * houses);
+                    updatePropertyRent(cell);
                 }
             }
         }
