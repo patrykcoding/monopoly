@@ -7,7 +7,6 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
@@ -76,6 +75,7 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         });
         
         cboSellers.setRenderer(new DefaultListCellRenderer() {
+            private static final long serialVersionUID = -5460014450312978883L;
             @Override
             public Component getListCellRendererComponent(JList list, Object value,
                                                           int index, boolean isSelected,
@@ -157,7 +157,7 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
 
     private void updatePropertiesCombo(Player player) {
         cboProperties.removeAllItems();
-        ArrayList<Cell> cells = player.getAllProperties();
+        List<Cell> cells = player.getAllProperties();
         btnOK.setEnabled(cells.size() > 0);
         cells.stream().forEach((cell) -> {
             cboProperties.addItem(cell);

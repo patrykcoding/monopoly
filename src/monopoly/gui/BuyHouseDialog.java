@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -48,7 +49,7 @@ public class BuyHouseDialog extends JDialog {
 
     private JComboBox<String> buildMonopolyComboBox() {
         cboMonopoly = new JComboBox<>();
-        ArrayList<String> monopolies = mainCtl.getMonopolies(player);
+        List<String> monopolies = mainCtl.getMonopolies(player);
         monopolies.stream().forEach((monopoly) -> {
             cboMonopoly.addItem(monopoly);
         });

@@ -6,15 +6,16 @@ import monopoly.cells.GoCell;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GameBoard {
 
-    private final ArrayList<Cell> cells = new ArrayList<>();
-    private final ArrayList<Card> chanceCards = new ArrayList<>();
+    private final List<Cell> cells = new ArrayList<>();
+    private final List<Card> chanceCards = new ArrayList<>();
     //the key of propertyColors is the name of the color group.
     private final Map<String, Integer> propertyColors = new HashMap<>();
-    private final ArrayList<Card> communityChestCards = new ArrayList<>();
+    private final List<Card> communityChestCards = new ArrayList<>();
 
     public GameBoard() {
         Cell go = new GoCell();

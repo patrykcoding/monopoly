@@ -1,7 +1,7 @@
 package tests;
 
 import tests.mocks.MockGUI;
-import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.TestCase;
 import monopoly.Dice;
@@ -57,7 +57,7 @@ public class MainControllerTest extends TestCase {
         TradeDialog dialog = gui.openTradeDialog();
         int numberOfSellers =  mainCtl.getNumberOfPlayers() - 1;
         assertEquals(1, numberOfSellers);
-        ArrayList sellerList = mainCtl.getSellerList();
+        List<Player> sellerList = mainCtl.getSellerList();
         assertEquals(mainCtl.getPlayer(0), sellerList.get(0));
         TradeDeal deal = dialog.getTradeDeal(mainCtl);
         RespondDialog respond = gui.openRespondDialog(deal);
