@@ -11,9 +11,11 @@ import monopoly.cells.UtilityCell;
 
 public class PropertyController {
     private final BoardController boardCtl;
+    private final GameBoard gameBoard;
     
     public PropertyController(BoardController boardCtl) {
         this.boardCtl = boardCtl;
+        this.gameBoard = boardCtl.getGameBoard();
     }
 
     public List<Player> getSellerList() {
@@ -27,18 +29,17 @@ public class PropertyController {
     
     public int purchaseHouse(String selectedMonopoly, int houses) {
         Player currentPlayer = boardCtl.getCurrentPlayer();
-        GameBoard gameBoard = boardCtl.getGameBoard();
         
         int newNumber = 0;
         int money = currentPlayer.getMoney();
-        PropertyCell[] cells = gameBoard.getPropertiesInMonopoly(selectedMonopoly);
-        if ((money >= (cells.length * (cells[0].getHousePrice() * houses)))) {
-            for (PropertyCell cell : cells) {
-                newNumber = cell.getNumHouses() + houses;
+        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(selectedMonopoly);
+        if ((money >= (properties.size() * (properties.get(0).getHousePrice() * houses)))) {
+            for (PropertyCell property : properties) {
+                newNumber = property.getNumHouses() + houses;
                 if (newNumber <= 5) {
-                    cell.setNumHouses(newNumber);
-                    currentPlayer.subtractMoney(cell.getHousePrice() * houses);
-                    updatePropertyRent(cell);
+                    property.setNumHouses(newNumber);
+                    currentPlayer.subtractMoney(property.getHousePrice() * houses);
+                    updatePropertyRent(property);
                 }
             }
         }
@@ -77,7 +78,6 @@ public class PropertyController {
     
     public List<String> getMonopolies(Player player) {
         Map<String, Integer> propertyColors = player.getPropertyColors();
-        GameBoard gameBoard = boardCtl.getGameBoard();
         List<String> monopolies = new ArrayList<>();
         Set<String> colors = propertyColors.keySet();
         
@@ -133,7 +133,7 @@ public class PropertyController {
     
     public void sellProperty(TradeDeal deal) {
         Player seller = deal.getSeller();
-        Cell property = boardCtl.getGameBoard().queryCell(deal.getPropertyName());
+        Cell property = deal.getProperty();
         
         property.setPlayer(null);
         if (property instanceof PropertyCell) {
@@ -151,8 +151,8 @@ public class PropertyController {
     }
     
     public void updatePropertyRent(PropertyCell property) {
-        int rent = property.getRent();
-        int newRent = property.getRent();
+        int originalRent = property.getRent();
+        int newRent;
         int numHouses = property.getNumHouses();
         Player owner = property.getOwner();
         
@@ -162,14 +162,24 @@ public class PropertyController {
             List<String> monopolies = getMonopolies(owner);
             for (String monopolie : monopolies) {
                 if (monopolie.equals(property.getColorGroup())) {
-                    newRent = rent * 2;
+                    updateColorGroupRent(monopolie);
+                }
+            
+                if (numHouses > 0) {
+                    newRent = originalRent * (numHouses + 1);
+                    property.setRent(newRent);
                 }
             }
-            if (numHouses > 0) {
-                newRent = rent * (numHouses + 1);
-            }
-            property.setRent(newRent);
         }
+    }
+    
+    public void updateColorGroupRent(String colorGroup) {
+        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
+        
+        properties.stream().forEach((property) -> {
+            property.setRent(property.originalRent() * 2);
+        });
+        
     }
     
     public void updateRailRoadRent(RailRoadCell railroad) {

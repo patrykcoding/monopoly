@@ -60,17 +60,14 @@ public class GameBoard {
         return cells.size();
     }
 	
-    public PropertyCell[] getPropertiesInMonopoly(String color) {
-        PropertyCell[] monopolyCells = 
-        new PropertyCell[getPropertyNumberForColor(color)];
-        int counter = 0;
-        for (Object cell : cells) {
-            if (cell instanceof PropertyCell) {
-                PropertyCell pc = (PropertyCell)cell;
-                if (pc.getColorGroup().equals(color))
-                    monopolyCells[counter++] = pc;
-            }
-        }
+    public List<PropertyCell> getPropertiesInMonopoly(String color) {
+        List<PropertyCell> monopolyCells = new ArrayList<>();
+        cells.stream().filter((cell) 
+                -> (cell instanceof PropertyCell)).map((cell)
+                        -> (PropertyCell)cell).filter((pc) 
+                                -> (pc.getColorGroup().equals(color))).forEach((pc) -> {
+            monopolyCells.add(pc);
+        });
         return monopolyCells;
     }
 	

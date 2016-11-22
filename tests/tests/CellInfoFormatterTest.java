@@ -22,13 +22,16 @@ public class CellInfoFormatterTest extends TestCase {
         int numHouses = 2;
         int propertyValue = 120;
         int housePrice = 100;
+        int rentPrice = 200;
+        
         String propertyLabel = "<html><b><font color='" +
                                 propertyColor +"'>" + 
                                 propertyName + "</font></html>";
         String propertyToolTip = "<html><b><font color='" +
                                 propertyColor +"'>" + 
                                 propertyName + "</font></b><br>" +
-				"Price: $" + propertyValue +
+				"Property price: $" + propertyValue +
+				"<br>Rent price: $" + rentPrice +
 				"<br><br>Owner: " + ownerName +
 				"<br><br>Houses ⌂: " + numHouses +
                                 "<br>House price: $" + housePrice +
@@ -36,6 +39,7 @@ public class CellInfoFormatterTest extends TestCase {
         PropertyCell cell = new PropertyCell();
         cell.setName(propertyName);
         cell.setPrice(propertyValue);
+        cell.setRent(rentPrice);
         cell.setColorGroup(propertyColor);
         cell.setHousePrice(100);
         Player p = new Player(cell);

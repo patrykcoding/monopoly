@@ -1,5 +1,6 @@
 package tests;
 
+import java.util.List;
 import junit.framework.TestCase;
 import monopoly.Cell;
 import monopoly.GameBoard;
@@ -26,11 +27,11 @@ public class GameboardTest extends TestCase {
 
     public void testCellsForMonopoly() {
         GameBoard gb = new SimpleGameBoard();
-        PropertyCell[] properties = gb.getPropertiesInMonopoly("blue");
-        assertEquals("Blue 1", properties[0].getName());
-        assertEquals("Blue 2", properties[1].getName());
-        assertEquals("Blue 3", properties[2].getName());
-        assertEquals(3, properties.length);
+        List<PropertyCell> properties = gb.getPropertiesInMonopoly("blue");
+        assertEquals("Blue 1", properties.get(0).getName());
+        assertEquals("Blue 2", properties.get(1).getName());
+        assertEquals("Blue 3", properties.get(2).getName());
+        assertEquals(3, properties.size());
     }
 
     public void testPropertyNumberForColor() {
