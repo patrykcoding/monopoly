@@ -6,6 +6,7 @@ import monopoly.cells.RailRoadCell;
 import monopoly.cells.UtilityCell;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Player {
@@ -18,9 +19,9 @@ public class Player {
     private Color playerColor;
     
     private Cell position;
-    private ArrayList<PropertyCell> properties = new ArrayList<>();
-    private ArrayList<RailRoadCell> railroads = new ArrayList<>();
-    private ArrayList<UtilityCell> utilities = new ArrayList<>();
+    private List<PropertyCell> properties = new ArrayList<>();
+    private List<RailRoadCell> railroads = new ArrayList<>();
+    private List<UtilityCell> utilities = new ArrayList<>();
     
     public Player(Cell position) {
         this.position = position;
@@ -65,12 +66,12 @@ public class Player {
                 (cell.getName().equals(property)));
     }
 	
-    public ArrayList<PropertyCell> getPropertyCells() {
+    public List<PropertyCell> getPropertyCells() {
         return properties;
     }
     
-    public ArrayList<Cell> getAllProperties() {
-        ArrayList<Cell> list = new ArrayList<>();
+    public List<Cell> getAllProperties() {
+        List<Cell> list = new ArrayList<>();
         list.addAll(properties);
         list.addAll(utilities);
         list.addAll(railroads);

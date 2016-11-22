@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -137,7 +137,7 @@ public class PlayerPanel extends JPanel {
         lblName.setText(player.getName());
         lblMoney.setText("$ " + player.getMoney());
         StringBuilder buf = new StringBuilder();
-        ArrayList<Cell> cells = player.getAllProperties();
+        List<Cell> cells = player.getAllProperties();
         cells.stream().forEach((cell) -> {
             buf.append(cell).append("\n");
         });

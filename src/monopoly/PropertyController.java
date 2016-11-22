@@ -2,6 +2,7 @@
 package monopoly;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import monopoly.cells.PropertyCell;
@@ -15,8 +16,8 @@ public class PropertyController {
         this.boardCtl = boardCtl;
     }
 
-    public ArrayList<Player> getSellerList() {
-        ArrayList<Player> sellers = new ArrayList<>();
+    public List<Player> getSellerList() {
+        List<Player> sellers = new ArrayList<>();
         boardCtl.getPlayers().stream().filter((player) -> 
                 (player != boardCtl.getCurrentPlayer())).forEach((player) -> {
             sellers.add(player);
@@ -71,10 +72,10 @@ public class PropertyController {
         }
     }
     
-    public ArrayList<String> getMonopolies(Player player) {
+    public List<String> getMonopolies(Player player) {
         Map<String, Integer> propertyColors = player.getPropertyColors();
         GameBoard gameBoard = boardCtl.getGameBoard();
-        ArrayList<String> monopolies = new ArrayList<>();
+        List<String> monopolies = new ArrayList<>();
         Set<String> colors = propertyColors.keySet();
         
         for (int i = 0; i < colors.size(); i++) {
@@ -94,7 +95,7 @@ public class PropertyController {
     }
     
     public void giveAllProperties(Player fromPlayer, Player toPlayer) {
-        ArrayList<PropertyCell> properties = fromPlayer.getPropertyCells();
+        List<PropertyCell> properties = fromPlayer.getPropertyCells();
         properties.stream().map((property) -> {
             property.setPlayer(toPlayer);
             return property;

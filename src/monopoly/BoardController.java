@@ -3,16 +3,17 @@ package monopoly;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class BoardController {
     public static final int MAX_PLAYER = 8;
     
-    private final ArrayList<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
     private GameBoard gameBoard;
     private int playerTurnIdx = 0;
     
     /* Colors of the players on the gameBoard */
-    private final ArrayList<Color> playerColors = new ArrayList<>(Arrays.asList(
+    private final List<Color> playerColors = new ArrayList<>(Arrays.asList(
                                     new Color(255, 249, 102), /* Player 1 */
                                     new Color(66, 134, 244),  /* Player 2 */
                                     new Color(143, 99, 158),  /* Player 3 */
@@ -110,9 +111,9 @@ public class BoardController {
     /**
      * Access method for the players list.
      * 
-     * @return Returns the ArrayList of Players for the current Controller
+     * @return Returns the List of Players for the current Controller
      */
-    public ArrayList<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
     

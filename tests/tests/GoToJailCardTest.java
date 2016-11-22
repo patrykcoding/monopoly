@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 import monopoly.Card;
 import monopoly.enums.CardType;
 import monopoly.Cell;
-import tests.gameboardsTests.GameBoardCCJail;
+import tests.gameboards.GameBoardCCJail;
 import monopoly.MainController;
 import monopoly.cards.JailCard;
 

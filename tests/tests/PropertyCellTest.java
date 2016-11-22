@@ -5,7 +5,7 @@ import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.MainController;
 import monopoly.cells.PropertyCell;
-import tests.gameboardsTests.SimpleGameBoard;
+import tests.gameboards.SimpleGameBoard;
 
 public class PropertyCellTest extends TestCase {
 

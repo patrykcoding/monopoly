@@ -2,7 +2,7 @@ package tests;
 
 import tests.mocks.MockGUI;
 import junit.framework.TestCase;
-import tests.gameboardsTests.GameBoardRailRoad;
+import tests.gameboards.GameBoardRailRoad;
 import monopoly.MainController;
 import monopoly.cells.RailRoadCell;
 

@@ -5,6 +5,7 @@ import monopoly.gui.MonopolyGUI;
 import monopoly.gameboards.GameBoardDefault;
 import monopoly.cells.CardCell;
 import java.util.ArrayList;
+import java.util.List;
 import monopoly.cells.JailCell;
 import monopoly.gui.PlayerPanel;
 
@@ -151,7 +152,7 @@ public class MainController {
         return boardCtl.getPlayerIndex(player);
     }
 
-    public ArrayList<Player> getSellerList() {
+    public List<Player> getSellerList() {
         return propertyCtl.getSellerList();
     }
 
@@ -280,7 +281,7 @@ public class MainController {
         }
     }
 
-    public ArrayList<String> getMonopolies(Player player) {
+    public List<String> getMonopolies(Player player) {
         return propertyCtl.getMonopolies(player);
     }
 

@@ -4,7 +4,7 @@ import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
 import monopoly.enums.CardType;
-import tests.gameboardsTests.GameBoardCCGainMoney;
+import tests.gameboards.GameBoardCCGainMoney;
 import monopoly.MainController;
 import monopoly.cards.MoneyCard;
 
