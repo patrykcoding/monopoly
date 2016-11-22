@@ -30,20 +30,20 @@ public class PropertyController {
     public int purchaseHouse(String selectedMonopoly, int houses) {
         Player currentPlayer = boardCtl.getCurrentPlayer();
         
-        int newNumber = 0;
+        int numOfHouses = 0;
         int money = currentPlayer.getMoney();
         List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(selectedMonopoly);
         if ((money >= (properties.size() * (properties.get(0).getHousePrice() * houses)))) {
             for (PropertyCell property : properties) {
-                newNumber = property.getNumHouses() + houses;
-                if (newNumber <= 5) {
-                    property.setNumHouses(newNumber);
+                numOfHouses = property.getNumHouses() + houses;
+                if (numOfHouses <= 5) {
+                    property.setNumHouses(numOfHouses);
                     currentPlayer.subtractMoney(property.getHousePrice() * houses);
                     updatePropertyRent(property);
                 }
             }
         }
-        return newNumber;
+        return numOfHouses;
     }
     
     public void buyProperty(TradeDeal deal) {
