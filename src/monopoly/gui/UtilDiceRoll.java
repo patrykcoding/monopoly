@@ -21,7 +21,7 @@ public class UtilDiceRoll extends JDialog {
     private final MainController mainCtl;
     
  
-    public UtilDiceRoll(MainController mainCtl) {
+    public UtilDiceRoll(MainController mainCtl, PlayerPanel panel) {
         this.mainCtl = mainCtl;
         super.setModal(true);
         btnOK.setEnabled(false);
@@ -42,11 +42,15 @@ public class UtilDiceRoll extends JDialog {
         btnOK.addActionListener((ActionEvent arg0) -> {
             okClicked();
         });
-        this.pack();
+        super.setLocationRelativeTo(panel);
+        int xOffset = 170;
+        int yOffset = 60;
+        super.setLocation(super.getX() - xOffset, super.getY() - yOffset);
+        super.pack();
     }
 
-    public static int showDialog(MainController mainCtl) {
-        UtilDiceRoll dialog = new UtilDiceRoll(mainCtl);
+    public static int showDialog(MainController mainCtl, PlayerPanel panel) {
+        UtilDiceRoll dialog = new UtilDiceRoll(mainCtl, panel);
         dialog.setVisible(true);
         return dialog.diceValue;
     }
