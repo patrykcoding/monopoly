@@ -31,7 +31,7 @@ public class MainController {
         gui.setDrawCardEnabled(false);
         CardCell cell = (CardCell)getCurrentPlayer().getPosition();
         Card card;
-        if (cell.getType() == Card.TYPE_CC) {
+        if (cell.getType() == CardType.CC) {
             card = getGameBoard().drawCCCard();
             card.applyAction(this);
         } else {

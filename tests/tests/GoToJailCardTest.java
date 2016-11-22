@@ -3,6 +3,7 @@ package tests;
 import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
+import monopoly.CardType;
 import monopoly.Cell;
 import tests.gameboardsTests.GameBoardCCJail;
 import monopoly.MainController;
@@ -10,7 +11,7 @@ import monopoly.cards.JailCard;
 
 public class GoToJailCardTest extends TestCase {
     private MainController mainCtl;
-    private final Card jailCard = new JailCard(Card.TYPE_CC);
+    private final Card jailCard = new JailCard(CardType.CC);
     
     @Override
     protected void setUp() {

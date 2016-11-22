@@ -1,16 +1,17 @@
 package monopoly.cells;
 
+import monopoly.CardType;
 import monopoly.Cell;
 
 public class CardCell extends Cell {
-    private final int type;
+    private final CardType type;
     
-    public CardCell(int type, String name) {
+    public CardCell(CardType type, String name) {
         super.setName(name);
         this.type = type;
     }
     
-    public int getType() {
+    public CardType getType() {
         return type;
     }
 }

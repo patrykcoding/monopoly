@@ -1,17 +1,17 @@
 package monopoly.cards;
 
 import monopoly.Card;
+import monopoly.CardType;
 import monopoly.Cell;
 import monopoly.MainController;
 import monopoly.Player;
 
-
 public class MovePlayerCard extends Card {
     
     private final String destination;
-    private final int type;
+    private final CardType type;
 
-    public MovePlayerCard(String destination, int cardType) {
+    public MovePlayerCard(String destination, CardType cardType) {
         this.destination = destination;
         this.type = cardType;
     }
@@ -33,7 +33,7 @@ public class MovePlayerCard extends Card {
     }
 
     @Override
-    public int getCardType() {
+    public CardType getCardType() {
         return type;
     }
 

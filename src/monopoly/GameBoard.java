@@ -21,7 +21,7 @@ public class GameBoard {
     }
 
     public void addCard(Card card) {
-        if (card.getCardType() == Card.TYPE_CC) {
+        if (card.getCardType() == CardType.CC) {
             communityChestCards.add(card);
         } else {
             chanceCards.add(card);
