@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 import monopoly.Card;
 import monopoly.enums.CardType;
 import monopoly.Cell;
-import tests.gameboardsTests.GameBoardCCMovePlayer;
+import tests.gameboards.GameBoardCCMovePlayer;
 import monopoly.MainController;
 import monopoly.cards.MovePlayerCard;
 
