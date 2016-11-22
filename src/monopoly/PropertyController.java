@@ -51,6 +51,7 @@ public class PropertyController {
         
         if (property instanceof PropertyCell) {
             buyer.addProperty((PropertyCell) property);
+            updatePropertyRent((PropertyCell) property);
         }
         if (property instanceof RailRoadCell) {
             buyer.addRailRoad((RailRoadCell) property);
@@ -135,6 +136,7 @@ public class PropertyController {
         property.setPlayer(null);
         if (property instanceof PropertyCell) {
             seller.removePropertyCell((PropertyCell)property);
+            updatePropertyRent((PropertyCell) property);    
         }
         if (property instanceof RailRoadCell) {
             seller.removeRailroadCell((RailRoadCell)property);
@@ -144,5 +146,26 @@ public class PropertyController {
         }
         seller.addMoney(deal.getAmount());
     }
-
+    
+    public void updatePropertyRent(PropertyCell property) {
+        int rent = property.getRent();
+        int newRent = property.getRent();
+        int numHouses = property.getNumHouses();
+        Player owner = property.getOwner();
+        
+        if (owner == null) {
+            property.setRent(property.originalRent());
+        } else {
+            List<String> monopolies = getMonopolies(owner);
+            for (String monopolie : monopolies) {
+                if (monopolie.equals(property.getColorGroup())) {
+                    newRent = rent * 2;
+                }
+            }
+            if (numHouses > 0) {
+                newRent = rent * (numHouses + 1);
+            }
+            property.setRent(newRent);
+        }
+    }
 }

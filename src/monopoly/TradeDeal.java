@@ -9,7 +9,7 @@ public class TradeDeal {
     
     public TradeDeal(Cell property, Player buyer, int amount) {
         this.propertyName = property.getName();
-        this.seller = property.getPlayer();
+        this.seller = property.getOwner();
         this.buyer = buyer;
         this.amount = amount;
         this.property = property;
