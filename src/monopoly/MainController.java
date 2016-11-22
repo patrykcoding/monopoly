@@ -92,8 +92,7 @@ public class MainController {
             Player player = getCurrentPlayer();
             gui.setRollDiceEnabled(false);
             StringBuilder msg = new StringBuilder();
-            msg.append(player.getName())
-                    .append(", you rolled ")
+            msg.append("You rolled ")
                     .append(dice.getSingleDice(0))
                     .append(" and ")
                     .append(dice.getSingleDice(1));
