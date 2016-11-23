@@ -1,11 +1,9 @@
 
 package monopoly.gui;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -22,7 +20,7 @@ public class BuyHouseDialog extends JDialog {
     private static final long serialVersionUID = -8707274599957567230L;
     
     private JComboBox<String> cboMonopoly;
-    private JComboBox<Integer> cboNumber;
+    private final JComboBox<Integer> cboNumber;
 
     private final Player player;
     private final MainController mainCtl;
@@ -32,19 +30,22 @@ public class BuyHouseDialog extends JDialog {
         this.player = player;
         
         Container c = super.getContentPane();
+        cboNumber = new JComboBox<>();
         c.setLayout(new GridLayout(3, 2));
         c.add(new JLabel("Select monopoly"));
-        c.add(buildMonopolyComboBox());
+        c.add(buildMonopolyCboBox());
         c.add(new JLabel("Number of houses"));
-        c.add(buildNumberComboBox());
+        c.add(cboNumber);
         c.add(buildOKButton());
         c.add(buildCancelButton());
         c.doLayout();
         super.pack();
         
+        updateNumberCboBox(cboMonopoly.getItemAt(0));
+        
         cboMonopoly.addActionListener((ActionEvent e) -> {
             String monopoly = (String)cboMonopoly.getSelectedItem();
-            updateHousesCboBox(monopoly);
+            updateNumberCboBox(monopoly);
         });
     }
 
@@ -56,36 +57,24 @@ public class BuyHouseDialog extends JDialog {
         return btn;
     }
 
-    private void updateHousesCboBox(String monopoly) {
+    private void updateNumberCboBox(String monopoly) {
         cboNumber.removeAllItems();
         GameBoard gameBoard = mainCtl.getGameBoard();
         List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(monopoly);
-        int houses = properties.get(0).getNumHouses();
-        int maxBuy = 5 - houses;
-        for (int i = 1; i <= maxBuy; i++)
+        int numHouses = properties.get(0).getNumHouses();
+        int maxHouses = 5;
+        int maxPurchase = maxHouses - numHouses;
+        for (int i = 1; i <= maxPurchase; i++)
             cboNumber.addItem(i);
     }
 
-    private JComboBox<String> buildMonopolyComboBox() {
+    private JComboBox<String> buildMonopolyCboBox() {
         cboMonopoly = new JComboBox<>();
         List<String> monopolies = mainCtl.getMonopolies(player);
         monopolies.stream().forEach((monopoly) -> {
             cboMonopoly.addItem(monopoly);
         });
         return cboMonopoly;
-    }
-
-    private JComboBox<Integer> buildNumberComboBox() {
-        cboNumber = new JComboBox<>();
-        String monopoly = cboMonopoly.getItemAt(0);
-        GameBoard gameBoard = mainCtl.getGameBoard();
-        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(monopoly);
-        int houses = properties.get(0).getNumHouses();
-        int maxBuy = 5 - houses;
-        for (int i = 1; i <= maxBuy; i++)
-            cboNumber.addItem(i);
-        
-        return cboNumber;
     }
 
     private JButton buildOKButton() {
