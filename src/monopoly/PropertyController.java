@@ -139,41 +139,46 @@ public class PropertyController {
         if (property instanceof PropertyCell) {
             seller.removePropertyCell((PropertyCell)property);
             updatePropertyRent((PropertyCell) property);    
-        }
-        if (property instanceof RailRoadCell) {
+        } else if (property instanceof RailRoadCell) {
             seller.removeRailroadCell((RailRoadCell)property);
             updateRailRoadRent((RailRoadCell)property);
-        }
-        if (property instanceof UtilityCell) {
+        } else if (property instanceof UtilityCell) {
             seller.removeUtilityCell((UtilityCell)property);
         }
         seller.addMoney(deal.getAmount());
     }
     
     public void updatePropertyRent(PropertyCell property) {
-        int originalRent = property.getRent();
-        int newRent;
+        int previousRent = property.getRent();
         int numHouses = property.getNumHouses();
+        int newRent;
         Player owner = property.getOwner();
         
-        if (owner == null) {
-            property.setRent(property.originalRent());
-        } else {
+        resetPropertyRent(property.getColorGroup());
+        if (owner != null) {
             List<String> monopolies = getMonopolies(owner);
             for (String monopolie : monopolies) {
                 if (monopolie.equals(property.getColorGroup())) {
-                    updateColorGroupRent(monopolie);
+                    doublePropertyRent(monopolie);
                 }
             
                 if (numHouses > 0) {
-                    newRent = originalRent * (numHouses + 1);
+                    newRent = previousRent * (numHouses + 1);
                     property.setRent(newRent);
                 }
             }
         }
     }
     
-    public void updateColorGroupRent(String colorGroup) {
+    private void resetPropertyRent(String colorGroup) {
+        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
+        
+        properties.stream().forEach((property) -> {
+            property.setRent(property.originalRent());
+        });
+    }
+    
+    private void doublePropertyRent(String colorGroup) {
         List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
         
         properties.stream().forEach((property) -> {
