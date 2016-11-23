@@ -135,10 +135,9 @@ public class PropertyController {
         Player seller = deal.getSeller();
         Cell property = deal.getProperty();
         
-        property.setPlayer(null);
         if (property instanceof PropertyCell) {
             seller.removePropertyCell((PropertyCell)property);
-            updatePropertyRent((PropertyCell) property);    
+            updatePropertyRent((PropertyCell)property);    
         } else if (property instanceof RailRoadCell) {
             seller.removeRailroadCell((RailRoadCell)property);
             updateRailRoadRent((RailRoadCell)property);
@@ -190,9 +189,9 @@ public class PropertyController {
         Player owner = railroad.getOwner();
         int basePrice = railroad.getBaseRent();
         
-        if (owner == null) {
-            railroad.setRent(basePrice);
-        } else {
+        /* Reset to basePrice */
+        railroad.setRent(basePrice);
+        if (owner != null) {
             List<RailRoadCell> railRoads = owner.getRailRoadCells();
             int newRent = basePrice * (int)Math.pow(2, owner.numberOfRR() - 1);
             

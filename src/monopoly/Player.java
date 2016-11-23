@@ -127,11 +127,11 @@ public class Player {
     }
 
     public int numberOfRR() {
-        return getPropertyNumberForColor(RailRoadCell.COLOR_GROUP);
+        return railroads.size();
     }
 
     public int numberOfUtil() {
-        return getPropertyNumberForColor(UtilityCell.COLOR_GROUP);
+        return utilities.size();
     }
     
     public void removePropertyCell(PropertyCell property) {
