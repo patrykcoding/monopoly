@@ -135,62 +135,69 @@ public class PropertyController {
         Player seller = deal.getSeller();
         Cell property = deal.getProperty();
         
-        property.setPlayer(null);
         if (property instanceof PropertyCell) {
             seller.removePropertyCell((PropertyCell)property);
-            updatePropertyRent((PropertyCell) property);    
-        }
-        if (property instanceof RailRoadCell) {
+            updatePropertyRent((PropertyCell)property);    
+        } else if (property instanceof RailRoadCell) {
             seller.removeRailroadCell((RailRoadCell)property);
             updateRailRoadRent((RailRoadCell)property);
-        }
-        if (property instanceof UtilityCell) {
+        } else if (property instanceof UtilityCell) {
             seller.removeUtilityCell((UtilityCell)property);
         }
         seller.addMoney(deal.getAmount());
     }
     
     public void updatePropertyRent(PropertyCell property) {
-        int originalRent = property.getRent();
-        int newRent;
+        int previousRent = property.getRent();
         int numHouses = property.getNumHouses();
+        int newRent;
         Player owner = property.getOwner();
         
-        if (owner == null) {
-            property.setRent(property.originalRent());
-        } else {
+        resetPropertyRent(property.getColorGroup());
+        if (owner != null) {
             List<String> monopolies = getMonopolies(owner);
             for (String monopolie : monopolies) {
                 if (monopolie.equals(property.getColorGroup())) {
-                    updateColorGroupRent(monopolie);
+                    doublePropertyRent(monopolie);
                 }
             
                 if (numHouses > 0) {
-                    newRent = originalRent * (numHouses + 1);
+                    newRent = previousRent * (numHouses + 1);
                     property.setRent(newRent);
                 }
             }
         }
     }
     
-    public void updateColorGroupRent(String colorGroup) {
+    private void resetPropertyRent(String colorGroup) {
+        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
+        
+        properties.stream().forEach((property) -> {
+            property.setRent(property.originalRent());
+        });
+    }
+    
+    private void doublePropertyRent(String colorGroup) {
         List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
         
         properties.stream().forEach((property) -> {
             property.setRent(property.originalRent() * 2);
         });
-        
     }
     
     public void updateRailRoadRent(RailRoadCell railroad) {
         Player owner = railroad.getOwner();
         int basePrice = railroad.getBaseRent();
         
-        if (owner == null) {
-            railroad.setRent(basePrice);
-        } else {
+        /* Reset to basePrice */
+        railroad.setRent(basePrice);
+        if (owner != null) {
+            List<RailRoadCell> railRoads = owner.getRailRoadCells();
             int newRent = basePrice * (int)Math.pow(2, owner.numberOfRR() - 1);
-            railroad.setRent(newRent);
+            
+            railRoads.stream().forEach((playersRailroad) -> {
+                playersRailroad.setRent(newRent);
+            });
         }
     }
 }
