@@ -25,7 +25,7 @@ public class Dice {
         for (int i = 0; i < dice.length; i++) {
             total += dice[i];
         }
-        return 5;
+        return total;
     }
 
     public void setDice(int diceNumber, int value) {
