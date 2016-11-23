@@ -172,4 +172,8 @@ public class Player {
     public String toString() {
         return name;
     }
+
+    public List<RailRoadCell> getRailRoadCells() {
+        return railroads;
+    }
 }

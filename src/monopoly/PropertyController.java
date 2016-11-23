@@ -184,7 +184,6 @@ public class PropertyController {
         properties.stream().forEach((property) -> {
             property.setRent(property.originalRent() * 2);
         });
-        
     }
     
     public void updateRailRoadRent(RailRoadCell railroad) {
@@ -194,8 +193,12 @@ public class PropertyController {
         if (owner == null) {
             railroad.setRent(basePrice);
         } else {
+            List<RailRoadCell> railRoads = owner.getRailRoadCells();
             int newRent = basePrice * (int)Math.pow(2, owner.numberOfRR() - 1);
-            railroad.setRent(newRent);
+            
+            railRoads.stream().forEach((playersRailroad) -> {
+                playersRailroad.setRent(newRent);
+            });
         }
     }
 }
