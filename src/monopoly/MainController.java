@@ -76,6 +76,7 @@ public class MainController {
             gui.setRollDiceEnabled(true);
             gui.setBuyHouseEnabled(propertyCtl.canBuyHouse());
             gui.setGetOutOfJailEnabled(getCurrentPlayer().isInJail());
+            gui.setTradeEnabled(getTurn(), true);
         }
     }
 
