@@ -131,7 +131,13 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
             Player currentPlayer = mainCtl.getCurrentPlayer();
             if(currentPlayer.getMoney() > amount) {
                 deal = new TradeDeal(cell, currentPlayer, amount);
-            }   TradeDialogGUI.this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(TradeDialogGUI.this,
+                        "You don't have enough money to make this trade", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            TradeDialogGUI.this.setVisible(false);
         });
         
         super.pack();
