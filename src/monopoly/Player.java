@@ -136,16 +136,23 @@ public class Player {
     
     public void removePropertyCell(PropertyCell property) {
         properties.remove(property);
+        removePropertyColor(property.getColorGroup());
     }
     
     public void removeRailroadCell(RailRoadCell railroad) {
         railroads.remove(railroad);
+        removePropertyColor(RailRoadCell.COLOR_GROUP);
     }
     
     public void removeUtilityCell(UtilityCell utility) {
         utilities.remove(utility);
+        removePropertyColor(UtilityCell.COLOR_GROUP);
     }
 
+    public void removePropertyColor(String colorGroup) {
+        propertyColors.remove(colorGroup);
+    }
+    
     public void setInJail(boolean inJail) {
         this.inJail = inJail;
     }
