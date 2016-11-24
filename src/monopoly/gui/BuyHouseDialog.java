@@ -25,7 +25,7 @@ public class BuyHouseDialog extends JDialog {
     private final Player player;
     private final MainController mainCtl;
     
-    public BuyHouseDialog(MainController mainCtl, Player player) {
+    public BuyHouseDialog(MainController mainCtl, Player player, PlayerPanel panel) {
         this.mainCtl = mainCtl;
         this.player = player;
         
@@ -40,6 +40,7 @@ public class BuyHouseDialog extends JDialog {
         c.add(buildCancelButton());
         c.doLayout();
         super.pack();
+        super.setLocationRelativeTo(panel);
         
         updateNumberCboBox(cboMonopoly.getItemAt(0));
         

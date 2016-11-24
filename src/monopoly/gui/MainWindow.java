@@ -219,7 +219,9 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     @Override
     public void showBuyHouseDialog(Player currentPlayer) {
-        BuyHouseDialog dialog = new BuyHouseDialog(mainCtl, currentPlayer);
+        int currPlayerIdx = mainCtl.getPlayerIndex(currentPlayer);
+        PlayerPanel panel = playerPanels[currPlayerIdx];
+        BuyHouseDialog dialog = new BuyHouseDialog(mainCtl, currentPlayer, panel);
         dialog.setVisible(true);
     }
 
