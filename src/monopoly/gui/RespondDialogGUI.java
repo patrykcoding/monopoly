@@ -1,10 +1,8 @@
 package monopoly.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JDialog;
