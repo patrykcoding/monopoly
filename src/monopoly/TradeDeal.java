@@ -35,22 +35,6 @@ public class TradeDeal {
         return message;
     }
     
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-    
-    public void setPropertyName(String propertyName) {
-        this.propertyName = propertyName;
-    }
-    
-    public void setBuyer(Player buyer) {
-        this.buyer = buyer;
-    }
-    
-    public void setSeller(Player seller) {
-        this.seller = seller;
-    }
-    
     public Player getSeller() {
         return this.seller;
     }

@@ -147,7 +147,7 @@ public class PropertyController {
         seller.addMoney(deal.getAmount());
     }
     
-    public void updatePropertyRent(PropertyCell property) {
+    private void updatePropertyRent(PropertyCell property) {
         int previousRent = property.getRent();
         int numHouses = property.getNumHouses();
         int newRent;
@@ -185,7 +185,7 @@ public class PropertyController {
         });
     }
     
-    public void updateRailRoadRent(RailRoadCell railroad) {
+    private void updateRailRoadRent(RailRoadCell railroad) {
         Player owner = railroad.getOwner();
         int basePrice = railroad.getBaseRent();
         

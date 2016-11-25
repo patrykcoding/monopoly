@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,7 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.OverlayLayout;
 import javax.swing.border.BevelBorder;
-
 import monopoly.Card;
 import monopoly.Cell;
 import monopoly.MainController;
@@ -143,10 +141,6 @@ public class PlayerPanel extends JPanel {
         });
         txtProperty.setText(buf.toString());
     }
-    
-    public boolean isBuyHouseButtonEnabled() {
-        return btnBuyHouse.isEnabled();
-    }
 
     public boolean isDrawCardButtonEnabled() {
         return btnDrawCard.isEnabled();
@@ -160,14 +154,6 @@ public class PlayerPanel extends JPanel {
         return btnGetOutOfJail.isEnabled();
     }
     
-    public boolean isPurchasePropertyButtonEnabled() {
-        return btnPurchaseProperty.isEnabled();
-    }
-    
-    public boolean isRollDiceButtonEnabled() {
-        return btnRollDice.isEnabled();
-    }
-
     public boolean isTradeButtonEnabled() {
         return btnTrade.isEnabled();
     }

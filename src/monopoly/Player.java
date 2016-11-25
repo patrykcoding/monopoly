@@ -48,7 +48,7 @@ public class Player {
         addPropertyColor(colorGroup);
     }
     
-    public void addPropertyColor(String colorGroup) {
+    private void addPropertyColor(String colorGroup) {
         propertyColors.put(colorGroup, getPropertyNumberForColor(colorGroup) + 1);
     }
 	
@@ -149,7 +149,7 @@ public class Player {
         removePropertyColor(UtilityCell.COLOR_GROUP);
     }
 
-    public void removePropertyColor(String colorGroup) {
+    private void removePropertyColor(String colorGroup) {
         propertyColors.remove(colorGroup);
     }
     

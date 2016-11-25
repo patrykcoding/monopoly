@@ -170,7 +170,7 @@ public class MainController {
         gui.update();
     }
 
-    public void finishPlayerMove(Player player) {        
+    private void finishPlayerMove(Player player) {        
         Cell cell = player.getPosition();
         int playerIndex = getPlayerIndex(player);
         if (cell instanceof CardCell) {
@@ -233,10 +233,6 @@ public class MainController {
         boardCtl.setNumberOfPlayers(number);
     }
 
-    public void setUtilDiceRoll(int diceRoll) {
-        this.utilDiceRoll = diceRoll;
-    }
-
     public void startGame() {
         gui.startGame();
         gui.enablePlayerTurn(0);
@@ -263,7 +259,7 @@ public class MainController {
         return boardCtl.getTurn();
     }
     
-    public void getOutOfJail() {
+    private void getOutOfJail() {
         Player currentPlayer = boardCtl.getCurrentPlayer();
         currentPlayer.subtractMoney(JailCell.BAIL);
         if (currentPlayer.isBankrupt()) {
