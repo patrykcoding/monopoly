@@ -9,23 +9,22 @@ public class RailRoadCell extends Cell {
     private int rent;
     public static String COLOR_GROUP = "RAILROAD";
     private int price;
+    
+    public int getBaseRent() {
+        return baseRent;
+    }
+    
+    public int getRent() {
+        return rent;
+    }
 
     public void setBaseRent(int baseRent) {
         this.baseRent = baseRent;
         this.rent = baseRent;
     }
-    
-    public int getBaseRent() {
-        return baseRent;
-    }
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    @Override
-    public int getPrice() {
-        return price;
     }
 
     public void setRent(int rent) {
@@ -34,9 +33,10 @@ public class RailRoadCell extends Cell {
         }
         this.rent = rent;
     }
-    
-    public int getRent() {
-        return rent;
+
+    @Override
+    public int getPrice() {
+        return price;
     }
 
     @Override
