@@ -4,6 +4,7 @@ import monopoly.GameBoard;
 import monopoly.cells.GoToJailCell;
 import monopoly.cells.JailCell;
 import monopoly.cells.PropertyCell;
+import monopoly.enums.ColorGroup;
 
 public class GameBoardJail extends GameBoard {
     public GameBoardJail() {
@@ -23,11 +24,11 @@ public class GameBoardJail extends GameBoard {
         green1.setName("Green 1");
         green2.setName("Green 2");
 
-        blue1.setColorGroup("blue");
-        blue2.setColorGroup("blue");
-        blue3.setColorGroup("blue");
-        green1.setColorGroup("green");
-        green2.setColorGroup("green");
+        blue1.setColorGroup(ColorGroup.BLUE);
+        blue2.setColorGroup(ColorGroup.BLUE);
+        blue3.setColorGroup(ColorGroup.BLUE);
+        green1.setColorGroup(ColorGroup.GREEN);
+        green2.setColorGroup(ColorGroup.GREEN);
 
         blue1.setPrice(100);
         blue2.setPrice(100);

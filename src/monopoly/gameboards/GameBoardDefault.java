@@ -12,6 +12,7 @@ import monopoly.cells.RailRoadCell;
 import monopoly.cells.GoToJailCell;
 import monopoly.cells.UtilityCell;
 import monopoly.cells.JailCell;
+import monopoly.enums.ColorGroup;
 
 public class GameBoardDefault extends GameBoard {
     public GameBoardDefault() {
@@ -62,145 +63,145 @@ public class GameBoardDefault extends GameBoard {
         PropertyCell db3 = new PropertyCell();
         
         dp1.setPrice(60);
-        dp1.setColorGroup("purple");
+        dp1.setColorGroup(ColorGroup.PURPLE);
         dp1.setHousePrice(50);
         dp1.setName("Mediterranean Avenue");
         dp1.setRent(2);
         
         dp2.setPrice(60);
-        dp2.setColorGroup("purple");
+        dp2.setColorGroup(ColorGroup.PURPLE);
         dp2.setHousePrice(50);
         dp2.setName("Baltic Avenue");
         dp2.setRent(4);
         
         dp3.setPrice(60);
-        dp3.setColorGroup("purple");
+        dp3.setColorGroup(ColorGroup.PURPLE);
         dp3.setHousePrice(50);
         dp3.setName("Sarah Avenue");
         dp3.setRent(4);
         
         lb1.setPrice(100);
-        lb1.setColorGroup("teal");
+        lb1.setColorGroup(ColorGroup.TEAL);
         lb1.setHousePrice(50);
         lb1.setName("Oriental Avenue");
         lb1.setRent(6);
 
         lb2.setPrice(100);
-        lb2.setColorGroup("teal");
+        lb2.setColorGroup(ColorGroup.TEAL);
         lb2.setHousePrice(50);
         lb2.setName("Vermont Avenue");
         lb2.setRent(6);
 
         lb3.setPrice(120);
-        lb3.setColorGroup("teal");
+        lb3.setColorGroup(ColorGroup.TEAL);
         lb3.setHousePrice(50);
         lb3.setName("Connecticut Avenue");
         lb3.setRent(8);
         
         p1.setPrice(140);
-        p1.setColorGroup("fuchsia");
+        p1.setColorGroup(ColorGroup.FUCHSIA);
         p1.setHousePrice(100);
         p1.setName("St. Charles Place");
         p1.setRent(10);
         
         p2.setPrice(140);
-        p2.setColorGroup("fuchsia");
+        p2.setColorGroup(ColorGroup.FUCHSIA);
         p2.setHousePrice(100);
         p2.setName("States Avenue");
         p2.setRent(10);
         
         p3.setPrice(160);
-        p3.setColorGroup("fuchsia");
+        p3.setColorGroup(ColorGroup.FUCHSIA);
         p3.setHousePrice(100);
         p3.setName("Virginia Avenue");
         p3.setRent(12);
         
         o1.setPrice(180);
-        o1.setColorGroup("maroon");
+        o1.setColorGroup(ColorGroup.MAROON);
         o1.setHousePrice(100);
         o1.setName("St. James Avenue");
         o1.setRent(14);
         
         o2.setPrice(180);
-        o2.setColorGroup("maroon");
+        o2.setColorGroup(ColorGroup.MAROON);
         o2.setHousePrice(100);
         o2.setName("Tennessee Avenue");
         o2.setRent(14);
         
         o3.setPrice(200);
-        o3.setColorGroup("maroon");
+        o3.setColorGroup(ColorGroup.MAROON);
         o3.setHousePrice(100);
         o3.setName("New York Avenue");
         o3.setRent(16);
         
         r1.setPrice(220);
-        r1.setColorGroup("red");
+        r1.setColorGroup(ColorGroup.RED);
         r1.setHousePrice(150);
         r1.setName("Kentucky Avenue");
         r1.setRent(18);
         
         r2.setPrice(220);
-        r2.setColorGroup("red");
+        r2.setColorGroup(ColorGroup.RED);
         r2.setHousePrice(150);
         r2.setName("Indiana Avenue");
         r2.setRent(18);
         
         r3.setPrice(240);
-        r3.setColorGroup("red");
+        r3.setColorGroup(ColorGroup.RED);
         r3.setHousePrice(150);
         r3.setName("Illinois Avenue");
         r3.setRent(20);
         
         y1.setPrice(260);
-        y1.setColorGroup("orange");
+        y1.setColorGroup(ColorGroup.ORANGE);
         y1.setHousePrice(150);
         y1.setName("Atlantic Avenue");
         y1.setRent(22);
         
         y2.setPrice(260);
-        y2.setColorGroup("orange");
+        y2.setColorGroup(ColorGroup.ORANGE);
         y2.setHousePrice(150);
         y2.setName("Ventnor Avenue");
         y2.setRent(22);
         
         y3.setPrice(280);
-        y3.setColorGroup("orange");
+        y3.setColorGroup(ColorGroup.ORANGE);
         y3.setHousePrice(150);
         y3.setName("Marvin Gardens");
         y3.setRent(24);
         
         g1.setPrice(300);
-        g1.setColorGroup("green");
+        g1.setColorGroup(ColorGroup.GREEN);
         g1.setHousePrice(200);
         g1.setName("Pacific Avenue");
         g1.setRent(26);
         
         g2.setPrice(300);
-        g2.setColorGroup("green");
+        g2.setColorGroup(ColorGroup.GREEN);
         g2.setHousePrice(200);
         g2.setName("North Carolina Avenue");
         g2.setRent(26);
         
         g3.setPrice(320);
-        g3.setColorGroup("green");
+        g3.setColorGroup(ColorGroup.GREEN);
         g3.setHousePrice(200);
         g3.setName("Pennsylvania Avenue");
         g3.setRent(28);
         
         db1.setPrice(350);
-        db1.setColorGroup("blue");
+        db1.setColorGroup(ColorGroup.BLUE);
         db1.setHousePrice(200);
         db1.setName("Park Place");
         db1.setRent(35);
         
         db2.setPrice(350);
-        db2.setColorGroup("blue");
+        db2.setColorGroup(ColorGroup.BLUE);
         db2.setHousePrice(200);
         db2.setName("Dright Place");
         db2.setRent(35);
         
         db3.setPrice(400);
-        db3.setColorGroup("blue");
+        db3.setColorGroup(ColorGroup.BLUE);
         db3.setHousePrice(200);
         db3.setName("Boardwalk");
         db3.setRent(50);

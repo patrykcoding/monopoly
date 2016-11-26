@@ -7,6 +7,7 @@ import monopoly.GameBoard;
 import monopoly.cards.JailCard;
 import monopoly.cells.JailCell;
 import monopoly.cells.PropertyCell;
+import monopoly.enums.ColorGroup;
 
 public class GameBoardCCJail extends GameBoard {
     
@@ -24,8 +25,8 @@ public class GameBoardCCJail extends GameBoard {
         blue1.setName("Blue 1");
         blue2.setName("Blue 2");
 		
-        blue1.setColorGroup("blue");
-        blue2.setColorGroup("blue");
+        blue1.setColorGroup(ColorGroup.BLUE);
+        blue2.setColorGroup(ColorGroup.BLUE);
 		
         blue1.setPrice(100);
         blue2.setPrice(100);

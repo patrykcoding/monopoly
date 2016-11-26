@@ -5,8 +5,6 @@ import monopoly.MainController;
 import monopoly.Player;
 
 public class UtilityCell extends Cell {
-
-    public static final String COLOR_GROUP = "UTILITY";
     private static int PRICE;
 
     public static void setPrice(int price) {

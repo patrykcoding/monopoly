@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import monopoly.enums.ColorGroup;
 
 public class Player {
     private final int INITIAL_MONEY = 1500;
     //the key of propertyColors is the name of the playerColor group.
-    private final Map<String, Integer> propertyColors = new HashMap<>();
+    private final Map<ColorGroup, Integer> propertyColors = new HashMap<>();
     private boolean inJail;
     private int money;
     private String name;
@@ -32,23 +33,20 @@ public class Player {
     
     public void addUtility (UtilityCell utility) {
         utilities.add(utility);
-        String colorGroup = UtilityCell.COLOR_GROUP;
-        addPropertyColor(colorGroup);
+        addPropertyColor(ColorGroup.UTILITY);
     }
     
     public void addRailRoad(RailRoadCell railroad) {
         railroads.add(railroad);
-        String colorGroup = RailRoadCell.COLOR_GROUP;
-        addPropertyColor(colorGroup);
+        addPropertyColor(ColorGroup.RAILROAD);
     }
     
     public void addProperty(PropertyCell property) {
         properties.add(property);
-        String colorGroup = property.getColorGroup();
-        addPropertyColor(colorGroup);
+        addPropertyColor(property.getColorGroup());
     }
     
-    private void addPropertyColor(String colorGroup) {
+    private void addPropertyColor(ColorGroup colorGroup) {
         propertyColors.put(colorGroup, getPropertyNumberForColor(colorGroup) + 1);
     }
 	
@@ -94,7 +92,7 @@ public class Player {
         this.money += money;
     }
     
-    public Map<String, Integer> getPropertyColors() {
+    public Map<ColorGroup, Integer> getPropertyColors() {
         return propertyColors;
     }
     
@@ -110,8 +108,8 @@ public class Player {
         return properties.size();
     }
 
-    private int getPropertyNumberForColor(String name) {
-        Integer number = propertyColors.get(name);
+    private int getPropertyNumberForColor(ColorGroup colorGroup) {
+        Integer number = propertyColors.get(colorGroup);
         if (number != null) {
             return number;
         }
@@ -141,15 +139,15 @@ public class Player {
     
     public void removeRailroadCell(RailRoadCell railroad) {
         railroads.remove(railroad);
-        removePropertyColor(RailRoadCell.COLOR_GROUP);
+        removePropertyColor(ColorGroup.RAILROAD);
     }
     
     public void removeUtilityCell(UtilityCell utility) {
         utilities.remove(utility);
-        removePropertyColor(UtilityCell.COLOR_GROUP);
+        removePropertyColor(ColorGroup.UTILITY);
     }
 
-    private void removePropertyColor(String colorGroup) {
+    private void removePropertyColor(ColorGroup colorGroup) {
         propertyColors.remove(colorGroup);
     }
     

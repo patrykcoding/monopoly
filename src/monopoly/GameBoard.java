@@ -8,13 +8,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import monopoly.enums.ColorGroup;
 
 public class GameBoard {
 
     private final List<Cell> cells = new ArrayList<>();
     private final List<Card> chanceCards = new ArrayList<>();
     //the key of propertyColors is the name of the color group.
-    private final Map<String, Integer> propertyColors = new HashMap<>();
+    private final Map<ColorGroup, Integer> propertyColors = new HashMap<>();
     private final List<Card> communityChestCards = new ArrayList<>();
 
     public GameBoard() {
@@ -60,7 +61,7 @@ public class GameBoard {
         return cells.size();
     }
 	
-    public List<PropertyCell> getPropertiesInMonopoly(String color) {
+    public List<PropertyCell> getPropertiesInMonopoly(ColorGroup color) {
         List<PropertyCell> monopolyCells = new ArrayList<>();
         cells.stream().filter((cell) 
                 -> (cell instanceof PropertyCell)).map((cell)
@@ -71,8 +72,8 @@ public class GameBoard {
         return monopolyCells;
     }
 	
-    public int getPropertyNumberForColor(String name) {
-        Integer number = propertyColors.get(name);
+    public int getPropertyNumberForColor(ColorGroup colorGroup) {
+        Integer number = propertyColors.get(colorGroup);
         if (number != null) {
             return number;
         }

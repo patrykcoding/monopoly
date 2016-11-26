@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import monopoly.Cell;
 import monopoly.GameBoard;
 import monopoly.cells.PropertyCell;
+import monopoly.enums.ColorGroup;
 import tests.gameboards.SimpleGameBoard;
 
 public class GameboardTest extends TestCase {
@@ -27,7 +28,7 @@ public class GameboardTest extends TestCase {
 
     public void testCellsForMonopoly() {
         GameBoard gb = new SimpleGameBoard();
-        List<PropertyCell> properties = gb.getPropertiesInMonopoly("blue");
+        List<PropertyCell> properties = gb.getPropertiesInMonopoly(ColorGroup.BLUE);
         assertEquals("Blue 1", properties.get(0).getName());
         assertEquals("Blue 2", properties.get(1).getName());
         assertEquals("Blue 3", properties.get(2).getName());
@@ -37,19 +38,19 @@ public class GameboardTest extends TestCase {
     public void testPropertyNumberForColor() {
         PropertyCell cell1 = new PropertyCell();
         cell1.setName("Blue 1");
-        cell1.setColorGroup("blue");
+        cell1.setColorGroup(ColorGroup.BLUE);
         PropertyCell cell2 = new PropertyCell();
         cell2.setName("Blue 2");
-        cell2.setColorGroup("blue");
+        cell2.setColorGroup(ColorGroup.BLUE);
         PropertyCell cell3 = new PropertyCell();
         cell3.setName("Green 1");
-        cell3.setColorGroup("green");
+        cell3.setColorGroup(ColorGroup.GREEN);
 
         gameBoard.addCell(cell1);
         gameBoard.addCell(cell2);
         gameBoard.addCell(cell3);
-        assertEquals(2, gameBoard.getPropertyNumberForColor("blue"));
-        assertEquals(1, gameBoard.getPropertyNumberForColor("green"));
+        assertEquals(2, gameBoard.getPropertyNumberForColor(ColorGroup.BLUE));
+        assertEquals(1, gameBoard.getPropertyNumberForColor(ColorGroup.GREEN));
     }
 
     public void testQueryCell() {
