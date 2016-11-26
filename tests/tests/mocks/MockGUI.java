@@ -20,15 +20,7 @@ public class MockGUI implements MonopolyGUI {
 
     @Override
     public void enablePurchaseBtn(int playerIndex) {}
-	
-    @Override
-    public Dice getDiceRoll() {
-        Dice dice = new Dice(2);
-        dice.setDice(0, 2);
-        dice.setDice(1, 3);
-        return dice;
-    }
-
+    
     @Override
     public boolean isDrawCardButtonEnabled() {
         return btnDrawCardState;

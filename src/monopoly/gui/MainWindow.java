@@ -99,13 +99,6 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     }
 
     @Override
-    public Dice getDiceRoll() {
-        TestDiceRollDialog dialog = new TestDiceRollDialog(this);
-        dialog.setVisible(true);
-        return dialog.getDiceRoll();
-    }
-
-    @Override
     public boolean isDrawCardButtonEnabled() {
         int currentPlayerIndex = mainCtl.getTurn();
         return playerPanels[currentPlayerIndex].isDrawCardButtonEnabled();

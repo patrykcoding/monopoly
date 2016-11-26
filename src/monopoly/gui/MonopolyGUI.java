@@ -10,7 +10,6 @@ public interface MonopolyGUI {
     public void enableEndTurnBtn(int playerIndex);
     public void enablePlayerTurn(int playerIndex);
     public void enablePurchaseBtn(int playerIndex);
-    public Dice getDiceRoll();
     public boolean isDrawCardButtonEnabled();
     public boolean isEndTurnButtonEnabled();
     public boolean isGetOutOfJailButtonEnabled();
