@@ -1,5 +1,7 @@
 package monopoly;
 
+import java.util.Arrays;
+
 public class Dice {
     private static final int DICE_SIDES = 6;
     private final int[] dice;
@@ -21,11 +23,7 @@ public class Dice {
     }
     
     public int getTotal() {
-        int total = 0;
-        for (int i = 0; i < dice.length; i++) {
-            total += dice[i];
-        }
-        return total;
+        return Arrays.stream(dice).sum();
     }
 
     public void setDice(int diceNumber, int value) {
