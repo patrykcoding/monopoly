@@ -7,6 +7,7 @@ import monopoly.cells.JailCell;
 import monopoly.cells.PropertyCell;
 import monopoly.cells.RailRoadCell;
 import monopoly.cells.UtilityCell;
+import monopoly.enums.ColorGroup;
 
 public class GameBoardUtility extends GameBoard {
     public GameBoardUtility() {
@@ -32,10 +33,10 @@ public class GameBoardUtility extends GameBoard {
         green1.setName("Green 1");
         green2.setName("Green 2");
 
-        blue1.setColorGroup("blue");
-        blue2.setColorGroup("blue");
-        green1.setColorGroup("green");
-        green2.setColorGroup("green");
+        blue1.setColorGroup(ColorGroup.BLUE);
+        blue2.setColorGroup(ColorGroup.BLUE);
+        green1.setColorGroup(ColorGroup.GREEN);
+        green2.setColorGroup(ColorGroup.GREEN);
 
         rr1.setName("Railroad A");
         rr1.setPrice(rrPrice);

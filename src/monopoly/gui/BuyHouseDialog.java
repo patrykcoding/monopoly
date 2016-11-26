@@ -15,11 +15,12 @@ import monopoly.MainController;
 
 import monopoly.Player;
 import monopoly.cells.PropertyCell;
+import monopoly.enums.ColorGroup;
 
 public class BuyHouseDialog extends JDialog {
     private static final long serialVersionUID = -8707274599957567230L;
     
-    private JComboBox<String> cboMonopoly;
+    private JComboBox<ColorGroup> cboMonopoly;
     private final JComboBox<Integer> cboNumber;
 
     private final Player player;
@@ -45,7 +46,7 @@ public class BuyHouseDialog extends JDialog {
         updateNumberCboBox(cboMonopoly.getItemAt(0));
         
         cboMonopoly.addActionListener((ActionEvent e) -> {
-            String monopoly = (String)cboMonopoly.getSelectedItem();
+            ColorGroup monopoly = (ColorGroup)cboMonopoly.getSelectedItem();
             updateNumberCboBox(monopoly);
         });
     }
@@ -58,7 +59,7 @@ public class BuyHouseDialog extends JDialog {
         return btn;
     }
 
-    private void updateNumberCboBox(String monopoly) {
+    private void updateNumberCboBox(ColorGroup monopoly) {
         cboNumber.removeAllItems();
         GameBoard gameBoard = mainCtl.getGameBoard();
         List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(monopoly);
@@ -69,9 +70,9 @@ public class BuyHouseDialog extends JDialog {
             cboNumber.addItem(i);
     }
 
-    private JComboBox<String> buildMonopolyCboBox() {
+    private JComboBox<ColorGroup> buildMonopolyCboBox() {
         cboMonopoly = new JComboBox<>();
-        List<String> monopolies = mainCtl.getMonopolies(player);
+        List<ColorGroup> monopolies = mainCtl.getMonopolies(player);
         monopolies.stream().forEach((monopoly) -> {
             cboMonopoly.addItem(monopoly);
         });
@@ -91,7 +92,7 @@ public class BuyHouseDialog extends JDialog {
     }
 
     private void okClicked() {
-        String monopoly = (String)cboMonopoly.getSelectedItem();
+        ColorGroup monopoly = (ColorGroup)cboMonopoly.getSelectedItem();
         int number = cboNumber.getSelectedIndex() + 1;
         mainCtl.purchaseHouse(monopoly, number);
         this.dispose();

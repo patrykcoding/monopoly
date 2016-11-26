@@ -13,6 +13,7 @@ import monopoly.RespondDialog;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
 import monopoly.cells.PropertyCell;
+import monopoly.enums.ColorGroup;
 import monopoly.gui.PlayerPanel;
 
 public class MainControllerTest extends TestCase {
@@ -129,8 +130,8 @@ public class MainControllerTest extends TestCase {
         mainCtl.purchase();
         mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
         mainCtl.purchase();
-        mainCtl.purchaseHouse("purple", 2);
-        assertEquals("purple", mainCtl.getMonopolies(mainCtl.getPlayer(0)).get(0));
+        mainCtl.purchaseHouse(ColorGroup.PURPLE, 2);
+        assertEquals(ColorGroup.PURPLE, mainCtl.getMonopolies(mainCtl.getPlayer(0)).get(0));
         assertEquals(1020, mainCtl.getPlayer(0).getMoney());
     }
     

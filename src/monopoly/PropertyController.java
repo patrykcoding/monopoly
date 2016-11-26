@@ -8,6 +8,7 @@ import java.util.Set;
 import monopoly.cells.PropertyCell;
 import monopoly.cells.RailRoadCell;
 import monopoly.cells.UtilityCell;
+import monopoly.enums.ColorGroup;
 
 public class PropertyController {
     private final BoardController boardCtl;
@@ -27,7 +28,7 @@ public class PropertyController {
         return sellers;
     }
     
-    public int purchaseHouse(String selectedMonopoly, int houses) {
+    public int purchaseHouse(ColorGroup selectedMonopoly, int houses) {
         Player currentPlayer = boardCtl.getCurrentPlayer();
         
         int numOfHouses = 0;
@@ -76,14 +77,14 @@ public class PropertyController {
         }
     }
     
-    public List<String> getMonopolies(Player player) {
-        Map<String, Integer> propertyColors = player.getPropertyColors();
-        List<String> monopolies = new ArrayList<>();
-        Set<String> colors = propertyColors.keySet();
+    public List<ColorGroup> getMonopolies(Player player) {
+        Map<ColorGroup, Integer> propertyColors = player.getPropertyColors();
+        List<ColorGroup> monopolies = new ArrayList<>();
+        Set<ColorGroup> colors = propertyColors.keySet();
         
         for (int i = 0; i < colors.size(); i++) {
-            String propertyColor = colors.toArray()[i].toString();
-            if (!propertyColor.equals(RailRoadCell.COLOR_GROUP) && !propertyColor.equals(UtilityCell.COLOR_GROUP)) {
+            ColorGroup propertyColor = (ColorGroup) colors.toArray()[i];
+            if (!propertyColor.equals(ColorGroup.RAILROAD) && !propertyColor.equals(ColorGroup.UTILITY)) {
                 Integer num = propertyColors.get(propertyColor);
                 if (num == gameBoard.getPropertyNumberForColor(propertyColor)) {
                     monopolies.add(propertyColor);
@@ -155,8 +156,8 @@ public class PropertyController {
         
         resetPropertyRent(property.getColorGroup());
         if (owner != null) {
-            List<String> monopolies = getMonopolies(owner);
-            for (String monopolie : monopolies) {
+            List<ColorGroup> monopolies = getMonopolies(owner);
+            for (ColorGroup monopolie : monopolies) {
                 if (monopolie.equals(property.getColorGroup())) {
                     doublePropertyRent(monopolie);
                 }
@@ -169,7 +170,7 @@ public class PropertyController {
         }
     }
     
-    private void resetPropertyRent(String colorGroup) {
+    private void resetPropertyRent(ColorGroup colorGroup) {
         List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
         
         properties.stream().forEach((property) -> {
@@ -177,7 +178,7 @@ public class PropertyController {
         });
     }
     
-    private void doublePropertyRent(String colorGroup) {
+    private void doublePropertyRent(ColorGroup colorGroup) {
         List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
         
         properties.stream().forEach((property) -> {

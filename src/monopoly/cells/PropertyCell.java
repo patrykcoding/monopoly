@@ -3,16 +3,17 @@ package monopoly.cells;
 import monopoly.Cell;
 import monopoly.MainController;
 import monopoly.Player;
+import monopoly.enums.ColorGroup;
 
 public class PropertyCell extends Cell {
-    private String colorGroup;
+    private ColorGroup colorGroup;
     private int housePrice;
     private int numHouses;
     private int rent;
     private int sellPrice;
     private int originalRent = 0;
     
-    public String getColorGroup() {
+    public ColorGroup getColorGroup() {
         return colorGroup;
     }
 
@@ -40,7 +41,7 @@ public class PropertyCell extends Cell {
         }
     }
 
-    public void setColorGroup(String colorGroup) {
+    public void setColorGroup(ColorGroup colorGroup) {
         this.colorGroup = colorGroup;
     }
 

@@ -6,6 +6,7 @@ import junit.framework.TestCase;
 import monopoly.cells.GoCell;
 import monopoly.Player;
 import monopoly.cells.PropertyCell;
+import monopoly.enums.ColorGroup;
 
 public class CellInfoFormatterTest extends TestCase {
     
@@ -17,7 +18,7 @@ public class CellInfoFormatterTest extends TestCase {
     
     public void testPropertyCellText() {
         String propertyName = "Blue 1";
-        String propertyColor = "blue";
+        ColorGroup propertyColor = ColorGroup.BLUE;
         String ownerName = "Owner1";
         int numHouses = 2;
         int propertyValue = 120;

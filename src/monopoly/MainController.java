@@ -6,6 +6,7 @@ import monopoly.gameboards.GameBoardDefault;
 import monopoly.cells.CardCell;
 import java.util.List;
 import monopoly.cells.JailCell;
+import monopoly.enums.ColorGroup;
 import monopoly.gui.PlayerPanel;
 
 public class MainController {
@@ -270,13 +271,13 @@ public class MainController {
         gui.update();
     }
     
-    public void purchaseHouse(String selectedMonopoly, int houses) {
+    public void purchaseHouse(ColorGroup selectedMonopoly, int houses) {
         if (propertyCtl.purchaseHouse(selectedMonopoly, houses) <= 5) {
             gui.update();
         }
     }
 
-    public List<String> getMonopolies(Player player) {
+    public List<ColorGroup> getMonopolies(Player player) {
         return propertyCtl.getMonopolies(player);
     }
 

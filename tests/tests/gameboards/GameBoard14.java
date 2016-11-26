@@ -2,6 +2,7 @@ package tests.gameboards;
 
 import monopoly.GameBoard;
 import monopoly.cells.PropertyCell;
+import monopoly.enums.ColorGroup;
 
 public class GameBoard14 extends GameBoard {
     public GameBoard14() {
@@ -22,31 +23,31 @@ public class GameBoard14 extends GameBoard {
         PropertyCell yellow2 = new PropertyCell();
 
         blue1.setName("Blue 1");
-        blue1.setColorGroup("blue");
+        blue1.setColorGroup(ColorGroup.BLUE);
         blue2.setName("Blue 2");
-        blue2.setColorGroup("blue");
+        blue2.setColorGroup(ColorGroup.BLUE);
         blue3.setName("Blue 3");
-        blue3.setColorGroup("blue");
+        blue3.setColorGroup(ColorGroup.BLUE);
         green1.setName("Green 1");
-        green1.setColorGroup("green");
+        green1.setColorGroup(ColorGroup.GREEN);
         green2.setName("Green 2");
-        green2.setColorGroup("green");
+        green2.setColorGroup(ColorGroup.GREEN);
         green3.setName("Green 3");
-        green3.setColorGroup("green");
+        green3.setColorGroup(ColorGroup.GREEN);
         red1.setName("Red 1");
-        red1.setColorGroup("red");
+        red1.setColorGroup(ColorGroup.RED);
         red2.setName("Red 2");
-        red2.setColorGroup("red");
+        red2.setColorGroup(ColorGroup.RED);
         red3.setName("Red 3");
-        red3.setColorGroup("red");
+        red3.setColorGroup(ColorGroup.RED);
         purple1.setName("Purple 1");
-        purple1.setColorGroup("purple");
+        purple1.setColorGroup(ColorGroup.PURPLE);
         purple2.setName("Purple 2");		
-        purple2.setColorGroup("purple");
+        purple2.setColorGroup(ColorGroup.PURPLE);
         yellow1.setName("Yellow 1");
-        yellow1.setColorGroup("yellow");
+        yellow1.setColorGroup(ColorGroup.YELLOW);
         yellow2.setName("Yellow 2");
-        yellow2.setColorGroup("yellow");
+        yellow2.setColorGroup(ColorGroup.YELLOW);
 		
         blue1.setPrice(100);
         blue2.setPrice(100);
