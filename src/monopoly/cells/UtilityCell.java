@@ -27,13 +27,13 @@ public class UtilityCell extends Cell {
     @Override
     public void playAction(MainController mainCtl) {
         Player currentPlayer;
-        if (!isAvailable()) {
-            currentPlayer = mainCtl.getCurrentPlayer();
-            if (player != currentPlayer) {
-                mainCtl.utilRollDice();
-                int diceRoll = mainCtl.getUtilDiceRoll();
-                mainCtl.payRentTo(player, getRent(diceRoll));
-            }
+        if (isAvailable())
+            return;
+        currentPlayer = mainCtl.getCurrentPlayer();
+        if (player != currentPlayer) {
+            mainCtl.utilRollDice();
+            int diceRoll = mainCtl.getUtilDiceRoll();
+            mainCtl.payRentTo(player, getRent(diceRoll));
         }
     }
 }

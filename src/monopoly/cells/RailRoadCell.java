@@ -43,11 +43,10 @@ public class RailRoadCell extends Cell {
     @Override
     public void playAction(MainController mainCtl) {
         Player currentPlayer;
-        if (!isAvailable()) {
-            currentPlayer = mainCtl.getCurrentPlayer();
-            if (player != currentPlayer) {
-                mainCtl.payRentTo(player, getRent());
-            }
-        }
+        if (isAvailable())
+            return;
+        currentPlayer = mainCtl.getCurrentPlayer();
+        if (player != currentPlayer)
+            mainCtl.payRentTo(player, getRent());
     }
 }

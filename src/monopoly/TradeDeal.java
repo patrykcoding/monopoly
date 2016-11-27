@@ -1,11 +1,11 @@
 package monopoly;
 
 public class TradeDeal {
-    private int amount;
-    private Player buyer;
+    private final int amount;
+    private final Player buyer;
     private final Cell property;
-    private String propertyName;
-    private Player seller;
+    private final String propertyName;
+    private final Player seller;
     
     public TradeDeal(Cell property, Player buyer, int amount) {
         this.propertyName = property.getName();

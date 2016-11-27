@@ -170,15 +170,15 @@ public class PropertyController {
         Player owner = property.getOwner();
         
         resetPropertyRent(property.getColorGroup());
-        if (owner != null) {
-            List<ColorGroup> monopolies = getMonopolies(owner);
-            for (ColorGroup monopolie : monopolies) {
-                if (monopolie.equals(property.getColorGroup()))
-                    doublePropertyRent(monopolie);            
-                if (numHouses > 0) {
-                    newRent = previousRent * (numHouses + 1);
-                    property.setRent(newRent);
-                }
+        if (owner == null)
+            return;
+        List<ColorGroup> monopolies = getMonopolies(owner);
+        for (ColorGroup monopolie : monopolies) {
+            if (monopolie.equals(property.getColorGroup()))
+                doublePropertyRent(monopolie);            
+            if (numHouses > 0) {
+                newRent = previousRent * (numHouses + 1);
+                property.setRent(newRent);
             }
         }
     }
@@ -189,13 +189,13 @@ public class PropertyController {
         
         /* Reset to basePrice */
         railroad.setRent(basePrice);
-        if (owner != null) {
-            List<RailRoadCell> railRoads = owner.getRailRoadCells();
-            int newRent = basePrice * (int)Math.pow(2, owner.numberOfRR() - 1);
+        if (owner == null)
+            return;
+        List<RailRoadCell> railRoads = owner.getRailRoadCells();
+        int newRent = basePrice * (int)Math.pow(2, owner.numberOfRR() - 1);
             
-            railRoads.stream().forEach((playersRailroad) -> {
-                playersRailroad.setRent(newRent);
-            });
-        }
+        railRoads.stream().forEach((playersRailroad) -> {
+            playersRailroad.setRent(newRent);
+        });
     }
 }

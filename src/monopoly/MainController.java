@@ -239,15 +239,12 @@ public class MainController {
     }
 	
     public void sendToJail(Player player) {
-        int oldPosition = gameBoard.queryCellIndex(getCurrentPlayer().getPosition().getName());
+        String currentPlayerName = getCurrentPlayer().getPosition().getName();
+        int oldPosition = gameBoard.queryCellIndex(currentPlayerName);
         player.setPosition(gameBoard.queryCell("Jail"));
         player.setInJail(true);
         int jailIndex = gameBoard.queryCellIndex("Jail");
-        gui.movePlayer(
-                getPlayerIndex(player),
-                oldPosition,
-                jailIndex
-        );
+        gui.movePlayer(getPlayerIndex(player), oldPosition, jailIndex);
     }
     
     private void setAllButtonEnabled(boolean enabled) {
