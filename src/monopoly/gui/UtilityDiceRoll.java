@@ -10,11 +10,11 @@ import javax.swing.JPanel;
 import monopoly.Dice;
 import monopoly.MainController;
 
-public class UtilDiceRoll extends JDialog {
+public class UtilityDiceRoll extends JDialog {
     private static final long serialVersionUID = -2985807932807855607L;
     
     public static int showDialog(MainController mainController, PlayerPanel panel) {
-        UtilDiceRoll dialog = new UtilDiceRoll(mainController, panel);
+        UtilityDiceRoll dialog = new UtilityDiceRoll(mainController, panel);
         dialog.setVisible(true);
         return dialog.diceValue;
     }
@@ -26,7 +26,7 @@ public class UtilDiceRoll extends JDialog {
     private final MainController mainController;
     
  
-    public UtilDiceRoll(MainController mainController, PlayerPanel panel) {
+    public UtilityDiceRoll(MainController mainController, PlayerPanel panel) {
         this.mainController = mainController;
         super.setModal(true);
         okButton.setEnabled(false);

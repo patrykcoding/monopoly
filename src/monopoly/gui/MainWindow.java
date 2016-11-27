@@ -221,7 +221,7 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     @Override
     public int showUtilityDiceRoll() {
         int currentPlayerIndex = mainController.getPlayerIndex(mainController.getCurrentPlayer());
-        return UtilDiceRoll.showDialog(mainController, playerPanels[currentPlayerIndex]);
+        return UtilityDiceRoll.showDialog(mainController, playerPanels[currentPlayerIndex]);
     }
 
     @Override
