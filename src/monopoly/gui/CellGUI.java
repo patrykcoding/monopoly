@@ -12,11 +12,10 @@ import monopoly.Player;
 import monopoly.BoardController;
 
 public class CellGUI extends JPanel {
-
+    private static final long serialVersionUID = 2752137388247147409L;
     private final Cell cell;
     private JLabel lblInfo;
     private final JLabel[] lblPlayers = new JLabel[BoardController.MAX_PLAYER];
-    private static final long serialVersionUID = 2752137388247147409L;
     
     public CellGUI(Cell cell) {
         this.cell = cell;

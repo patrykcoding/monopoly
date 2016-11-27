@@ -19,12 +19,10 @@ import monopoly.enums.ColorGroup;
 
 public class BuyHouseDialog extends JDialog {
     private static final long serialVersionUID = -8707274599957567230L;
-    
     private JComboBox<ColorGroup> cboMonopoly;
     private final JComboBox<Integer> cboNumber;
-
-    private final Player player;
     private final MainController mainCtl;
+    private final Player player;
     
     public BuyHouseDialog(MainController mainCtl, Player player, PlayerPanel panel) {
         this.mainCtl = mainCtl;
@@ -59,17 +57,6 @@ public class BuyHouseDialog extends JDialog {
         return btn;
     }
 
-    private void updateNumberCboBox(ColorGroup monopoly) {
-        cboNumber.removeAllItems();
-        GameBoard gameBoard = mainCtl.getGameBoard();
-        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(monopoly);
-        int numHouses = properties.get(0).getNumHouses();
-        int maxHouses = 5;
-        int maxPurchase = maxHouses - numHouses;
-        for (int i = 1; i <= maxPurchase; i++)
-            cboNumber.addItem(i);
-    }
-
     private JComboBox<ColorGroup> buildMonopolyCboBox() {
         cboMonopoly = new JComboBox<>();
         List<ColorGroup> monopolies = mainCtl.getMonopolies(player);
@@ -96,5 +83,16 @@ public class BuyHouseDialog extends JDialog {
         int number = cboNumber.getSelectedIndex() + 1;
         mainCtl.purchaseHouse(monopoly, number);
         this.dispose();
+    }
+    
+    private void updateNumberCboBox(ColorGroup monopoly) {
+        cboNumber.removeAllItems();
+        GameBoard gameBoard = mainCtl.getGameBoard();
+        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(monopoly);
+        int numHouses = properties.get(0).getNumHouses();
+        int maxHouses = 5;
+        int maxPurchase = maxHouses - numHouses;
+        for (int i = 1; i <= maxPurchase; i++)
+            cboNumber.addItem(i);
     }
 }

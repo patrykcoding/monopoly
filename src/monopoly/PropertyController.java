@@ -1,4 +1,3 @@
-
 package monopoly;
 
 import java.util.ArrayList;
@@ -19,34 +18,6 @@ public class PropertyController {
         this.gameBoard = boardCtl.getGameBoard();
     }
 
-    public List<Player> getSellerList() {
-        List<Player> sellers = new ArrayList<>();
-        boardCtl.getPlayers().stream().filter((player) -> 
-                (player != boardCtl.getCurrentPlayer())).forEach((player) -> {
-            sellers.add(player);
-        });
-        return sellers;
-    }
-    
-    public int purchaseHouse(ColorGroup selectedMonopoly, int houses) {
-        Player currentPlayer = boardCtl.getCurrentPlayer();
-        
-        int numOfHouses = 0;
-        int money = currentPlayer.getMoney();
-        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(selectedMonopoly);
-        if ((money >= (properties.size() * (properties.get(0).getHousePrice() * houses)))) {
-            for (PropertyCell property : properties) {
-                numOfHouses = property.getNumHouses() + houses;
-                if (numOfHouses <= 5) {
-                    property.setNumHouses(numOfHouses);
-                    currentPlayer.subtractMoney(property.getHousePrice() * houses);
-                    updatePropertyRent(property);
-                }
-            }
-        }
-        return numOfHouses;
-    }
-    
     public void buyProperty(TradeDeal deal) {
         Cell property = deal.getProperty();
         Player buyer = deal.getBuyer();
@@ -66,15 +37,16 @@ public class PropertyController {
         buyer.subtractMoney(deal.getAmount());
     }
     
-    public void purchase() {
-        Player currentPlayer = boardCtl.getCurrentPlayer();
-
-        if (currentPlayer.getPosition().isAvailable()) {
-            Cell cell = currentPlayer.getPosition();
-            TradeDeal deal = new TradeDeal(cell, currentPlayer, cell.getPrice());
-            buyProperty(deal);
-            cell.setAvailable(false);
-        }
+    public boolean canBuyHouse() {
+        return (!getMonopolies(boardCtl.getCurrentPlayer()).isEmpty());
+    }
+    
+    private void doublePropertyRent(ColorGroup colorGroup) {
+        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
+        
+        properties.stream().forEach((property) -> {
+            property.setRent(property.originalRent() * 2);
+        });
     }
     
     public List<ColorGroup> getMonopolies(Player player) {
@@ -94,8 +66,13 @@ public class PropertyController {
         return monopolies;
     }
     
-    public boolean canBuyHouse() {
-        return (!getMonopolies(boardCtl.getCurrentPlayer()).isEmpty());
+    public List<Player> getSellerList() {
+        List<Player> sellers = new ArrayList<>();
+        boardCtl.getPlayers().stream().filter((player) ->
+                (player != boardCtl.getCurrentPlayer())).forEach((player) -> {
+                    sellers.add(player);
+                });
+        return sellers;
     }
     
     public void giveAllProperties(Player fromPlayer, Player toPlayer) {
@@ -132,6 +109,44 @@ public class PropertyController {
         }
     }
     
+    public void purchase() {
+        Player currentPlayer = boardCtl.getCurrentPlayer();
+        
+        if (currentPlayer.getPosition().isAvailable()) {
+            Cell cell = currentPlayer.getPosition();
+            TradeDeal deal = new TradeDeal(cell, currentPlayer, cell.getPrice());
+            buyProperty(deal);
+            cell.setAvailable(false);
+        }
+    }
+    
+    public int purchaseHouse(ColorGroup selectedMonopoly, int houses) {
+        Player currentPlayer = boardCtl.getCurrentPlayer();
+        
+        int numOfHouses = 0;
+        int money = currentPlayer.getMoney();
+        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(selectedMonopoly);
+        if ((money >= (properties.size() * (properties.get(0).getHousePrice() * houses)))) {
+            for (PropertyCell property : properties) {
+                numOfHouses = property.getNumHouses() + houses;
+                if (numOfHouses <= 5) {
+                    property.setNumHouses(numOfHouses);
+                    currentPlayer.subtractMoney(property.getHousePrice() * houses);
+                    updatePropertyRent(property);
+                }
+            }
+        }
+        return numOfHouses;
+    }
+    
+    private void resetPropertyRent(ColorGroup colorGroup) {
+        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
+        
+        properties.stream().forEach((property) -> {
+            property.setRent(property.originalRent());
+        });
+    }
+    
     public void sellProperty(TradeDeal deal) {
         Player seller = deal.getSeller();
         Cell property = deal.getProperty();
@@ -158,10 +173,8 @@ public class PropertyController {
         if (owner != null) {
             List<ColorGroup> monopolies = getMonopolies(owner);
             for (ColorGroup monopolie : monopolies) {
-                if (monopolie.equals(property.getColorGroup())) {
-                    doublePropertyRent(monopolie);
-                }
-            
+                if (monopolie.equals(property.getColorGroup()))
+                    doublePropertyRent(monopolie);            
                 if (numHouses > 0) {
                     newRent = previousRent * (numHouses + 1);
                     property.setRent(newRent);
@@ -169,23 +182,7 @@ public class PropertyController {
             }
         }
     }
-    
-    private void resetPropertyRent(ColorGroup colorGroup) {
-        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
-        
-        properties.stream().forEach((property) -> {
-            property.setRent(property.originalRent());
-        });
-    }
-    
-    private void doublePropertyRent(ColorGroup colorGroup) {
-        List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
-        
-        properties.stream().forEach((property) -> {
-            property.setRent(property.originalRent() * 2);
-        });
-    }
-    
+
     private void updateRailRoadRent(RailRoadCell railroad) {
         Player owner = railroad.getOwner();
         int basePrice = railroad.getBaseRent();

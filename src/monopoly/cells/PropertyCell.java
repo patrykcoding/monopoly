@@ -9,9 +9,9 @@ public class PropertyCell extends Cell {
     private ColorGroup colorGroup;
     private int housePrice;
     private int numHouses;
+    private int originalRent = 0;
     private int rent;
     private int sellPrice;
-    private int originalRent = 0;
     
     public ColorGroup getColorGroup() {
         return colorGroup;
@@ -25,20 +25,12 @@ public class PropertyCell extends Cell {
         return numHouses;
     }
     
-    @Override
-    public int getPrice() {
-        return sellPrice;
+    public int getRent() {
+        return rent;
     }
-
-    @Override
-    public void playAction(MainController mainCtl) {
-        Player currentPlayer;
-        if (!isAvailable()) {
-            currentPlayer = mainCtl.getCurrentPlayer();
-            if (player != currentPlayer) {
-                mainCtl.payRentTo(player, rent);
-            }
-        }
+    
+    public int originalRent() {
+        return originalRent;
     }
 
     public void setColorGroup(ColorGroup colorGroup) {
@@ -58,17 +50,24 @@ public class PropertyCell extends Cell {
     }
 
     public void setRent(int rent) {
-        if (originalRent == 0) {
+        if (originalRent == 0)
             originalRent = rent;
-        }
         this.rent = rent;
     }
-
-    public int getRent() {
-        return rent;
+    
+    @Override
+    public int getPrice() {
+        return sellPrice;
     }
 
-    public int originalRent() {
-        return originalRent;
+    @Override
+    public void playAction(MainController mainCtl) {
+        Player currentPlayer;
+        if (!isAvailable()) {
+            currentPlayer = mainCtl.getCurrentPlayer();
+            if (player != currentPlayer) {
+                mainCtl.payRentTo(player, rent);
+            }
+        }
     }
 }

@@ -12,15 +12,14 @@ import monopoly.enums.ColorGroup;
 
 public class Player {
     private final int INITIAL_MONEY = 1500;
-    //the key of propertyColors is the name of the playerColor group.
-    private final Map<ColorGroup, Integer> propertyColors = new HashMap<>();
     private boolean inJail;
     private int money;
     private String name;
     private Color playerColor;
-    
     private Cell position;
     private List<PropertyCell> properties = new ArrayList<>();
+    //the key of propertyColors is the name of the playerColor group.
+    private final Map<ColorGroup, Integer> propertyColors = new HashMap<>();
     private List<RailRoadCell> railroads = new ArrayList<>();
     private List<UtilityCell> utilities = new ArrayList<>();
     
@@ -31,9 +30,16 @@ public class Player {
         money = INITIAL_MONEY;
     }
     
-    public void addUtility (UtilityCell utility) {
-        utilities.add(utility);
-        addPropertyColor(ColorGroup.UTILITY);
+    public void addMoney(int money) {
+        this.money += money;
+    }
+
+    public void addProperty(PropertyCell property) {
+        properties.add(property);
+        addPropertyColor(property.getColorGroup());
+    }
+    private void addPropertyColor(ColorGroup colorGroup) {
+        propertyColors.put(colorGroup, getPropertyNumberForColor(colorGroup) + 1);
     }
     
     public void addRailRoad(RailRoadCell railroad) {
@@ -41,21 +47,9 @@ public class Player {
         addPropertyColor(ColorGroup.RAILROAD);
     }
     
-    public void addProperty(PropertyCell property) {
-        properties.add(property);
-        addPropertyColor(property.getColorGroup());
-    }
-    
-    private void addPropertyColor(ColorGroup colorGroup) {
-        propertyColors.put(colorGroup, getPropertyNumberForColor(colorGroup) + 1);
-    }
-	
-    public void setPlayerColor(Color color) {
-        this.playerColor = color;
-    }
-    
-    public Color getPlayerColor() {
-        return playerColor;
+    public void addUtility (UtilityCell utility) {
+        utilities.add(utility);
+        addPropertyColor(ColorGroup.UTILITY);
     }
 
     public boolean checkProperty(String property) {
@@ -63,11 +57,7 @@ public class Player {
                 (Cell) propertie).anyMatch((cell) -> 
                 (cell.getName().equals(property)));
     }
-	
-    public List<PropertyCell> getPropertyCells() {
-        return properties;
-    }
-    
+
     public List<Cell> getAllProperties() {
         List<Cell> list = new ArrayList<>();
         list.addAll(properties);
@@ -83,19 +73,10 @@ public class Player {
     public String getName() {
         return name;
     }
-    
-    public void subtractMoney(int money) {
-        this.money -= money;
+    public Color getPlayerColor() {
+        return playerColor;
     }
 
-    public void addMoney(int money) {
-        this.money += money;
-    }
-    
-    public Map<ColorGroup, Integer> getPropertyColors() {
-        return propertyColors;
-    }
-    
     public Cell getPosition() {
         return this.position;
     }
@@ -103,17 +84,29 @@ public class Player {
     public PropertyCell getProperty(int index) {
         return properties.get(index);
     }
+    
+    public List<PropertyCell> getPropertyCells() {
+        return properties;
+    }
+    
+    public Map<ColorGroup, Integer> getPropertyColors() {
+        return propertyColors;
+    }
 	
     public int getPropertyCount() {
         return properties.size();
     }
-
+    
     private int getPropertyNumberForColor(ColorGroup colorGroup) {
         Integer number = propertyColors.get(colorGroup);
         if (number != null) {
             return number;
         }
         return 0;
+    }
+    
+    public List<RailRoadCell> getRailRoadCells() {
+        return railroads;
     }
 
     public boolean isBankrupt() {
@@ -137,6 +130,10 @@ public class Player {
         removePropertyColor(property.getColorGroup());
     }
     
+    private void removePropertyColor(ColorGroup colorGroup) {
+        propertyColors.remove(colorGroup);
+    }
+    
     public void removeRailroadCell(RailRoadCell railroad) {
         railroads.remove(railroad);
         removePropertyColor(ColorGroup.RAILROAD);
@@ -146,9 +143,11 @@ public class Player {
         utilities.remove(utility);
         removePropertyColor(ColorGroup.UTILITY);
     }
-
-    private void removePropertyColor(ColorGroup colorGroup) {
-        propertyColors.remove(colorGroup);
+    
+    public void resetProperties() {
+        properties = new ArrayList<>();
+        railroads = new ArrayList<>();
+        utilities = new ArrayList<>();
     }
     
     public void setInJail(boolean inJail) {
@@ -162,23 +161,21 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public void setPlayerColor(Color color) {
+        this.playerColor = color;
+    }
 
     public void setPosition(Cell newPosition) {
         this.position = newPosition;
     }
     
-    public void resetProperties() {
-    	properties = new ArrayList<>();
-    	railroads = new ArrayList<>();
-    	utilities = new ArrayList<>();
+    public void subtractMoney(int money) {
+        this.money -= money;
     }
-    
+  
     @Override
     public String toString() {
         return name;
-    }
-
-    public List<RailRoadCell> getRailRoadCells() {
-        return railroads;
     }
 }

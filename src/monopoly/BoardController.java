@@ -8,21 +8,20 @@ import java.util.List;
 public class BoardController {
     public static final int MAX_PLAYER = 8;
     
-    private final List<Player> players = new ArrayList<>();
     private GameBoard gameBoard;
-    private int playerTurnIdx = 0;
-    
     /* Colors of the players on the gameBoard */
     private final List<Color> playerColors = new ArrayList<>(Arrays.asList(
-                                    new Color(255, 249, 102), /* Player 1 */
-                                    new Color(66, 134, 244),  /* Player 2 */
-                                    new Color(143, 99, 158),  /* Player 3 */
-                                    new Color(209, 155, 20),  /* Player 4 */
-                                    new Color(209, 96, 20),   /* Player 5 */
-                                    new Color(120, 230, 30),  /* Player 6 */
-                                    new Color(206, 57, 72),   /* Player 7 */
-                                    new Color(72, 196, 188)   /* Player 8 */
-                                    ));
+            new Color(255, 249, 102), /* Player 1 */
+            new Color(66, 134, 244),  /* Player 2 */
+            new Color(143, 99, 158),  /* Player 3 */
+            new Color(209, 155, 20),  /* Player 4 */
+            new Color(209, 96, 20),   /* Player 5 */
+            new Color(120, 230, 30),  /* Player 6 */
+            new Color(206, 57, 72),   /* Player 7 */
+            new Color(72, 196, 188)   /* Player 8 */
+    ));
+    private int playerTurnIdx = 0;
+    private final List<Player> players = new ArrayList<>();
 
     public BoardController(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
@@ -40,14 +39,6 @@ public class BoardController {
     public GameBoard getGameBoard() {
         return gameBoard;
     }
-    
-    public Player getPlayer(int index) {
-        return players.get(index);
-    }
-
-    public int getPlayerIndex(Player player) {
-        return players.indexOf(player);
-    }
 
     public int getNewPositionIndex(int positionIndex, int diceValue) {
         return (positionIndex + diceValue) % gameBoard.getCellSize();    
@@ -55,6 +46,14 @@ public class BoardController {
 
     public int getNumberOfPlayers() {
         return players.size();
+    }
+
+    public Player getPlayer(int index) {
+        return players.get(index);
+    }
+    
+    public int getPlayerIndex(Player player) {
+        return players.indexOf(player);
     }
     
     public List<Player> getPlayers() {
@@ -68,9 +67,8 @@ public class BoardController {
     public void movePlayer(Player player, int diceValue) {
         int positionIndex = getCurrentPositionIndex(player);
         int newIndex = getNewPositionIndex(positionIndex, diceValue);
-        if (newIndex <= positionIndex || diceValue > gameBoard.getCellSize()) {
+        if (newIndex <= positionIndex || diceValue > gameBoard.getCellSize())
             player.setMoney(player.getMoney() + 200);
-        }
         player.setPosition(gameBoard.getCell(newIndex));
     }
     
@@ -81,7 +79,7 @@ public class BoardController {
         }
         playerTurnIdx = 0;
     }
-
+    
     public void setGameBoard(GameBoard board) {
         this.gameBoard = board;
     }

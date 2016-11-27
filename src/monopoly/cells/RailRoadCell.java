@@ -5,14 +5,15 @@ import monopoly.MainController;
 import monopoly.Player;
 
 public class RailRoadCell extends Cell {
-    private int baseRent = 0;
-    private int rent;
     public static String COLOR_GROUP = "RAILROAD";
+    private int baseRent = 0;
     private int price;
+    private int rent;
     
     public int getBaseRent() {
         return baseRent;
     }
+
     
     public int getRent() {
         return rent;
@@ -33,12 +34,12 @@ public class RailRoadCell extends Cell {
         }
         this.rent = rent;
     }
-
+    
     @Override
     public int getPrice() {
         return price;
     }
-
+    
     @Override
     public void playAction(MainController mainCtl) {
         Player currentPlayer;

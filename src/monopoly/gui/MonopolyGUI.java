@@ -1,6 +1,5 @@
 package monopoly.gui;
 
-import monopoly.Dice;
 import monopoly.Player;
 import monopoly.RespondDialog;
 import monopoly.TradeDeal;

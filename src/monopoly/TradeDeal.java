@@ -2,10 +2,10 @@ package monopoly;
 
 public class TradeDeal {
     private int amount;
-    private Player seller;
     private Player buyer;
-    private String propertyName;
     private final Cell property;
+    private String propertyName;
+    private Player seller;
     
     public TradeDeal(Cell property, Player buyer, int amount) {
         this.propertyName = property.getName();
@@ -19,6 +19,10 @@ public class TradeDeal {
         return amount;
     }
     
+    public Player getBuyer() {
+        return this.buyer;
+    }
+    
     public Cell getProperty() {
         return property;
     }
@@ -26,20 +30,16 @@ public class TradeDeal {
     public String getPropertyName() {
         return propertyName;
     }
-    
-    public String makeMessage() {
-        String message = 
-                this.buyer + " wishes to purchase " + propertyName + 
-                " from you for $" + this.amount + 
-                ". Do you wish to trade your property?";
-        return message;
-    }
-    
+
     public Player getSeller() {
         return this.seller;
     }
-
-    public Player getBuyer() {
-        return this.buyer;
+    
+    public String makeMessage() {
+        String message =
+                this.buyer + " wishes to purchase " + propertyName +
+                " from you for $" + this.amount +
+                ". Do you wish to trade your property?";
+        return message;
     }
 }

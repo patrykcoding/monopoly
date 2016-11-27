@@ -3,7 +3,6 @@ package monopoly.gui.infoformatters;
 import monopoly.Cell;
 import monopoly.Player;
 import monopoly.cells.PropertyCell;
-import monopoly.enums.ColorGroup;
 import monopoly.gui.CellInfoFormatter;
 
 public class PropertyCellInfoFormatter implements CellInfoFormatter {

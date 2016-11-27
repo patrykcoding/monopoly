@@ -51,13 +51,13 @@ public class RespondDialogGUI extends JDialog implements RespondDialog {
         super.setModal(true);
         super.pack();
     }
+    
+    public void setDeal(TradeDeal deal) {
+        txtMessage.setText(deal.makeMessage());
+    }
 
     @Override
     public boolean getResponse() {
         return response;
-    }
-    
-    public void setDeal(TradeDeal deal) {
-        txtMessage.setText(deal.makeMessage());
     }
 }

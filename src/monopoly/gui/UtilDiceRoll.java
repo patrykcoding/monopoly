@@ -8,11 +8,17 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import monopoly.Dice;
-
 import monopoly.MainController;
 
 public class UtilDiceRoll extends JDialog {
     private static final long serialVersionUID = -2985807932807855607L;
+    
+    public static int showDialog(MainController mainCtl, PlayerPanel panel) {
+        UtilDiceRoll dialog = new UtilDiceRoll(mainCtl, panel);
+        dialog.setVisible(true);
+        return dialog.diceValue;
+    }
+    
     private final JButton btnDice = new JButton("Roll the Dice!");
     private final JButton btnOK = new JButton("OK");
     private int diceValue;
@@ -48,12 +54,6 @@ public class UtilDiceRoll extends JDialog {
         super.pack();
     }
 
-    public static int showDialog(MainController mainCtl, PlayerPanel panel) {
-        UtilDiceRoll dialog = new UtilDiceRoll(mainCtl, panel);
-        dialog.setVisible(true);
-        return dialog.diceValue;
-    }
-    
     public final void okClicked(){
         this.dispose();
     }

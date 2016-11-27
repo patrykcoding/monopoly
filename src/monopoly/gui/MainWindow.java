@@ -10,14 +10,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-
 import monopoly.Cell;
-import monopoly.Dice;
 import monopoly.GameBoard;
 import monopoly.MainController;
 import monopoly.Player;
@@ -27,10 +24,9 @@ import monopoly.TradeDialog;
 
 public class MainWindow extends JFrame implements MonopolyGUI {
     private static final long serialVersionUID = 3146365872410925008L;
-    private final MainController mainCtl;
     private final JPanel eastPanel = new JPanel();
     private final ArrayList<CellGUI> guiCells = new ArrayList<>();
-
+    private final MainController mainCtl;
     private final JPanel northPanel = new JPanel();
     private PlayerPanel[] playerPanels;
     private final JPanel southPanel = new JPanel();
@@ -63,11 +59,11 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     private void addCells(JPanel panel, List<Cell> cells) {
         cells.stream().map((cell) -> new CellGUI(cell)).map((guiCell) -> {
-            panel.add(guiCell);
-            return guiCell;
-        }).forEach((guiCell) -> {
-            guiCells.add(guiCell);
-        });
+                                        panel.add(guiCell);
+                                        return guiCell;
+                                    }).forEach((guiCell) -> {
+                                        guiCells.add(guiCell);
+                                    });
     }
 
     private void buildPlayerPanels() {
@@ -81,6 +77,29 @@ public class MainWindow extends JFrame implements MonopolyGUI {
             infoPanel.add(playerPanels[i]);
             playerPanels[i].displayInfo();
         }
+    }
+	
+    private CellGUI queryCell(int index) {
+        Cell cell = mainCtl.getGameBoard().getCell(index);
+            for (Object guiCell1 : guiCells) {
+                CellGUI guiCell = (CellGUI) guiCell1;
+                if (guiCell.getCell() == cell)
+                    return guiCell;
+            }
+        return null;
+    }
+	
+    public void setupGameBoard(GameBoard board) {
+        Dimension dimension = GameBoardUtil.calculateDimension(board.getCellSize());
+        northPanel.setLayout(new GridLayout(1, dimension.width + 2));
+        southPanel.setLayout(new GridLayout(1, dimension.width + 2));
+        westPanel.setLayout(new GridLayout(dimension.height, 1));
+        eastPanel.setLayout(new GridLayout(dimension.height, 1));
+        addCells(northPanel, GameBoardUtil.getNorthCells(board));
+        addCells(southPanel, GameBoardUtil.getSouthCells(board));
+        addCells(eastPanel, GameBoardUtil.getEastCells(board));
+        addCells(westPanel, GameBoardUtil.getWestCells(board));
+        buildPlayerPanels();
     }
 
     @Override
@@ -144,17 +163,6 @@ public class MainWindow extends JFrame implements MonopolyGUI {
         dialog.setVisible(true);
         return dialog;
     }
-	
-    private CellGUI queryCell(int index) {
-        Cell cell = mainCtl.getGameBoard().getCell(index);
-            for (Object guiCell1 : guiCells) {
-                CellGUI guiCell = (CellGUI) guiCell1;
-                if (guiCell.getCell() == cell) {
-                    return guiCell;
-                }
-            }
-        return null;
-    }
 
     @Override
     public void setBuyHouseEnabled(boolean b) {
@@ -195,19 +203,6 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     @Override
     public void setTradeEnabled(int index, boolean b) {
         playerPanels[index].setTradeEnabled(b);
-    }
-	
-    public void setupGameBoard(GameBoard board) {
-        Dimension dimension = GameBoardUtil.calculateDimension(board.getCellSize());
-        northPanel.setLayout(new GridLayout(1, dimension.width + 2));
-        southPanel.setLayout(new GridLayout(1, dimension.width + 2));
-        westPanel.setLayout(new GridLayout(dimension.height, 1));
-        eastPanel.setLayout(new GridLayout(dimension.height, 1));
-        addCells(northPanel, GameBoardUtil.getNorthCells(board));
-        addCells(southPanel, GameBoardUtil.getSouthCells(board));
-        addCells(eastPanel, GameBoardUtil.getEastCells(board));
-        addCells(westPanel, GameBoardUtil.getWestCells(board));
-        buildPlayerPanels();
     }
 
     @Override

@@ -10,28 +10,28 @@ public class Dice {
         dice = new int[diceAmount];
         roll();
     }
+
+    public int[] getRoll() {
+        roll();
+        return dice;
+    }
+    public int getSingleDice(int diceNumber) {
+        return dice[diceNumber];
+    }
+    
+    public int getTotal() {
+        return Arrays.stream(dice).sum();
+    }
     
     public final void roll() {
         for (int i = 0; i < dice.length; i++) {
             dice[i] = (int)(Math.random() * DICE_SIDES) + 1;
         }
     }
-    
-    public int[] getRoll() {
-        roll();
-        return dice;
-    }
-    
-    public int getTotal() {
-        return Arrays.stream(dice).sum();
-    }
 
     public void setDice(int diceNumber, int value) {
         dice[diceNumber] = value;
     }
     
-    public int getSingleDice(int diceNumber) {
-        return dice[diceNumber];
-    }
     
 }

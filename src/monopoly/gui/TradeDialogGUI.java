@@ -27,12 +27,11 @@ import monopoly.TradeDialog;
 
 public class TradeDialogGUI extends JDialog implements TradeDialog {
     private static final long serialVersionUID = -7231996263338389498L;
-
-    private final int cboSellerBorderSize = 3;
-    private JButton btnOK, btnCancel;
-    private JComboBox<Player> cboSellers;
+    private JButton btnCancel;
+    private JButton btnOK;
     private JComboBox<Cell> cboProperties;
-
+    private final int cboSellerBorderSize = 3;
+    private JComboBox<Player> cboSellers;
     private TradeDeal deal;
     private JTextField txtAmount;
     
@@ -77,15 +76,12 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         cboSellers.setRenderer(new DefaultListCellRenderer() {
             private static final long serialVersionUID = -5460014450312978883L;
             @Override
-            public Component getListCellRendererComponent(JList list, Object value,
-                                                          int index, boolean isSelected,
-                                                          boolean cellHasFocus) {
-                Component ret = super.getListCellRendererComponent(list, value, index,
-                                                                   isSelected, cellHasFocus);
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                Component ret = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (isSelected || cellHasFocus) {
-                Player p = (Player)value;
-                list.setSelectionBackground(p.getPlayerColor());
-                list.setSelectionForeground(Color.black);
+                    Player p = (Player)value;
+                    list.setSelectionBackground(p.getPlayerColor());
+                    list.setSelectionForeground(Color.black);
                 }
                 return ret;
             }
@@ -156,11 +152,6 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         }
     }
 
-    @Override
-    public TradeDeal getTradeDeal(MainController mainCtl) {
-        return deal;
-    }
-
     private void updatePropertiesCombo(Player player) {
         cboProperties.removeAllItems();
         List<Cell> cells = player.getAllProperties();
@@ -168,5 +159,10 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         cells.stream().forEach((cell) -> {
             cboProperties.addItem(cell);
         });
+    }
+
+    @Override
+    public TradeDeal getTradeDeal(MainController mainCtl) {
+        return deal;
     }
 }

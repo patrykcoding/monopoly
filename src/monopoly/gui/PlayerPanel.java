@@ -28,12 +28,9 @@ public class PlayerPanel extends JPanel {
     private final JButton btnPurchaseProperty;
     private final JButton btnRollDice;
     private final JButton btnTrade;
-    
     private final JLabel lblMoney;
     private final JLabel lblName;
-    
     private final Player player;
-    
     private final JTextArea txtProperty;
 
     

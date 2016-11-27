@@ -14,9 +14,9 @@ public class GameBoard {
 
     private final List<Cell> cells = new ArrayList<>();
     private final List<Card> chanceCards = new ArrayList<>();
+    private final List<Card> communityChestCards = new ArrayList<>();
     //the key of propertyColors is the name of the color group.
     private final Map<ColorGroup, Integer> propertyColors = new HashMap<>();
-    private final List<Card> communityChestCards = new ArrayList<>();
 
     public GameBoard() {
         Cell go = new GoCell();
@@ -24,11 +24,10 @@ public class GameBoard {
     }
 
     public void addCard(Card card) {
-        if (card.getCardType() == CardType.CC) {
+        if (card.getCardType() == CardType.CC)
             communityChestCards.add(card);
-        } else {
+        else
             chanceCards.add(card);
-        }
     }
 
     public final void addCell(Cell cell) {
@@ -64,27 +63,25 @@ public class GameBoard {
     public List<PropertyCell> getPropertiesInMonopoly(ColorGroup color) {
         List<PropertyCell> monopolyCells = new ArrayList<>();
         cells.stream().filter((cell) 
-                -> (cell instanceof PropertyCell)).map((cell)
-                        -> (PropertyCell)cell).filter((pc) 
-                                -> (pc.getColorGroup().equals(color))).forEach((pc) -> {
-            monopolyCells.add(pc);
-        });
+                            -> (cell instanceof PropertyCell)).map((cell)
+                            -> (PropertyCell)cell).filter((pc) 
+                            -> (pc.getColorGroup().equals(color))).forEach((pc) -> {
+                                monopolyCells.add(pc);
+                            });
         return monopolyCells;
     }
 	
     public int getPropertyNumberForColor(ColorGroup colorGroup) {
         Integer number = propertyColors.get(colorGroup);
-        if (number != null) {
+        if (number != null)
             return number;
-        }
         return 0;
     }
 
     public Cell queryCell(String string) {
         for (Cell cell : cells) {
-            if (cell.getName().equals(string)) {
+            if (cell.getName().equals(string))
                 return cell;
-            }
         }
         return null;
     }
