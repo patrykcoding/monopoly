@@ -13,9 +13,9 @@ public class JailCard extends Card {
     }
 
     @Override
-    public void applyAction(MainController mainCtl) {
-        Player currentPlayer = mainCtl.getCurrentPlayer();
-        mainCtl.sendToJail(currentPlayer);
+    public void applyAction(MainController mainController) {
+        Player currentPlayer = mainController.getCurrentPlayer();
+        mainController.sendToJail(currentPlayer);
     }
 
     @Override

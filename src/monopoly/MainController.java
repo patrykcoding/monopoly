@@ -10,26 +10,26 @@ import monopoly.enums.ColorGroup;
 import monopoly.gui.PlayerPanel;
 
 public class MainController {
-    private final BoardController boardCtl;
+    private final BoardController boardController;
 
     private final Dice dice;
     private GameBoard gameBoard;
     private MonopolyGUI gui;
-    private final PropertyController propertyCtl;
-    private int utilDiceRoll;
+    private final PropertyController propertyController;
+    private int utilityDiceRoll;
     
     public MainController() {
         gameBoard = new GameBoardDefault();
-        boardCtl = new BoardController(gameBoard);
-        propertyCtl = new PropertyController(boardCtl);
+        boardController = new BoardController(gameBoard);
+        propertyController = new PropertyController(boardController);
         dice = new Dice(2);
     }
 
-    public void btnBuyHouseClicked() {
+    public void buttonBuyHouseClicked() {
         gui.showBuyHouseDialog(getCurrentPlayer());
     }
 
-    public Card btnDrawCardClicked() {
+    public Card buttonDrawCardClicked() {
         gui.setDrawCardEnabled(false);
         CardCell cell = (CardCell)getCurrentPlayer().getPosition();
         Card card;
@@ -44,7 +44,7 @@ public class MainController {
         return card;
     }
 
-    public void btnEndTurnClicked() {
+    public void buttonEndTurnClicked() {
         setAllButtonEnabled(false);
         getCurrentPlayer().getPosition().playAction(this);
         
@@ -63,7 +63,7 @@ public class MainController {
         }
     }
 
-    public void btnGetOutOfJailClicked() {
+    public void buttonGetOutOfJailClicked() {
         getOutOfJail();
         if (getCurrentPlayer().isBankrupt()) {
             gui.setBuyHouseEnabled(false);
@@ -75,19 +75,19 @@ public class MainController {
             gui.setTradeEnabled(getTurn(),false);
         } else {
             gui.setRollDiceEnabled(true);
-            gui.setBuyHouseEnabled(propertyCtl.canBuyHouse());
+            gui.setBuyHouseEnabled(propertyController.canBuyHouse());
             gui.setGetOutOfJailEnabled(getCurrentPlayer().isInJail());
             gui.setTradeEnabled(getTurn(), true);
         }
     }
 
-    public void btnPurchasePropertyClicked() {
+    public void buttonPurchasePropertyClicked() {
         purchase();
         gui.setPurchasePropertyEnabled(false);
         gui.update();
     }
     
-    public void btnRollDiceClicked(PlayerPanel panel) {
+    public void buttonRollDiceClicked(PlayerPanel panel) {
         dice.roll();
         if ((dice.getTotal()) > 0) {
             Player player = getCurrentPlayer();
@@ -103,12 +103,12 @@ public class MainController {
         }
     }
 
-    public void btnTradeClicked() {
+    public void buttonTradeClicked() {
         TradeDialog dialog = gui.openTradeDialog();
         TradeDeal deal = dialog.getTradeDeal(this);
         if (deal != null) {
-            RespondDialog rDialog = gui.openRespondDialog(deal);
-            if (rDialog.getResponse()) {
+            RespondDialog respondDialog = gui.openRespondDialog(deal);
+            if (respondDialog.getResponse()) {
                 completeTrade(deal);
                 gui.update();
             }
@@ -116,12 +116,12 @@ public class MainController {
     }
     
     public boolean canBuyHouse() {
-        return propertyCtl.canBuyHouse();
+        return propertyController.canBuyHouse();
     }
 
     public void completeTrade(TradeDeal deal) {
-        propertyCtl.sellProperty(deal);
-        propertyCtl.buyProperty(deal);
+        propertyController.sellProperty(deal);
+        propertyController.buyProperty(deal);
     }
 
     public Card drawCCCard() {
@@ -140,17 +140,16 @@ public class MainController {
         } else {
             if (cell.isAvailable()) {
                 int price = cell.getPrice();
-                if (price <= player.getMoney() && price > 0) {
-                    gui.enablePurchaseBtn(playerIndex);
-                }
+                if (price <= player.getMoney() && price > 0)
+                    gui.enablePurchaseButton(playerIndex);
             }
-            gui.enableEndTurnBtn(playerIndex);
+            gui.enableEndTurnButton(playerIndex);
         }
-        gui.setTradeEnabled(boardCtl.getTurn(), false);
+        gui.setTradeEnabled(boardController.getTurn(), false);
     }
 
     public Player getCurrentPlayer() {
-        return boardCtl.getCurrentPlayer();
+        return boardController.getCurrentPlayer();
     }
     
     public Dice getDice() {
@@ -166,15 +165,15 @@ public class MainController {
     }
     
     public List<ColorGroup> getMonopolies(Player player) {
-        return propertyCtl.getMonopolies(player);
+        return propertyController.getMonopolies(player);
     }
 
     public int getNumberOfPlayers() {
-        return boardCtl.getNumberOfPlayers();
+        return boardController.getNumberOfPlayers();
     }
     
     private void getOutOfJail() {
-        Player currentPlayer = boardCtl.getCurrentPlayer();
+        Player currentPlayer = boardController.getCurrentPlayer();
         currentPlayer.subtractMoney(JailCell.BAIL);
         if (currentPlayer.isBankrupt()) {
             currentPlayer.setMoney(0);
@@ -185,34 +184,34 @@ public class MainController {
     }
 
     public Player getPlayer(int index) {
-        return boardCtl.getPlayer(index);
+        return boardController.getPlayer(index);
     }
 
     public int getPlayerIndex(Player player) {
-        return boardCtl.getPlayerIndex(player);
+        return boardController.getPlayerIndex(player);
     }
 
     public List<Player> getSellerList() {
-        return propertyCtl.getSellerList();
+        return propertyController.getSellerList();
     }
     
     public int getTurn() {
-        return boardCtl.getTurn();
+        return boardController.getTurn();
     }
 
-    public int getUtilDiceRoll() {
-        return this.utilDiceRoll;
+    public int getUtilityDiceRoll() {
+        return this.utilityDiceRoll;
     }
     
     public void giveAllProperties(Player fromPlayer, Player toPlayer) {
-        propertyCtl.giveAllProperties(fromPlayer, toPlayer);
+        propertyController.giveAllProperties(fromPlayer, toPlayer);
     }
 
     public void movePlayer(Player player, int diceValue) {
-        int positionIndex = boardCtl.getCurrentPositionIndex(player);
-        int newIndex = boardCtl.getNewPositionIndex(positionIndex, diceValue);
+        int positionIndex = boardController.getCurrentPositionIndex(player);
+        int newIndex = boardController.getNewPositionIndex(positionIndex, diceValue);
         
-        boardCtl.movePlayer(player, diceValue);
+        boardController.movePlayer(player, diceValue);
         gui.movePlayer(getPlayerIndex(player), positionIndex, newIndex);
         finishPlayerMove(player);
 
@@ -220,20 +219,20 @@ public class MainController {
     }
     
     public void payRentTo(Player owner, int rent) {
-        propertyCtl.payRentTo(owner, rent);
+        propertyController.payRentTo(owner, rent);
     }
     
     public void purchase() {
-        propertyCtl.purchase();
+        propertyController.purchase();
     }
     
     public void purchaseHouse(ColorGroup selectedMonopoly, int houses) {
-        if (propertyCtl.purchaseHouse(selectedMonopoly, houses) <= 5)
+        if (propertyController.purchaseHouse(selectedMonopoly, houses) <= 5)
             gui.update();
     }
 
     public void reset() {
-        boardCtl.reset();
+        boardController.reset();
         if (gameBoard != null)
             gameBoard.removeCards();
     }
@@ -251,7 +250,7 @@ public class MainController {
         gui.setRollDiceEnabled(enabled);
         gui.setPurchasePropertyEnabled(enabled);
         gui.setEndTurnEnabled(enabled);
-        gui.setTradeEnabled(boardCtl.getTurn(), enabled);
+        gui.setTradeEnabled(boardController.getTurn(), enabled);
         gui.setBuyHouseEnabled(enabled);
         gui.setDrawCardEnabled(enabled);
         gui.setGetOutOfJailEnabled(enabled);
@@ -263,11 +262,11 @@ public class MainController {
 
     public void setGameBoard(GameBoard board) {
         this.gameBoard = board;
-        boardCtl.setGameBoard(board);
+        boardController.setGameBoard(board);
     }
 
     public void setNumberOfPlayers(int number) {
-        boardCtl.setNumberOfPlayers(number);
+        boardController.setNumberOfPlayers(number);
     }
 
     public void startGame() {
@@ -277,19 +276,19 @@ public class MainController {
     }
 
     public void switchTurn() {
-        boardCtl.switchTurn();
+        boardController.switchTurn();
         
         if (!getCurrentPlayer().isInJail()) {
-            gui.enablePlayerTurn(boardCtl.getTurn());
-            gui.setBuyHouseEnabled(propertyCtl.canBuyHouse());
-            gui.setTradeEnabled(boardCtl.getTurn(), true);
+            gui.enablePlayerTurn(boardController.getTurn());
+            gui.setBuyHouseEnabled(propertyController.canBuyHouse());
+            gui.setTradeEnabled(boardController.getTurn(), true);
         } else {
             gui.setGetOutOfJailEnabled(true);
         }
     }
 
-    public void utilRollDice() {
-        this.utilDiceRoll = gui.showUtilDiceRoll();
+    public void utilityRollDice() {
+        this.utilityDiceRoll = gui.showUtilityDiceRoll();
     }
     
 }

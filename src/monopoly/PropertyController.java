@@ -10,12 +10,12 @@ import monopoly.cells.UtilityCell;
 import monopoly.enums.ColorGroup;
 
 public class PropertyController {
-    private final BoardController boardCtl;
+    private final BoardController boardController;
     private final GameBoard gameBoard;
     
-    public PropertyController(BoardController boardCtl) {
-        this.boardCtl = boardCtl;
-        this.gameBoard = boardCtl.getGameBoard();
+    public PropertyController(BoardController boardController) {
+        this.boardController = boardController;
+        this.gameBoard = boardController.getGameBoard();
     }
 
     public void buyProperty(TradeDeal deal) {
@@ -38,7 +38,7 @@ public class PropertyController {
     }
     
     public boolean canBuyHouse() {
-        return (!getMonopolies(boardCtl.getCurrentPlayer()).isEmpty());
+        return (!getMonopolies(boardController.getCurrentPlayer()).isEmpty());
     }
     
     private void doublePropertyRent(ColorGroup colorGroup) {
@@ -68,8 +68,8 @@ public class PropertyController {
     
     public List<Player> getSellerList() {
         List<Player> sellers = new ArrayList<>();
-        boardCtl.getPlayers().stream().filter((player) ->
-                (player != boardCtl.getCurrentPlayer())).forEach((player) -> {
+        boardController.getPlayers().stream().filter((player) ->
+                (player != boardController.getCurrentPlayer())).forEach((player) -> {
                     sellers.add(player);
                 });
         return sellers;
@@ -92,7 +92,7 @@ public class PropertyController {
     }
 	
     public void payRentTo(Player owner, int rentValue) {
-        Player currentPlayer = boardCtl.getCurrentPlayer();
+        Player currentPlayer = boardController.getCurrentPlayer();
         int playerMoney = currentPlayer.getMoney();
         
         if (playerMoney < rentValue) {
@@ -110,7 +110,7 @@ public class PropertyController {
     }
     
     public void purchase() {
-        Player currentPlayer = boardCtl.getCurrentPlayer();
+        Player currentPlayer = boardController.getCurrentPlayer();
         
         if (currentPlayer.getPosition().isAvailable()) {
             Cell cell = currentPlayer.getPosition();
@@ -121,7 +121,7 @@ public class PropertyController {
     }
     
     public int purchaseHouse(ColorGroup selectedMonopoly, int houses) {
-        Player currentPlayer = boardCtl.getCurrentPlayer();
+        Player currentPlayer = boardController.getCurrentPlayer();
         
         int numOfHouses = 0;
         int money = currentPlayer.getMoney();
@@ -173,9 +173,9 @@ public class PropertyController {
         if (owner == null)
             return;
         List<ColorGroup> monopolies = getMonopolies(owner);
-        for (ColorGroup monopolie : monopolies) {
-            if (monopolie.equals(property.getColorGroup()))
-                doublePropertyRent(monopolie);            
+        for (ColorGroup monopoly : monopolies) {
+            if (monopoly.equals(property.getColorGroup()))
+                doublePropertyRent(monopoly);            
             if (numHouses > 0) {
                 newRent = previousRent * (numHouses + 1);
                 property.setRent(newRent);
@@ -192,7 +192,7 @@ public class PropertyController {
         if (owner == null)
             return;
         List<RailRoadCell> railRoads = owner.getRailRoadCells();
-        int newRent = basePrice * (int)Math.pow(2, owner.numberOfRR() - 1);
+        int newRent = basePrice * (int)Math.pow(2, owner.numberOfRailroads() - 1);
             
         railRoads.stream().forEach((playersRailroad) -> {
             playersRailroad.setRent(newRent);

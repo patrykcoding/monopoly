@@ -61,12 +61,12 @@ public class PropertyCell extends Cell {
     }
 
     @Override
-    public void playAction(MainController mainCtl) {
+    public void playAction(MainController mainController) {
         Player currentPlayer;
         if (!isAvailable()) {
-            currentPlayer = mainCtl.getCurrentPlayer();
+            currentPlayer = mainController.getCurrentPlayer();
             if (player != currentPlayer) {
-                mainCtl.payRentTo(player, rent);
+                mainController.payRentTo(player, rent);
             }
         }
     }

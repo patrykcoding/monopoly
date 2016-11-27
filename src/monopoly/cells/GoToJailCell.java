@@ -11,8 +11,8 @@ public class GoToJailCell extends Cell {
     }
 
     @Override
-    public void playAction(MainController mainCtl) {
-        Player currentPlayer = mainCtl.getCurrentPlayer();
-        mainCtl.sendToJail(currentPlayer);
+    public void playAction(MainController mainController) {
+        Player currentPlayer = mainController.getCurrentPlayer();
+        mainController.sendToJail(currentPlayer);
     }
 }

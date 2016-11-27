@@ -40,7 +40,7 @@ public class MovePlayerCardTest extends TestCase {
         mainCtl.movePlayer(mainCtl.getCurrentPlayer(), 2);
         assertTrue(mainCtl.getGUI().isDrawCardButtonEnabled());
         assertFalse(mainCtl.getGUI().isEndTurnButtonEnabled());
-        mainCtl.btnDrawCardClicked();
+        mainCtl.buttonDrawCardClicked();
         assertFalse(mainCtl.getGUI().isDrawCardButtonEnabled());
         Cell cell = mainCtl.getCurrentPlayer().getPosition();
         assertEquals(mainCtl.getGameBoard().queryCell("Blue 1"), cell);

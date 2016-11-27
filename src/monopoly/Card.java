@@ -4,15 +4,6 @@ import monopoly.enums.CardType;
 
 public abstract class Card {
 
-    /**
-     * 
-     * @param mainCtl 
-     */
-    public abstract void applyAction(MainController mainCtl);
-    
-    /**
-     * 
-     * @return 
-     */
+    public abstract void applyAction(MainController mainController);
     public abstract CardType getCardType();
 }

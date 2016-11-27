@@ -14,18 +14,18 @@ import monopoly.BoardController;
 public class CellGUI extends JPanel {
     private static final long serialVersionUID = 2752137388247147409L;
     private final Cell cell;
-    private JLabel lblInfo;
-    private final JLabel[] lblPlayers = new JLabel[BoardController.MAX_PLAYER];
+    private JLabel infoLabel;
+    private final JLabel[] playersLabel = new JLabel[BoardController.MAX_PLAYER];
     
     public CellGUI(Cell cell) {
         this.cell = cell;
         super.setLayout(new OverlayLayout(this));
         super.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        JPanel pnlPlayer = new JPanel();
-        pnlPlayer.setLayout(new GridLayout(2, 4, 0, 25));
-        pnlPlayer.setOpaque(false);
-        createPlayerLabels(pnlPlayer);
-        super.add(pnlPlayer);
+        JPanel playerPanel = new JPanel();
+        playerPanel.setLayout(new GridLayout(2, 4, 0, 25));
+        playerPanel.setOpaque(false);
+        createPlayerLabels(playerPanel);
+        super.add(playerPanel);
         super.setPreferredSize(new Dimension(100,100));
         addCellInfo();
         super.setToolTipText(InfoFormatter.cellToolTip(cell));
@@ -33,30 +33,30 @@ public class CellGUI extends JPanel {
     }
 	
     private void addCellInfo() {
-        lblInfo = new JLabel();
+        infoLabel = new JLabel();
         displayInfo();
-        JPanel pnlInfo = new JPanel();
-        pnlInfo.setLayout(new GridLayout(1, 1));
-        pnlInfo.add(lblInfo);
-        add(pnlInfo);
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new GridLayout(1, 1));
+        infoPanel.add(infoLabel);
+        add(infoPanel);
     }
 	
-    public void addPlayer(MainController mainCtl, int index) {
-        Player player = mainCtl.getPlayer(index);
-        lblPlayers[index].setOpaque(true);
-        lblPlayers[index].setBackground(player.getPlayerColor());
+    public void addPlayer(MainController mainController, int index) {
+        Player player = mainController.getPlayer(index);
+        playersLabel[index].setOpaque(true);
+        playersLabel[index].setBackground(player.getPlayerColor());
     }
 
-    private void createPlayerLabels(JPanel pnlPlayer) {
+    private void createPlayerLabels(JPanel playerPanel) {
         for (int i = 0; i < BoardController.MAX_PLAYER; i++) {
-            lblPlayers[i] = new JLabel();
-            pnlPlayer.add(lblPlayers[i]);
+            playersLabel[i] = new JLabel();
+            playerPanel.add(playersLabel[i]);
             
         }
     }
 
     public void displayInfo() {
-        lblInfo.setText(InfoFormatter.cellInfo(cell));
+        infoLabel.setText(InfoFormatter.cellInfo(cell));
         this.setToolTipText(InfoFormatter.cellToolTip(cell));
         this.invalidate();
         this.repaint();
@@ -67,8 +67,8 @@ public class CellGUI extends JPanel {
     }
 
     public void removePlayer(int index) {
-        lblPlayers[index].setText("");
-        lblPlayers[index].setOpaque(false);
+        playersLabel[index].setText("");
+        playersLabel[index].setOpaque(false);
         this.repaint();
     }
 }

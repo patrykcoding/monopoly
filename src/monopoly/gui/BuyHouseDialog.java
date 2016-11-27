@@ -19,59 +19,59 @@ import monopoly.enums.ColorGroup;
 
 public class BuyHouseDialog extends JDialog {
     private static final long serialVersionUID = -8707274599957567230L;
-    private JComboBox<ColorGroup> cboMonopoly;
-    private final JComboBox<Integer> cboNumber;
-    private final MainController mainCtl;
+    private final JComboBox<Integer> housesCombobox;
+    private final MainController mainController;
+    private JComboBox<ColorGroup> monopolyCombobox;
     private final Player player;
     
-    public BuyHouseDialog(MainController mainCtl, Player player, PlayerPanel panel) {
-        this.mainCtl = mainCtl;
+    public BuyHouseDialog(MainController mainController, Player player, PlayerPanel panel) {
+        this.mainController = mainController;
         this.player = player;
         
-        Container c = super.getContentPane();
-        cboNumber = new JComboBox<>();
-        c.setLayout(new GridLayout(3, 2));
-        c.add(new JLabel("Select monopoly"));
-        c.add(buildMonopolyCboBox());
-        c.add(new JLabel("Number of houses"));
-        c.add(cboNumber);
-        c.add(buildOKButton());
-        c.add(buildCancelButton());
-        c.doLayout();
+        Container container = super.getContentPane();
+        housesCombobox = new JComboBox<>();
+        container.setLayout(new GridLayout(3, 2));
+        container.add(new JLabel("Select monopoly"));
+        container.add(buildMonopolyComboBox());
+        container.add(new JLabel("Number of houses"));
+        container.add(housesCombobox);
+        container.add(buildOKButton());
+        container.add(buildCancelButton());
+        container.doLayout();
         super.pack();
         super.setLocationRelativeTo(panel);
         
-        updateNumberCboBox(cboMonopoly.getItemAt(0));
+        updateHousesComboBox(monopolyCombobox.getItemAt(0));
         
-        cboMonopoly.addActionListener((ActionEvent e) -> {
-            ColorGroup monopoly = (ColorGroup)cboMonopoly.getSelectedItem();
-            updateNumberCboBox(monopoly);
+        monopolyCombobox.addActionListener((ActionEvent e) -> {
+            ColorGroup monopoly = (ColorGroup)monopolyCombobox.getSelectedItem();
+            updateHousesComboBox(monopoly);
         });
     }
 
     private JButton buildCancelButton() {
-        JButton btn = new JButton("Cancel");
-        btn.addActionListener((ActionEvent e) -> {
+        JButton button = new JButton("Cancel");
+        button.addActionListener((ActionEvent e) -> {
             cancelClicked();
         });
-        return btn;
+        return button;
     }
 
-    private JComboBox<ColorGroup> buildMonopolyCboBox() {
-        cboMonopoly = new JComboBox<>();
-        List<ColorGroup> monopolies = mainCtl.getMonopolies(player);
+    private JComboBox<ColorGroup> buildMonopolyComboBox() {
+        monopolyCombobox = new JComboBox<>();
+        List<ColorGroup> monopolies = mainController.getMonopolies(player);
         monopolies.stream().forEach((monopoly) -> {
-            cboMonopoly.addItem(monopoly);
+            monopolyCombobox.addItem(monopoly);
         });
-        return cboMonopoly;
+        return monopolyCombobox;
     }
 
     private JButton buildOKButton() {
-        JButton btn = new JButton("OK");
-        btn.addActionListener((ActionEvent e) -> {
+        JButton button = new JButton("OK");
+        button.addActionListener((ActionEvent e) -> {
             okClicked();
         });
-        return btn;
+        return button;
     }
 
     private void cancelClicked() {
@@ -79,20 +79,20 @@ public class BuyHouseDialog extends JDialog {
     }
 
     private void okClicked() {
-        ColorGroup monopoly = (ColorGroup)cboMonopoly.getSelectedItem();
-        int number = cboNumber.getSelectedIndex() + 1;
-        mainCtl.purchaseHouse(monopoly, number);
+        ColorGroup monopoly = (ColorGroup)monopolyCombobox.getSelectedItem();
+        int number = housesCombobox.getSelectedIndex() + 1;
+        mainController.purchaseHouse(monopoly, number);
         this.dispose();
     }
     
-    private void updateNumberCboBox(ColorGroup monopoly) {
-        cboNumber.removeAllItems();
-        GameBoard gameBoard = mainCtl.getGameBoard();
+    private void updateHousesComboBox(ColorGroup monopoly) {
+        housesCombobox.removeAllItems();
+        GameBoard gameBoard = mainController.getGameBoard();
         List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(monopoly);
         int numHouses = properties.get(0).getNumHouses();
         int maxHouses = 5;
         int maxPurchase = maxHouses - numHouses;
         for (int i = 1; i <= maxPurchase; i++)
-            cboNumber.addItem(i);
+            housesCombobox.addItem(i);
     }
 }

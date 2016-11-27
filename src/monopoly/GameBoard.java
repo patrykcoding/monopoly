@@ -52,8 +52,8 @@ public class GameBoard {
         return card;
     }
 
-    public Cell getCell(int newIndex) {
-        return cells.get(newIndex);
+    public Cell getCell(int index) {
+        return cells.get(index);
     }
 	
     public int getCellSize() {

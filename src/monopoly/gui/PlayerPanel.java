@@ -21,165 +21,165 @@ import monopoly.Player;
 public class PlayerPanel extends JPanel {
     private static final long serialVersionUID = -86435279085524828L;
 
-    private final JButton btnBuyHouse;
-    private final JButton btnDrawCard;
-    private final JButton btnEndTurn;
-    private final JButton btnGetOutOfJail;
-    private final JButton btnPurchaseProperty;
-    private final JButton btnRollDice;
-    private final JButton btnTrade;
-    private final JLabel lblMoney;
-    private final JLabel lblName;
+    private final JButton buyHouseButton;
+    private final JButton drawCardButton;
+    private final JButton endTurnButton;
+    private final JButton getOutOfJailButton;
+    private final JLabel moneyLabel;
+    private final JLabel nameLabel;
     private final Player player;
-    private final JTextArea txtProperty;
+    private final JTextArea propertyText;
+    private final JButton purchasePropertyButton;
+    private final JButton rollDiceButton;
+    private final JButton tradeButton;
 
     
-    public PlayerPanel(MainController mainCtl, Player player) {
-        JPanel pnlAction = new JPanel();
-        JPanel pnlInfo = new JPanel();
-        btnRollDice = new JButton("Roll Dice");
-        btnPurchaseProperty = new JButton("Purchase Property");
-        btnEndTurn = new JButton("End Turn");
-        btnBuyHouse = new JButton("Buy House");
-        btnGetOutOfJail = new JButton("Get Out of Jail");
-        btnDrawCard = new JButton("Draw Card");
-        btnTrade = new JButton("Trade");
+    public PlayerPanel(MainController mainController, Player player) {
+        JPanel actionPanel = new JPanel();
+        JPanel infoPanel = new JPanel();
+        rollDiceButton = new JButton("Roll Dice");
+        purchasePropertyButton = new JButton("Purchase Property");
+        endTurnButton = new JButton("End Turn");
+        buyHouseButton = new JButton("Buy House");
+        getOutOfJailButton = new JButton("Get Out of Jail");
+        drawCardButton = new JButton("Draw Card");
+        tradeButton = new JButton("Trade");
         this.player = player;
-        lblName = new JLabel();
-        lblMoney = new JLabel();
-        txtProperty = new JTextArea(); 
-        JScrollPane scroll = new JScrollPane(txtProperty, 
+        nameLabel = new JLabel();
+        moneyLabel = new JLabel();
+        propertyText = new JTextArea(); 
+        JScrollPane scroll = new JScrollPane(propertyText, 
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
-        txtProperty.setEnabled(false);
-        txtProperty.setDisabledTextColor(Color.black);
+        propertyText.setEnabled(false);
+        propertyText.setDisabledTextColor(Color.black);
 
-        JPanel pnlName = new JPanel();
-        JPanel pnlProperties = new JPanel();
+        JPanel namePanel = new JPanel();
+        JPanel propertiesPanel = new JPanel();
 
-        pnlInfo.setLayout(new BorderLayout());
-        pnlInfo.add(pnlName, BorderLayout.NORTH);
-        pnlInfo.add(pnlProperties, BorderLayout.CENTER);
+        infoPanel.setLayout(new BorderLayout());
+        infoPanel.add(namePanel, BorderLayout.NORTH);
+        infoPanel.add(propertiesPanel, BorderLayout.CENTER);
 
-        pnlProperties.setLayout(new OverlayLayout(pnlProperties));
-        pnlName.setBackground(player.getPlayerColor());        
+        propertiesPanel.setLayout(new OverlayLayout(propertiesPanel));
+        namePanel.setBackground(player.getPlayerColor());        
 
-        pnlName.add(lblName);
-        pnlName.add(lblMoney);
-        pnlProperties.add(scroll);
+        namePanel.add(nameLabel);
+        namePanel.add(moneyLabel);
+        propertiesPanel.add(scroll);
 
-        pnlAction.setLayout(new GridLayout(3, 3));
-        pnlAction.add(btnBuyHouse);
-        pnlAction.add(btnRollDice);
-        pnlAction.add(btnPurchaseProperty);
-        pnlAction.add(btnGetOutOfJail);
-        pnlAction.add(btnEndTurn);
-        pnlAction.add(btnDrawCard);
-        pnlAction.add(btnTrade);
+        actionPanel.setLayout(new GridLayout(3, 3));
+        actionPanel.add(buyHouseButton);
+        actionPanel.add(rollDiceButton);
+        actionPanel.add(purchasePropertyButton);
+        actionPanel.add(getOutOfJailButton);
+        actionPanel.add(endTurnButton);
+        actionPanel.add(drawCardButton);
+        actionPanel.add(tradeButton);
 
-        pnlAction.doLayout();
-        pnlInfo.doLayout();
-        pnlName.doLayout();
-        pnlProperties.doLayout();
+        actionPanel.doLayout();
+        infoPanel.doLayout();
+        namePanel.doLayout();
+        propertiesPanel.doLayout();
         super.doLayout();
 
         super.setLayout(new BorderLayout());
-        super.add(pnlInfo, BorderLayout.CENTER);
-        super.add(pnlAction, BorderLayout.SOUTH);
+        super.add(infoPanel, BorderLayout.CENTER);
+        super.add(actionPanel, BorderLayout.SOUTH);
 
-        btnRollDice.setEnabled(false);
-        btnPurchaseProperty.setEnabled(false);
-        btnEndTurn.setEnabled(false);
-        btnBuyHouse.setEnabled(false);
-        btnGetOutOfJail.setEnabled(false);
-        btnDrawCard.setEnabled(false);
-        btnTrade.setEnabled(false);
+        rollDiceButton.setEnabled(false);
+        purchasePropertyButton.setEnabled(false);
+        endTurnButton.setEnabled(false);
+        buyHouseButton.setEnabled(false);
+        getOutOfJailButton.setEnabled(false);
+        drawCardButton.setEnabled(false);
+        tradeButton.setEnabled(false);
 
         super.setBorder(new BevelBorder(BevelBorder.RAISED));
 
-        btnRollDice.addActionListener((ActionEvent e) -> {
-            mainCtl.btnRollDiceClicked(PlayerPanel.this);
+        rollDiceButton.addActionListener((ActionEvent e) -> {
+            mainController.buttonRollDiceClicked(PlayerPanel.this);
         });
 
-        btnEndTurn.addActionListener((ActionEvent e) -> {
-            mainCtl.btnEndTurnClicked();
+        endTurnButton.addActionListener((ActionEvent e) -> {
+            mainController.buttonEndTurnClicked();
         });
 
-        btnPurchaseProperty.addActionListener((ActionEvent e) -> {
-            mainCtl.btnPurchasePropertyClicked();
+        purchasePropertyButton.addActionListener((ActionEvent e) -> {
+            mainController.buttonPurchasePropertyClicked();
         });
 
-        btnBuyHouse.addActionListener((ActionEvent e) -> {
-            mainCtl.btnBuyHouseClicked();
+        buyHouseButton.addActionListener((ActionEvent e) -> {
+            mainController.buttonBuyHouseClicked();
         });
 
-        btnGetOutOfJail.addActionListener((ActionEvent e) -> {
-            mainCtl.btnGetOutOfJailClicked();
+        getOutOfJailButton.addActionListener((ActionEvent e) -> {
+            mainController.buttonGetOutOfJailClicked();
         });
 
-        btnDrawCard.addActionListener((ActionEvent e) -> {
-            Card card = mainCtl.btnDrawCardClicked();
+        drawCardButton.addActionListener((ActionEvent e) -> {
+            Card card = mainController.buttonDrawCardClicked();
             JOptionPane.showMessageDialog(PlayerPanel.this, card);
             displayInfo();
         });
 
-        btnTrade.addActionListener((ActionEvent e) -> {
-            mainCtl.btnTradeClicked();
+        tradeButton.addActionListener((ActionEvent e) -> {
+            mainController.buttonTradeClicked();
         });
     }
 
     public final void displayInfo() {
-        lblName.setText(player.getName());
-        lblMoney.setText("$ " + player.getMoney());
+        nameLabel.setText(player.getName());
+        moneyLabel.setText("$ " + player.getMoney());
         StringBuilder buf = new StringBuilder();
         List<Cell> cells = player.getAllProperties();
         cells.stream().forEach((cell) -> {
             buf.append(cell).append("\n");
         });
-        txtProperty.setText(buf.toString());
+        propertyText.setText(buf.toString());
     }
 
     public boolean isDrawCardButtonEnabled() {
-        return btnDrawCard.isEnabled();
+        return drawCardButton.isEnabled();
     }
 
     public boolean isEndTurnButtonEnabled() {
-        return btnEndTurn.isEnabled();
+        return endTurnButton.isEnabled();
     }
     
     public boolean isGetOutOfJailButtonEnabled() {
-        return btnGetOutOfJail.isEnabled();
+        return getOutOfJailButton.isEnabled();
     }
     
     public boolean isTradeButtonEnabled() {
-        return btnTrade.isEnabled();
+        return tradeButton.isEnabled();
     }
 
-    public void setBuyHouseEnabled(boolean b) {
-        btnBuyHouse.setEnabled(b);
+    public void setBuyHouseEnabled(boolean enabled) {
+        buyHouseButton.setEnabled(enabled);
     }
 
-    public void setDrawCardEnabled(boolean b) {
-        btnDrawCard.setEnabled(b);
+    public void setDrawCardEnabled(boolean enabled) {
+        drawCardButton.setEnabled(enabled);
     }
 
     public void setEndTurnEnabled(boolean enabled) {
-        btnEndTurn.setEnabled(enabled);
+        endTurnButton.setEnabled(enabled);
     }
 
-    public void setGetOutOfJailEnabled(boolean b) {
-        btnGetOutOfJail.setEnabled(b);
+    public void setGetOutOfJailEnabled(boolean enabled) {
+        getOutOfJailButton.setEnabled(enabled);
     }
 
     public void setPurchasePropertyEnabled(boolean enabled) {
-        btnPurchaseProperty.setEnabled(enabled);
+        purchasePropertyButton.setEnabled(enabled);
     }
 
     public void setRollDiceEnabled(boolean enabled) {
-        btnRollDice.setEnabled(enabled);
+        rollDiceButton.setEnabled(enabled);
     }
 
     public void setTradeEnabled(boolean b) {
-        btnTrade.setEnabled(b);
+        tradeButton.setEnabled(b);
     }
 }

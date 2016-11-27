@@ -12,9 +12,9 @@ public class UtilityCell extends Cell {
     }
 
     public int getRent(int diceRoll) {
-        if (player.numberOfUtil() == 1)
+        if (player.numberOfUtilities() == 1)
                 return diceRoll * 4;
-        else if (player.numberOfUtil() >= 2)
+        else if (player.numberOfUtilities() >= 2)
                 return diceRoll * 10;
         return 0;
     }
@@ -25,15 +25,15 @@ public class UtilityCell extends Cell {
     }
     
     @Override
-    public void playAction(MainController mainCtl) {
+    public void playAction(MainController mainController) {
         Player currentPlayer;
         if (isAvailable())
             return;
-        currentPlayer = mainCtl.getCurrentPlayer();
+        currentPlayer = mainController.getCurrentPlayer();
         if (player != currentPlayer) {
-            mainCtl.utilRollDice();
-            int diceRoll = mainCtl.getUtilDiceRoll();
-            mainCtl.payRentTo(player, getRent(diceRoll));
+            mainController.utilityRollDice();
+            int diceRoll = mainController.getUtilityDiceRoll();
+            mainController.payRentTo(player, getRent(diceRoll));
         }
     }
 }

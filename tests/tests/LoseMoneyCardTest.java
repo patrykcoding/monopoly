@@ -35,7 +35,7 @@ public class LoseMoneyCardTest extends TestCase {
         mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
         assertTrue(mainCtl.getGUI().isDrawCardButtonEnabled());
         assertFalse(mainCtl.getGUI().isEndTurnButtonEnabled());
-        mainCtl.btnDrawCardClicked();
+        mainCtl.buttonDrawCardClicked();
         assertFalse(mainCtl.getGUI().isDrawCardButtonEnabled());
         assertTrue(mainCtl.getGUI().isEndTurnButtonEnabled());
     }
