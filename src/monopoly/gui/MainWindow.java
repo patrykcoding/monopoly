@@ -26,28 +26,28 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     private static final long serialVersionUID = 3146365872410925008L;
     private final JPanel eastPanel = new JPanel();
     private final ArrayList<CellGUI> guiCells = new ArrayList<>();
-    private final MainController mainCtl;
+    private final MainController mainController;
     private final JPanel northPanel = new JPanel();
     private PlayerPanel[] playerPanels;
     private final JPanel southPanel = new JPanel();
     private final JPanel westPanel = new JPanel();
 
     public MainWindow(MainController mainCtl) {
-        this.mainCtl = mainCtl;
+        this.mainController = mainCtl;
         
         northPanel.setBorder(new LineBorder(Color.BLACK));
         southPanel.setBorder(new LineBorder(Color.BLACK));
         westPanel.setBorder(new LineBorder(Color.BLACK));
         eastPanel.setBorder(new LineBorder(Color.BLACK));
 
-        Container c = super.getContentPane();
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Dimension d = tk.getScreenSize();
-        super.setSize(d);
-        c.add(northPanel, BorderLayout.NORTH);
-        c.add(southPanel, BorderLayout.SOUTH);
-        c.add(eastPanel, BorderLayout.EAST);
-        c.add(westPanel, BorderLayout.WEST);
+        Container container = super.getContentPane();
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension dimension = toolkit.getScreenSize();
+        super.setSize(dimension);
+        container.add(northPanel, BorderLayout.NORTH);
+        container.add(southPanel, BorderLayout.SOUTH);
+        container.add(eastPanel, BorderLayout.EAST);
+        container.add(westPanel, BorderLayout.WEST);
 
         super.addWindowListener(new WindowAdapter(){
             @Override
@@ -68,19 +68,19 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     private void buildPlayerPanels() {
         JPanel infoPanel = new JPanel();
-        int players = mainCtl.getNumberOfPlayers();
+        int players = mainController.getNumberOfPlayers();
         infoPanel.setLayout(new GridLayout(2, (players+1)/2));
         getContentPane().add(infoPanel, BorderLayout.CENTER);
-        playerPanels = new PlayerPanel[mainCtl.getNumberOfPlayers()];
-        for (int i = 0; i < mainCtl.getNumberOfPlayers(); i++){
-            playerPanels[i] = new PlayerPanel(mainCtl, mainCtl.getPlayer(i));
+        playerPanels = new PlayerPanel[mainController.getNumberOfPlayers()];
+        for (int i = 0; i < mainController.getNumberOfPlayers(); i++){
+            playerPanels[i] = new PlayerPanel(mainController, mainController.getPlayer(i));
             infoPanel.add(playerPanels[i]);
             playerPanels[i].displayInfo();
         }
     }
 	
     private CellGUI queryCell(int index) {
-        Cell cell = mainCtl.getGameBoard().getCell(index);
+        Cell cell = mainController.getGameBoard().getCell(index);
             for (Object guiCell1 : guiCells) {
                 CellGUI guiCell = (CellGUI) guiCell1;
                 if (guiCell.getCell() == cell)
@@ -103,7 +103,7 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     }
 
     @Override
-    public void enableEndTurnBtn(int playerIndex) {
+    public void enableEndTurnButton(int playerIndex) {
         playerPanels[playerIndex].setEndTurnEnabled(true);
     }
 
@@ -113,25 +113,25 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     }
 
     @Override
-    public void enablePurchaseBtn(int playerIndex) {
+    public void enablePurchaseButton(int playerIndex) {
         playerPanels[playerIndex].setPurchasePropertyEnabled(true);
     }
 
     @Override
     public boolean isDrawCardButtonEnabled() {
-        int currentPlayerIndex = mainCtl.getTurn();
+        int currentPlayerIndex = mainController.getTurn();
         return playerPanels[currentPlayerIndex].isDrawCardButtonEnabled();
     }
 
     @Override
     public boolean isEndTurnButtonEnabled() {
-        int currentPlayerIndex = mainCtl.getTurn();
+        int currentPlayerIndex = mainController.getTurn();
         return playerPanels[currentPlayerIndex].isEndTurnButtonEnabled();
     }
 
     @Override
     public boolean isGetOutOfJailButtonEnabled() {
-        int currentPlayerIndex = mainCtl.getTurn();
+        int currentPlayerIndex = mainController.getTurn();
         return playerPanels[currentPlayerIndex].isGetOutOfJailButtonEnabled();
     }
 
@@ -145,12 +145,12 @@ public class MainWindow extends JFrame implements MonopolyGUI {
         CellGUI fromCell = queryCell(from);
         CellGUI toCell = queryCell(to);
         fromCell.removePlayer(index);
-        toCell.addPlayer(mainCtl, index);
+        toCell.addPlayer(mainController, index);
     }
 
     @Override
     public RespondDialog openRespondDialog(TradeDeal deal) {
-        int sellerIdx = mainCtl.getPlayerIndex(deal.getSeller());
+        int sellerIdx = mainController.getPlayerIndex(deal.getSeller());
         RespondDialogGUI dialog = new RespondDialogGUI(playerPanels[sellerIdx]);
         dialog.setDeal(deal);
         dialog.setVisible(true);
@@ -159,74 +159,74 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
     @Override
     public TradeDialog openTradeDialog() {
-        TradeDialogGUI dialog = new TradeDialogGUI(mainCtl, this);
+        TradeDialogGUI dialog = new TradeDialogGUI(mainController, this);
         dialog.setVisible(true);
         return dialog;
     }
 
     @Override
-    public void setBuyHouseEnabled(boolean b) {
-        int currentPlayerIndex = mainCtl.getTurn();
-        playerPanels[currentPlayerIndex].setBuyHouseEnabled(b);
+    public void setBuyHouseEnabled(boolean enabled) {
+        int currentPlayerIndex = mainController.getTurn();
+        playerPanels[currentPlayerIndex].setBuyHouseEnabled(enabled);
     }
 
     @Override
-    public void setDrawCardEnabled(boolean b) {
-        int currentPlayerIndex = mainCtl.getTurn();
-        playerPanels[currentPlayerIndex].setDrawCardEnabled(b);
+    public void setDrawCardEnabled(boolean enabled) {
+        int currentPlayerIndex = mainController.getTurn();
+        playerPanels[currentPlayerIndex].setDrawCardEnabled(enabled);
     }
 
     @Override
     public void setEndTurnEnabled(boolean enabled) {
-        int currentPlayerIndex = mainCtl.getTurn();
+        int currentPlayerIndex = mainController.getTurn();
         playerPanels[currentPlayerIndex].setEndTurnEnabled(enabled);
     }
 
     @Override
-    public void setGetOutOfJailEnabled(boolean b) {
-        int currentPlayerIndex = mainCtl.getTurn();
-        playerPanels[currentPlayerIndex].setGetOutOfJailEnabled(b);
+    public void setGetOutOfJailEnabled(boolean enabled) {
+        int currentPlayerIndex = mainController.getTurn();
+        playerPanels[currentPlayerIndex].setGetOutOfJailEnabled(enabled);
     }
 
     @Override
     public void setPurchasePropertyEnabled(boolean enabled) {
-        int currentPlayerIndex = mainCtl.getTurn();
+        int currentPlayerIndex = mainController.getTurn();
         playerPanels[currentPlayerIndex].setPurchasePropertyEnabled(enabled);
     }
 
     @Override
-    public void setRollDiceEnabled(boolean b) {
-        int currentPlayerIndex = mainCtl.getTurn();
-        playerPanels[currentPlayerIndex].setRollDiceEnabled(b);
+    public void setRollDiceEnabled(boolean enabled) {
+        int currentPlayerIndex = mainController.getTurn();
+        playerPanels[currentPlayerIndex].setRollDiceEnabled(enabled);
     }
 
     @Override
-    public void setTradeEnabled(int index, boolean b) {
-        playerPanels[index].setTradeEnabled(b);
+    public void setTradeEnabled(int index, boolean enabled) {
+        playerPanels[index].setTradeEnabled(enabled);
     }
 
     @Override
     public void showBuyHouseDialog(Player currentPlayer) {
-        int currPlayerIdx = mainCtl.getPlayerIndex(currentPlayer);
-        PlayerPanel panel = playerPanels[currPlayerIdx];
-        BuyHouseDialog dialog = new BuyHouseDialog(mainCtl, currentPlayer, panel);
+        int currentPlayerIndex = mainController.getPlayerIndex(currentPlayer);
+        PlayerPanel panel = playerPanels[currentPlayerIndex];
+        BuyHouseDialog dialog = new BuyHouseDialog(mainController, currentPlayer, panel);
         dialog.setVisible(true);
     }
 
     @Override
-    public void showMessage(String msg, PlayerPanel panel) {
-        JOptionPane.showMessageDialog(panel, msg);
+    public void showMessage(String message, PlayerPanel panel) {
+        JOptionPane.showMessageDialog(panel, message);
     }
 
     @Override
-    public int showUtilDiceRoll() {
-        int currPlayerIdx = mainCtl.getPlayerIndex(mainCtl.getCurrentPlayer());
-        return UtilDiceRoll.showDialog(mainCtl, playerPanels[currPlayerIdx]);
+    public int showUtilityDiceRoll() {
+        int currentPlayerIndex = mainController.getPlayerIndex(mainController.getCurrentPlayer());
+        return UtilityDiceRoll.showDialog(mainController, playerPanels[currentPlayerIndex]);
     }
 
     @Override
     public void startGame() {
-        int numberOfPlayers = mainCtl.getNumberOfPlayers();
+        int numberOfPlayers = mainController.getNumberOfPlayers();
         for (int i = 0; i < numberOfPlayers; i++) {
             movePlayer(i, 0, 0);
         }

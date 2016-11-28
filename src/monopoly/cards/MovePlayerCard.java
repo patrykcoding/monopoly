@@ -17,19 +17,19 @@ public class MovePlayerCard extends Card {
     }
 
     @Override
-    public void applyAction(MainController mainCtl) {
-        Player currentPlayer = mainCtl.getCurrentPlayer();
+    public void applyAction(MainController mainController) {
+        Player currentPlayer = mainController.getCurrentPlayer();
         Cell currentPosition = currentPlayer.getPosition();
-        int newCell = mainCtl.getGameBoard().queryCellIndex(destination);
-        int currentCell = mainCtl.getGameBoard().queryCellIndex(currentPosition.getName());
+        int newCell = mainController.getGameBoard().queryCellIndex(destination);
+        int currentCell = mainController.getGameBoard().queryCellIndex(currentPosition.getName());
         int diceValue = 0;
         if (currentCell > newCell) {
-            diceValue = (mainCtl.getGameBoard().getCellSize() + 
+            diceValue = (mainController.getGameBoard().getCellSize() + 
                          (newCell - currentCell));
         } else if (currentCell <= newCell) {
             diceValue = newCell - currentCell;
         }
-        mainCtl.movePlayer(currentPlayer, diceValue);
+        mainController.movePlayer(currentPlayer, diceValue);
     }
 
     @Override

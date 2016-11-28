@@ -27,53 +27,53 @@ import monopoly.TradeDialog;
 
 public class TradeDialogGUI extends JDialog implements TradeDialog {
     private static final long serialVersionUID = -7231996263338389498L;
-    private JButton btnCancel;
-    private JButton btnOK;
-    private JComboBox<Cell> cboProperties;
-    private final int cboSellerBorderSize = 3;
-    private JComboBox<Player> cboSellers;
+    private JButton cancelButton;
+    private JButton okButton;
+    private JComboBox<Cell> propertiesCombobox;
+    private final int comboboxBorderSize = 3;
+    private JComboBox<Player> sellersCombobox;
     private TradeDeal deal;
-    private JTextField txtAmount;
+    private JTextField amountText;
     
-    public TradeDialogGUI(MainController mainCtl, Frame parent) {
+    public TradeDialogGUI(MainController mainController, Frame parent) {
         super(parent);
         int xOffset = 125;
         int yOffset = 100;
         super.setLocationRelativeTo(parent.getFocusOwner().getParent().getParent());
         super.setLocation(super.getX() - xOffset, super.getY() - yOffset);
         super.setTitle("Trade Property");
-        cboSellers = new JComboBox<>();
-        cboProperties = new JComboBox<>();
-        txtAmount = new JTextField();
-        btnOK = new JButton("OK");
-        btnCancel = new JButton("Cancel");
+        sellersCombobox = new JComboBox<>();
+        propertiesCombobox = new JComboBox<>();
+        amountText = new JTextField();
+        okButton = new JButton("OK");
+        cancelButton = new JButton("Cancel");
         
-        btnOK.setEnabled(false);
+        okButton.setEnabled(false);
         
-        buildSellersCombo(mainCtl);
+        buildSellersComboBox(mainController);
         super.setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
              
         Container contentPane = super.getContentPane();
         contentPane.setLayout(new GridLayout(4, 2));
         contentPane.add(new JLabel("Property owner"));
-        contentPane.add(cboSellers);
+        contentPane.add(sellersCombobox);
         contentPane.add(new JLabel("Property"));
-        contentPane.add(cboProperties);
+        contentPane.add(propertiesCombobox);
         contentPane.add(new JLabel("Offer price"));
-        contentPane.add(txtAmount);
-        contentPane.add(btnOK);
-        contentPane.add(btnCancel);
+        contentPane.add(amountText);
+        contentPane.add(okButton);
+        contentPane.add(cancelButton);
 
-        btnCancel.addActionListener((ActionEvent e) -> {
+        cancelButton.addActionListener((ActionEvent e) -> {
             TradeDialogGUI.this.setVisible(false);
         });
         
-        cboSellers.addItemListener((ItemEvent e) -> {
+        sellersCombobox.addItemListener((ItemEvent e) -> {
             Player player = (Player)e.getItem();
-            updatePropertiesCombo(player);
+            updatePropertiesComboBox(player);
         });
         
-        cboSellers.setRenderer(new DefaultListCellRenderer() {
+        sellersCombobox.setRenderer(new DefaultListCellRenderer() {
             private static final long serialVersionUID = -5460014450312978883L;
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -91,25 +91,25 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
                 Color defaultColor = new Color(238, 238, 238);
-                cboSellers.setBorder(new LineBorder(defaultColor, cboSellerBorderSize));
-                cboSellers.setBackground(defaultColor);
+                sellersCombobox.setBorder(new LineBorder(defaultColor, comboboxBorderSize));
+                sellersCombobox.setBackground(defaultColor);
             }
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-                Player player = (Player)cboSellers.getSelectedItem();
-                cboSellers.setBorder(new LineBorder(player.getPlayerColor(), cboSellerBorderSize));
-                cboSellers.setBackground(player.getPlayerColor());
+                Player player = (Player)sellersCombobox.getSelectedItem();
+                sellersCombobox.setBorder(new LineBorder(player.getPlayerColor(), comboboxBorderSize));
+                sellersCombobox.setBackground(player.getPlayerColor());
             }
             @Override
             public void popupMenuCanceled(PopupMenuEvent e) {}
         };
 
-        cboSellers.addPopupMenuListener(listener);
+        sellersCombobox.addPopupMenuListener(listener);
         
-        btnOK.addActionListener((ActionEvent e) -> {
+        okButton.addActionListener((ActionEvent e) -> {
             int amount;
             try {
-                amount = Integer.parseInt(txtAmount.getText());
+                amount = Integer.parseInt(amountText.getText());
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(TradeDialogGUI.this,
                         "Amount should be an integer", "Error",
@@ -122,9 +122,9 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Cell cell = (Cell) cboProperties.getSelectedItem();
+            Cell cell = (Cell) propertiesCombobox.getSelectedItem();
             if(cell == null) return;
-            Player currentPlayer = mainCtl.getCurrentPlayer();
+            Player currentPlayer = mainController.getCurrentPlayer();
             if(currentPlayer.getMoney() > amount) {
                 deal = new TradeDeal(cell, currentPlayer, amount);
             } else {
@@ -139,25 +139,25 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         super.pack();
     }
 
-    private void buildSellersCombo(MainController mainCtl) {
+    private void buildSellersComboBox(MainController mainCtl) {
         List<Player> sellers = mainCtl.getSellerList();
         sellers.stream().forEach((player) -> {
-            cboSellers.addItem(player);
+            sellersCombobox.addItem(player);
         });
         if(sellers.size() > 0) {
             Player topSeller = sellers.get(0);
-            updatePropertiesCombo(topSeller);
-            cboSellers.setBackground(topSeller.getPlayerColor());
-            cboSellers.setBorder(new LineBorder(topSeller.getPlayerColor(), cboSellerBorderSize));
+            updatePropertiesComboBox(topSeller);
+            sellersCombobox.setBackground(topSeller.getPlayerColor());
+            sellersCombobox.setBorder(new LineBorder(topSeller.getPlayerColor(), comboboxBorderSize));
         }
     }
 
-    private void updatePropertiesCombo(Player player) {
-        cboProperties.removeAllItems();
+    private void updatePropertiesComboBox(Player player) {
+        propertiesCombobox.removeAllItems();
         List<Cell> cells = player.getAllProperties();
-        btnOK.setEnabled(cells.size() > 0);
+        okButton.setEnabled(cells.size() > 0);
         cells.stream().forEach((cell) -> {
-            cboProperties.addItem(cell);
+            propertiesCombobox.addItem(cell);
         });
     }
 

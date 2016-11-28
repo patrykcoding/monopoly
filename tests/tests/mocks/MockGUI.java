@@ -13,13 +13,13 @@ public class MockGUI implements MonopolyGUI {
     private final boolean[] btnTradeState = new boolean[2];
 
     @Override
-    public void enableEndTurnBtn(int playerIndex) {}
+    public void enableEndTurnButton(int playerIndex) {}
 
     @Override
     public void enablePlayerTurn(int playerIndex) {}
 
     @Override
-    public void enablePurchaseBtn(int playerIndex) {}
+    public void enablePurchaseButton(int playerIndex) {}
     
     @Override
     public boolean isDrawCardButtonEnabled() {
@@ -90,7 +90,7 @@ public class MockGUI implements MonopolyGUI {
     public void showMessage(String string, PlayerPanel panel) {}
 
     @Override
-    public int showUtilDiceRoll() {
+    public int showUtilityDiceRoll() {
         return 10;
     }
 

@@ -117,11 +117,11 @@ public class Player {
         return inJail;
     }
 
-    public int numberOfRR() {
+    public int numberOfRailroads() {
         return railroads.size();
     }
 
-    public int numberOfUtil() {
+    public int numberOfUtilities() {
         return utilities.size();
     }
     

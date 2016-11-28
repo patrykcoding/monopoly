@@ -54,7 +54,7 @@ public class MainControllerTest extends TestCase {
         mainCtl.purchase();
         assertEquals(mainCtl.getGameBoard().getCell(1),
                      mainCtl.getPlayer(0).getAllProperties().get(0));
-        mainCtl.btnEndTurnClicked();
+        mainCtl.buttonEndTurnClicked();
         TradeDialog dialog = gui.openTradeDialog();
         int numberOfSellers =  mainCtl.getNumberOfPlayers() - 1;
         assertEquals(1, numberOfSellers);
@@ -83,20 +83,20 @@ public class MainControllerTest extends TestCase {
     public void testButtonGetOutOfJailClicked() {
         MonopolyGUI gui = mainCtl.getGUI();
         mainCtl.movePlayer(mainCtl.getPlayer(0),30);
-        mainCtl.btnEndTurnClicked();
+        mainCtl.buttonEndTurnClicked();
         assertEquals("Jail", mainCtl.getPlayer(0).getPosition().getName());
         mainCtl.movePlayer(mainCtl.getPlayer(1), 2);
-        mainCtl.btnEndTurnClicked();
+        mainCtl.buttonEndTurnClicked();
         assertTrue(gui.isGetOutOfJailButtonEnabled());
         assertTrue(mainCtl.getPlayer(0).isInJail());
-        mainCtl.btnGetOutOfJailClicked();
+        mainCtl.buttonGetOutOfJailClicked();
         assertFalse(mainCtl.getPlayer(0).isInJail());
         assertEquals(1450,mainCtl.getPlayer(0).getMoney());
     }
 
     public void testButtonPurchasePropertyClicked() {
         mainCtl.movePlayer(mainCtl.getPlayer(0),1);
-        mainCtl.btnPurchasePropertyClicked();
+        mainCtl.buttonPurchasePropertyClicked();
         assertEquals(mainCtl.getGameBoard().getCell(1), mainCtl.getPlayer(0).getAllProperties().get(0));
         assertEquals(1440, mainCtl.getPlayer(0).getMoney());
     }
@@ -104,7 +104,7 @@ public class MainControllerTest extends TestCase {
     public void testButtonRollDiceClicked() {
         mainCtl.reset();
         PlayerPanel panel = new PlayerPanel(mainCtl, mainCtl.getCurrentPlayer());
-        mainCtl.btnRollDiceClicked(panel);
+        mainCtl.buttonRollDiceClicked(panel);
         Dice dice = mainCtl.getDice();
         assertEquals(0, mainCtl.getTurn());
         assertEquals(
@@ -116,8 +116,8 @@ public class MainControllerTest extends TestCase {
     public void testButtonTradeClicked() {
         mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
         mainCtl.purchase();
-        mainCtl.btnEndTurnClicked();
-        mainCtl.btnTradeClicked();
+        mainCtl.buttonEndTurnClicked();
+        mainCtl.buttonTradeClicked();
         assertEquals(mainCtl.getGameBoard().getCell(1), mainCtl.getPlayer(1).getAllProperties().get(0));
         assertEquals(1640, mainCtl.getPlayer(0).getMoney());
         assertEquals(1300, mainCtl.getPlayer(1).getMoney());

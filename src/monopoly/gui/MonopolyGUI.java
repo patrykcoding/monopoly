@@ -6,9 +6,9 @@ import monopoly.TradeDeal;
 import monopoly.TradeDialog;
 
 public interface MonopolyGUI {
-    public void enableEndTurnBtn(int playerIndex);
+    public void enableEndTurnButton(int playerIndex);
     public void enablePlayerTurn(int playerIndex);
-    public void enablePurchaseBtn(int playerIndex);
+    public void enablePurchaseButton(int playerIndex);
     public boolean isDrawCardButtonEnabled();
     public boolean isEndTurnButtonEnabled();
     public boolean isGetOutOfJailButtonEnabled();
@@ -16,16 +16,16 @@ public interface MonopolyGUI {
     public void movePlayer(int index, int from, int to);
     public RespondDialog openRespondDialog(TradeDeal deal);
     public TradeDialog openTradeDialog();
-    public void setBuyHouseEnabled(boolean b);
-    public void setDrawCardEnabled(boolean b);
+    public void setBuyHouseEnabled(boolean enabled);
+    public void setDrawCardEnabled(boolean enabled);
     public void setEndTurnEnabled(boolean enabled);
-    public void setGetOutOfJailEnabled(boolean b);
+    public void setGetOutOfJailEnabled(boolean enabled);
     public void setPurchasePropertyEnabled(boolean enabled);
-    public void setRollDiceEnabled(boolean b);
-    public void setTradeEnabled(int index, boolean b);
+    public void setRollDiceEnabled(boolean enabled);
+    public void setTradeEnabled(int index, boolean enabled);
     public void showBuyHouseDialog(Player currentPlayer);
     public void showMessage(String string, PlayerPanel panel);
-    public int showUtilDiceRoll();
+    public int showUtilityDiceRoll();
     public void startGame();
     public void update();
 }

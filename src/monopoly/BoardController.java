@@ -20,7 +20,7 @@ public class BoardController {
             new Color(206, 57, 72),   /* Player 7 */
             new Color(72, 196, 188)   /* Player 8 */
     ));
-    private int playerTurnIdx = 0;
+    private int playerTurnIndex = 0;
     private final List<Player> players = new ArrayList<>();
 
     public BoardController(GameBoard gameBoard) {
@@ -28,7 +28,7 @@ public class BoardController {
     }
     
     public Player getCurrentPlayer() {
-        return getPlayer(playerTurnIdx);
+        return getPlayer(playerTurnIndex);
     }
 
     public int getCurrentPositionIndex(Player player) {
@@ -61,7 +61,7 @@ public class BoardController {
     }
     
     public int getTurn() {
-        return playerTurnIdx;
+        return playerTurnIndex;
     }
 	
     public void movePlayer(Player player, int diceValue) {
@@ -77,7 +77,7 @@ public class BoardController {
             Player player = players.get(i);
             player.setPosition(gameBoard.getCell(0));
         }
-        playerTurnIdx = 0;
+        playerTurnIndex = 0;
     }
     
     public void setGameBoard(GameBoard board) {
@@ -94,6 +94,6 @@ public class BoardController {
     }
     
     public void switchTurn() {
-        playerTurnIdx = (playerTurnIdx + 1) % getNumberOfPlayers();
+        playerTurnIndex = (playerTurnIndex + 1) % getNumberOfPlayers();
     }
 }

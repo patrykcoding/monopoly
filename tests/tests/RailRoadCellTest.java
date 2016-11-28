@@ -32,12 +32,12 @@ public class RailRoadCellTest extends TestCase {
     }
 
     public void testPurchaseRailroad() {
-        assertEquals(0, mainCtl.getPlayer(0).numberOfRR());
+        assertEquals(0, mainCtl.getPlayer(0).numberOfRailroads());
         int cellIndex = mainCtl.getGameBoard().queryCellIndex("Railroad A");
         mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex);
         mainCtl.purchase();
         assertEquals(1300, mainCtl.getPlayer(0).getMoney());
-        assertEquals(1, mainCtl.getPlayer(0).numberOfRR());
+        assertEquals(1, mainCtl.getPlayer(0).numberOfRailroads());
     }
 
     public void testRent() {

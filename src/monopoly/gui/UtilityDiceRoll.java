@@ -10,41 +10,41 @@ import javax.swing.JPanel;
 import monopoly.Dice;
 import monopoly.MainController;
 
-public class UtilDiceRoll extends JDialog {
+public class UtilityDiceRoll extends JDialog {
     private static final long serialVersionUID = -2985807932807855607L;
     
-    public static int showDialog(MainController mainCtl, PlayerPanel panel) {
-        UtilDiceRoll dialog = new UtilDiceRoll(mainCtl, panel);
+    public static int showDialog(MainController mainController, PlayerPanel panel) {
+        UtilityDiceRoll dialog = new UtilityDiceRoll(mainController, panel);
         dialog.setVisible(true);
         return dialog.diceValue;
     }
     
-    private final JButton btnDice = new JButton("Roll the Dice!");
-    private final JButton btnOK = new JButton("OK");
+    private final JButton diceButton = new JButton("Roll the Dice!");
+    private final JButton okButton = new JButton("OK");
     private int diceValue;
-    private final JLabel lblPrompt = new JLabel();
-    private final MainController mainCtl;
+    private final JLabel promptLabel = new JLabel();
+    private final MainController mainController;
     
  
-    public UtilDiceRoll(MainController mainCtl, PlayerPanel panel) {
-        this.mainCtl = mainCtl;
+    public UtilityDiceRoll(MainController mainController, PlayerPanel panel) {
+        this.mainController = mainController;
         super.setModal(true);
-        btnOK.setEnabled(false);
-        btnOK.setVisible(false);
-        lblPrompt.setText("Please roll the dice to determine your utility bill.");
+        okButton.setEnabled(false);
+        okButton.setVisible(false);
+        promptLabel.setText("Please roll the dice to determine your utility bill.");
         Container contentPane = super.getContentPane();
-        JPanel pnlButtons = new JPanel();
-        pnlButtons.add(btnDice);
-        pnlButtons.add(btnOK);
+        JPanel panelButtons = new JPanel();
+        panelButtons.add(diceButton);
+        panelButtons.add(okButton);
         contentPane.setLayout(new BorderLayout());
-        contentPane.add(lblPrompt, BorderLayout.CENTER);
-        contentPane.add(pnlButtons, BorderLayout.SOUTH);
-        btnDice.addActionListener((ActionEvent arg0) -> {
+        contentPane.add(promptLabel, BorderLayout.CENTER);
+        contentPane.add(panelButtons, BorderLayout.SOUTH);
+        diceButton.addActionListener((ActionEvent arg0) -> {
             rollDice();
-            btnDice.setVisible(false);
-            btnOK.setVisible(true);
+            diceButton.setVisible(false);
+            okButton.setVisible(true);
         });
-        btnOK.addActionListener((ActionEvent arg0) -> {
+        okButton.addActionListener((ActionEvent arg0) -> {
             okClicked();
         });
         super.setLocationRelativeTo(panel);
@@ -59,7 +59,7 @@ public class UtilDiceRoll extends JDialog {
     }
 
     public final void rollDice() {
-        Dice dice = mainCtl.getDice();
+        Dice dice = mainController.getDice();
         diceValue = dice.getTotal();
         StringBuilder text = new StringBuilder();
         text.append("You rolled " )
@@ -69,8 +69,8 @@ public class UtilDiceRoll extends JDialog {
                 .append(" which totals ")
                 .append(dice.getTotal())
                 .append(".");
-        lblPrompt.setText(text.toString());
-        btnDice.setEnabled(false);
-        btnOK.setEnabled(true);
+        promptLabel.setText(text.toString());
+        diceButton.setEnabled(false);
+        okButton.setEnabled(true);
     }
 }

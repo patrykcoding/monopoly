@@ -18,8 +18,8 @@ public class MoneyCard extends Card {
     }
 
     @Override
-    public void applyAction(MainController mainCtl) {
-        Player currentPlayer = mainCtl.getCurrentPlayer();
+    public void applyAction(MainController mainController) {
+        Player currentPlayer = mainController.getCurrentPlayer();
         currentPlayer.setMoney(currentPlayer.getMoney() + amount);
     }
 

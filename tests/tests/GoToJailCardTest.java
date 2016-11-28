@@ -42,7 +42,7 @@ public class GoToJailCardTest extends TestCase {
         mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
         assertTrue(mainCtl.getGUI().isDrawCardButtonEnabled());
         assertFalse(mainCtl.getGUI().isEndTurnButtonEnabled());
-        mainCtl.btnDrawCardClicked();
+        mainCtl.buttonDrawCardClicked();
         assertFalse(mainCtl.getGUI().isDrawCardButtonEnabled());
         Cell cell = mainCtl.getPlayer(0).getPosition();
         assertEquals(mainCtl.getGameBoard().queryCell("Jail"), cell);

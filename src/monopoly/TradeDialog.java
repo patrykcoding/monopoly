@@ -1,5 +1,5 @@
 package monopoly;
 
 public interface TradeDialog {
-    TradeDeal getTradeDeal(MainController mainCtl);
+    TradeDeal getTradeDeal(MainController mainController);
 }

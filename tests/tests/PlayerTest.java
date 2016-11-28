@@ -37,9 +37,9 @@ public class PlayerTest extends TestCase {
         mainCtl.setNumberOfPlayers(2);
         mainCtl.movePlayer(mainCtl.getPlayer(0), 4);
         mainCtl.purchase();
-        mainCtl.btnEndTurnClicked();
+        mainCtl.buttonEndTurnClicked();
         mainCtl.movePlayer(mainCtl.getPlayer(1), 4);
-        mainCtl.btnEndTurnClicked();
+        mainCtl.buttonEndTurnClicked();
         assertTrue(mainCtl.getPlayer(1).isBankrupt());
         assertEquals(2800, mainCtl.getPlayer(0).getMoney());
     }
@@ -48,7 +48,7 @@ public class PlayerTest extends TestCase {
         mainCtl.setNumberOfPlayers(2);
         mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
         mainCtl.purchase();
-        mainCtl.btnEndTurnClicked();
+        mainCtl.buttonEndTurnClicked();
         mainCtl.giveAllProperties(mainCtl.getPlayer(0), mainCtl.getPlayer(1));
         assertEquals(1, mainCtl.getPlayer(1).getPropertyCount());
     }
