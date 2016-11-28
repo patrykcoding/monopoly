@@ -1,10 +1,10 @@
 package tests.mocks;
 
-import monopoly.gui.MonopolyGUI;
 import monopoly.Player;
 import monopoly.RespondDialog;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
+import monopoly.gui.MonopolyGUI;
 import monopoly.gui.PlayerPanel;
 
 public class MockGUI implements MonopolyGUI {

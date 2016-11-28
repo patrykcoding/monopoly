@@ -1,9 +1,9 @@
 package monopoly.cards;
 
 import monopoly.Card;
-import monopoly.enums.CardType;
 import monopoly.MainController;
 import monopoly.Player;
+import monopoly.enums.CardType;
 
 public class MoneyCard extends Card {
     private final int amount;

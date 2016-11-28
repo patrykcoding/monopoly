@@ -1,7 +1,7 @@
 package tests.gameboards;
 
-import monopoly.cells.FreeParkingCell;
 import monopoly.GameBoard;
+import monopoly.cells.FreeParkingCell;
 import monopoly.cells.GoToJailCell;
 import monopoly.cells.JailCell;
 import monopoly.cells.PropertyCell;

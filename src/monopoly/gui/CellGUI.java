@@ -6,10 +6,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
 import javax.swing.border.BevelBorder;
+import monopoly.BoardController;
 import monopoly.Cell;
 import monopoly.MainController;
 import monopoly.Player;
-import monopoly.BoardController;
 
 public class CellGUI extends JPanel {
     private static final long serialVersionUID = 2752137388247147409L;

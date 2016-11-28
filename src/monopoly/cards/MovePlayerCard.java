@@ -1,10 +1,10 @@
 package monopoly.cards;
 
 import monopoly.Card;
-import monopoly.enums.CardType;
 import monopoly.Cell;
 import monopoly.MainController;
 import monopoly.Player;
+import monopoly.enums.CardType;
 
 public class MovePlayerCard extends Card {
     

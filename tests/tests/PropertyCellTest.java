@@ -1,11 +1,11 @@
 
 package tests;
 
-import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.MainController;
 import monopoly.cells.PropertyCell;
 import tests.gameboards.SimpleGameBoard;
+import tests.mocks.MockGUI;
 
 public class PropertyCellTest extends TestCase {
 

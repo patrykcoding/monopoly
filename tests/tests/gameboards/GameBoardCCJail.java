@@ -1,12 +1,12 @@
 package tests.gameboards;
 
 import monopoly.Card;
-import monopoly.enums.CardType;
-import monopoly.cells.CardCell;
 import monopoly.GameBoard;
 import monopoly.cards.JailCard;
+import monopoly.cells.CardCell;
 import monopoly.cells.JailCell;
 import monopoly.cells.PropertyCell;
+import monopoly.enums.CardType;
 import monopoly.enums.ColorGroup;
 
 public class GameBoardCCJail extends GameBoard {

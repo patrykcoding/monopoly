@@ -1,7 +1,6 @@
 package monopoly.gui;
 
 import javax.swing.JOptionPane;
-
 import monopoly.*;
 
 public class Main {

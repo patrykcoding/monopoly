@@ -1,10 +1,10 @@
 package tests;
 
-import tests.mocks.MockGUI;
 import junit.framework.TestCase;
-import tests.gameboards.GameBoardRailRoad;
 import monopoly.MainController;
 import monopoly.cells.RailRoadCell;
+import tests.gameboards.GameBoardRailRoad;
+import tests.mocks.MockGUI;
 
 public class RailRoadCellTest extends TestCase {
     private MainController mainCtl;

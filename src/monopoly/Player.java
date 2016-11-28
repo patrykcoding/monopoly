@@ -1,13 +1,13 @@
 package monopoly;
 
 import java.awt.Color;
-import monopoly.cells.PropertyCell;
-import monopoly.cells.RailRoadCell;
-import monopoly.cells.UtilityCell;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import monopoly.cells.PropertyCell;
+import monopoly.cells.RailRoadCell;
+import monopoly.cells.UtilityCell;
 import monopoly.enums.ColorGroup;
 
 public class Player {
