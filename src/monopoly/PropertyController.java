@@ -77,6 +77,9 @@ public class PropertyController {
     
     public void giveAllProperties(Player fromPlayer, Player toPlayer) {
         List<PropertyCell> properties = fromPlayer.getPropertyCells();
+        List<RailRoadCell> railroads = fromPlayer.getRailRoadCells();
+        List<UtilityCell> utilities = fromPlayer.getUtilityCells();
+        
         properties.stream().map((property) -> {
             property.setPlayer(toPlayer);
             return property;
@@ -89,6 +92,28 @@ public class PropertyController {
             }
         });
         properties.clear();
+        railroads.stream().map((railroad) -> {
+            railroad.setPlayer(toPlayer);
+            return railroad;
+        }).forEach((railroad) -> {
+            if (toPlayer == null) {
+                railroad.setAvailable(true);
+            } else {
+                toPlayer.addRailRoad(railroad);
+            }
+        });
+        railroads.clear();
+        utilities.stream().map((utility) -> {
+            utility.setPlayer(toPlayer);
+            return utility;
+        }).forEach((utility) -> {
+            if (toPlayer == null) {
+                utility.setAvailable(true);
+            } else {
+                toPlayer.addUtility(utility);
+            }
+        });
+        utilities.clear();
     }
 	
     public void payRentTo(Player owner, int rentValue) {

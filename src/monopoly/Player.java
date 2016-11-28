@@ -15,6 +15,7 @@ public class Player {
     private boolean inJail;
     private int money;
     private String name;
+    private boolean isOutOfGame;
     private Color playerColor;
     private Cell position;
     private List<PropertyCell> properties = new ArrayList<>();
@@ -26,6 +27,7 @@ public class Player {
     public Player(Cell position) {
         this.position = position;
         inJail = false;
+        isOutOfGame = false;
         playerColor = Color.GREEN;
         money = INITIAL_MONEY;
     }
@@ -109,6 +111,10 @@ public class Player {
         return railroads;
     }
 
+    public List<UtilityCell> getUtilityCells() {
+        return utilities;
+    }
+    
     public boolean isBankrupt() {
         return money <= 0;
     }
@@ -117,6 +123,10 @@ public class Player {
         return inJail;
     }
 
+    public boolean isOutOfGame() {
+        return isOutOfGame;
+    }
+    
     public int numberOfRailroads() {
         return railroads.size();
     }
@@ -160,6 +170,10 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public void setOutOfGame() {
+        isOutOfGame = true;
     }
     
     public void setPlayerColor(Color color) {

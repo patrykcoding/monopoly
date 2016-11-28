@@ -20,6 +20,7 @@ public class BoardController {
             new Color(206, 57, 72),   /* Player 7 */
             new Color(72, 196, 188)   /* Player 8 */
     ));
+    private int outOfGamePlayers = 0;
     private int playerTurnIndex = 0;
     private final List<Player> players = new ArrayList<>();
 
@@ -48,6 +49,10 @@ public class BoardController {
         return players.size();
     }
 
+    public int getOutOfGamePlayersNumber() {
+        return outOfGamePlayers;
+    }
+    
     public Player getPlayer(int index) {
         return players.get(index);
     }
@@ -70,6 +75,10 @@ public class BoardController {
         if (newIndex <= positionIndex || diceValue > gameBoard.getCellSize())
             player.setMoney(player.getMoney() + 200);
         player.setPosition(gameBoard.getCell(newIndex));
+    }
+    
+    public void removePlayer() {
+        outOfGamePlayers++;
     }
     
     public void reset() {    

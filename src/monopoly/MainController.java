@@ -49,30 +49,23 @@ public class MainController {
         getCurrentPlayer().getPosition().playAction(this);
         
         if (getCurrentPlayer().isBankrupt()) {
-            gui.setBuyHouseEnabled(false);
-            gui.setDrawCardEnabled(false);
-            gui.setEndTurnEnabled(false);
-            gui.setGetOutOfJailEnabled(false);
-            gui.setPurchasePropertyEnabled(false);
-            gui.setRollDiceEnabled(false);
-            gui.setTradeEnabled(getTurn(),false);
-            gui.update();
-        } else {
-            switchTurn();
-            gui.update();
+            getCurrentPlayer().setOutOfGame();
+            boardController.removePlayer();
         }
+        switchTurn();
+        gui.update();
     }
 
     public void buttonGetOutOfJailClicked() {
         getOutOfJail();
         if (getCurrentPlayer().isBankrupt()) {
-            gui.setBuyHouseEnabled(false);
-            gui.setDrawCardEnabled(false);
-            gui.setEndTurnEnabled(false);
-            gui.setGetOutOfJailEnabled(false);
-            gui.setPurchasePropertyEnabled(false);
-            gui.setRollDiceEnabled(false);
-            gui.setTradeEnabled(getTurn(),false);
+            setAllButtonEnabled(false);
+            getCurrentPlayer().setOutOfGame();
+            int positionIndex = boardController.getCurrentPositionIndex(getCurrentPlayer());
+            gui.removePlayer(getPlayerIndex(getCurrentPlayer()), positionIndex);
+            boardController.removePlayer();
+            switchTurn();
+            gui.update();
         } else {
             gui.setRollDiceEnabled(true);
             gui.setBuyHouseEnabled(propertyController.canBuyHouse());
@@ -278,6 +271,14 @@ public class MainController {
     public void switchTurn() {
         boardController.switchTurn();
         
+        if (getCurrentPlayer().isOutOfGame()) {
+            switchTurn();
+            return;
+        }
+        if (boardController.getOutOfGamePlayersNumber() + 1 >= boardController.getNumberOfPlayers()) {
+            setAllButtonEnabled(false);
+            return;
+        }
         if (!getCurrentPlayer().isInJail()) {
             gui.enablePlayerTurn(boardController.getTurn());
             gui.setBuyHouseEnabled(propertyController.canBuyHouse());

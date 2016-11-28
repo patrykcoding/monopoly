@@ -16,6 +16,7 @@ public interface MonopolyGUI {
     public void movePlayer(int index, int from, int to);
     public RespondDialog openRespondDialog(TradeDeal deal);
     public TradeDialog openTradeDialog();
+    public void removePlayer(int index, int from);
     public void setBuyHouseEnabled(boolean enabled);
     public void setDrawCardEnabled(boolean enabled);
     public void setEndTurnEnabled(boolean enabled);

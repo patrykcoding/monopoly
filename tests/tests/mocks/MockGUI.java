@@ -1,6 +1,5 @@
 package tests.mocks;
 
-import monopoly.Dice;
 import monopoly.gui.MonopolyGUI;
 import monopoly.Player;
 import monopoly.RespondDialog;
@@ -53,6 +52,9 @@ public class MockGUI implements MonopolyGUI {
     public TradeDialog openTradeDialog() {
         return new MockTradeDialog();
     }
+
+    @Override
+    public void removePlayer(int index, int from) {}
 
     @Override
     public void setBuyHouseEnabled(boolean b) {}

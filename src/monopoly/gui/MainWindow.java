@@ -165,6 +165,12 @@ public class MainWindow extends JFrame implements MonopolyGUI {
     }
 
     @Override
+    public void removePlayer(int index, int from) {
+        CellGUI cell = queryCell(from);
+        cell.removePlayer(index);
+    }
+    
+    @Override
     public void setBuyHouseEnabled(boolean enabled) {
         int currentPlayerIndex = mainController.getTurn();
         playerPanels[currentPlayerIndex].setBuyHouseEnabled(enabled);
