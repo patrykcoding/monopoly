@@ -59,7 +59,7 @@ public class UtilityDiceRoll extends JDialog {
     }
 
     public final void rollDice() {
-        Dice dice = mainController.getDice();
+        Dice dice = new Dice(2);
         diceValue = dice.getTotal();
         StringBuilder text = new StringBuilder();
         text.append("You rolled " )
