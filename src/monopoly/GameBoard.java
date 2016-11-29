@@ -1,13 +1,13 @@
 package monopoly;
 
-import monopoly.enums.CardType;
-import monopoly.cells.PropertyCell;
-import monopoly.cells.GoCell;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import monopoly.cells.GoCell;
+import monopoly.cells.PropertyCell;
+import monopoly.enums.CardType;
 import monopoly.enums.ColorGroup;
 
 public class GameBoard {

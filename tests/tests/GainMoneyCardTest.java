@@ -1,12 +1,12 @@
 package tests;
 
-import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
-import monopoly.enums.CardType;
-import tests.gameboards.GameBoardCCGainMoney;
 import monopoly.MainController;
 import monopoly.cards.MoneyCard;
+import monopoly.enums.CardType;
+import tests.gameboards.GameBoardCCGainMoney;
+import tests.mocks.MockGUI;
 
 public class GainMoneyCardTest extends TestCase {
     private Card gainMoneyCard;

@@ -1,17 +1,17 @@
 package monopoly.gameboards;
 
-import monopoly.enums.CardType;
 import monopoly.GameBoard;
-import monopoly.cards.MovePlayerCard;
 import monopoly.cards.JailCard;
 import monopoly.cards.MoneyCard;
-import monopoly.cells.FreeParkingCell;
+import monopoly.cards.MovePlayerCard;
 import monopoly.cells.CardCell;
+import monopoly.cells.FreeParkingCell;
+import monopoly.cells.GoToJailCell;
+import monopoly.cells.JailCell;
 import monopoly.cells.PropertyCell;
 import monopoly.cells.RailRoadCell;
-import monopoly.cells.GoToJailCell;
 import monopoly.cells.UtilityCell;
-import monopoly.cells.JailCell;
+import monopoly.enums.CardType;
 import monopoly.enums.ColorGroup;
 
 public class GameBoardDefault extends GameBoard {

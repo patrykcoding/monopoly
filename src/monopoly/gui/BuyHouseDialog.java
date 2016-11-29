@@ -5,14 +5,12 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import monopoly.GameBoard;
 import monopoly.MainController;
-
 import monopoly.Player;
 import monopoly.cells.PropertyCell;
 import monopoly.enums.ColorGroup;

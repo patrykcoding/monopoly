@@ -1,13 +1,13 @@
 package tests;
 
-import tests.mocks.MockGUI;
 import junit.framework.TestCase;
 import monopoly.Card;
-import monopoly.enums.CardType;
 import monopoly.Cell;
-import tests.gameboards.GameBoardCCJail;
 import monopoly.MainController;
 import monopoly.cards.JailCard;
+import monopoly.enums.CardType;
+import tests.gameboards.GameBoardCCJail;
+import tests.mocks.MockGUI;
 
 public class GoToJailCardTest extends TestCase {
     private MainController mainCtl;

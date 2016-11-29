@@ -1,17 +1,9 @@
 package monopoly.gui;
 
-import monopoly.gui.infoformatters.JailCellInfoFormatter;
-import monopoly.gui.infoformatters.GotoJailCellInfoFormatter;
-import monopoly.gui.infoformatters.FreeParkingCellInfoFormatter;
-import monopoly.gui.infoformatters.CCCellInfoFormatter;
-import monopoly.gui.infoformatters.GoCellInfoFormatter;
-import monopoly.gui.infoformatters.RRCellInfoFormatter;
-import monopoly.gui.infoformatters.PropertyCellInfoFormatter;
-import monopoly.gui.infoformatters.UtilCellInfoFormatter;
 import java.util.HashMap;
 import java.util.Map;
-import monopoly.cells.CardCell;
 import monopoly.Cell;
+import monopoly.cells.CardCell;
 import monopoly.cells.FreeParkingCell;
 import monopoly.cells.GoCell;
 import monopoly.cells.GoToJailCell;
@@ -19,6 +11,14 @@ import monopoly.cells.JailCell;
 import monopoly.cells.PropertyCell;
 import monopoly.cells.RailRoadCell;
 import monopoly.cells.UtilityCell;
+import monopoly.gui.infoformatters.CCCellInfoFormatter;
+import monopoly.gui.infoformatters.FreeParkingCellInfoFormatter;
+import monopoly.gui.infoformatters.GoCellInfoFormatter;
+import monopoly.gui.infoformatters.GotoJailCellInfoFormatter;
+import monopoly.gui.infoformatters.JailCellInfoFormatter;
+import monopoly.gui.infoformatters.PropertyCellInfoFormatter;
+import monopoly.gui.infoformatters.RRCellInfoFormatter;
+import monopoly.gui.infoformatters.UtilCellInfoFormatter;
 
 public class InfoFormatter {
     static Map<Object, CellInfoFormatter> cellInfoFormatters;

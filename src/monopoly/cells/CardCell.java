@@ -1,7 +1,7 @@
 package monopoly.cells;
 
-import monopoly.enums.CardType;
 import monopoly.Cell;
+import monopoly.enums.CardType;
 
 public class CardCell extends Cell {
     private final CardType type;

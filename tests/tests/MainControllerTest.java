@@ -1,20 +1,19 @@
 package tests;
 
-import tests.mocks.MockGUI;
 import java.util.List;
-
 import junit.framework.TestCase;
 import monopoly.Dice;
-import monopoly.gameboards.GameBoardDefault;
 import monopoly.MainController;
-import monopoly.gui.MonopolyGUI;
 import monopoly.Player;
 import monopoly.RespondDialog;
 import monopoly.TradeDeal;
 import monopoly.TradeDialog;
 import monopoly.cells.PropertyCell;
 import monopoly.enums.ColorGroup;
+import monopoly.gameboards.GameBoardDefault;
+import monopoly.gui.MonopolyGUI;
 import monopoly.gui.PlayerPanel;
+import tests.mocks.MockGUI;
 
 public class MainControllerTest extends TestCase {
 

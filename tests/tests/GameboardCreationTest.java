@@ -2,13 +2,11 @@ package tests;
 
 import java.awt.Dimension;
 import java.util.List;
-
 import junit.framework.TestCase;
 import monopoly.GameBoard;
+import monopoly.gui.GameBoardUtil;
 import tests.gameboards.GameBoard14;
 import tests.gameboards.SimpleGameBoard;
-
-import monopoly.gui.GameBoardUtil;
 
 public class GameboardCreationTest extends TestCase{
 	

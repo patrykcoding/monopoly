@@ -1,12 +1,12 @@
 package tests;
 
-import monopoly.gui.infoformatters.GoCellInfoFormatter;
-import monopoly.gui.InfoFormatter;
 import junit.framework.TestCase;
-import monopoly.cells.GoCell;
 import monopoly.Player;
+import monopoly.cells.GoCell;
 import monopoly.cells.PropertyCell;
 import monopoly.enums.ColorGroup;
+import monopoly.gui.InfoFormatter;
+import monopoly.gui.infoformatters.GoCellInfoFormatter;
 
 public class CellInfoFormatterTest extends TestCase {
     
