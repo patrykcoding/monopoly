@@ -25,7 +25,6 @@ public class UtilityDiceRoll extends JDialog {
     private final JLabel promptLabel = new JLabel();
     private final MainController mainController;
     
- 
     public UtilityDiceRoll(MainController mainController, PlayerPanel panel) {
         this.mainController = mainController;
         super.setModal(true);

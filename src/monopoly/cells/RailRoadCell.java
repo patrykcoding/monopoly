@@ -14,7 +14,6 @@ public class RailRoadCell extends Cell {
         return baseRent;
     }
 
-    
     public int getRent() {
         return rent;
     }

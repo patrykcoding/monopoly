@@ -15,6 +15,7 @@ public class Dice {
         roll();
         return dice;
     }
+    
     public int getSingleDice(int diceNumber) {
         return dice[diceNumber];
     }

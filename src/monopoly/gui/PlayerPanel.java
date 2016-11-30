@@ -33,7 +33,6 @@ public class PlayerPanel extends JPanel {
     private final JButton rollDiceButton;
     private final JButton tradeButton;
 
-    
     public PlayerPanel(MainController mainController, Player player) {
         JPanel actionPanel = new JPanel();
         JPanel infoPanel = new JPanel();
