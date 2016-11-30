@@ -9,9 +9,9 @@ import monopoly.TradeDialog;
 public class MockTradeDialog implements TradeDialog {
 
     @Override
-    public TradeDeal getTradeDeal(MainController mainCtl) {
-        Cell property = mainCtl.getGameBoard().getCell(1);
-        Player buyer = mainCtl.getPlayer(1);
+    public TradeDeal getTradeDeal(MainController mainController) {
+        Cell property = mainController.getGameBoard().getCell(1);
+        Player buyer = mainController.getPlayer(1);
         int dealAmount = 200;
         
         TradeDeal deal = new TradeDeal(property, buyer, dealAmount);

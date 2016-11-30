@@ -11,7 +11,6 @@ import javax.swing.JTextArea;
 import monopoly.RespondDialog;
 import monopoly.TradeDeal;
 
-
 public class RespondDialogGUI extends JDialog implements RespondDialog {
     private static final long serialVersionUID = -992184678913164041L;
     

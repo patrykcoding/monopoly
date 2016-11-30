@@ -13,8 +13,8 @@ public class GameBoardUtility extends GameBoard {
     public GameBoardUtility() {
         super();
         
-        int rrBaseRent = 25;
-        int rrPrice = 200;
+        int railroadBaseRent = 25;
+        int railroadPrice = 200;
 	
         PropertyCell blue1 = new PropertyCell();
         PropertyCell blue2 = new PropertyCell();
@@ -23,10 +23,10 @@ public class GameBoardUtility extends GameBoard {
         JailCell jail = new JailCell();
         GoToJailCell goToJail = new GoToJailCell();
         FreeParkingCell freeParking = new FreeParkingCell();
-        RailRoadCell rr1 = new RailRoadCell();
-        RailRoadCell rr3 = new RailRoadCell();
-        UtilityCell u1 = new UtilityCell();
-        UtilityCell u2 = new UtilityCell();
+        RailRoadCell railroad1 = new RailRoadCell();
+        RailRoadCell railroad2 = new RailRoadCell();
+        UtilityCell utility1 = new UtilityCell();
+        UtilityCell utility2 = new UtilityCell();
 
         blue1.setName("Blue 1");
         blue2.setName("Blue 2");
@@ -38,17 +38,17 @@ public class GameBoardUtility extends GameBoard {
         green1.setColorGroup(ColorGroup.GREEN);
         green2.setColorGroup(ColorGroup.GREEN);
 
-        rr1.setName("Railroad A");
-        rr1.setPrice(rrPrice);
-        rr1.setBaseRent(rrBaseRent);
+        railroad1.setName("Railroad A");
+        railroad1.setPrice(railroadPrice);
+        railroad1.setBaseRent(railroadBaseRent);
 
-        rr3.setName("Railroad C");
-        rr3.setPrice(rrPrice);
-        rr3.setBaseRent(rrBaseRent);
+        railroad2.setName("Railroad C");
+        railroad2.setPrice(railroadPrice);
+        railroad2.setBaseRent(railroadBaseRent);
 
 
-        u1.setName("Utility 1");
-        u2.setName("Utility 2");
+        utility1.setName("Utility 1");
+        utility2.setName("Utility 2");
         UtilityCell.setPrice(150);
 
         blue1.setPrice(100);
@@ -66,16 +66,16 @@ public class GameBoardUtility extends GameBoard {
         green1.setHousePrice(70);
         green2.setHousePrice(70);
 
-        addCell(rr1);
+        addCell(railroad1);
         super.addCell(blue1);
         addCell(jail);
-        addCell(u1);
+        addCell(utility1);
         super.addCell(blue2);
         addCell(freeParking);
         super.addCell(green1);
-        addCell(rr3);
+        addCell(railroad2);
         addCell(goToJail);
         super.addCell(green2);
-        addCell(u2);
+        addCell(utility2);
     }
 }

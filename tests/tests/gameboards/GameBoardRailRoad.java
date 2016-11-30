@@ -12,8 +12,8 @@ public class GameBoardRailRoad extends GameBoard {
     public GameBoardRailRoad() {
         super();
 	
-        int rrBaseRent = 25;
-        int rrPrice = 200;
+        int railroadBaseRent = 25;
+        int railroadPrice = 200;
         
         PropertyCell blue1 = new PropertyCell();
         PropertyCell blue2 = new PropertyCell();
@@ -22,10 +22,10 @@ public class GameBoardRailRoad extends GameBoard {
         JailCell jail = new JailCell();
         GoToJailCell goToJail = new GoToJailCell();
         FreeParkingCell freeParking = new FreeParkingCell();
-        RailRoadCell rr1 = new RailRoadCell();
-        RailRoadCell rr2 = new RailRoadCell();
-        RailRoadCell rr3 = new RailRoadCell();
-        RailRoadCell rr4 = new RailRoadCell();
+        RailRoadCell railroad1 = new RailRoadCell();
+        RailRoadCell railroad2 = new RailRoadCell();
+        RailRoadCell railroad3 = new RailRoadCell();
+        RailRoadCell railroad4 = new RailRoadCell();
 
         blue1.setName("Blue 1");
         blue2.setName("Blue 2");
@@ -37,21 +37,21 @@ public class GameBoardRailRoad extends GameBoard {
         green1.setColorGroup(ColorGroup.GREEN);
         green2.setColorGroup(ColorGroup.GREEN);
 
-        rr1.setName("Railroad A");
-        rr1.setPrice(rrPrice);
-        rr1.setBaseRent(rrBaseRent);
+        railroad1.setName("Railroad A");
+        railroad1.setPrice(railroadPrice);
+        railroad1.setBaseRent(railroadBaseRent);
 
-        rr2.setName("Railroad B");
-        rr2.setPrice(rrPrice);
-        rr2.setBaseRent(rrBaseRent);
+        railroad2.setName("Railroad B");
+        railroad2.setPrice(railroadPrice);
+        railroad2.setBaseRent(railroadBaseRent);
 
-        rr4.setName("Railroad C");
-        rr4.setPrice(rrPrice);
-        rr4.setBaseRent(rrBaseRent);
+        railroad4.setName("Railroad C");
+        railroad4.setPrice(railroadPrice);
+        railroad4.setBaseRent(railroadBaseRent);
 
-        rr4.setName("Railroad D");
-        rr4.setPrice(rrPrice);
-        rr4.setBaseRent(rrBaseRent);
+        railroad4.setName("Railroad D");
+        railroad4.setPrice(railroadPrice);
+        railroad4.setBaseRent(railroadBaseRent);
 
         blue1.setPrice(100);
         blue2.setPrice(100);
@@ -68,16 +68,16 @@ public class GameBoardRailRoad extends GameBoard {
         green1.setHousePrice(70);
         green2.setHousePrice(70);
 
-        addCell(rr1);
+        addCell(railroad1);
         super.addCell(blue1);
         addCell(jail);
-        addCell(rr2);
+        addCell(railroad2);
         super.addCell(blue2);
         addCell(freeParking);
         super.addCell(green1);
-        addCell(rr3);
+        addCell(railroad3);
         addCell(goToJail);
         super.addCell(green2);
-        addCell(rr4);
+        addCell(railroad4);
     }
 }

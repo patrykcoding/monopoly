@@ -27,8 +27,8 @@ public class GameboardTest extends TestCase {
     }
 
     public void testCellsForMonopoly() {
-        GameBoard gb = new SimpleGameBoard();
-        List<PropertyCell> properties = gb.getPropertiesInMonopoly(ColorGroup.BLUE);
+        GameBoard gameboard = new SimpleGameBoard();
+        List<PropertyCell> properties = gameboard.getPropertiesInMonopoly(ColorGroup.BLUE);
         assertEquals("Blue 1", properties.get(0).getName());
         assertEquals("Blue 2", properties.get(1).getName());
         assertEquals("Blue 3", properties.get(2).getName());

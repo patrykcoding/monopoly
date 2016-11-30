@@ -9,59 +9,58 @@ import tests.mocks.MockGUI;
 
 public class PlayerTest extends TestCase {
 
-    private MainController mainCtl;
+    private MainController mainController;
 	
     @Override
     protected void setUp() throws Exception {
-        mainCtl = new MainController();
-        mainCtl.setGameBoard(new SimpleGameBoard());
-        mainCtl.setGUI(new MockGUI());
-        mainCtl.reset();
+        mainController = new MainController();
+        mainController.setGameBoard(new SimpleGameBoard());
+        mainController.setGUI(new MockGUI());
+        mainController.reset();
     }
 
     public void testInit() {
-        mainCtl.setNumberOfPlayers(1);
-        assertEquals(1500, mainCtl.getPlayer(0).getMoney());
+        mainController.setNumberOfPlayers(1);
+        assertEquals(1500, mainController.getPlayer(0).getMoney());
     }
     
     public void testSameGoCell() {
-        GameBoard gameboard = mainCtl.getGameBoard();
-        mainCtl.setNumberOfPlayers(2);
+        GameBoard gameboard = mainController.getGameBoard();
+        mainController.setNumberOfPlayers(2);
         
         Cell go = gameboard.queryCell("Go");
-        assertSame(go, mainCtl.getPlayer(0).getPosition());
-        assertSame(go, mainCtl.getPlayer(1).getPosition());
+        assertSame(go, mainController.getPlayer(0).getPosition());
+        assertSame(go, mainController.getPlayer(1).getPosition());
     }
 	
     public void testPayRentTo() {
-        mainCtl.setNumberOfPlayers(2);
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 4);
-        mainCtl.purchase();
-        mainCtl.buttonEndTurnClicked();
-        mainCtl.movePlayer(mainCtl.getPlayer(1), 4);
-        mainCtl.buttonEndTurnClicked();
-        assertTrue(mainCtl.getPlayer(1).isBankrupt());
-        assertEquals(2800, mainCtl.getPlayer(0).getMoney());
+        mainController.setNumberOfPlayers(2);
+        mainController.movePlayer(mainController.getPlayer(0), 4);
+        mainController.purchase();
+        mainController.buttonEndTurnClicked();
+        mainController.movePlayer(mainController.getPlayer(1), 4);
+        mainController.buttonEndTurnClicked();
+        assertTrue(mainController.getPlayer(1).isBankrupt());
+        assertEquals(2800, mainController.getPlayer(0).getMoney());
     }
 	
     public void testGiveAllProperties() {
-        mainCtl.setNumberOfPlayers(2);
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
-        mainCtl.purchase();
-        mainCtl.buttonEndTurnClicked();
-        mainCtl.giveAllProperties(mainCtl.getPlayer(0), mainCtl.getPlayer(1));
-        assertEquals(1, mainCtl.getPlayer(1).getPropertyCount());
+        mainController.setNumberOfPlayers(2);
+        mainController.movePlayer(mainController.getPlayer(0), 3);
+        mainController.purchase();
+        mainController.buttonEndTurnClicked();
+        mainController.giveAllProperties(mainController.getPlayer(0), mainController.getPlayer(1));
+        assertEquals(1, mainController.getPlayer(1).getPropertyCount());
     }
 
     public void testResetProperty() {
-        mainCtl.setNumberOfPlayers(1);
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
-        mainCtl.purchase();
-        assertEquals(
-            mainCtl.getGameBoard().getCell(1), 
-            mainCtl.getPlayer(0).getAllProperties().get(0)
+        mainController.setNumberOfPlayers(1);
+        mainController.movePlayer(mainController.getPlayer(0), 1);
+        mainController.purchase();
+        assertEquals(mainController.getGameBoard().getCell(1), 
+            mainController.getPlayer(0).getAllProperties().get(0)
         );
-        mainCtl.getPlayer(0).resetProperties();
-        assertEquals(0, mainCtl.getPlayer(0).getAllProperties().size());
+        mainController.getPlayer(0).resetProperties();
+        assertEquals(0, mainController.getPlayer(0).getAllProperties().size());
     }
 }

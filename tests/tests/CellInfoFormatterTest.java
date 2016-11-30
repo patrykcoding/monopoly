@@ -43,9 +43,9 @@ public class CellInfoFormatterTest extends TestCase {
         cell.setRent(rentPrice);
         cell.setColorGroup(propertyColor);
         cell.setHousePrice(100);
-        Player p = new Player(cell);
-        p.setName(ownerName);
-        cell.setPlayer(p);
+        Player player = new Player(cell);
+        player.setName(ownerName);
+        cell.setPlayer(player);
         cell.setNumHouses(numHouses);
         assertEquals(propertyLabel, InfoFormatter.cellInfo(cell));
         assertEquals(propertyToolTip, InfoFormatter.cellToolTip(cell));

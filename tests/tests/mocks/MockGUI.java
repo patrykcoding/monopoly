@@ -8,8 +8,10 @@ import monopoly.gui.MonopolyGUI;
 import monopoly.gui.PlayerPanel;
 
 public class MockGUI implements MonopolyGUI {
-    private boolean btnDrawCardState, btnEndTurnState, btnGetOutOfJailState;
-    private final boolean[] btnTradeState = new boolean[2];
+    private boolean buttonDrawCardState;
+    private boolean buttonEndTurnState;
+    private boolean buttonGetOutOfJailState;
+    private final boolean[] buttonTradeState = new boolean[2];
 
     @Override
     public void enableEndTurnButton(int playerIndex) {}
@@ -22,22 +24,22 @@ public class MockGUI implements MonopolyGUI {
     
     @Override
     public boolean isDrawCardButtonEnabled() {
-        return btnDrawCardState;
+        return buttonDrawCardState;
     }
 
     @Override
     public boolean isEndTurnButtonEnabled() {
-        return btnEndTurnState;
+        return buttonEndTurnState;
     }
 	
     @Override
     public boolean isGetOutOfJailButtonEnabled() {
-        return btnGetOutOfJailState;
+        return buttonGetOutOfJailState;
     }
 
     @Override
     public boolean isTradeButtonEnabled(int i) {
-        return btnTradeState[i];
+        return buttonTradeState[i];
     }
 
     @Override
@@ -57,32 +59,32 @@ public class MockGUI implements MonopolyGUI {
     public void removePlayer(int index, int from) {}
 
     @Override
-    public void setBuyHouseEnabled(boolean b) {}
+    public void setBuyHouseEnabled(boolean enabled) {}
 
     @Override
-    public void setDrawCardEnabled(boolean b) {
-        btnDrawCardState = b;
+    public void setDrawCardEnabled(boolean enabled) {
+        buttonDrawCardState = enabled;
     }
 
     @Override
     public void setEndTurnEnabled(boolean enabled) {
-        btnEndTurnState = enabled;
+        buttonEndTurnState = enabled;
     }
 
     @Override
-    public void setGetOutOfJailEnabled(boolean b) {
-    	this.btnGetOutOfJailState = b;
+    public void setGetOutOfJailEnabled(boolean enabled) {
+    	this.buttonGetOutOfJailState = enabled;
     }
 
     @Override
     public void setPurchasePropertyEnabled(boolean enabled) {}
 
     @Override
-    public void setRollDiceEnabled(boolean b) {}
+    public void setRollDiceEnabled(boolean enabled) {}
 
     @Override
-    public void setTradeEnabled(int index, boolean b) {
-        this.btnTradeState[index] = b;
+    public void setTradeEnabled(int index, boolean enabled) {
+        this.buttonTradeState[index] = enabled;
     }
 
     @Override

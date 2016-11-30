@@ -40,6 +40,7 @@ public class Player {
         properties.add(property);
         addPropertyColor(property.getColorGroup());
     }
+    
     private void addPropertyColor(ColorGroup colorGroup) {
         propertyColors.put(colorGroup, getPropertyNumberForColor(colorGroup) + 1);
     }
@@ -75,6 +76,7 @@ public class Player {
     public String getName() {
         return name;
     }
+    
     public Color getPlayerColor() {
         return playerColor;
     }
