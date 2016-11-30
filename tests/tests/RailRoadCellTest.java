@@ -7,53 +7,53 @@ import tests.gameboards.GameBoardRailRoad;
 import tests.mocks.MockGUI;
 
 public class RailRoadCellTest extends TestCase {
-    private MainController mainCtl;
+    private MainController mainController;
 
     @Override
     protected void setUp() {
-        mainCtl = new MainController();
-        mainCtl.setGameBoard(new GameBoardRailRoad());
-        mainCtl.setNumberOfPlayers(2);
-        mainCtl.reset();
-        mainCtl.setGUI(new MockGUI());
+        mainController = new MainController();
+        mainController.setGameBoard(new GameBoardRailRoad());
+        mainController.setNumberOfPlayers(2);
+        mainController.reset();
+        mainController.setGUI(new MockGUI());
     }
 
     public void testPlayerAction() {
         RailRoadCell cell =
-                (RailRoadCell) mainCtl.getGameBoard().queryCell("Railroad A");
-        int cellIndex = mainCtl.getGameBoard().queryCellIndex("Railroad A");
-        mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex);
-        mainCtl.purchase();
-        mainCtl.switchTurn();
-        mainCtl.movePlayer(mainCtl.getPlayer(1), cellIndex);
-        cell.playAction(mainCtl);
-        assertEquals(1500 - cell.getRent(), mainCtl.getPlayer(1).getMoney());
-        assertEquals(1300 + cell.getRent(), mainCtl.getPlayer(0).getMoney());
+                (RailRoadCell) mainController.getGameBoard().queryCell("Railroad A");
+        int cellIndex = mainController.getGameBoard().queryCellIndex("Railroad A");
+        mainController.movePlayer(mainController.getPlayer(0), cellIndex);
+        mainController.purchase();
+        mainController.switchTurn();
+        mainController.movePlayer(mainController.getPlayer(1), cellIndex);
+        cell.playAction(mainController);
+        assertEquals(1500 - cell.getRent(), mainController.getPlayer(1).getMoney());
+        assertEquals(1300 + cell.getRent(), mainController.getPlayer(0).getMoney());
     }
 
     public void testPurchaseRailroad() {
-        assertEquals(0, mainCtl.getPlayer(0).numberOfRailroads());
-        int cellIndex = mainCtl.getGameBoard().queryCellIndex("Railroad A");
-        mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex);
-        mainCtl.purchase();
-        assertEquals(1300, mainCtl.getPlayer(0).getMoney());
-        assertEquals(1, mainCtl.getPlayer(0).numberOfRailroads());
+        assertEquals(0, mainController.getPlayer(0).numberOfRailroads());
+        int cellIndex = mainController.getGameBoard().queryCellIndex("Railroad A");
+        mainController.movePlayer(mainController.getPlayer(0), cellIndex);
+        mainController.purchase();
+        assertEquals(1300, mainController.getPlayer(0).getMoney());
+        assertEquals(1, mainController.getPlayer(0).numberOfRailroads());
     }
 
     public void testRent() {
-        RailRoadCell rr1 =
-                (RailRoadCell) mainCtl.getGameBoard().queryCell("Railroad A");
-        int cellIndex1 = mainCtl.getGameBoard().queryCellIndex("Railroad A");
-        mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex1);
-        mainCtl.purchase();
-        assertEquals(25, rr1.getRent());
+        RailRoadCell railroad1 =
+                (RailRoadCell) mainController.getGameBoard().queryCell("Railroad A");
+        int cellIndex1 = mainController.getGameBoard().queryCellIndex("Railroad A");
+        mainController.movePlayer(mainController.getPlayer(0), cellIndex1);
+        mainController.purchase();
+        assertEquals(25, railroad1.getRent());
 
-        RailRoadCell rr2 =
-                (RailRoadCell) mainCtl.getGameBoard().queryCell("Railroad B");
-        int cellIndex2 = mainCtl.getGameBoard().queryCellIndex("Railroad B");
-        mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex2 - cellIndex1);
-        mainCtl.purchase();
-        assertEquals(50, rr1.getRent());
-        assertEquals(50, rr2.getRent());
+        RailRoadCell railroad2 =
+                (RailRoadCell) mainController.getGameBoard().queryCell("Railroad B");
+        int cellIndex2 = mainController.getGameBoard().queryCellIndex("Railroad B");
+        mainController.movePlayer(mainController.getPlayer(0), cellIndex2 - cellIndex1);
+        mainController.purchase();
+        assertEquals(50, railroad1.getRent());
+        assertEquals(50, railroad2.getRent());
     }
 }

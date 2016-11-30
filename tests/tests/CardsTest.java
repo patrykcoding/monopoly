@@ -10,25 +10,22 @@ import tests.mocks.MockGUI;
 
 public class CardsTest extends TestCase {
     private Card ccCard, chanceCard;
-    
-    private MainController mainCtrl;
+    private MainController mainController;
 
     @Override
     protected void setUp() {
-        mainCtrl = new MainController();
-        mainCtrl.setGameBoard(new GameBoardCCGainMoney());
-        mainCtrl.setNumberOfPlayers(1);
-        mainCtrl.reset();
-        mainCtrl.setGUI(new MockGUI());
+        mainController = new MainController();
+        mainController.setGameBoard(new GameBoardCCGainMoney());
+        mainController.setNumberOfPlayers(1);
+        mainController.reset();
+        mainController.setGUI(new MockGUI());
         ccCard = new MoneyCard("Get 50 dollars", 50, CardType.CC);
         chanceCard = new MoneyCard("Lose 50 dollars", -50, CardType.CHANCE);
-        mainCtrl.getGameBoard().addCard(ccCard);
+        mainController.getGameBoard().addCard(ccCard);
     }
     
     public void testCardType() {
-        Card card = mainCtrl.drawCCCard();
         assertEquals(CardType.CC, ccCard.getCardType());
-        card = mainCtrl.drawChanceCard();
         assertEquals(CardType.CHANCE, chanceCard.getCardType());
     }
 }

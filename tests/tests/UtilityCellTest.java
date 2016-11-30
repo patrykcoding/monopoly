@@ -7,68 +7,68 @@ import tests.gameboards.GameBoardUtility;
 import tests.mocks.MockGUI;
 
 public class UtilityCellTest extends TestCase {
-    private MainController mainCtl;
+    private MainController mainController;
 
     @Override
     protected void setUp() {
-        mainCtl = new MainController();
-        mainCtl.setGameBoard(new GameBoardUtility());
-        mainCtl.setNumberOfPlayers(2);
-        mainCtl.reset();
-        mainCtl.setGUI(new MockGUI());
+        mainController = new MainController();
+        mainController.setGameBoard(new GameBoardUtility());
+        mainController.setNumberOfPlayers(2);
+        mainController.reset();
+        mainController.setGUI(new MockGUI());
     }
     
     public void testMonopoly() {
-        int u1CellIndex = mainCtl.getGameBoard().queryCellIndex("Utility 1");
-        mainCtl.movePlayer(mainCtl.getPlayer(0), u1CellIndex);
-        mainCtl.purchase();
-        int u2CellIndex = mainCtl.getGameBoard().queryCellIndex("Utility 2");
-        mainCtl.movePlayer(mainCtl.getPlayer(0), u2CellIndex - u1CellIndex);
-        mainCtl.purchase();
-        assertFalse(mainCtl.canBuyHouse());
+        int utility1CellIndex = mainController.getGameBoard().queryCellIndex("Utility 1");
+        mainController.movePlayer(mainController.getPlayer(0), utility1CellIndex);
+        mainController.purchase();
+        int utility2CellIndex = mainController.getGameBoard().queryCellIndex("Utility 2");
+        mainController.movePlayer(mainController.getPlayer(0), utility2CellIndex - utility1CellIndex);
+        mainController.purchase();
+        assertFalse(mainController.canBuyHouse());
     }
 	
     public void testPlayerAction() {
             UtilityCell cell =
-                    (UtilityCell) mainCtl.getGameBoard().queryCell("Utility 1");
-            int cellIndex = mainCtl.getGameBoard().queryCellIndex("Utility 1");
-            mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex);
-            mainCtl.purchase();
-            mainCtl.switchTurn();
-            mainCtl.movePlayer(mainCtl.getPlayer(1), cellIndex);
-            cell.playAction(mainCtl);
-            int diceRoll = mainCtl.getUtilityDiceRoll();
+                    (UtilityCell) mainController.getGameBoard().queryCell("Utility 1");
+            int cellIndex = mainController.getGameBoard().queryCellIndex("Utility 1");
+            mainController.movePlayer(mainController.getPlayer(0), cellIndex);
+            mainController.purchase();
+            mainController.switchTurn();
+            mainController.movePlayer(mainController.getPlayer(1), cellIndex);
+            cell.playAction(mainController);
+            int diceRoll = mainController.getUtilityDiceRoll();
             assertEquals(1500 - cell.getRent(diceRoll), 
-                    mainCtl.getPlayer(1).getMoney()
+                    mainController.getPlayer(1).getMoney()
             );
             assertEquals(1350 + cell.getRent(diceRoll), 
-                    mainCtl.getPlayer(0).getMoney()
+                    mainController.getPlayer(0).getMoney()
             );
     }
 
     public void testPurchaseUtility() {
-        assertEquals(0, mainCtl.getPlayer(0).numberOfUtilities());
-        int cellIndex = mainCtl.getGameBoard().queryCellIndex("Utility 1");
-        mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex);
-        mainCtl.purchase();
-        assertEquals(1350, mainCtl.getPlayer(0).getMoney());
-        assertEquals(1, mainCtl.getPlayer(0).numberOfUtilities());
+        assertEquals(0, mainController.getPlayer(0).numberOfUtilities());
+        int cellIndex = mainController.getGameBoard().queryCellIndex("Utility 1");
+        mainController.movePlayer(mainController.getPlayer(0), cellIndex);
+        mainController.purchase();
+        assertEquals(1350, mainController.getPlayer(0).getMoney());
+        assertEquals(1, mainController.getPlayer(0).numberOfUtilities());
     }
 
     public void testRent() {
-        UtilityCell u1 =
-                (UtilityCell) mainCtl.getGameBoard().queryCell("Utility 1");
-        int cellIndex1 = mainCtl.getGameBoard().queryCellIndex("Utility 1");
-        mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex1);
-        mainCtl.purchase();
-        assertEquals(40, u1.getRent(10));
+        UtilityCell utility1 =
+                (UtilityCell) mainController.getGameBoard().queryCell("Utility 1");
+        int cellIndex1 = mainController.getGameBoard().queryCellIndex("Utility 1");
+        mainController.movePlayer(mainController.getPlayer(0), cellIndex1);
+        mainController.purchase();
+        assertEquals(40, utility1.getRent(10));
 
-        UtilityCell u2 =
-                (UtilityCell) mainCtl.getGameBoard().queryCell("Utility 2");
-        int cellIndex2 = mainCtl.getGameBoard().queryCellIndex("Utility 2");
-        mainCtl.movePlayer(mainCtl.getPlayer(0), cellIndex2 - cellIndex1);
-        mainCtl.purchase();
-        assertEquals(100, u1.getRent(10));
-        assertEquals(100, u2.getRent(10));
+        UtilityCell utility2 =
+                (UtilityCell) mainController.getGameBoard().queryCell("Utility 2");
+        int cellIndex2 = mainController.getGameBoard().queryCellIndex("Utility 2");
+        mainController.movePlayer(mainController.getPlayer(0), cellIndex2 - cellIndex1);
+        mainController.purchase();
+        assertEquals(100, utility1.getRent(10));
+        assertEquals(100, utility2.getRent(10));
     }
 }

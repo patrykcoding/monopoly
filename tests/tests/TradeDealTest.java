@@ -7,20 +7,20 @@ import monopoly.TradeDeal;
 import monopoly.cells.PropertyCell;
 
 public class TradeDealTest extends TestCase {
-    private MainController mainCtl;
+    private MainController mainController;
     
     @Override
     public void setUp() {
-        mainCtl = new MainController();
-        mainCtl.reset();
-        mainCtl.setNumberOfPlayers(2);
-        mainCtl.getPlayer(0).setName("Buyer");
-        mainCtl.getPlayer(1).setName("Seller");
+        mainController = new MainController();
+        mainController.reset();
+        mainController.setNumberOfPlayers(2);
+        mainController.getPlayer(0).setName("Buyer");
+        mainController.getPlayer(1).setName("Seller");
     }
 
     public void testMakeMessage() {
-        Player buyer = mainCtl.getPlayer(0);
-        Player seller = mainCtl.getPlayer(1);
+        Player buyer = mainController.getPlayer(0);
+        Player seller = mainController.getPlayer(1);
         int propertyPrice = 200;
         
         PropertyCell property = new PropertyCell();

@@ -17,54 +17,54 @@ import tests.mocks.MockGUI;
 
 public class MainControllerTest extends TestCase {
 
-    private MainController mainCtl;
+    private MainController mainController;
     
     @Override
     protected void setUp() throws Exception {
-        mainCtl = new MainController();
-        mainCtl.setGameBoard(new GameBoardDefault());
-        mainCtl.setNumberOfPlayers(2);
-        mainCtl.getPlayer(0).setName("Player 1");
-        mainCtl.getPlayer(1).setName("Player 2");
-        mainCtl.reset();
-        mainCtl.setGUI(new MockGUI());
-        mainCtl.startGame();
+        mainController = new MainController();
+        mainController.setGameBoard(new GameBoardDefault());
+        mainController.setNumberOfPlayers(2);
+        mainController.getPlayer(0).setName("Player 1");
+        mainController.getPlayer(1).setName("Player 2");
+        mainController.reset();
+        mainController.setGUI(new MockGUI());
+        mainController.startGame();
     }
 
     public void testReset() {
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
-        mainCtl.movePlayer(mainCtl.getPlayer(1), 4);
-        mainCtl.reset();
+        mainController.movePlayer(mainController.getPlayer(0), 3);
+        mainController.movePlayer(mainController.getPlayer(1), 4);
+        mainController.reset();
 
-        for(int i = 0; i < mainCtl.getNumberOfPlayers(); i++) {
-            Player player = mainCtl.getPlayer(i);
+        for(int i = 0; i < mainController.getNumberOfPlayers(); i++) {
+            Player player = mainController.getPlayer(i);
             assertEquals("Go", player.getPosition().getName());
         }
-        assertEquals(0, mainCtl.getTurn());
+        assertEquals(0, mainController.getTurn());
     }
     
     public void testTradeProcess() {
-        MonopolyGUI gui = mainCtl.getGUI();
+        MonopolyGUI gui = mainController.getGUI();
         assertTrue(gui.isTradeButtonEnabled(0));
         assertFalse(gui.isTradeButtonEnabled(1));
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
+        mainController.movePlayer(mainController.getPlayer(0), 1);
         assertFalse(gui.isTradeButtonEnabled(0));
         assertFalse(gui.isTradeButtonEnabled(1));
-        mainCtl.purchase();
-        assertEquals(mainCtl.getGameBoard().getCell(1),
-                     mainCtl.getPlayer(0).getAllProperties().get(0));
-        mainCtl.buttonEndTurnClicked();
+        mainController.purchase();
+        assertEquals(mainController.getGameBoard().getCell(1),
+                     mainController.getPlayer(0).getAllProperties().get(0));
+        mainController.buttonEndTurnClicked();
         TradeDialog dialog = gui.openTradeDialog();
-        int numberOfSellers =  mainCtl.getNumberOfPlayers() - 1;
+        int numberOfSellers =  mainController.getNumberOfPlayers() - 1;
         assertEquals(1, numberOfSellers);
-        List<Player> sellerList = mainCtl.getSellerList();
-        assertEquals(mainCtl.getPlayer(0), sellerList.get(0));
-        TradeDeal deal = dialog.getTradeDeal(mainCtl);
+        List<Player> sellerList = mainController.getSellerList();
+        assertEquals(mainController.getPlayer(0), sellerList.get(0));
+        TradeDeal deal = dialog.getTradeDeal(mainController);
         RespondDialog respond = gui.openRespondDialog(deal);
-        Player player1 = mainCtl.getPlayer(0);
-        Player player2 = mainCtl.getPlayer(1);
+        Player player1 = mainController.getPlayer(0);
+        Player player2 = mainController.getPlayer(1);
         assertTrue(respond.getResponse());
-        mainCtl.completeTrade(deal);
+        mainController.completeTrade(deal);
         assertEquals(1440 + deal.getAmount(), player1.getMoney());
         assertEquals(1500 - deal.getAmount(), player2.getMoney());
         assertFalse(player1.checkProperty(deal.getPropertyName()));
@@ -72,77 +72,76 @@ public class MainControllerTest extends TestCase {
     }
 
     public void testTurn() {
-        assertEquals(0, mainCtl.getTurn());
-        mainCtl.switchTurn();
-        assertEquals(1, mainCtl.getTurn());
-        mainCtl.switchTurn();
-        assertEquals(0, mainCtl.getTurn());
+        assertEquals(0, mainController.getTurn());
+        mainController.switchTurn();
+        assertEquals(1, mainController.getTurn());
+        mainController.switchTurn();
+        assertEquals(0, mainController.getTurn());
     }
 
     public void testButtonGetOutOfJailClicked() {
-        MonopolyGUI gui = mainCtl.getGUI();
-        mainCtl.movePlayer(mainCtl.getPlayer(0),30);
-        mainCtl.buttonEndTurnClicked();
-        assertEquals("Jail", mainCtl.getPlayer(0).getPosition().getName());
-        mainCtl.movePlayer(mainCtl.getPlayer(1), 2);
-        mainCtl.buttonEndTurnClicked();
+        MonopolyGUI gui = mainController.getGUI();
+        mainController.movePlayer(mainController.getPlayer(0),30);
+        mainController.buttonEndTurnClicked();
+        assertEquals("Jail", mainController.getPlayer(0).getPosition().getName());
+        mainController.movePlayer(mainController.getPlayer(1), 2);
+        mainController.buttonEndTurnClicked();
         assertTrue(gui.isGetOutOfJailButtonEnabled());
-        assertTrue(mainCtl.getPlayer(0).isInJail());
-        mainCtl.buttonGetOutOfJailClicked();
-        assertFalse(mainCtl.getPlayer(0).isInJail());
-        assertEquals(1450,mainCtl.getPlayer(0).getMoney());
+        assertTrue(mainController.getPlayer(0).isInJail());
+        mainController.buttonGetOutOfJailClicked();
+        assertFalse(mainController.getPlayer(0).isInJail());
+        assertEquals(1450,mainController.getPlayer(0).getMoney());
     }
 
     public void testButtonPurchasePropertyClicked() {
-        mainCtl.movePlayer(mainCtl.getPlayer(0),1);
-        mainCtl.buttonPurchasePropertyClicked();
-        assertEquals(mainCtl.getGameBoard().getCell(1), mainCtl.getPlayer(0).getAllProperties().get(0));
-        assertEquals(1440, mainCtl.getPlayer(0).getMoney());
+        mainController.movePlayer(mainController.getPlayer(0),1);
+        mainController.buttonPurchasePropertyClicked();
+        assertEquals(mainController.getGameBoard().getCell(1), mainController.getPlayer(0).getAllProperties().get(0));
+        assertEquals(1440, mainController.getPlayer(0).getMoney());
     }
 
     public void testButtonRollDiceClicked() {
-        mainCtl.reset();
-        PlayerPanel panel = new PlayerPanel(mainCtl, mainCtl.getCurrentPlayer());
-        mainCtl.buttonRollDiceClicked(panel);
-        Dice dice = mainCtl.getDice();
-        assertEquals(0, mainCtl.getTurn());
-        assertEquals(
-                mainCtl.getGameBoard().getCell(0 + dice.getTotal()), 
-                mainCtl.getPlayer(0).getPosition()
+        mainController.reset();
+        PlayerPanel panel = new PlayerPanel(mainController, mainController.getCurrentPlayer());
+        mainController.buttonRollDiceClicked(panel);
+        Dice dice = mainController.getDice();
+        assertEquals(0, mainController.getTurn());
+        assertEquals(mainController.getGameBoard().getCell(0 + dice.getTotal()), 
+                mainController.getPlayer(0).getPosition()
         );
     }
 
     public void testButtonTradeClicked() {
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
-        mainCtl.purchase();
-        mainCtl.buttonEndTurnClicked();
-        mainCtl.buttonTradeClicked();
-        assertEquals(mainCtl.getGameBoard().getCell(1), mainCtl.getPlayer(1).getAllProperties().get(0));
-        assertEquals(1640, mainCtl.getPlayer(0).getMoney());
-        assertEquals(1300, mainCtl.getPlayer(1).getMoney());
+        mainController.movePlayer(mainController.getPlayer(0), 1);
+        mainController.purchase();
+        mainController.buttonEndTurnClicked();
+        mainController.buttonTradeClicked();
+        assertEquals(mainController.getGameBoard().getCell(1), mainController.getPlayer(1).getAllProperties().get(0));
+        assertEquals(1640, mainController.getPlayer(0).getMoney());
+        assertEquals(1300, mainController.getPlayer(1).getMoney());
     }
     
     public void testPurchaseHouse() {
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
-        mainCtl.purchase();
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 2);
-        mainCtl.purchase();
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 1);
-        mainCtl.purchase();
-        mainCtl.purchaseHouse(ColorGroup.PURPLE, 2);
-        assertEquals(ColorGroup.PURPLE, mainCtl.getMonopolies(mainCtl.getPlayer(0)).get(0));
-        assertEquals(1020, mainCtl.getPlayer(0).getMoney());
+        mainController.movePlayer(mainController.getPlayer(0), 1);
+        mainController.purchase();
+        mainController.movePlayer(mainController.getPlayer(0), 2);
+        mainController.purchase();
+        mainController.movePlayer(mainController.getPlayer(0), 1);
+        mainController.purchase();
+        mainController.purchaseHouse(ColorGroup.PURPLE, 2);
+        assertEquals(ColorGroup.PURPLE, mainController.getMonopolies(mainController.getPlayer(0)).get(0));
+        assertEquals(1020, mainController.getPlayer(0).getMoney());
     }
     
     public void testPurchaseProperty() {
-        mainCtl.setNumberOfPlayers(1);
-        mainCtl.movePlayer(mainCtl.getPlayer(0), 3);
-        Player player = mainCtl.getPlayer(0);
-        mainCtl.purchase();
+        mainController.setNumberOfPlayers(1);
+        mainController.movePlayer(mainController.getPlayer(0), 3);
+        Player player = mainController.getPlayer(0);
+        mainController.purchase();
         assertEquals(1440, player.getMoney());
         assertEquals("Baltic Avenue", player.getProperty(0).getName());
         PropertyCell cell =
-        (PropertyCell) mainCtl.getGameBoard().queryCell("Baltic Avenue");
+        (PropertyCell) mainController.getGameBoard().queryCell("Baltic Avenue");
         assertSame(player, cell.getOwner());
     }
 }
