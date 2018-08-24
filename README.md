@@ -5,6 +5,8 @@ was originally downloaded from
 project that has a explicit focus on code refactoring with details outlined in
 the [SPEC](docs/SPEC.md).
 
+![monopoly screenshot](https://github.com/kaczmarkiewiczp/monopoly/blob/master/docs/monopoly.png?raw=true)
+
 #### Development Team
 * Cody Moorhouse
 * Patryk Kaczmarkiewicz
