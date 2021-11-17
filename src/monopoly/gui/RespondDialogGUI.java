@@ -16,7 +16,10 @@ public class RespondDialogGUI extends JDialog implements RespondDialog {
     
     private boolean response;
     private final JTextArea messageText = new JTextArea();
-    
+
+    /**
+     * @param playerPanel
+     */
     public RespondDialogGUI(PlayerPanel playerPanel) {
         JButton yesButton = new JButton("Yes");
         JButton noButton = new JButton("No");
@@ -50,11 +53,18 @@ public class RespondDialogGUI extends JDialog implements RespondDialog {
         super.setModal(true);
         super.pack();
     }
-    
+
+    /**
+     * set the text of the messageText with the deal message
+     * @param deal
+     */
     public void setDeal(TradeDeal deal) {
         messageText.setText(deal.makeMessage());
     }
 
+    /**
+     * @return the response
+     */
     @Override
     public boolean getResponse() {
         return response;

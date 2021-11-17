@@ -33,6 +33,10 @@ public class PlayerPanel extends JPanel {
     private final JButton rollDiceButton;
     private final JButton tradeButton;
 
+    /**
+     * @param mainController
+     * @param player
+     */
     public PlayerPanel(MainController mainController, Player player) {
         JPanel actionPanel = new JPanel();
         JPanel infoPanel = new JPanel();
@@ -127,6 +131,9 @@ public class PlayerPanel extends JPanel {
         });
     }
 
+    /**
+     * display the information of the player (nameLabel, moneyLabel and properties)
+     */
     public final void displayInfo() {
         nameLabel.setText(player.getName());
         moneyLabel.setText("$ " + player.getMoney());
@@ -138,46 +145,86 @@ public class PlayerPanel extends JPanel {
         propertyText.setText(buf.toString());
     }
 
+    /**
+     * @return drawCardButton enabled status
+     */
     public boolean isDrawCardButtonEnabled() {
         return drawCardButton.isEnabled();
     }
 
+    /**
+     * @return endTurnButton enabled status
+     */
     public boolean isEndTurnButtonEnabled() {
         return endTurnButton.isEnabled();
     }
-    
+
+    /**
+     * @return getOutOfJailButton enabled status
+     */
     public boolean isGetOutOfJailButtonEnabled() {
         return getOutOfJailButton.isEnabled();
     }
-    
+
+    /**
+     * @return tradeButton enabled status
+     */
     public boolean isTradeButtonEnabled() {
         return tradeButton.isEnabled();
     }
 
+    /**
+     * set enabled status of buyHouseButton with the value of enabled param
+     * @param enabled
+     */
     public void setBuyHouseEnabled(boolean enabled) {
         buyHouseButton.setEnabled(enabled);
     }
 
+    /**
+     * set enabled status of drawCardButton with the value of enabled param
+     * @param enabled
+     */
     public void setDrawCardEnabled(boolean enabled) {
         drawCardButton.setEnabled(enabled);
     }
 
+    /**
+     * set enabled status of endTurnButton with the value of enabled param
+     * @param enabled
+     */
     public void setEndTurnEnabled(boolean enabled) {
         endTurnButton.setEnabled(enabled);
     }
 
+    /**
+     * set enabled status of getOutOfJailButton with the value of enabled param
+     * @param enabled
+     */
     public void setGetOutOfJailEnabled(boolean enabled) {
         getOutOfJailButton.setEnabled(enabled);
     }
 
+    /**
+     * set enabled status of purchasePropertyButton with the value of enabled param
+     * @param enabled
+     */
     public void setPurchasePropertyEnabled(boolean enabled) {
         purchasePropertyButton.setEnabled(enabled);
     }
 
+    /**
+     * set enabled status of rollDiceButton with the value of enabled param
+     * @param enabled
+     */
     public void setRollDiceEnabled(boolean enabled) {
         rollDiceButton.setEnabled(enabled);
     }
 
+    /**
+     * set enabled status of tradeButton with the value of b param
+     * @param b
+     */
     public void setTradeEnabled(boolean b) {
         tradeButton.setEnabled(b);
     }

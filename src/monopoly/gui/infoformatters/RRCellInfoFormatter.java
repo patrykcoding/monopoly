@@ -6,6 +6,11 @@ import monopoly.cells.RailRoadCell;
 import monopoly.gui.CellInfoFormatter;
 
 public class RRCellInfoFormatter implements CellInfoFormatter {
+    /**
+     * Format the RR cell
+     * @param cell
+     * @return string containing the cell name with specific format
+     */
     @Override
     public String format(Cell cell) {
         StringBuilder buf = new StringBuilder();
@@ -15,7 +20,12 @@ public class RRCellInfoFormatter implements CellInfoFormatter {
                 .append("</html>");
         return buf.toString();
     }
-    
+
+    /**
+     * Cast the cell into RailRoadCell and format ToolTip of the RR cell
+     * @param cell
+     * @return string containing the cell information with specific format
+     */
     @Override
     public String formatToolTip(Cell cell) {
         RailRoadCell c = (RailRoadCell)cell;

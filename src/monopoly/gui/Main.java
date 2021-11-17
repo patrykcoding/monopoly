@@ -6,7 +6,12 @@ import monopoly.*;
 public class Main {
 
     private static final MainController MAIN_CONTROLLER = new MainController();
-    
+
+    /**
+     * Taking the valid int number of the players by the user
+     * @param window
+     * @return the number of the players entered by the user
+     */
     private static int inputNumberOfPlayers(MainWindow window) {
         int numPlayers = 0;
         while(numPlayers < 2 || numPlayers > BoardController.MAX_PLAYER) {
@@ -38,6 +43,14 @@ public class Main {
         return numPlayers;
     }
 
+    /**
+     * main function of the project which is doing many things to start the game:
+     *  1- Initialize the window and set the gameBoard.
+     *  2- Get the number of the players from the user.
+     *  3- Get each player name if any.
+     *  4- Set the GUI of the game and start it.
+     * @param args
+     */
     public static void main(String[] args) {
         MainWindow window = new MainWindow(MAIN_CONTROLLER);
         if (args.length > 0) {

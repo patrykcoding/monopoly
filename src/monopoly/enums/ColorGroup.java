@@ -1,5 +1,9 @@
 package monopoly.enums;
 
+/**
+ *ColorGroup
+ * @author owner
+ */
 public enum ColorGroup {
     RAILROAD, 
     UTILITY,

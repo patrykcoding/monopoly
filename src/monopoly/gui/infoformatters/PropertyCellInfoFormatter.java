@@ -6,6 +6,11 @@ import monopoly.cells.PropertyCell;
 import monopoly.gui.CellInfoFormatter;
 
 public class PropertyCellInfoFormatter implements CellInfoFormatter {
+    /**
+     * Cast the cell into PropertyCell and format the Property cell
+     * @param cell
+     * @return string containing the cell information with specific format
+     */
     @Override
     public String format(Cell cell) {
         PropertyCell c = (PropertyCell)cell;
@@ -18,7 +23,12 @@ public class PropertyCellInfoFormatter implements CellInfoFormatter {
                 .append("</html>");
         return buf.toString();
     }
-    
+
+    /**
+     * Cast the cell into PropertyCell and format ToolTip of the Property cell
+     * @param cell
+     * @return string containing the cell information with specific format
+     */
     @Override
     public String formatToolTip(Cell cell) {
         PropertyCell c = (PropertyCell)cell;

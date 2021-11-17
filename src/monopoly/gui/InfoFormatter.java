@@ -28,6 +28,9 @@ public class InfoFormatter {
         addFormatters();
     }
 
+    /**
+     * add infoFormatter of each cell type in the game to cellInfoFormatters HashMap.
+     */
     private static void addFormatters() {
         cellInfoFormatters.put(PropertyCell.class, new PropertyCellInfoFormatter());
         cellInfoFormatters.put(GoCell.class, new GoCellInfoFormatter());
@@ -39,11 +42,21 @@ public class InfoFormatter {
         cellInfoFormatters.put(CardCell.class, new CCCellInfoFormatter());
     }
 
+    /**
+     * @param cell
+     * @return the cell Info which is the format of the given cell's name
+     * based on the class(type) of the given cell by the help of its appropriate formatter.
+     */
     public static String cellInfo(Cell cell) {
         CellInfoFormatter formatter = cellInfoFormatters.get(cell.getClass());
         return formatter.format(cell);
     }
 
+    /**
+     * @param cell
+     * @return the cell ToolTip which is the formatToolTip of the given cell's name
+     * based on the class(type) of the given cell by the help of its appropriate formatter.
+     */
     public static String cellToolTip(Cell cell) {
         CellInfoFormatter formatter = cellInfoFormatters.get(cell.getClass());
         return formatter.formatToolTip(cell);

@@ -9,15 +9,29 @@ import monopoly.cells.RailRoadCell;
 import monopoly.cells.UtilityCell;
 import monopoly.enums.ColorGroup;
 
+/**
+ *
+ * @author owner
+ */
 public class PropertyController {
+
     private final BoardController boardController;
+
     private final GameBoard gameBoard;
     
+    /**
+     * Initialize the boardController and the gameBoard
+     * @param boardController
+     */
     public PropertyController(BoardController boardController) {
         this.boardController = boardController;
         this.gameBoard = boardController.getGameBoard();
     }
 
+    /**
+     * How the player buy a property based one PropertyCell,RailRoadCell and UtilityCell
+     * @param deal
+     */
     public void buyProperty(TradeDeal deal) {
         Cell property = deal.getProperty();
         Player buyer = deal.getBuyer();
@@ -37,10 +51,18 @@ public class PropertyController {
         buyer.subtractMoney(deal.getAmount());
     }
     
+    /**
+     *
+     * @return true if the current player can buy a house and return false otherwise
+     */
     public boolean canBuyHouse() {
         return (!getMonopolies(boardController.getCurrentPlayer()).isEmpty());
     }
     
+    /**
+     * Double the property original rent for the given color group.
+     * @param colorGroup
+     */
     private void doublePropertyRent(ColorGroup colorGroup) {
         List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
         
@@ -49,6 +71,11 @@ public class PropertyController {
         });
     }
     
+    /**
+     * Getting monopolies of the given player.
+     * @param player
+     * @return monopolies
+     */
     public List<ColorGroup> getMonopolies(Player player) {
         Map<ColorGroup, Integer> propertyColors = player.getPropertyColors();
         List<ColorGroup> monopolies = new ArrayList<>();
@@ -66,6 +93,10 @@ public class PropertyController {
         return monopolies;
     }
     
+    /**
+     * Get list of all seller player
+     * @return list of sellers
+     */
     public List<Player> getSellerList() {
         List<Player> sellers = new ArrayList<>();
         boardController.getPlayers().stream().filter((player) ->
@@ -75,6 +106,11 @@ public class PropertyController {
         return sellers;
     }
     
+    /**
+     *Adding all properties[properties, railroads and utilities] of player 'FromPlayer' to player 'ToPlayer'.
+     * @param fromPlayer
+     * @param toPlayer
+     */
     public void giveAllProperties(Player fromPlayer, Player toPlayer) {
         List<PropertyCell> properties = fromPlayer.getPropertyCells();
         List<RailRoadCell> railroads = fromPlayer.getRailRoadCells();
@@ -116,6 +152,12 @@ public class PropertyController {
         utilities.clear();
     }
 	
+    /**
+     * if the current player is able to pay: adding the amount of rent money to the owner,else:
+     * the current player will give all his/her properties to the owner
+     * @param owner
+     * @param rentValue
+     */
     public void payRentTo(Player owner, int rentValue) {
         Player currentPlayer = boardController.getCurrentPlayer();
         int playerMoney = currentPlayer.getMoney();
@@ -133,7 +175,11 @@ public class PropertyController {
             giveAllProperties(currentPlayer, owner);
         }
     }
-    
+
+    /**
+     * purchase to the cell of the current player's current position if the cell is available
+     * by making a trade deal and set the cell as unavailable
+     */
     public void purchase() {
         Player currentPlayer = boardController.getCurrentPlayer();
         
@@ -145,6 +191,12 @@ public class PropertyController {
         }
     }
     
+    /**
+     *Purchasing for a house by the current player
+     * @param selectedMonopoly
+     * @param houses
+     * @return number of houses which selected.
+     */
     public int purchaseHouse(ColorGroup selectedMonopoly, int houses) {
         Player currentPlayer = boardController.getCurrentPlayer();
         
@@ -164,6 +216,10 @@ public class PropertyController {
         return numOfHouses;
     }
     
+    /**
+     *Reset the original property rent for each property in the monopoly of the given colorGroup
+     * @param colorGroup
+     */
     private void resetPropertyRent(ColorGroup colorGroup) {
         List<PropertyCell> properties = gameBoard.getPropertiesInMonopoly(colorGroup);
         
@@ -172,6 +228,11 @@ public class PropertyController {
         });
     }
     
+    /**
+     * Sell a property based on the given deal
+     * Add money for seller after sell a specific property.
+     * @param deal
+     */
     public void sellProperty(TradeDeal deal) {
         Player seller = deal.getSeller();
         Cell property = deal.getProperty();
@@ -188,6 +249,10 @@ public class PropertyController {
         seller.addMoney(deal.getAmount());
     }
     
+    /**
+     * Update rent of property after setting new rent 
+     * @param property
+     */
     private void updatePropertyRent(PropertyCell property) {
         int previousRent = property.getRent();
         int numHouses = property.getNumHouses();
@@ -208,6 +273,10 @@ public class PropertyController {
         }
     }
 
+    /**
+     * Update rent of RailRoad after setting new rent for each playersRailroad.
+     * @param railroad
+     */
     private void updateRailRoadRent(RailRoadCell railroad) {
         Player owner = railroad.getOwner();
         int basePrice = railroad.getBaseRent();

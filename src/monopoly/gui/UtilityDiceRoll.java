@@ -11,7 +11,11 @@ import monopoly.Dice;
 
 public class UtilityDiceRoll extends JDialog {
     private static final long serialVersionUID = -2985807932807855607L;
-    
+
+    /**
+     * @param panel
+     * @return the dice value of UtilityDiceRoll dialog
+     */
     public static int showDialog(PlayerPanel panel) {
         UtilityDiceRoll dialog = new UtilityDiceRoll(panel);
         dialog.setVisible(true);
@@ -22,7 +26,10 @@ public class UtilityDiceRoll extends JDialog {
     private final JButton okButton = new JButton("OK");
     private int diceValue;
     private final JLabel promptLabel = new JLabel();
-    
+
+    /**
+     * @param panel
+     */
     public UtilityDiceRoll(PlayerPanel panel) {
         super.setModal(true);
         okButton.setEnabled(false);
@@ -50,10 +57,16 @@ public class UtilityDiceRoll extends JDialog {
         super.pack();
     }
 
+    /**
+     * Do the ok related action
+     */
     public final void okClicked(){
         this.dispose();
     }
 
+    /**
+     * Do the roll Dice action and set text with what the user do in promptLabel
+     */
     public final void rollDice() {
         Dice dice = new Dice(2);
         diceValue = dice.getTotal();

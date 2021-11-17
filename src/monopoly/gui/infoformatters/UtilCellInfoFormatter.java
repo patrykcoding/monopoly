@@ -7,6 +7,11 @@ import monopoly.gui.CellInfoFormatter;
 
 public class UtilCellInfoFormatter implements CellInfoFormatter {
 
+    /**
+     * Format the Util cell
+     * @param cell
+     * @return string containing the cell name with specific format
+     */
     @Override
     public String format(Cell cell) {
         StringBuilder buf = new StringBuilder();
@@ -16,7 +21,12 @@ public class UtilCellInfoFormatter implements CellInfoFormatter {
                 .append("</html>");
         return buf.toString();
     }
-    
+
+    /**
+     * Cast the cell into UtilityCell and format ToolTip of the Util cell
+     * @param cell
+     * @return string containing the cell information with specific format
+     */
     @Override
     public String formatToolTip(Cell cell) {
         UtilityCell c = (UtilityCell)cell;

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"monopoly"},{"l":"monopoly.cards"},{"l":"monopoly.cells"},{"l":"monopoly.enums"},{"l":"monopoly.gameboards"},{"l":"monopoly.gui"},{"l":"monopoly.gui.infoformatters"}];updateSearchResults();

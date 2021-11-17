@@ -34,7 +34,11 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
     private JComboBox<Player> sellersCombobox;
     private TradeDeal deal;
     private JTextField amountText;
-    
+
+    /**
+     * @param mainController
+     * @param parent
+     */
     public TradeDialogGUI(MainController mainController, Frame parent) {
         super(parent);
         int xOffset = 125;
@@ -139,6 +143,11 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         super.pack();
     }
 
+    /**
+     * add all the seller to sellersCombobox and updatePropertiesComboBox of the seller in the first index
+     * Set the background and the border of sellersCombobox based on the seller in the first index
+     * @param mainCtl
+     */
     private void buildSellersComboBox(MainController mainCtl) {
         List<Player> sellers = mainCtl.getSellerList();
         sellers.stream().forEach((player) -> {
@@ -152,6 +161,10 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         }
     }
 
+    /**
+     * update the propertiesComboBox of the given player
+     * @param player
+     */
     private void updatePropertiesComboBox(Player player) {
         propertiesCombobox.removeAllItems();
         List<Cell> cells = player.getAllProperties();
@@ -161,6 +174,10 @@ public class TradeDialogGUI extends JDialog implements TradeDialog {
         });
     }
 
+    /**
+     * @param mainCtl
+     * @return tradeDeal
+     */
     @Override
     public TradeDeal getTradeDeal(MainController mainCtl) {
         return deal;

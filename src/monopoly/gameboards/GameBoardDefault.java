@@ -14,7 +14,19 @@ import monopoly.cells.UtilityCell;
 import monopoly.enums.CardType;
 import monopoly.enums.ColorGroup;
 
+/**
+ *GameBoardDefault class (subclass) inherits the attributes and methods from the GameBoard class (superclass)
+ * @author owner
+ */
 public class GameBoardDefault extends GameBoard {
+
+    /**
+     * GameBoardDefault Controller which is responsible for setting the default values for the game board.
+     * The game board consist of:
+     *  1- number of different types of cells, each one of them containing a price, colorGroup,
+     *     housePrice, rent value and name.
+     *  2- number of different types of cards, each one of them has a label, amount and cardType
+     */
     public GameBoardDefault() {
         super();
         
